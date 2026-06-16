@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پورتال مقررات و ایمنی آزمایشگاه پسماند</title>
+  <meta name="description" content="سامانه جامع راهنمای ایمنی، قوانین عمومی کار و دستورالعمل‌های نگهداری تجهیزات تخصصی آزمایشگاه پسماند">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="chatbot/chatbot.css">
+  <!-- Google Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <!-- KaTeX for rendering LaTeX formulas -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Header Area -->
+    <header>
+      <div class="header-top">
+        <div class="brand">
+          <span class="material-symbols-outlined brand-icon">science</span>
+          <div class="brand-text">
+            <h1>آزمایشگاه پسماند</h1>
+            <p>سامانه جامع مقررات، ایمنی و کاربری تجهیزات</p>
+          </div>
+        </div>
+        
+        <div class="controls">
+          <!-- Live Status -->
+          <div class="status-widget">
+            <span class="status-dot" id="status-dot"></span>
+            <span id="status-text">درحال بررسی وضعیت آزمایشگاه...</span>
+          </div>
+          
+          <!-- Theme Toggle -->
+          <button class="theme-btn" id="theme-btn" aria-label="تغییر پوسته">
+            <!-- Icon replaced by JS -->
+          </button>
+        </div>
+      </div>
+      
+      <!-- Live Search Bar -->
+      <div class="search-container">
+        <input type="text" id="search-input" class="search-input" placeholder="جستجو در قوانین، خطاها یا دستورالعمل‌ها...">
+        <span class="material-symbols-outlined search-icon">search</span>
+      </div>
+      <div id="search-status-banner" class="search-status-banner" style="display: none;"></div>
+    </header>
+
+    <!-- Penalty warning -->
+    <div class="penalty-banner">
+      <span class="material-symbols-outlined penalty-icon">gpp_maybe</span>
+      <div class="penalty-text">
+        مهم: در صورتی که دانشجویی از قوانین و موارد زیر تخطی کند، به‌مدت ۱۰ روز اجازه فعالیت در آزمایشگاه را نخواهد داشت.
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="tab-general">قوانین عمومی و ایمنی</button>
+      <button class="tab-btn" data-tab="tab-equipment">راهنمای کاربری تجهیزات</button>
+      <button class="tab-btn" data-tab="tab-quiz">آزمون و تعهدنامه ورود</button>
+    </nav>
+
+    <!-- TAB 1: General Rules -->
+    <div class="tab-content active" id="tab-general">
+      <div class="rules-grid">
+        
+        <!-- Card 1: Hours & Access -->
+        <div class="rule-card">
+          <div class="rule-card-header">
+            <span class="material-symbols-outlined rule-card-icon">schedule</span>
+            <div class="rule-card-title">ساعت کاری و ضوابط ورود</div>
+          </div>
+          <ul class="rule-list">
+            <li class="rule-item"><strong>ساعت کاری آزمایشگاه:</strong> از ساعت <span class="highlight-mark">۷:۰۰ صبح تا ۱۶:۰۰</span> می‌باشد.</li>
+            <li class="rule-item"><strong>افراد مجاز:</strong> فقط دانشجویان لیست پیوست اجازه حضور در آزمایشگاه و کار با دستگاه‌های مربوطه را دارند.</li>
+            <li class="rule-item"><strong>حداکثر مدت دوره:</strong> مدت حضور در آزمایشگاه برای دانشجویان کارشناسی ارشد حداکثر <span class="highlight-mark">۹ ماه</span> است.</li>
+            <li class="rule-item"><strong>خروج از آزمایشگاه:</strong> پس از خروج، حتماً چک کنید درب قفل، چراغ‌ها خاموش و کولر خاموش باشد.</li>
+          </ul>
+        </div>
+
+        <!-- Card 2: PPE & General Protection -->
+        <div class="rule-card">
+          <div class="rule-card-header">
+            <span class="material-symbols-outlined rule-card-icon">health_and_safety</span>
+            <div class="rule-card-title">پوشش حفاظتی و بهداشت</div>
+          </div>
+          <ul class="rule-list">
+            <li class="rule-item warning-rule"><strong>پوشش حفاظتی فردی (PPE):</strong> استفاده از روپوش آزمایشگاهی، دستکش یکبار مصرف، ماسک و عینک برای همه دانشجویان الزامی است.</li>
+            <li class="rule-item"><strong>برگه اطلاعات ایمنی (MSDS):</strong> دانشجو موظف است قبل از استفاده از مواد شیمیایی، برگه اطلاعات ایمنی آن را مطالعه کند.</li>
+            <li class="rule-item danger-rule"><strong>خوردن و آشامیدن:</strong> از خوردن و آشامیدن در محیط آزمایشگاه اکیداً خودداری کنید.</li>
+          </ul>
+        </div>
+
+        <!-- Card 3: Acids & Bases -->
+        <div class="rule-card">
+          <div class="rule-card-header">
+            <span class="material-symbols-outlined rule-card-icon">warning</span>
+            <div class="rule-card-title">کار با اسیدها و بازها</div>
+          </div>
+          <ul class="rule-list">
+            <li class="rule-item danger-rule"><strong>رقیق‌سازی اسیدها:</strong> هرگز آب را روی اسید نریزید. ابتدا آب در ظرف ریخته شود و اسید آرام، تدریجی و مرحله‌ای زیر هود به آب اضافه شود.</li>
+            <li class="rule-item warning-rule"><strong>رقیق‌سازی بازها:</strong> فرآیند گرمازاست. ابتدا آب داخل بشر یا ارلن ریخته شود و باز آهسته و مرحله‌ای اضافه گردد.</li>
+            <li class="rule-item danger-rule"><strong>ترکیب اسید و باز:</strong> ترکیب مستقیم اسید غلیظ و باز قوی ممنوع است. هر دو ماده باید ابتدا رقیق شوند (معمولاً ۱ مولار).</li>
+            <li class="rule-item"><strong>محل انجام واکنش:</strong> ترکیب مواد شیمیایی، اسیدها و حلال‌ها حتماً باید زیر هود انجام شود.</li>
+          </ul>
+        </div>
+
+        <!-- Card 4: Waste Disposal -->
+        <div class="rule-card">
+          <div class="rule-card-header">
+            <span class="material-symbols-outlined rule-card-icon">delete_forever</span>
+            <div class="rule-card-title">دفع پسماندهای آزمایشگاهی</div>
+          </div>
+          <ul class="rule-list">
+            <li class="rule-item danger-rule"><strong>ممنوعیت تخلیه در سینک:</strong> هرگونه تخلیه حلال‌ها، مواد اسیدی و بازی و پسماندها در سینک اکیداً ممنوع است.</li>
+            <li class="rule-item"><strong>دفع صحیح پسماند:</strong> دفع پسماندهای شیمیایی (اسیدی/بازی، فلزی، آلی، سمی، جامد آلوده) بر اساس دسته‌بندی الزامی است.</li>
+            <li class="rule-item warning-rule"><strong>بطری پسماند:</strong> دانشجو موظف است پسماند شیمیایی خود را در بطری شیشه‌ای لیبل‌دار ریخته و زیر سینک بگذارد.</li>
+          </ul>
+        </div>
+
+        <!-- Card 5: Equipment & Glassware -->
+        <div class="rule-card">
+          <div class="rule-card-header">
+            <span class="material-symbols-outlined rule-card-icon">construction</span>
+            <div class="rule-card-title">تجهیزات، نظافت و خسارت</div>
+          </div>
+          <ul class="rule-list">
+            <li class="rule-item"><strong>استفاده از دستگاه‌ها:</strong> تنها پس از آموزش مجاز است. هرگونه نقص باید فوراً گزارش شود.</li>
+            <li class="rule-item warning-rule"><strong>ایمنی برق:</strong> بلافاصله پس از اتمام کار با هر دستگاه، آن را از پریز برق جدا کنید.</li>
+            <li class="rule-item danger-rule"><strong>خروج اموال:</strong> خروج تجهیزات، مواد، لوازم شیشه‌ای و مصرفی تحت هیچ شرایطی مجاز نیست.</li>
+            <li class="rule-item"><strong>نظافت ظروف:</strong> تمیز کردن کامل لوازم شیشه‌ای و وسایل عمومی پس از کار و بازگرداندن به جای خود الزامی است.</li>
+            <li class="rule-item"><strong>خسارت:</strong> در صورت شکستن یا آسیب به لوازم، باید آن را مجدداً تهیه و جایگزین کنید.</li>
+          </ul>
+        </div>
+
+        <!-- Card 6: Discipline & Desk Hygiene -->
+        <div class="rule-card">
+          <div class="rule-card-header">
+            <span class="material-symbols-outlined rule-card-icon">clean_hands</span>
+            <div class="rule-card-title">انضباط و بهداشت میز کار</div>
+          </div>
+          <ul class="rule-list">
+            <li class="rule-item"><strong>بهداشت میز کار:</strong> پیش از کار، روی میز سفره یکبار مصرف بیندازید و پس از کار، آن را دور انداخته و میز را با پارچه نمدار تمیز کنید.</li>
+            <li class="rule-item warning-rule"><strong>محیط پایلوت:</strong> دانشجویانی که پایلوت دارند باید همیشه محیط کار خود را مرتب، تمیز و بدون آلودگی نگه دارند.</li>
+            <li class="rule-item"><strong>نگهداری عمومی:</strong> در حفظ دستگاه‌ها و تمیز نگه داشتن سینک و محیط آزمایشگاه کوشا باشید.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 2: Equipment Guides -->
+    <div class="tab-content" id="tab-equipment">
+      <div class="eq-container">
+        
+        <!-- Sidebar Navigation for Equipment -->
+        <aside class="eq-sidebar">
+          <button class="eq-nav-btn active" data-eq="eq-centrifuge">دستگاه سانتریفیوژ</button>
+          <button class="eq-nav-btn" data-eq="eq-oven">دستگاه فور (Oven)</button>
+          <button class="eq-nav-btn" data-eq="eq-phmeter">دستگاه pH متر</button>
+        </aside>
+
+        <!-- Centrifuge Content -->
+        <div class="eq-content active" id="eq-centrifuge">
+          <h2 class="eq-title">راهنمای کاربری و نگهداری دستگاه سانتریفیوژ</h2>
+          <div class="eq-subtitle">دستورالعمل جامع آماده‌سازی، تنظیمات دورانی و ایمنی کاربری</div>
+
+          <div class="eq-section">
+            <h3>۱. آماده‌سازی و اقدامات قبل از کار</h3>
+            <ul class="eq-list">
+              <li><strong>باز کردن اضطراری درب:</strong> در صورت لزوم، پیچ‌گوشتی همراه دستگاه را از سوراخ سمت راست بدنه وارد کرده و به آرامی فشار دهید.</li>
+              <li><strong>جاگذاری بسکت‌ها:</strong> بسکت‌ها را دقیقاً روبروی شماره حک‌شده روی روتور و با جهت شماره به سمت هد قرار دهید.</li>
+              <li><strong>بالانس نمونه‌ها:</strong> بالانس کامل هد، بسکت‌ها و لوله‌ها الزامی است. در دستگاه‌های سوئینگ ۴۰۰۰ دور، حتماً از <strong class="highlight-mark">پولک ضربه‌گیر</strong> برای جلوگیری از شکستن لوله‌ها استفاده کنید.</li>
+              <li><strong>اتصال برق:</strong> دوشاخه را مستقیماً به پریز ارت متصل کنید. استفاده از سه-راهی دیواری اکیداً ممنوع است.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۲. تنظیمات حافظه و سیکل کاری (Memory Edit)</h3>
+            <ul class="eq-list">
+              <li>توسط کلیدهای UP و DOWN روی منوی <code>MEMORY EDIT</code> رفته و ENTER بزنید.</li>
+              <li>شماره حافظه را انتخاب کنید. با کلیدهای جهت‌دار دور دستگاه (RPM) یا نیروی گریز از مرکز (RCF) را تنظیم نمایید.</li>
+              <li>تایمر را برحسب دقیقه و ثانیه تنظیم و با فشردن نهایی ENTER ذخیره کنید (کلید ESC بدون ذخیره‌سازی خارج می‌شود).</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۳. راه‌اندازی و اتمام سیکل</h3>
+            <ul class="eq-list">
+              <li><strong>راه‌اندازی عادی (Memory Run):</strong> منوی مربوطه را انتخاب کرده و اجرا کنید.</li>
+              <li><strong>راه‌اندازی سریع (Fast Run):</strong> با انتخاب <code>FAST RUN (M1)</code> حافظه شماره ۱ فوراً اجرا می‌شود.</li>
+              <li><strong>وضعیت درب:</strong> دستگاه تا زمان بسته شدن کامل درب، کار را آغاز نخواهد کرد.</li>
+              <li><strong>تغییر واحد نمایش:</strong> فشردن کلید ENTER در حین چرخش، نمایش را بین RPM و RCF سوئیچ می‌کند.</li>
+              <li><strong>توقف:</strong> دستگاه پس از اتمام تایمر طبق شیب کاهش سرعت متوقف شده و درب باز می‌شود (ESC برای توقف اضطراری است).</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۴. تنظیم شیب شتاب و ترمز (Brake Rate)</h3>
+            <ul class="eq-list">
+              <li>در منوی <code>RAMP RATE SET</code> شیب افزایش (Rise Ramp) را از ۱۰٪ تا ۱۰۰٪ تنظیم کنید.</li>
+              <li>شیب کاهش (Fall Ramp) را تنظیم کنید (در دستگاه‌های بالای ۱۰ هزار دور، این مقدار ایمنی حداکثر ۶۰٪ است):
+                <br>&bull; <strong>۱۰٪ تا ۴۵٪:</strong> کاهش تدریجی و آرام دور موتور.
+                <br>&bull; <strong>۵۰٪:</strong> توقف طبیعی موتور بدون استفاده از سیستم ترمز الکتریکی.
+                <br>&bull; <strong>۵۵٪ تا ۱۰۰٪:</strong> ترمز الکتریکی فعال (اعداد بالاتر = ترمز شدیدتر و توقف سریع‌تر).
+              </li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۵. راهنمای تعویض روتور</h3>
+            <ul class="eq-list">
+              <li>نشانه رنگی روی روتور جدید باید دقیقاً با نشانه روی شفت دستگاه هم‌راستا باشد.</li>
+              <li>پیچ روتور را با <strong>آچار بکس</strong> در جهت عقربه‌های ساعت محکم و برای باز کردن در خلاف جهت بچرخانید.</li>
+              <li><strong>محدودیت‌های سرعت روتورها:</strong>
+                <br>&bull; روتور فیکس فالکن ۵۰ و ۱۵: فقط محدوده <strong class="highlight-mark">۵۰۰ تا ۱۰,۰۰۰ RPM</strong> مجاز است.
+                <br>&bull; هد فیکس میکروتیوب: فقط محدوده <strong class="highlight-mark">۵۰۰ تا ۱۴,۰۰۰ RPM</strong> مجاز است.
+              </li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۶. نگهداری و اصول HSE</h3>
+            <ul class="eq-list">
+              <li><strong>نظافت روزانه:</strong> محفظه دستگاه را روزانه با محلول <strong class="highlight-mark">هیپوکلریت سدیم ۳٪</strong> تمیز کنید.</li>
+              <li><strong>صدای ناهنجار:</strong> در صورت شنیدن هرگونه صدای غیرطبیعی، دستگاه را بلافاصله خاموش کنید.</li>
+              <li><strong>شکستن لوله‌ها:</strong> دستگاه را خاموش کرده و <strong class="highlight-mark">حداقل ۳۰ دقیقه درب آن را باز نکنید</strong> تا ذرات معلق (ایروسل) فروکش کنند؛ سپس با دستکش و ماسک و هیپوکلریت ۳٪ ضدعفونی کنید.</li>
+              <li><strong>هشدار مهم:</strong> هرگز محلول تمیزکننده را مستقیماً داخل دستگاه اسپری نکنید؛ فقط از پارچه نیمه‌مرطوب استفاده کنید.</li>
+              <li>بازدید فنی ذغال‌های موتور باید به صورت <strong>سالانه</strong> انجام شود.</li>
+            </ul>
+          </div>
+
+          <!-- Interactive Calculator Widget -->
+          <div class="widget-card">
+            <div class="widget-title">
+              <span class="material-symbols-outlined widget-icon">calculate</span>
+              محاسبه‌گر فیزیک دوران سانتریفیوژ (RCF &harr; RPM)
+            </div>
+            <div class="calc-grid">
+              <div class="form-group">
+                <label for="calc-radius">شعاع روتور (Radius - میلی‌متر):</label>
+                <input type="number" id="calc-radius" class="form-input" placeholder="مثلاً ۱۵۰">
+              </div>
+              <div class="form-group">
+                <label for="calc-rpm">سرعت دورانی (RPM - دور بر دقیقه):</label>
+                <input type="number" id="calc-rpm" class="form-input" placeholder="مثلاً ۴۰۰۰">
+              </div>
+              <div class="form-group form-group-full">
+                <label for="calc-rcf">یا نیروی گریز از مرکز (RCF - ضربدری از g):</label>
+                <input type="number" id="calc-rcf" class="form-input" placeholder="مثلاً ۲۶۸۸">
+              </div>
+            </div>
+            <button id="calc-btn" class="btn-primary">
+              <span class="material-symbols-outlined" style="font-size: 18px; margin-left: 0.5rem;">calculate</span>
+              محاسبه و تبدیل واحد
+            </button>
+            <div id="calc-result" class="calc-result"></div>
+
+            <!-- LaTeX Formula Display -->
+            <div class="formula-box">
+              <div class="formula-title">فرمول محاسباتی شتاب گریز از مرکز نسبی:</div>
+              <div class="formula-math">
+                $$RCF = 1.12 \times \text{Radius (mm)} \times \left(\frac{\text{RPM}}{1000}\right)^2$$
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Oven Content -->
+        <div class="eq-content" id="eq-oven">
+          <h2 class="eq-title">راهنمای کاربری و نگهداری دستگاه فور (Oven)</h2>
+          <div class="eq-subtitle">راهنمای استقرار، برنامه‌ریزی حرارتی، عیب‌یابی و خطاها</div>
+
+          <div class="eq-section">
+            <h3>۱. استقرار و راه‌اندازی اولیه</h3>
+            <ul class="eq-list">
+              <li>دستگاه را روی سطح تراز قرار داده و دوشاخه مجهز به ارت را وصل کنید.</li>
+              <li>دستگاه را با کلید POWER (۰/۱) روشن کنید. عبارت <code>STOP</code> و دمای مخزن به طور متناوب نمایش داده می‌شوند.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۲. تنظیم زمان و دما</h3>
+            <ul class="eq-list">
+              <li><strong>تنظیم زمان:</strong> ولوم را ۱ بار فشار دهید و بچرخانید (حداکثر ۹۹۰ دقیقه). مقدار <code>0</code> معادل کارکرد دائم است (نمایش <code>OFF.t</code>). زیر ۱۲۰ دقیقه گام‌ها ۱ دقیقه‌ای و بالای آن ۱۰ دقیقه‌ای هستند.</li>
+              <li><strong>تنظیم دما:</strong> ولوم را مجدد فشار دهید و دما را از دمای محیط تا <strong class="highlight-mark">حداکثر ۲۰۰ درجه سانتی‌گراد</strong> تنظیم کنید.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۳. عملیات گرمادهی و پایان کار</h3>
+            <ul class="eq-list">
+              <li>ولوم را مجدداً فشار دهید تا عبارت <code>START</code> دیده شود.</li>
+              <li>حدود ۳۰ الی ۱۲۰ دقیقه طول می‌کشد تا دستگاه به دمای تنظیم‌شده برسد. پس از رسیدن به دما، <strong>۳ بوق هشدار</strong> صوتی پخش شده و تایمر آغاز می‌شود.</li>
+              <li>پس از اتمام زمان، عملیات متوقف شده و <code>End.t</code> یا <code>End.E</code> نمایش داده می‌شود.</li>
+              <li><strong>نکات مهم:</strong> پس از استارت، پارامترها قفل می‌شوند. برای تغییر، ولوم را بیش از ۳ ثانیه نگه دارید تا سیستم ریست شود. در صورت قطع برق، چرخه به صورت خودکار ادامه می‌یابد.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۴. سرویس، نگهداری و ایمنی</h3>
+            <ul class="eq-list">
+              <li>قبل از استارت، مطمئن شوید هیچ شیء متفرقه‌ای درون مخزن قرار ندارد.</li>
+              <li><strong>مهم:</strong> از ورود مواد اسیدی به داخل مخزن اکیداً خودداری کرده و هرگز نمونه‌های اسیدی با درصد بالا را در این دستگاه قرار ندهید.</li>
+              <li><strong>درب دستگاه:</strong> جهت ثبات دما، برای گذاشتن و برداشتن نمونه‌ها درب دستگاه را <strong class="highlight-mark">بیشتر از ۱۵ ثانیه باز نگه ندارید</strong> (در غیر این صورت بوق هشدار پخش خواهد شد).</li>
+              <li>در صورت وقوع حادثه یا واژگونی، فوراً دوشاخه برق را جدا کنید یا فیوز مینیاتوری پریز را قطع نمایید.</li>
+              <li>دستگاه را در محیط بدون رطوبت، گرد و غبار و عاری از بخارات قابل اشتعال نصب کنید. از غوطه‌ور کردن آن در آب خودداری نمایید.</li>
+            </ul>
+          </div>
+
+          <!-- Error Codes Section -->
+          <div class="eq-section">
+            <h3>۵. راهنمای خطاها و کدهای وضعیت</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1rem;">
+              برد فرمان فور مجهز به الگوریتم کنترلی PID و رله قطع المنت است. در جدول زیر، کدهای خطا به همراه معنای آن آمده است:
+            </p>
+            <div class="error-table-container">
+              <table class="error-table">
+                <thead>
+                  <tr>
+                    <th>کد خطا</th>
+                    <th>مفهوم خطا</th>
+                    <th>اقدام / تأثیر بر کاربری</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="E.H.t">E.H.t</span></td>
+                    <td>افزایش دما بیش از حد مجاز</td>
+                    <td>سیستم المنت را قطع می‌کند. تنظیمات ایمنی را بررسی کنید.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="Lo.t">Lo.t</span></td>
+                    <td>کاهش دما کمتر از حد خطا</td>
+                    <td>بررسی نشت حرارتی درب یا عملکرد المنت.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="t">t</span></td>
+                    <td>عدم رسیدن به دما در ۳ ساعت</td>
+                    <td>نشانه خرابی سیستم گرمایشی یا سوختن المنت‌ها.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="E.SEN">E.SEN</span></td>
+                    <td>خرابی یا عدم شناسایی سنسور دما</td>
+                    <td>کنترلر سنسور PT100 را نمی‌شناسد. نیاز به تعویض سنسور.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="door">آلارم مکرر</span></td>
+                    <td>باز ماندن درب بیش از ۱۵ ثانیه</td>
+                    <td>بوق هشدار در هر ثانیه جهت یادآوری بستن درب دستگاه.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Error Lookup Widget -->
+            <div class="widget-card">
+              <div class="widget-title">
+                <span class="material-symbols-outlined widget-icon">troubleshoot</span>
+                عیب‌یابی سریع خطاهای فور
+              </div>
+              <div class="form-group">
+                <label for="error-select">کد خطای نمایش‌داده‌شده را انتخاب کنید:</label>
+                <select id="error-select" class="error-lookup-select">
+                  <option value="">-- انتخاب خطا --</option>
+                  <option value="E.H.t">E.H.t - افزایش بیش از حد دما</option>
+                  <option value="Lo.t">Lo.t - افت غیرطبیعی دما</option>
+                  <option value="t">t - خطای گرمادهی ۳ ساعته</option>
+                  <option value="E.SEN">E.SEN - قطع سنسور دما</option>
+                  <option value="door">صدای بوق مستمر (درب)</option>
+                  <option value="End.E">End.E - توقف با خطا</option>
+                  <option value="End.t">End.t - پایان موفق بدون خطا</option>
+                </select>
+              </div>
+              <div id="error-details-box" class="error-details-box"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- pH Meter Content -->
+        <div class="eq-content" id="eq-phmeter">
+          <h2 class="eq-title">راهنمای کاربری و نگهداری دستگاه pH متر رومیزی مدل PH500</h2>
+          <div class="eq-subtitle">راهنمای کامل آماده‌سازی، کالیبراسیون چندنقطه‌ای، تنظیم پارامترها و عیب‌یابی خطاهای الکترود</div>
+
+          <div class="eq-section">
+            <h3>۱. نکات ایمنی و اقدامات احتیاطی</h3>
+            <ul class="eq-list">
+              <li><strong>محیط‌های انفجاری:</strong> هرگز دستگاه را در معرض محیط‌های انفجاری قرار ندهید. بدنه دستگاه کاملاً آب‌بندی نشده است و ورود جرقه یا گازهای خورنده ممکن است منجر به انفجار یا آسیب شدید شود.</li>
+              <li><strong>ایمنی مواد شیمیایی:</strong> هنگام کار با حلال‌ها و مواد شیمیایی، دستورالعمل‌های کاربری و مقررات عمومی ایمنی آزمایشگاه را به دقت رعایت فرمایید.</li>
+              <li><strong>تعمیر و نگهداری:</strong> هرگز بدنه دستگاه را باز نکنید. تعمیرات تنها توسط تکنسین‌های مجاز شرکت سازنده مجاز است.</li>
+              <li><strong>شرایط محیطی ممنوعه:</strong> دستگاه را در معرض لرزش شدید، نور مستقیم خورشید، رطوبت جوی بالای ۹۰٪، گازهای خورنده، میدان‌های الکتریکی یا مغناطیسی قوی و دمای محیطی زیر ۱۰ درجه سانتی‌گراد یا بالای ۶۰ درجه سانتی‌گراد قرار ندهید.</li>
+              <li><strong>نفوذ مایعات:</strong> در صورت تماس تصادفی دستگاه با آب یا سایر مایعات، بلافاصله آن را خشک و تمیز کنید.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۲. عملیات کاربری پایه</h3>
+            <ul class="eq-list">
+              <li><strong>نصب الکترود:</strong> جهت استفاده و نگهداری صحیح، به دفترچه راهنمای الکترود مراجعه فرمایید. در زمان نصب، نشانگر نقطه قرمز روی کابل الکترود را با برآمدگی سوکت روی دستگاه هم‌راستا کرده و جا بزنید. جهت جدا کردن الکترود، ضامن فلزی دور سوکت را به بیرون بکشید.</li>
+              <li><strong>روشن کردن:</strong> کلید <strong>ON/OFF</strong> را به صورت کوتاه فشار دهید. صفحه نمایش کامل در عرض ۱ ثانیه ظاهر می‌شود.</li>
+              <li><strong>خاموش کردن:</strong> کلید <strong>ON/OFF</strong> را به مدت ۳ ثانیه فشرده نگاه دارید. دستگاه در صورت عدم استفاده، پس از ۱۰ دقیقه به صورت خودکار خاموش می‌شود.</li>
+              <li><strong>نور پس‌زمینه:</strong> کلید <strong>ON/OFF</strong> را به صورت کوتاه بفشارید تا نور پس‌زمینه صفحه نمایش خاموش یا روشن شود.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۳. راهنمای کلیدهای پنل دستگاه</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+              فشردن کلیدهای پنل دستگاه به سه روش صورت می‌گیرد: <strong>فشار کوتاه</strong> (فشردن و رها کردن فوری)، <strong>فشار طولانی</strong> (نگه داشتن به مدت ۳ ثانیه) و <strong>نگه داشتن (Hold)</strong> (فشردن مستمر جهت تنظیم مقادیر یا تغییر سریع گزینه‌ها).
+            </p>
+            <div class="error-table-container">
+              <table class="error-table">
+                <thead>
+                  <tr>
+                    <th>کلید روی پنل</th>
+                    <th>شرح عملکرد</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>ON/OFF</strong></td>
+                    <td>روشن کردن دستگاه، خاموش/روشن کردن نور پس‌زمینه، خاموش کردن دستگاه (با فشار طولانی).</td>
+                  </tr>
+                  <tr>
+                    <td><strong>MODE / ESC</strong></td>
+                    <td>خروج از منوی جاری، انصراف از تنظیمات، یا تغییر حالت اندازه‌گیری (pH / ORP).</td>
+                  </tr>
+                  <tr>
+                    <td><strong>SET / CAL / INFO</strong></td>
+                    <td>حرکت نشانگر به سمت راست در تنظیمات، ورود به حالت کالیبراسیون (فشار کوتاه)، یا بررسی پارامترهای فنی (فشار طولانی).</td>
+                  </tr>
+                  <tr>
+                    <td><strong>ENT / HOLD</strong></td>
+                    <td>ثابت نگه داشتن (قفل کردن) مقدار نمایشی روی صفحه، یا خارج کردن از حالت قفل.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>UP / A</strong></td>
+                    <td>ذخیره‌سازی داده‌های اندازه‌گیری، افزایش مقادیر در منوها، یا مرور داده‌های ذخیره‌شده.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>DOWN / MR</strong></td>
+                    <td>فراخوانی داده‌های ذخیره‌شده، کاهش مقادیر در منوها، یا مرور داده‌های ذخیره‌شده.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="eq-section">
+            <h3>۴. مشخصات فنی دستگاه</h3>
+            <div class="error-table-container">
+              <table class="error-table">
+                <thead>
+                  <tr>
+                    <th>پارامتر فنی</th>
+                    <th>مشخصات و محدوده اندازه‌گیری</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>محدوده اندازه‌گیری pH</strong></td>
+                    <td>بازه ۲.۰۰- تا ۱۶.۰۰ pH</td>
+                  </tr>
+                  <tr>
+                    <td><strong>دقت و وضوح pH</strong></td>
+                    <td>وضوح ۰.۰۱ pH / دقت علمی %۰.۲ &plusmn; F.S.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>محدوده اندازه‌گیری ORP</strong></td>
+                    <td>بازه ۲۰۰۰- تا ۲۰۰۰+ میلی‌ولت (mV)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>دقت و وضوح ORP</strong></td>
+                    <td>وضوح ۱ میلی‌ولت / دقت علمی %۰.۲ &plusmn; F.S.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>محدوده دمایی</strong></td>
+                    <td>بازه ۱۰.۰- تا ۱۱۰.۰ درجه سانتی‌گراد</td>
+                  </tr>
+                  <tr>
+                    <td><strong>دقت و وضوح دما</strong></td>
+                    <td>وضوح ۰.۱ درجه سانتی‌گراد / دقت دمایی ۰.۲&plusmn; درجه سانتی‌گراد</td>
+                  </tr>
+                  <tr>
+                    <td><strong>استاندارد بافرهای NIST</strong></td>
+                    <td>شامل بافرهای ۱.۶۸، ۴.۰۱، ۶.۸۶، ۹.۱۸، ۱۲.۴۶</td>
+                  </tr>
+                  <tr>
+                    <td><strong>استاندارد بافرهای USA</strong></td>
+                    <td>شامل بافرهای ۱.۶۸، ۴.۰۱، ۷.۰۰، ۱۰.۰۱، ۱۲.۴۶</td>
+                  </tr>
+                  <tr>
+                    <td><strong>شرایط محیط کاربری</strong></td>
+                    <td>دمای ۵ تا ۶۰ درجه سانتی‌گراد / رطوبت نسبی کمتر از ۹۰٪</td>
+                  </tr>
+                  <tr>
+                    <td><strong>حافظه ذخیره‌سازی</strong></td>
+                    <td>۲۵۶ سری داده کامل</td>
+                  </tr>
+                  <tr>
+                    <td><strong>ابعاد و وزن دستگاه</strong></td>
+                    <td>ابعاد ۱۴۰ &times; ۲۱۰ &times; ۳۵ میلی‌متر / وزن ۶۵۰ گرم</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="eq-section">
+            <h3>۵. تنظیمات پارامترهای پیشرفته (Parameter Setup)</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+              کلید <strong>SET</strong> را جهت ورود به منوی تنظیمات فشار دهید. توسط کلیدهای <strong>UP/DOWN</strong> مقادیر را تغییر داده و با <strong>SET</strong> تایید نمایید.
+            </p>
+            <ul class="eq-list">
+              <li><strong>P01 (تنظیمات دما):</strong> تنظیم دستی جبران دمایی (بین ۰ تا ۱۰۰ درجه سانتی‌گراد) یا کالیبراسیون انحراف سنسور دما (دامنه تغییر تا ۱۰ درجه سانتی‌گراد). در صورت خارج بودن مقدار از بازه مجاز، عبارت <code>ERR</code> ظاهر می‌شود.</li>
+              <li><strong>P02 (نوع الکترود):</strong> انتخاب الکترود شیشه‌ای pH (عبارت <code>GLAS</code>) یا الکترود آنتیموان (عبارت <code>ANTI</code>).</li>
+              <li><strong>P03 (محلول استاندارد بافر):</strong> انتخاب استاندارد کالیبراسیون بین استاندارد آمریکایی/اروپایی (<code>USA</code>) یا استاندارد بین‌المللی (<code>NIST</code>).</li>
+              <li><strong>P04 (قفل خودکار صفحه):</strong> فعال/غیرفعال کردن قفل خودکار داده (وقتی روی <code>ON</code> باشد، دستگاه عدد اندازه‌گیری شده را پس از به ثبات رسیدن قفل می‌کند).</li>
+              <li><strong>P05 (خاموشی خودکار):</strong> فعال/غیرفعال کردن خاموشی خودکار پس از ۱۰ دقیقه عدم استفاده از دستگاه.</li>
+              <li><strong>P06 (پاک کردن حافظه):</strong> انتخاب گزینه <code>YES</code> جهت حذف کامل داده‌های ذخیره‌شده در حافظه.</li>
+              <li><strong>P07 (بازگشت به کارخانه):</strong> انتخاب گزینه <code>YES</code> جهت ریست کردن کل تنظیمات دستگاه به مقادیر اولیه کارخانه.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۶. دستورالعمل کالیبراسیون (Calibration Mode)</h3>
+            <h4 style="color: var(--text-main); margin: 1rem 0 0.5rem 0; font-size: 1.05rem;">الف) کالیبراسیون سنسور pH:</h4>
+            <ul class="eq-list">
+              <li>الکترود تمیز را داخل بافر استاندارد از پیش تعیین‌شده قرار دهید.</li>
+              <li>دکمه <strong>CAL</strong> را فشار دهید. صفحه عبارت <code>Wait</code> را نشان می‌دهد تا عدد پایدار شود. سپس درصد شیب الکترود نمایش داده شده و نقطه کالیبراسیون ذخیره می‌شود.</li>
+              <li>نقطه اول کالیبراسیون به صورت پیش‌فرض بافرهای ۶.۸۶ یا ۷.۰۰ است. پس از ثبت نقطه اول، می‌توانید ۴ نقطه دیگر را به صورت دلخواه کالیبره کنید.</li>
+            </ul>
+            <h4 style="color: var(--text-main); margin: 1.2rem 0 0.5rem 0; font-size: 1.05rem;">ب) کالیبراسیون سنسور ORP:</h4>
+            <ul class="eq-list">
+              <li>الکترود را در محلول بافر کوینهیدرون (Quinhydrone) قرار دهید (اضافه کردن کوینهیدرون به بافر ۴.۰۰ ولتاژ ۲۵۶ میلی‌ولت و اضافه کردن به بافر ۷.۰۰ ولتاژ ۸۶ میلی‌ولت تولید می‌کند).</li>
+              <li>کلید <strong>CAL</strong> را فشار دهید، منتظر بمانید تا عدد پایدار شود و با کلیدهای <strong>UP/DOWN</strong> ولتاژ متناظر با محلول را تنظیم کنید. سپس <strong>SET</strong> را جهت ذخیره فشار دهید.</li>
+              <li><strong>نکته مهم کالیبراسیون:</strong> در صورتی که ولتاژ اندازه‌گیری شده خارج از دامنه باشد، عبارت <code>Err</code> نشان‌دهنده کثیفی یا کهنگی الکترود یا بافرها است. فشردن دکمه <strong>CAL</strong> در حین کالیبراسیون، نقاط ذخیره‌شده قبلی را پاک می‌کند.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۷. اندازه‌گیری و ذخیره‌سازی داده‌ها</h3>
+            <h4 style="color: var(--text-main); margin: 1rem 0 0.5rem 0; font-size: 1.05rem;">روش اندازه‌گیری:</h4>
+            <ul class="eq-list">
+              <li>الکترود را با آب مقطر بشویید و به آرامی خشک کنید.</li>
+              <li>پس از روشن کردن دستگاه، با کلید <strong>MODE</strong> حالت اندازه‌گیری را بین pH و ORP تغییر دهید.</li>
+              <li>الکترود را در نمونه قرار داده و به آرامی هم بزنید. پس از ظاهر شدن علامت پایداری (Stable)، عدد را ثبت کنید.</li>
+              <li>نشانگر <strong>ATC</strong> روی صفحه نشان‌دهنده فعال بودن سنسور دمای خودکار است. عبارت <strong>Manual</strong> نشان‌دهنده قطع بودن سنسور دما است (در این حالت دما پیش‌فرض روی ۲۵ درجه سانتی‌گراد در نظر گرفته می‌شود).</li>
+            </ul>
+            <h4 style="color: var(--text-main); margin: 1.2rem 0 0.5rem 0; font-size: 1.05rem;">ذخیره داده‌ها:</h4>
+            <ul class="eq-list">
+              <li>برای ذخیره داده اندازه‌گیری‌شده پایدار، کلید <strong>UP / A</strong> را فشار دهید. دستگاه حداکثر ۲۵۶ داده ذخیره می‌کند و در صورت پر شدن حافظه، عبارت <code>OVER</code> را نشان می‌دهد.</li>
+              <li>برای مرور داده‌های ذخیره‌شده، کلید <strong>DOWN / MR</strong> را بزنید. در صورت خالی بودن حافظه عبارت <code>NONE</code> ظاهر می‌شود.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۸. پیوست: مقادیر بافرهای pH بر اساس دما (استاندارد USA)</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+              تغییرات میزان pH بافرهای کالیبراسیون استاندارد در دماهای مختلف جهت بررسی صحت عملکرد جبران‌ساز دمایی (ATC):
+            </p>
+            <div class="error-table-container">
+              <table class="error-table">
+                <thead>
+                  <tr>
+                    <th>دما (&deg;C)</th>
+                    <th>بافر اسیدی ۴.۰۰</th>
+                    <th>بافر خنثی ۷.۰۰</th>
+                    <th>بافر بازی ۱۰.۰۱</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>۰</strong></td>
+                    <td>۴.۰۱</td>
+                    <td>۷.۱۲</td>
+                    <td>۱۰.۳۲</td>
+                  </tr>
+                  <tr>
+                    <td><strong>۱۰</strong></td>
+                    <td>۴.۰۰</td>
+                    <td>۷.۰۶</td>
+                    <td>۱۰.۱۸</td>
+                  </tr>
+                  <tr>
+                    <td><strong>۲۰</strong></td>
+                    <td>۴.۰۰</td>
+                    <td>۷.۰۲</td>
+                    <td>۱۰.۰۶</td>
+                  </tr>
+                  <tr>
+                    <td><strong>۲۵</strong></td>
+                    <td>۴.۰۰</td>
+                    <td>۷.۰۰</td>
+                    <td>۱۰.۰۱</td>
+                  </tr>
+                  <tr>
+                    <td><strong>۳۰</strong></td>
+                    <td>۴.۰۱</td>
+                    <td>۶.۹۹</td>
+                    <td>۹.۹۷</td>
+                  </tr>
+                  <tr>
+                    <td><strong>۴۰</strong></td>
+                    <td>۴.۰۳</td>
+                    <td>۶.۹۷</td>
+                    <td>۹.۸۹</td>
+                  </tr>
+                  <tr>
+                    <td><strong>۵۰</strong></td>
+                    <td>۴.۰۶</td>
+                    <td>۶.۹۷</td>
+                    <td>۹.۸۳</td>
+                  </tr>
+                  <tr>
+                    <td><strong>۶۰</strong></td>
+                    <td>۴.۰۹</td>
+                    <td>۶.۹۸</td>
+                    <td>۹.۷۹</td>
+                  </tr>
+                  <tr>
+                    <td><strong>۹۰</strong></td>
+                    <td>۴.۲۰</td>
+                    <td>۷.۰۲</td>
+                    <td>۹.۷۳</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Error Codes Section for pH Meter -->
+          <div class="eq-section">
+            <h3>۹. راهنمای خطاها و عیب‌یابی سریع</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1rem;">
+              در صورت بروز هرگونه اختلال در عملکرد دستگاه pH متر، کدهای زیر را بررسی نمایید:
+            </p>
+            <div class="error-table-container">
+              <table class="error-table">
+                <thead>
+                  <tr>
+                    <th>کد خطا</th>
+                    <th>علت احتمالی</th>
+                    <th>اقدام پیشنهادی</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="Err.Cal">Err.Cal</span></td>
+                    <td>خطای کالیبراسیون</td>
+                    <td>کثیف بودن الکترود، فساد محلول بافر یا طول عمر بالای الکترود. بافرهای تازه استفاده کنید.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="Err.Temp">Err.Temp</span></td>
+                    <td>عدم شناسایی سنسور دما</td>
+                    <td>سنسور دما (ATC) قطع است یا آسیب دیده است. فیش پشت دستگاه را چک کنید.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="no.Stb">no.Stb</span></td>
+                    <td>عدم ثبات و پایداری عدد</td>
+                    <td>وجود حباب هوا در الکترود، کثیفی غشای شیشه‌ای، یا عدم یکنواختی نمونه. الکترود را تکان دهید.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="OR/UR">OR/UR</span></td>
+                    <td>خارج از محدوده اندازه‌گیری</td>
+                    <td>pH نمونه خارج از محدوده ۰ تا ۱۴ است یا اتصالات الکترود قطع می‌باشد.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Error Lookup Widget for pH Meter -->
+            <div class="widget-card">
+              <div class="widget-title">
+                <span class="material-symbols-outlined widget-icon">troubleshoot</span>
+                عیب‌یابی خطاهای دستگاه pH متر
+              </div>
+              <div class="form-group">
+                <label for="ph-error-select">کد خطای نمایش‌داده‌شده را انتخاب کنید:</label>
+                <select id="ph-error-select" class="error-lookup-select">
+                  <option value="">-- انتخاب خطا --</option>
+                  <option value="Err.Cal">Err.Cal - خطای کالیبراسیون</option>
+                  <option value="Err.Temp">Err.Temp - عدم شناسایی سنسور دما</option>
+                  <option value="no.Stb">no.Stb - عدم ثبات و پایداری عدد</option>
+                  <option value="OR/UR">OR/UR - خارج از محدوده اندازه‌گیری</option>
+                </select>
+              </div>
+              <div id="ph-error-details-box" class="error-details-box"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 3: Safety Checklist & Quiz -->
+    <div class="tab-content" id="tab-quiz">
+      <div class="quiz-container">
+        
+        <!-- Checklist Container -->
+        <div id="declarations-container">
+          <h2 class="quiz-title">تعهدنامه و قوانین ایمنی ورود به آزمایشگاه</h2>
+          <p class="quiz-description">برای فعال شدن دکمه شروع آزمون ایمنی، لطفاً مفاد تعهدنامه زیر را به دقت مطالعه کرده و تایید نمایید:</p>
+          
+          <div class="declaration-list">
+            <div class="declaration-item">
+              <div class="declaration-checkbox">
+                <span class="material-symbols-outlined check-icon">check</span>
+              </div>
+              <div class="declaration-text">تعهد می‌دهم در تمامی زمان‌های حضور، از روپوش، دستکش، ماسک و عینک ایمنی استفاده کنم.</div>
+            </div>
+            
+            <div class="declaration-item">
+              <div class="declaration-checkbox">
+                <span class="material-symbols-outlined check-icon">check</span>
+              </div>
+              <div class="declaration-text">متعهد می‌شوم به هیچ عنوان هیچ‌گونه پسماند، اسید، باز یا حلال شیمیایی را در سینک تخلیه نکرده و آنها را در ظروف لیبل‌دار پسماند بریزم.</div>
+            </div>
+
+            <div class="declaration-item">
+              <div class="declaration-checkbox">
+                <span class="material-symbols-outlined check-icon">check</span>
+              </div>
+              <div class="declaration-text">پذیرش کامل دارم که رقیق‌سازی اسید را فقط با اضافه کردن تدریجی اسید به آب و زیر هود انجام دهم.</div>
+            </div>
+
+            <div class="declaration-item">
+              <div class="declaration-checkbox">
+                <span class="material-symbols-outlined check-icon">check</span>
+              </div>
+              <div class="declaration-text">متعهد می‌شوم بلافاصله پس از اتمام کار با دستگاه‌ها، آنها را از پریز برق جدا کنم و بدون آموزش با دستگاهی کار نکنم.</div>
+            </div>
+
+            <div class="declaration-item">
+              <div class="declaration-checkbox">
+                <span class="material-symbols-outlined check-icon">check</span>
+              </div>
+              <div class="declaration-text">متعهد می‌شوم هیچ‌گونه تجهیزات، وسایل شیشه‌ای یا مواد شیمیایی را تحت هیچ شرایطی از آزمایشگاه خارج نکنم.</div>
+            </div>
+
+            <div class="declaration-item">
+              <div class="declaration-checkbox">
+                <span class="material-symbols-outlined check-icon">check</span>
+              </div>
+              <div class="declaration-text">می‌پذیرم که نقض هر یک از این قوانین موجب لغو مجوز کار در آزمایشگاه به مدت ۱۰ روز خواهد شد.</div>
+            </div>
+          </div>
+          
+          <button id="start-quiz-btn" class="btn-primary" style="width: 100%; justify-content: center; opacity: 0.5;" disabled>
+            شروع آزمون سنجش ایمنی آزمایشگاه
+          </button>
+        </div>
+
+        <!-- Quiz Section -->
+        <div id="quiz-section" class="quiz-section">
+          <h2 class="quiz-title">آزمون صحت‌سنجی اطلاعات ایمنی</h2>
+          <p class="quiz-description">جهت دریافت مجوز، به سوالات چهارگزینه‌ای زیر به درستی پاسخ دهید:</p>
+          
+          <div id="question-container"></div>
+          
+          <div class="quiz-actions">
+            <div class="progress-bar">
+              <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <button id="next-quiz-btn" class="btn-primary" style="opacity: 0.5;" disabled>سوال بعدی</button>
+          </div>
+        </div>
+
+        <!-- Student Form Section -->
+        <div id="student-form-section" class="student-form-section">
+          <h2 class="quiz-title">ثبت اطلاعات دانشجویی</h2>
+          <p class="quiz-description">تبریک! شما آزمون ایمنی را با موفقیت پشت سر گذاشتید. مشخصات خود را جهت صدور گواهی ورود وارد نمایید:</p>
+          
+          <div class="student-grid">
+            <div class="form-group">
+              <label for="student-name">نام و نام خانوادگی:</label>
+              <input type="text" id="student-name" class="form-input" style="direction: rtl; text-align: right;" placeholder="مثلاً: علی رضایی">
+            </div>
+            <div class="form-group">
+              <label for="student-id">شماره دانشجویی:</label>
+              <input type="number" id="student-id" class="form-input" style="direction: ltr; text-align: left;" placeholder="مثلاً: ۴۰۰۱۲۳۴۵۶">
+            </div>
+          </div>
+          <button id="submit-form-btn" class="btn-primary" style="width: 100%; justify-content: center;">
+            صدور و دریافت گواهی ورود به آزمایشگاه
+          </button>
+        </div>
+
+        <!-- Certificate Box (Result) -->
+        <div id="certificate-box" class="certificate-box">
+          <div class="certificate">
+            <div class="cert-border-corner cert-top-right"></div>
+            <div class="cert-border-corner cert-top-left"></div>
+            <div class="cert-border-corner cert-bottom-right"></div>
+            <div class="cert-border-corner cert-bottom-left"></div>
+            
+            <div class="cert-header">جمهوری اسلامی ایران</div>
+            <div class="cert-title">گواهی تعهدنامه و مجوز فعالیت در آزمایشگاه پسماند</div>
+            
+            <div class="cert-body">
+              بدینوسیله گواهی می‌شود دانشجو <span class="cert-student-name" id="cert-name">علی رضایی</span> با مطالعه دقیق آیین‌نامه انضباطی و گذراندن موفقیت‌آمیز آزمون، متعهد به رعایت کامل کلیه پروتکل‌های HSE، دستورالعمل‌های کار با اسیدها و بازها و روش صحیح دفع پسماندهای شیمیایی گردیده است و مجاز به کار با تجهیزات عمومی و تخصصی آزمایشگاه پسماند می‌باشد.
+            </div>
+            
+            <div class="cert-badge">
+              <span class="material-symbols-outlined cert-badge-icon">verified_user</span>
+            </div>
+            
+            <div class="cert-footer">
+              <div class="cert-info-item">
+                <div class="cert-info-label">شماره دانشجویی:</div>
+                <div class="cert-info-value" id="cert-id-val">-</div>
+              </div>
+              <div class="cert-info-item">
+                <div class="cert-info-label">کد اصالت سنجی:</div>
+                <div class="cert-info-value" id="cert-code-val">-</div>
+              </div>
+              <div class="cert-info-item">
+                <div class="cert-info-label">تاریخ صدور:</div>
+                <div class="cert-info-value" id="cert-date-val">-</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="cert-actions">
+            <button id="print-btn" class="btn-primary">
+              <span class="material-symbols-outlined" style="font-size: 18px; margin-left: 0.5rem;">print</span>
+              چاپ گواهی تعهدنامه
+            </button>
+            <button id="restart-btn" class="btn-primary" style="background-color: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border-color)">
+              <span class="material-symbols-outlined" style="font-size: 18px; margin-left: 0.5rem;">restart_alt</span>
+              ابطال و شروع مجدد تعهدنامه
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Page Footer -->
+    <footer>
+      <p>آزمایشگاه تحقیقاتی پسماند و محیط زیست &copy; ۱۴۰۵</p>
+      <p style="font-size: 0.75rem; margin-top: 0.5rem; font-family: var(--font-en);">Laboratory Rules & Guidelines Management Portal</p>
+    </footer>
+
+  </div>
+
+  <!-- Floating Emergency Button -->
+  <button id="emergency-fab" class="emergency-fab" aria-label="تماس‌های اضطراری">
+    <span class="material-symbols-outlined">sos</span>
+    <span>فوریت‌های اضطراری</span>
+  </button>
+
+  <!-- Emergency Modal -->
+  <div id="emergency-modal" class="emergency-modal-overlay">
+    <div class="emergency-modal">
+      <div class="emergency-modal-header">
+        <div class="emergency-modal-title">
+          <span class="material-symbols-outlined header-symbol">emergency</span>
+          <h2>شماره‌های اضطراری و فوریت‌ها</h2>
+        </div>
+        <button id="close-emergency" class="close-modal-btn">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="emergency-modal-body">
+        
+        <!-- Category 1: Medical -->
+        <div class="emergency-section-card medical">
+          <div class="emergency-section-title">
+            <span class="material-symbols-outlined">local_hospital</span>
+            <h3>فوریت‌های پزشکی</h3>
+          </div>
+          <div class="emergency-list-items">
+            <div class="emergency-contact-item main-alert">
+              <div class="contact-info">
+                <span class="contact-name">اورژانس تهران</span>
+                <span class="contact-number">۱۱۵</span>
+              </div>
+              <a href="tel:115" class="call-action-btn">
+                <span class="material-symbols-outlined" style="font-size: 16px; margin-left: 0.25rem;">call</span>
+                <span>تماس</span>
+              </a>
+            </div>
+            
+            <div class="emergency-contact-item main-alert">
+              <div class="contact-info">
+                <span class="contact-name">مرکز فوریت‌های دارویی</span>
+                <span class="contact-number">۱۴۹۰</span>
+              </div>
+              <a href="tel:1490" class="call-action-btn">
+                <span class="material-symbols-outlined" style="font-size: 16px; margin-left: 0.25rem;">call</span>
+                <span>تماس</span>
+              </a>
+            </div>
+
+            <div class="emergency-contact-item">
+              <div class="contact-info">
+                <span class="contact-name">بیمارستان لقمان (مسمومیت‌های شیمیایی)</span>
+                <span class="contact-number">۰۲۱-۵۵۴۱۹۰۰۵</span>
+                <span class="contact-address">تهران، خ کارگر جنوبی، چهارراه لشگر، خ مخصوص</span>
+              </div>
+              <a href="tel:02155419005" class="call-action-btn">
+                <span class="material-symbols-outlined" style="font-size: 16px; margin-left: 0.25rem;">call</span>
+                <span>تماس</span>
+              </a>
+            </div>
+
+            <div class="emergency-contact-item">
+              <div class="contact-info">
+                <span class="contact-name">بیمارستان فارابی (سوختگی‌های چشم)</span>
+                <span class="contact-number">۰۲۱-۵۵۴۰۰۰۰۳</span>
+                <span class="contact-address">تهران، خ کارگر جنوبی، میدان قزوین</span>
+              </div>
+              <a href="tel:02155400003" class="call-action-btn">
+                <span class="material-symbols-outlined" style="font-size: 16px; margin-left: 0.25rem;">call</span>
+                <span>تماس</span>
+              </a>
+            </div>
+
+            <div class="emergency-contact-item">
+              <div class="contact-info">
+                <span class="contact-name">بیمارستان مطهری (سوختگی‌های پوست)</span>
+                <span class="contact-number">۰۲۱-۸۸۷۷۰۰۳۱</span>
+                <span class="contact-address">تهران، خ ولیعصر، بالاتر از میدان ونک، خ رشید یاسمی</span>
+              </div>
+              <a href="tel:02188770031" class="call-action-btn">
+                <span class="material-symbols-outlined" style="font-size: 16px; margin-left: 0.25rem;">call</span>
+                <span>تماس</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 2: Fire -->
+        <div class="emergency-section-card fire">
+          <div class="emergency-section-title">
+            <span class="material-symbols-outlined">local_fire_department</span>
+            <h3>فوریت‌های آتش‌سوزی</h3>
+          </div>
+          <div class="emergency-list-items">
+            <div class="emergency-contact-item main-alert">
+              <div class="contact-info">
+                <span class="contact-name">سازمان آتش‌نشانی</span>
+                <span class="contact-number">۱۲۵</span>
+              </div>
+              <a href="tel:125" class="call-action-btn">
+                <span class="material-symbols-outlined" style="font-size: 16px; margin-left: 0.25rem;">call</span>
+                <span>تماس</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 3: Hazardous Waste -->
+        <div class="emergency-section-card waste-management">
+          <div class="emergency-section-title">
+            <span class="material-symbols-outlined">eco</span>
+            <h3>مدیریت پسماندهای خطرناک</h3>
+          </div>
+          <div class="emergency-list-items">
+            <div class="emergency-contact-item">
+              <div class="contact-info">
+                <span class="contact-name">سامانه آزمایشگاه‌های پاک (کیمیا گستر شریف)</span>
+                <span class="contact-number">۰۲۱-۶۶۰۸۸۸۰۳</span>
+                <span class="contact-address">تهران، خ آزادی، ضلع غربی دانشگاه شریف، خ ولی‌الله صادقی، پ ۳۸</span>
+              </div>
+              <a href="tel:02166088803" class="call-action-btn">
+                <span class="material-symbols-outlined" style="font-size: 16px; margin-left: 0.25rem;">call</span>
+                <span>تماس</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="chatbot/msds/msds-db.js"></script>
+  <script src="chatbot/chatbot.js"></script>
+</body>
+</html>
