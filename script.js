@@ -136,6 +136,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const el = document.getElementById('eq-oven');
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 100);
+    } else if (hash === 'balance' || hash === 'eq-balance' || hash === 'measure') {
+      switchTab('tab-equipment');
+      switchEquipment('eq-balance');
+      setTimeout(() => {
+        const el = document.getElementById('eq-balance');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
     } else if (hash === 'phmeter' || hash === 'eq-phmeter') {
       switchTab('tab-equipment');
       switchEquipment('eq-phmeter');
@@ -170,7 +177,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const originalEqTexts = {
     'eq-centrifuge': 'دستگاه سانتریفیوژ',
     'eq-oven': 'دستگاه فور (Oven)',
-    'eq-phmeter': 'دستگاه pH متر'
+    'eq-phmeter': 'دستگاه pH متر',
+    'eq-balance': 'ترازوی دیجیتال دقیق (Radwag)'
   };
 
   const searchTargets = [
@@ -191,6 +199,12 @@ document.addEventListener('DOMContentLoaded', () => {
       type: 'eq',
       names: ['ph', 'پی اچ', 'پ هاش', 'ph متر', 'phmeter', 'کالیبره', 'الکترود', 'پ هاچ', 'پیاچ'],
       displayName: 'دستگاه pH متر'
+    },
+    {
+      id: 'eq-balance',
+      type: 'eq',
+      names: ['ترازو', 'رادواگ', 'ترازو دیجیتال', 'ترازوی دقیق', 'ترازو آنالیتیکال', 'وزن', 'توزین', 'ترا', 'کالیبراسیون داخلی', 'radwag', 'as r', 'ps r', 'balance', 'as r plus', 'lo mass'],
+      displayName: 'ترازوی دیجیتال دقیق (Radwag)'
     },
     {
       id: 'tab-general',
@@ -394,6 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let centrifugeCount = 0;
     let ovenCount = 0;
     let phmeterCount = 0;
+    let balanceCount = 0;
 
     document.querySelectorAll('#eq-centrifuge .eq-list li, #eq-centrifuge p, #eq-centrifuge .error-table td').forEach(item => {
       if (item.style.opacity === '1') centrifugeCount++;
@@ -407,7 +422,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (item.style.opacity === '1') phmeterCount++;
     });
 
-    const equipmentCount = centrifugeCount + ovenCount + phmeterCount;
+    document.querySelectorAll('#eq-balance .eq-list li, #eq-balance p, #eq-balance .error-table td').forEach(item => {
+      if (item.style.opacity === '1') balanceCount++;
+    });
+
+    const equipmentCount = centrifugeCount + ovenCount + phmeterCount + balanceCount;
 
     // 6. Update Tab buttons display & badges
     document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -438,6 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (eqId === 'eq-centrifuge') count = centrifugeCount;
       if (eqId === 'eq-oven') count = ovenCount;
       if (eqId === 'eq-phmeter') count = phmeterCount;
+      if (eqId === 'eq-balance') count = balanceCount;
 
       if (count > 0) {
         btn.innerHTML = `${originalEqTexts[eqId]} <span class="search-badge">${count}</span>`;
@@ -534,6 +554,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (activeEqId === 'eq-centrifuge') activeEqCount = centrifugeCount;
           if (activeEqId === 'eq-oven') activeEqCount = ovenCount;
           if (activeEqId === 'eq-phmeter') activeEqCount = phmeterCount;
+          if (activeEqId === 'eq-balance') activeEqCount = balanceCount;
 
           if (activeEqCount === 0) {
             if (equipmentCount > 0) {
@@ -541,6 +562,7 @@ document.addEventListener('DOMContentLoaded', () => {
               if (centrifugeCount > 0) suggestions.push(`<a class="switch-eq-link" data-eq="eq-centrifuge">سانتریفیوژ (${centrifugeCount})</a>`);
               if (ovenCount > 0) suggestions.push(`<a class="switch-eq-link" data-eq="eq-oven">فور (${ovenCount})</a>`);
               if (phmeterCount > 0) suggestions.push(`<a class="switch-eq-link" data-eq="eq-phmeter">pH متر (${phmeterCount})</a>`);
+              if (balanceCount > 0) suggestions.push(`<a class="switch-eq-link" data-eq="eq-balance">ترازو (${balanceCount})</a>`);
               
               searchStatusBanner.style.display = 'flex';
               searchStatusBanner.innerHTML = `
@@ -746,6 +768,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Digital Balance Error Lookup widget
+  const balanceErrorSelect = document.getElementById('balance-error-select');
+  const balanceErrorDetailsBox = document.getElementById('balance-error-details-box');
+
+  const balanceErrorDescriptions = {
+    'Lo.mass': {
+      text: 'نمایش پیام <code>Lo mass</code> به این معنی است که وزن نمونه کمتر از حداقل ظرفیت مجاز ترازو (Min) برای اندازه‌گیری معتبر است. نمونه بیشتری روی کله قرار داده و دکمه Zero را بزنید.',
+      type: 'warning'
+    },
+    'Thermometer': {
+      text: 'چشمک زدن نماد دماسنج نشان‌دهنده ناپایداری حرارتی شدید یا تغییرات ناگهانی دمای محیط ترازو است (مخصوص سری AS). در این حالت توزین‌های حساس را متوقف کنید، اجازه دهید دمای محیط پایدار شود یا یک کالیبراسیون داخلی دستی (Internal Adjustment) برای انطباق سنسور اجرا کنید.',
+      type: 'danger'
+    },
+    'Drift': {
+      text: 'نوسان دائمی رقم آخر و خزش آرام اعداد به علت عدم پایداری دمای اولیه ترازو (گرم نشدن قطعات الکترونیک)، وجود کوران هوا، لرزش میز یا بارهای الکترواستاتیک روی بدنه رخ می‌دهد. اتصال ارت را بررسی کنید و زمان پایداری اولیه را رعایت فرمایید (مدل‌های PS حداقل ۴ ساعت و AS حداقل ۸ ساعت).',
+      type: 'warning'
+    },
+    'Err.Null': {
+      text: 'خطای ناتوانی در تعیین نقطه صفر هنگام روشن کردن دستگاه. کفه را بردارید، مطمئن شوید که قفل حمل و نقل باز است، هیچ مانعی زیر کفه وجود ندارد و پین توزین آزاد است؛ سپس مجدداً ترازو را روشن کنید.',
+      type: 'danger'
+    },
+    'Err.Full': {
+      text: 'وزن کفه از حداکثر ظرفیت مجاز ترازو (Max) فراتر رفته است. برای جلوگیری از آسیب دیدن سنسور سلولی توزین (Load Cell)، سریعاً وزنه سنگین را از روی کفه بردارید.',
+      type: 'danger'
+    }
+  };
+
+  if (balanceErrorSelect && balanceErrorDetailsBox) {
+    balanceErrorSelect.addEventListener('change', () => {
+      const code = balanceErrorSelect.value;
+      if (!code) {
+        balanceErrorDetailsBox.style.display = 'none';
+        return;
+      }
+
+      const data = balanceErrorDescriptions[code];
+      balanceErrorDetailsBox.className = `error-details-box ${data.type}`;
+      balanceErrorDetailsBox.style.display = 'block';
+      balanceErrorDetailsBox.innerHTML = `<strong>علت و اقدام پیشنهادی:</strong><br>${data.text}`;
+    });
+  }
+
   // Interactive badges in the tables to link to respective select dropdowns
   const errorBadges = document.querySelectorAll('.error-code-badge');
   errorBadges.forEach(badge => {
@@ -757,6 +821,12 @@ document.addEventListener('DOMContentLoaded', () => {
           phErrorSelect.value = code;
           phErrorSelect.dispatchEvent(new Event('change'));
           phErrorSelect.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      } else if (code === 'Lo.mass' || code === 'Thermometer' || code === 'Drift' || code === 'Err.Null' || code === 'Err.Full') {
+        if (balanceErrorSelect) {
+          balanceErrorSelect.value = code;
+          balanceErrorSelect.dispatchEvent(new Event('change'));
+          balanceErrorSelect.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       } else {
         if (errorSelect) {
