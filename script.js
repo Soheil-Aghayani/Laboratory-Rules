@@ -1162,10 +1162,11 @@ document.addEventListener('DOMContentLoaded', () => {
         incompatibleList.appendChild(li);
       });
 
-      // Update First Aid paragraphs
-      document.getElementById('first-aid-skin').textContent = chem.firstAid.skin;
-      document.getElementById('first-aid-eyes').textContent = chem.firstAid.eyes;
-      document.getElementById('first-aid-inhalation').textContent = chem.firstAid.inhalation;
+      // Update First Aid paragraphs safely
+      const firstAid = chem.firstAid || {};
+      document.getElementById('first-aid-skin').textContent = firstAid.skin || "شستشو با آب فراوان. لباس‌های آلوده را درآورید.";
+      document.getElementById('first-aid-eyes').textContent = firstAid.eyes || "چشم‌ها را بلافاصله با آب فراوان به مدت ۱۵ دقیقه شستشو دهید.";
+      document.getElementById('first-aid-inhalation').textContent = firstAid.inhalation || "خطر حاد تنفسی گزارش نشده است یا غبار غیرفرار است.";
 
       // Update Spill Action
       document.getElementById('msds-spill-action').textContent = chem.spillAction;
@@ -1216,4 +1217,227 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+
+  // --- Chemical Compatibility Checker ---
+  const compatSelectA = document.getElementById('compat-chemical-a');
+  const compatSelectB = document.getElementById('compat-chemical-b');
+  const compatResultBox = document.getElementById('compat-result-box');
+  const compatStatusIcon = document.getElementById('compat-status-icon');
+  const compatStatusTitle = document.getElementById('compat-status-title');
+  const compatStatusBadge = document.getElementById('compat-status-badge');
+  const compatDesc = document.getElementById('compat-desc');
+
+  function populateCompatDropdowns() {
+    if (!compatSelectA || !compatSelectB) return;
+    if (!window.chemicalMsdsDb) {
+      setTimeout(populateCompatDropdowns, 100);
+      return;
+    }
+
+    // Populate using sorted chemicals (same order as MSDS)
+    let sortedChems = [];
+    try {
+      sortedChems = [...window.chemicalMsdsDb].sort((a, b) => a.nameFa.localeCompare(b.nameFa, 'fa'));
+    } catch (err) {
+      sortedChems = window.chemicalMsdsDb;
+    }
+
+    compatSelectA.innerHTML = '<option value="">-- انتخاب ماده اول (A) --</option>';
+    compatSelectB.innerHTML = '<option value="">-- انتخاب ماده دوم (B) --</option>';
+
+    sortedChems.forEach(chem => {
+      const optionA = document.createElement('option');
+      optionA.value = chem.id;
+      optionA.textContent = `${chem.nameFa} (${chem.nameEn})`;
+      compatSelectA.appendChild(optionA);
+
+      const optionB = document.createElement('option');
+      optionB.value = chem.id;
+      optionB.textContent = `${chem.nameFa} (${chem.nameEn})`;
+      compatSelectB.appendChild(optionB);
+    });
+  }
+
+  populateCompatDropdowns();
+
+  function checkCompatibility() {
+    const idA = compatSelectA.value;
+    const idB = compatSelectB.value;
+
+    if (!idA || !idB) {
+      compatResultBox.style.display = 'none';
+      return;
+    }
+
+    const chemA = window.chemicalMsdsDb.find(c => c.id === idA);
+    const chemB = window.chemicalMsdsDb.find(c => c.id === idB);
+
+    if (!chemA || !chemB) return;
+
+    // 1. Check if same chemical
+    if (idA === idB) {
+      showCompatResult('compatible', 'ماده یکسان (Same Substance)', 
+        `هر دو مورد انتخاب شده ${chemA.nameFa} هستند. ذخیره یا اختلاط این دو مورد با هم کاملاً سازگار و ایمن است.`);
+      return;
+    }
+
+    // 2. Check direct incompatibility text match
+    let directConflictText = '';
+    const cleanNameFaA = chemA.nameFa.replace(/\s+/g, '');
+    const cleanNameEnA = chemA.nameEn.toLowerCase();
+    const cleanNameFaB = chemB.nameFa.replace(/\s+/g, '');
+    const cleanNameEnB = chemB.nameEn.toLowerCase();
+
+    // Check A's incompatibilities against B
+    chemA.incompatible.forEach(incompat => {
+      const cleanInc = incompat.replace(/\s+/g, '').toLowerCase();
+      if (cleanInc.includes(cleanNameFaB) || cleanInc.includes(cleanNameEnB) || 
+          (chemB.formula && cleanInc.includes(chemB.formula.toLowerCase()))) {
+        directConflictText = `بر اساس برگه اطلاعات ایمنی ${chemA.nameFa}، این ماده با ${chemB.nameFa} ناسازگار است: «${incompat}»`;
+      }
+    });
+
+    // Check B's incompatibilities against A
+    chemB.incompatible.forEach(incompat => {
+      const cleanInc = incompat.replace(/\s+/g, '').toLowerCase();
+      if (cleanInc.includes(cleanNameFaA) || cleanInc.includes(cleanNameEnA) || 
+          (chemA.formula && cleanInc.includes(chemA.formula.toLowerCase()))) {
+        directConflictText = `بر اساس برگه اطلاعات ایمنی ${chemB.nameFa}، این ماده با ${chemA.nameFa} ناسازگار است: «${incompat}»`;
+      }
+    });
+
+    if (directConflictText) {
+      showCompatResult('danger', 'تداخل مستقیم و شدید (Severe Incompatibility)', directConflictText);
+      return;
+    }
+
+    // 3. Category matching logic
+    const getSafetyCategory = (chem) => {
+      const nameFa = chem.nameFa.toLowerCase();
+      const nameEn = chem.nameEn.toLowerCase();
+      const id = chem.id;
+      const formula = (chem.formula || '').toLowerCase();
+      const wasteGroup = chem.wasteGroup.toLowerCase();
+
+      // Water-Reactive (highly dangerous)
+      if (id === 'sodium_hydride' || id === 'lithium_aluminium_hydride' || id === 'titanium_tetrachloride' || 
+          id === 'n_butyllithium' || id === 'sodium_methoxide' || id === 'boron_trifluoride_etherate' || 
+          id === 'thionyl_chloride' || id === 'phosphorus_pentoxide' || nameFa.includes('واکنش‌دهنده با آب') || 
+          wasteGroup.includes('واکنش‌دهنده با آب') || wasteGroup.includes('پیروفوریک')) {
+        return 'water_reactive';
+      }
+
+      // Cyanide / Sulfide
+      if (nameFa.includes('سیانید') || nameFa.includes('سولفید') || nameEn.includes('cyanide') || 
+          nameEn.includes('sulfide') || id.includes('cyanide') || id.includes('sulfide') || id === 'sodium_hydrosulfite') {
+        return 'cyanide_sulfide';
+      }
+
+      // Oxidizer
+      if (nameFa.includes('پراکسید') || nameFa.includes('پرمنگنات') || nameFa.includes('دی‌کرومات') || 
+          nameFa.includes('کرومات') || nameFa.includes('نیترات') || nameEn.includes('peroxide') || 
+          nameEn.includes('permanganate') || nameEn.includes('dichromate') || nameEn.includes('chromate') || 
+          nameEn.includes('nitrate') || id.includes('peroxide') || id.includes('nitrate') || id.includes('chromate') ||
+          wasteGroup.includes('اکسیدکننده')) {
+        return 'oxidizer';
+      }
+
+      // Acids (including strong organic/inorganic)
+      if (nameFa.includes('اسید') || nameEn.includes('acid') || id.includes('acid') || 
+          formula.includes('cooh') || wasteGroup.includes('اسیدی') || wasteGroup.includes('اسید')) {
+        return 'acid';
+      }
+
+      // Bases
+      if (nameFa.includes('هیدروکسید') || nameFa.includes('آمونیاک') || nameFa.includes('پتاس') || 
+          nameFa.includes('سود') || nameEn.includes('hydroxide') || nameEn.includes('ammonia') || 
+          id.includes('hydroxide') || id === 'ammonia' || wasteGroup.includes('بازی') || wasteGroup.includes('کاستیک')) {
+        return 'base';
+      }
+
+      // Organic Solvent (flammable/halogenated/non-halogenated)
+      if (wasteGroup.includes('حلال‌های آلی') || wasteGroup.includes('گروه a') || wasteGroup.includes('گروه b') ||
+          id === 'acetone' || id === 'chloroform' || id === 'ethanol' || id === 'methanol' || id === 'dichloromethane' ||
+          id === 'toluene' || id === 'isopropanol' || id === 'hexane' || id === 'tetrahydrofuran' || id === 'ethyl_acetate' ||
+          id === 'diethyl_ether') {
+        return 'organic_solvent';
+      }
+
+      return 'other';
+    };
+
+    const catA = getSafetyCategory(chemA);
+    const catB = getSafetyCategory(chemB);
+
+    // Conflict rules between categories
+    if ((catA === 'acid' && catB === 'base') || (catB === 'acid' && catA === 'base')) {
+      showCompatResult('warning', 'تداخل اسید و باز (Neutralization Warning)', 
+        `اسیدها و بازها هرگز نباید در یک گالن تخلیه یا کنار هم نگهداری شوند. اختلاط مستقیم آن‌ها واکنش خنثی‌سازی شدید همراه با تولید حرارت بسیار زیاد ایجاد می‌کند که می‌تواند منجر به جوشش اسید و پاشش مواد خورنده شود.`);
+      return;
+    }
+
+    if ((catA === 'acid' && catB === 'cyanide_sulfide') || (catB === 'acid' && catA === 'cyanide_sulfide')) {
+      showCompatResult('danger', 'خطر تولید گاز فوق‌العاده سمی (Lethal Gas Hazard)', 
+        `بسیار خطرناک! اسیدها در تماس با ترکیبات سیانیدی یا سولفیدی، فوراً گازهای فوق‌العاده کشنده و سمی هیدروژن سیانید (HCN) یا هیدروژن سولفید (H₂S) تولید می‌کنند. هرگز نباید در مجاورت یکدیگر قرار گیرند یا مخلوط شوند.`);
+      return;
+    }
+
+    if ((catA === 'oxidizer' && catB === 'organic_solvent') || (catB === 'oxidizer' && catA === 'organic_solvent')) {
+      showCompatResult('danger', 'خطر حریق خودبه‌خودی و انفجار (Explosion Hazard)', 
+        `بسیار خطرناک! مواد اکسیدکننده در حضور حلال‌های آلی یا مواد قابل اشتعال می‌توانند واکنش‌های به شدت گرمازا، حریق خودبه‌خودی یا انفجار فوری بدون نیاز به جرقه ایجاد کنند. این دو گروه را کاملاً مجزا نگهداری کنید.`);
+      return;
+    }
+
+    if (catA === 'water_reactive' || catB === 'water_reactive') {
+      showCompatResult('danger', 'خطر واکنش شدید با رطوبت و حلال‌های آبی (Water Reactive Hazard)', 
+        `بسیار خطرناک! مواد واکنش‌دهنده با آب در تماس با حلال‌های آبی، محلول‌های اسیدی/بازی یا حتی رطوبت هوا، واکنش انفجاری نشان داده و گازهای آتش‌گیر یا سمی به همراه حرارت بسیار بالا تولید می‌کنند.`);
+      return;
+    }
+
+    if ((catA === 'acid' && catB === 'organic_solvent') || (catB === 'acid' && catA === 'organic_solvent')) {
+      // Check if it's nitric acid + organic
+      if (idA === 'nitric_acid' || idB === 'nitric_acid') {
+        showCompatResult('danger', 'خطر واکنش شدید اسید نیتریک با مواد آلی (Violent Reaction Hazard)',
+          `بسیار خطرناک! اسید نیتریک یک اکسیدکننده بسیار قوی و اسید معدنی است. ترکیب آن با حلال‌های آلی (مانند استون، اتانول) باعث واکنش به شدت گرمازا، تولید گازهای قهوه‌ای سمی (NOx) و انفجار شدید گالن پسماند می‌شود.`);
+        return;
+      }
+    }
+
+    // Default: Compatible
+    showCompatResult('compatible', 'بدون تداخل مستقیم (Compatible for Storage)', 
+      `تداخل مستقیم یا واکنش شدیدی بین ${chemA.nameFa} و ${chemB.nameFa} ثبت نشده است. با این حال، جهت دفع پسماند آن‌ها حتماً اصول تفکیک را رعایت کرده و اسیدها را در گالن‌های اسیدی و حلال‌های آلی را بر اساس هالوژن‌دار بودن در گالن مخصوص (قرمز یا زرد) تخلیه نمایید.`);
+  }
+
+  function showCompatResult(status, title, desc) {
+    compatResultBox.className = 'compat-result-box'; // reset
+    compatResultBox.classList.add(status);
+
+    compatStatusIcon.className = 'material-symbols-outlined'; // reset
+    compatStatusIcon.classList.add(status);
+    
+    // Set appropriate icon
+    if (status === 'compatible') {
+      compatStatusIcon.textContent = 'check_circle';
+      compatStatusBadge.textContent = 'سازگار';
+    } else if (status === 'warning') {
+      compatStatusIcon.textContent = 'warning';
+      compatStatusBadge.textContent = 'احتیاط / تداخل عمومی';
+    } else if (status === 'danger') {
+      compatStatusIcon.textContent = 'dangerous';
+      compatStatusBadge.textContent = 'ناسازگار / خطر شدید';
+    }
+
+    compatStatusBadge.className = ''; // reset
+    compatStatusBadge.classList.add(status);
+
+    compatStatusTitle.textContent = title;
+    compatDesc.textContent = desc;
+
+    compatResultBox.style.display = 'block';
+  }
+
+  if (compatSelectA && compatSelectB) {
+    compatSelectA.addEventListener('change', checkCompatibility);
+    compatSelectB.addEventListener('change', checkCompatibility);
+  }
 });
