@@ -859,6 +859,7 @@ header {
 /* Error Lookup styles */
 .error-lookup-select {
   width: 100%;
+  max-width: 100%;
   padding: 0.6rem;
   border-radius: 8px;
   border: 1px solid var(--border-color);
@@ -1576,6 +1577,221 @@ footer {
     width: 100%;
     justify-content: center;
   }
+}
+
+/* MSDS Widget Card & Layout */
+.msds-widget-card {
+  transition: all 0.3s ease;
+}
+
+.msds-details-card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  animation: fadeIn 0.4s ease;
+  min-width: 0;
+}
+
+.msds-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1.25rem;
+}
+
+.msds-name-fa {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.msds-name-en {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-family: var(--font-en);
+}
+
+.msds-meta {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.msds-meta-badge {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-family: var(--font-en);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+}
+
+.msds-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .msds-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+}
+
+.msds-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.msds-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--bg-tertiary);
+  padding-bottom: 0.4rem;
+}
+
+.msds-section-title span {
+  font-size: 20px;
+}
+
+.msds-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.msds-list li {
+  position: relative;
+  padding-right: 1.25rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.msds-list li::before {
+  content: "•";
+  color: var(--accent-emerald);
+  position: absolute;
+  right: 0;
+  font-weight: bold;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.msds-list.incompatibility-list li::before {
+  color: var(--accent-red);
+}
+
+.msds-container-box {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-right: 4px solid var(--accent-emerald);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  line-height: 1.6;
+}
+
+.msds-container-box.red-container {
+  border-right-color: var(--accent-red);
+}
+
+.msds-container-box.amber-container {
+  border-right-color: var(--accent-amber);
+}
+
+.msds-container-box.emerald-container {
+  border-right-color: var(--accent-emerald);
+}
+
+.msds-para {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* First Aid Tab bar */
+.first-aid-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border-color);
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.first-aid-tab-btn {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  font-family: var(--font-fa);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  transition: all var(--transition-speed);
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.first-aid-tab-btn:hover {
+  color: var(--text-primary);
+}
+
+.first-aid-tab-btn.active {
+  color: var(--accent-emerald);
+  border-bottom-color: var(--accent-emerald);
+}
+
+.first-aid-content-box {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  min-height: 60px;
+}
+
+.first-aid-text {
+  display: none;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  animation: fadeIn 0.3s ease;
+}
+
+.first-aid-text.active {
+  display: block;
+}
+
+.spill-action-box {
+  background-color: var(--accent-amber-glow);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-right: 4px solid var(--accent-amber);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  line-height: 1.7;
 }
 
 /* Print Styling */

@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
       answer: `<strong>فرمول فیزیک دوران سانتریفیوژ (RCF &leftrightarrow; RPM):</strong><br>
       شتاب نسبی گریز از مرکز (RCF) به صورت زیر محاسبه می‌شود:<br>
       $$RCF = 1.12 \\times \\text{Radius (mm)} \\times \\left(\\frac{\\text{RPM}}{1000}\\right)^2$$<br>
-      که در آن <code>Radius</code> شعاع روتور بر حسب میلی‌متر و <code>RPM</code> سرعت دورانی است. برای محاسبه آنلاین می‌توانید به بخش سانتریفیوژ در تب تجهیزات رفته و از ماشین‌حساب تعبیه‌شده استفاده کنید.`
+      که در آن <code>Radius</code> شعاع روتور بر حسب میلی‌متر و <code>RPM</code> سرعت دورانی است. برای محاسبه آنلاین می‌توانید به <a class="switch-eq-link" data-eq="eq-centrifuge">بخش سانتریفیوژ در تب تجهیزات</a> رفته و از ماشین‌حساب تعبیه‌شده استفاده کنید.`
     },
     {
       id: "oven_errors",
@@ -32,7 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
       - <strong>Lo.t:</strong> کاهش دما کمتر از حد خطا (احتمال نشت حرارتی درب یا عملکرد ضعیف المنت).<br>
       - <strong>t:</strong> عدم رسیدن به دما در ۳ ساعت پس از شروع (نشانه سوختن المنت یا خرابی برد قدرت).<br>
       - <strong>E.SEN:</strong> خرابی یا قطع اتصال سنسور دمای PT100.<br>
-      - <strong>صدای بوق مداوم:</strong> درب دستگاه بیش از ۱۵ ثانیه باز مانده است.`
+      - <strong>صدای بوق مداوم:</strong> درب دستگاه بیش از ۱۵ ثانیه باز مانده است.<br>
+      جهت راهنمایی عیب‌یابی بیشتر، به <a class="switch-eq-link" data-eq="eq-oven">عیب‌یاب خطاهای فور در تب تجهیزات</a> مراجعه کنید.`
     },
     {
       id: "ph_errors",
@@ -41,7 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
       - <strong>Err.Cal:</strong> خطای کالیبراسیون (نشانه کثیفی غشای الکترود، آلودگی بافرها یا طول عمر بالای الکترود شیشه‌ای).<br>
       - <strong>Err.Temp:</strong> عدم شناسایی سنسور دما (سنسور ATC قطع یا خراب است؛ سوکت پشتی را چک کنید).<br>
       - <strong>no.Stb:</strong> عدم ثبات عدد (وجود حباب هوا زیر الکترود، کثیفی غشا یا ناهماهنگی نمونه).<br>
-      - <strong>OR/UR:</strong> خارج از محدوده اندازه‌گیری (پ هاش نمونه زیر ۰ یا بالای ۱۴ است یا کابل کواکسیال قطع است).`
+      - <strong>OR/UR:</strong> خارج از محدوده اندازه‌گیری (پ هاش نمونه زیر ۰ یا بالای ۱۴ است یا کابل کواکسیال قطع است).<br>
+      جهت راهنمایی عیب‌یابی بیشتر، به <a class="switch-eq-link" data-eq="eq-phmeter">عیب‌یاب خطاهای pH متر در تب تجهیزات</a> مراجعه کنید.`
     },
     {
       id: "waste_rules",
@@ -316,17 +318,108 @@ document.addEventListener('DOMContentLoaded', () => {
       - <strong>مواد مجاز:</strong> برای شیشه از استون/آب، برای بدنه ABS از آب و صابون ملایم، برای قطعات استیل از آب گرم و صابون (فقط با دستمال میکروفایبر) استفاده کنید.<br>
       - <strong>ممنوعیت دستمال کاغذی:</strong> هرگز کفه و مکانیزم را با دستمال کاغذی خشک نکنید؛ الیاف میکروسکوپی آن توزین را خراب می‌کند. از دستمال میکروفایبر بدون پرز استفاده کنید یا بگذارید در هوای آزاد خشک شود.<br>
       - <strong>دهانه پین کفه:</strong> قبل از برداشتن کفه، گرد و غبار اطراف دهانه را با قلم‌موی نرم تمیز کنید. ورود هرگونه مایع یا پسماند به سوراخ سنسور، موجب خرابی دائم ترازو می‌شود.`
+    },
+    {
+      id: "fume_hood_safety",
+      keywords: ["هود شیمیایی", "هود آزمایشگاهی", "کار زیر هود", "دریچه هود", "fume hood", "sash", "سنسور هود", "فن هود"],
+      answer: `<strong>راهنمای ایمنی و کاربری هود شیمیایی (Fume Hood):</strong><br>
+      هود شیمیایی مهم‌ترین ابزار حفاظت فردی در برابر گازها و بخارات سمی است. اصول زیر را رعایت کنید:<br>
+      - <strong>محل انجام واکنش:</strong> تمامی واکنش‌های رقیق‌سازی، اختلاط اسیدها/بازها و کار با حلال‌های فرار باید <strong>الزاماً زیر هود</strong> انجام شود.<br>
+      - <strong>ارتفاع دریچه (Sash Height):</strong> دریچه شیشه‌ای هود را حداکثر تا روی علامت ایمنی (معمولاً بین ۳۰ تا ۴۰ سانتی‌متر) باز کنید. هرگز دریچه را در بالاترین حد قرار ندهید.<br>
+      - <strong>چیدمان داخل هود:</strong> ظروف و مواد را حداقل ۱۵ سانتی‌متر داخل دهانه هود قرار دهید تا جریان مکش هوا مختل نشود.<br>
+      - <strong>خطا و هشدار هود:</strong> در صورت قطع شدن صدای فن یا شنیدن آلارم صوتی سنسور هود، سریعاً شیر گاز را بسته، ظروف را پوشانده و از هود فاصله بگیرید.`
+    },
+    {
+      id: "first_aid_incidents",
+      keywords: ["سوختگی اسید", "ریختن اسید", "پاشش چشم", "دوش اضطراری", "چشم شوی", "کمک های اولیه", "glass cut", "acid spill skin", "سوختگی پوست", "کمک های اولیه سوختگی"],
+      answer: `<div class="emergency-alert-box">
+      <strong>🚨 اقدامات کمک‌های اولیه در حوادث حاد آزمایشگاهی:</strong><br>
+      - <strong>پاشش اسید/باز به چشم:</strong> فوراً زیر چشم‌شوی اضطراری بروید و با باز نگه داشتن پلک‌ها، <strong>حداقل ۱۵ تا ۲۰ دقیقه</strong> چشم را شستشو دهید. هرگز چشم را نمالید و فوراً به بیمارستان فارابی مراجعه کنید.<br>
+      - <strong>سوختگی شیمیایی پوست:</strong> سریعاً لباس‌های آلوده را خارج کرده و موضع را <strong>حداقل ۲۰ دقیقه</strong> زیر دوش اضطراری با آب فراوان بشویید. هرگز از اسیدهای ضعیف (مانند سرکه) یا بازهای ضعیف (جوش شیرین) برای خنثی‌سازی روی پوست استفاده نکنید؛ زیرا حرارت واکنش خنثی‌سازی سوختگی را شدیدتر می‌کند!<br>
+      - <strong>بریدگی با شیشه شکسته:</strong> زخم را شسته، ضدعفونی کنید و با گاز استریل فشار دهید تا خون‌ریزی بند بیاید. در صورت وجود تکه‌های شیشه درون زخم، خودتان اقدام به خارج کردن نکنید و به پزشک مراجعه کنید.<br>
+      - <strong>استنشاق گازهای سمی:</strong> مصدوم را سریعاً به هوای آزاد منتقل کنید. در صورت بروز تنگی نفس، فوراً با اورژانس (۱۱۵) تماس بگیرید.
+      </div>`
+    },
+    {
+      id: "fire_safety_extinguishers",
+      keywords: ["آتش سوزی", "کپسول آتش نشانی", "حریق", "خاموش کردن آتش", "کپسول co2", "پودر و گاز", "fire extinguisher", "pass method", "نوع کپسول"],
+      answer: `<strong>راهنمای اطفای حریق و کپسول‌های آتش‌نشانی آزمایشگاه:</strong><br>
+      در صورت بروز حریق، خونسردی خود را حفظ کرده و با توجه به نوع آتش، کپسول مناسب را انتخاب کنید:<br>
+      - <strong>کپسول دی‌اکسید کربن (CO2 - بدنه استوانه‌ای بدون مانومتر):</strong> مناسب برای حریق‌های الکتریکی (دستگاه‌ها و سیم‌کشی‌ها) و مایعات قابل اشتعال (حلال‌ها). هیچ اثری برجا نمی‌گذارد و به برد دستگاه‌ها آسیب نمی‌زند.<br>
+      - <strong>کپسول پودر و گاز (دارای عقربه مانومتر):</strong> مناسب برای آتش‌سوزی جامدات (کاغذ، چوب). توجه داشته باشید پودر شیمیایی می‌تواند به تجهیزات الکترونیکی حساس آسیب بزند.<br>
+      - <strong>روش استفاده PASS (به فارسی: ضشفج):</strong><br>
+        ۱. **ض**امن را بکشید (Pull).<br>
+        ۲. **ش**یلنگ را به سمت پایه آتش نشانه‌گیری کنید (Aim).<br>
+        ۳. **ف**شار دهید تا گاز خارج شود (Squeeze).<br>
+        ۴. **ج**اروب کنید؛ نازل را به صورت چپ و راست حرکت دهید (Sweep).`
+    },
+    {
+      id: "heater_stirrer_safety",
+      keywords: ["هیتر", "استیرر", "مگنت", "پلیت", "صفحه داغ", "بن ماری", "حمام آب", "heater stirrer", "water bath", "مگنت استیرر"],
+      answer: `<strong>نکات ایمنی هیتر استیرر و حمام آب (بن‌ماری):</strong><br>
+      - <strong>کنترل مگنت:</strong> برای مخلوط کردن حلال‌های فرار و قابل اشتعال، حتماً از مگنت تفلونی استفاده کنید. هرگز حلال‌ها را روی پلیت داغ بدون چرخش مگنت رها نکنید.<br>
+      - <strong>ایمنی در دمای بالا:</strong> در پایان کار یا جابجایی بشر داغ، حتماً از گیره یا دستکش نسوز استفاده کنید. پس از اتمام کار، ولتاژ دما را روی صفر قرار داده و دوشاخه را جدا کنید.<br>
+      - <strong>بن‌ماری (حمام آب):</strong> مطمئن شوید داخل حمام آب به میزان کافی آب مقطر وجود دارد. کارکرد خشک بن‌ماری موجب سوختن المنت و خطر آتش‌سوزی می‌شود.<br>
+      - <strong>مایعات فرار:</strong> هرگز حلال‌های به شدت قابل اشتعال (مانند اتر یا دی‌کلرومتان) را روی شعله مستقیم یا بدون هود حرارت ندهید؛ حتماً از بن‌ماری و زیر هود استفاده کنید.`
+    },
+    {
+      id: "glassware_thermal_shock",
+      keywords: ["شوک حرارتی", "پیرکس", "شکستن شیشه", "حرارت مستقیم ظروف", "ارلن", "بشر حرارتی", "pyrex", "thermal shock", "شیشه آلات داغ"],
+      answer: `<strong>پیشگیری از شوک حرارتی و شکستن شیشه‌آلات:</strong><br>
+      شیشه‌آلات آزمایشگاهی اغلب از جنس پیرکس (بروسیلیکات) هستند و مقاومت دمایی بالایی دارند، اما همچنان در معرض شوک حرارتی می‌شکنند:<br>
+      - <strong>شوک حرارتی:</strong> هرگز ظرف شیشه‌ای داغ را بلافاصله روی سطح سرد (مانند کاشی یا استیل سینک) یا زیر آب سرد قرار ندهید. اجازه دهید ابتدا در دمای محیط خنک شود.<br>
+      - <strong>حرارت مستقیم:</strong> از حرارت دادن مستقیم ارلن‌ها و بشرها روی شعله بدون توری نسوز خودداری کنید. توزیع ناهمگون دما عامل اصلی شکست ظروف است.<br>
+      - <strong>ظروف ترک‌خورده:</strong> ظروف شیشه‌ای دارای مویی یا ترک‌های بسیار ریز را فوراً کنار بگذارید؛ این ظروف تحت حرارت یا خلاء شدید منفجر یا خرد می‌شوند.`
+    },
+    {
+      id: "gas_safety_leak",
+      keywords: ["کپسول گاز", "نشت گاز", "بوی گاز", "رگولاتور", "مانومتر", "شیر گاز", "gas cylinder leak", "نشت سیلندر", "مانومتر گاز"],
+      answer: `<strong>راهنمای ایمنی سیلندرها و کپسول‌های گاز تحت فشار:</strong><br>
+      کپسول‌های گاز به دلیل فشار بالا و ماهیت گاز داخل آن‌ها بسیار خطرناکند:<br>
+      - <strong>تثبیت سیلندر:</strong> تمامی سیلندرهای گاز باید همواره با زنجیر یا کمربندهای فلزی به دیوار یا میز کار محکم بسته شده باشند تا از سقوط آن‌ها جلوگیری شود (سقوط کپسول و شکستن شیر آن می‌تواند کپسول را به یک موشک جنگی تبدیل کند!).<br>
+      - <strong>بوی گاز و نشت:</strong> در صورت استشمام بوی گاز، فوراً شیر اصلی سیلندر را ببندید. برای تست نشتی رگولاتور و مانومتر، فقط از کف صابون استفاده کنید؛ هرگز از شعله مستقیم استفاده نکنید.<br>
+      - <strong>باز کردن شیر رگولاتور:</strong> هنگام باز کردن شیر اصلی کپسول، هرگز مستقیماً روبروی مانومتر و عقربه‌ها نایستید؛ احتمال پرتاب شدن صفحه مانومتر در فشارهای ناگهانی بالا وجود دارد.`
+    },
+    {
+      id: "balance_calibration",
+      keywords: ["کالیبره ترازو", "کالیبراسیون ترازو", "کالیبره کردن ترازو", "کالیبره رادواگ", "calibration balance", "adjust balance", "تنظیم ترازو"],
+      answer: `<strong>راهنمای کالیبراسیون ترازوی دیجیتال Radwag:</strong><br>
+      ترازوهای سری AS و PS دارای سیستم کالیبراسیون خودکار داخلی (Internal Adjustment) هستند:<br>
+      ۱. قبل از شروع توزین، مطمئن شوید ترازو تراز است و حداقل ۴ تا ۸ ساعت از اتصال آن به برق می‌گذرد تا پایداری حرارتی حاصل شود.<br>
+      ۲. کفه ترازو را کاملاً تمیز و خالی کنید و درب شیشه‌ای را ببندید.<br>
+      ۳. کلید <strong>CAL</strong> را روی پنل ترازو فشار دهید. دستگاه به طور خودکار وزنه داخلی را روی لودسل بارگذاری کرده و نقطه صفر و حساسیت را مجدداً تنظیم می‌کند.<br>
+      ۴. پس از اتمام فرآیند و شنیدن بوق تایید، ترازو آماده کار است. در صورت بروز هرگونه ناپایداری حرارتی در محیط، خود دستگاه به صورت خودکار کالیبراسیون داخلی را آغاز می‌کند که نباید مانع آن شوید.`
+    },
+    {
+      id: "safety_gloves",
+      keywords: ["دستکش مناسب", "نوع دستکش", "دستکش نیتریل", "دستکش لاتکس", "دستکش نئوپان", "دستکش نسوز", "gloves type", "safety gloves"],
+      answer: `<strong>راهنمای انتخاب دستکش حفاظتی مناسب در آزمایشگاه:</strong><br>
+      هرگز از یک نوع دستکش برای تمام کارها استفاده نکنید:<br>
+      - <strong>دستکش نیتریل (Nitrile):</strong> بهترین گزینه عمومی برای کار با مواد شیمیایی و اسیدهای رقیق و حلال‌های آلی. مقاومت مکانیکی و شیمیایی بسیار بهتری نسبت به لاتکس دارد.<br>
+      - <strong>دستکش لاتکس (Latex):</strong> مناسب برای مواد بیولوژیکی و محلول‌های آبی رقیق. مقاومت بسیار ضعیفی در برابر حلال‌های آلی فرار (مانند کلروفرم یا استون) دارد و به سرعت سوراخ یا حل می‌شود.<br>
+      - <strong>دستکش نئوپرن یا بوتیل:</strong> مخصوص کار طولانی‌مدت با اسیدهای قوی غلیظ و حلال‌های هالوژنه.<br>
+      - <strong>دستکش نسوز:</strong> الزامی برای قرار دادن یا خارج کردن ظروف از داخل فور (آون) در دماهای بالای ۵۰ درجه.`
+    },
+    {
+      id: "mercury_spill",
+      keywords: ["جیوه", "شکستن دماسنج جیوه", "نشت جیوه", "سم جیوه", "بخار جیوه", "mercury spill", "thermometer break"],
+      answer: `<strong>دستورالعمل پاکسازی ریزش جیوه (شکستن دماسنج جیوه‌ای):</strong><br>
+      جیوه فلزی مایع و به شدت سمی است که بخارات آن آسیب‌های عصبی جبران‌ناپذیر ایجاد می‌کند:<br>
+      ۱. <strong>تخلیه محل:</strong> سریعاً افراد را از اطراف محل ریزش دور کرده و سیستم تهویه/هودها را در حداکثر قدرت روشن کنید و پنجره‌ها را باز کنید.<br>
+      ۲. <strong>پوشش محافظ:</strong> ماسک، دستکش نیتریل ضخیم و عینک بزنید.<br>
+      ۳. <strong>جمع‌آوری فیزیکی:</strong> به هیچ وجه از جاروبرقی یا جارو دستی استفاده نکنید (این کار جیوه را تبخیر و پخش می‌کند!). با استفاده از دو کارت مقوایی یا پنس و سرنگ، قطرات جیوه را جمع کرده و در یک ظرف درب‌دار آب بریزید.<br>
+      ۴. <strong>خنثی‌سازی شیمیایی:</strong> روی محل ریزش پودر <strong>گوگرد (سولفور)</strong> بپاشید تا با جیوه واکنش داده و ملغمه پایدار غیرفرار تشکیل دهد. پس از ۲۴ ساعت، پودر حاصل را جمع‌آوری و به عنوان پسماند جامد سمی دفع کنید.`
     }
   ];
 
   // Welcome Messages and Suggestions
   const welcomeText = "سلام! من دستیار هوشمند آفلاین آزمایشگاه پسماند هستم. چطور می‌توانم به شما کمک کنم؟ شما می‌توانید درباره ایمنی، پسماندها، کالیبراسیون و خطاهای دستگاه‌ها یا مشخصات MSDS مواد شیمیایی (مانند استون، اسید سولفوریک، کلروفرم) از من بپرسید.";
   const suggestionList = [
-    { text: "نحوه کالیبره کردن pH متر", query: "کالیبره کردن pH متر رومیزی" },
+    { text: "اقدامات سوختگی با اسید", query: "کمک های اولیه سوختگی اسید" },
     { text: "رفع خطای E.H.t فور", query: "خطای E.H.t فور چیست" },
     { text: "خطای Lo mass در ترازو", query: "رفع خطای Lo mass ترازوی دیجیتال" },
     { text: "قوانین دفع پسماند حلال‌ها", query: "قوانین دفع پسماند حلال ها و اسیدها" },
-    { text: "فرمول شتاب سانتریفیوژ", query: "فرمول محاسبه شتاب سانتریفیوژ RCF" }
+    { text: "ایمنی کار زیر هود شیمیایی", query: "راهنمای کار زیر هود شیمیایی" }
   ];
 
   const fallbackText = "متأسفانه پاسخ دقیق سوال شما را در مستندات آزمایشگاه پیدا نکردم. لطفاً سوال خود را ساده‌تر بپرسید (مثلاً: کالیبره کردن pH متر، خطاهای فور، ساعات کار آزمایشگاه) یا به تب‌های راهنمای سایت مراجعه کنید.";
@@ -354,12 +447,21 @@ document.addEventListener('DOMContentLoaded', () => {
             <p>پاسخ‌گویی آفلاین بر اساس مستندات</p>
           </div>
         </div>
-        <button id="chatbot-close" class="chatbot-close" aria-label="بستن پنجره">
-          <span class="material-symbols-outlined">close</span>
-        </button>
+        <div style="display: flex; align-items: center;">
+          <button id="chatbot-clear" class="chatbot-clear" title="پاک کردن تاریخچه گفتگو" aria-label="پاک کردن گفتگو">
+            <span class="material-symbols-outlined">delete_sweep</span>
+          </button>
+          <button id="chatbot-close" class="chatbot-close" aria-label="بستن پنجره">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
       </div>
       <div id="chatbot-messages" class="chatbot-messages"></div>
-      <div class="chatbot-footer">
+      <div class="chatbot-footer" style="position: relative;">
+        <div id="chatbot-autocomplete" class="chatbot-autocomplete"></div>
+        <button id="chatbot-voice" class="chatbot-voice" title="جستجوی صوتی" aria-label="جستجوی صوتی">
+          <span class="material-symbols-outlined">mic</span>
+        </button>
         <input type="text" id="chatbot-input" class="chatbot-input" placeholder="سوال خود را بپرسید...">
         <button id="chatbot-send" class="chatbot-send" aria-label="ارسال">
           <span class="material-symbols-outlined">send</span>
@@ -375,11 +477,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const chatbotFab = document.getElementById('chatbot-fab');
   const chatbotWindow = document.getElementById('chatbot-window');
   const chatbotClose = document.getElementById('chatbot-close');
+  const chatbotClear = document.getElementById('chatbot-clear');
   const chatbotMessages = document.getElementById('chatbot-messages');
   const chatbotInput = document.getElementById('chatbot-input');
   const chatbotSend = document.getElementById('chatbot-send');
+  const chatbotVoice = document.getElementById('chatbot-voice');
+  const chatbotAutocomplete = document.getElementById('chatbot-autocomplete');
 
   let isInitialized = false;
+
+  // Load chat history or show welcome message
+  function loadHistoryOrWelcome() {
+    const hasHistory = loadChatHistory();
+    if (!hasHistory) {
+      initializeChat();
+    }
+  }
 
   // Toggle Chatbot Window
   chatbotFab.addEventListener('click', () => {
@@ -389,7 +502,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (chatbotWindow.classList.contains('active')) {
       chatbotInput.focus();
       if (!isInitialized) {
-        initializeChat();
+        loadHistoryOrWelcome();
       }
     }
   });
@@ -398,6 +511,118 @@ document.addEventListener('DOMContentLoaded', () => {
     chatbotWindow.classList.remove('active');
     chatbotFab.classList.remove('active');
   });
+
+  // Clear Conversation history
+  if (chatbotClear) {
+    chatbotClear.addEventListener('click', () => {
+      if (confirm('آیا مایل به پاک کردن کامل تاریخچه گفتگوی خود هستید؟')) {
+        localStorage.removeItem('lab_chat_history');
+        chatbotMessages.innerHTML = '';
+        isInitialized = false;
+        loadHistoryOrWelcome();
+      }
+    });
+  }
+
+  // Handle click delegation for links and tabs inside chatbot messages
+  if (chatbotMessages) {
+    chatbotMessages.addEventListener('click', (e) => {
+      // 1. Switch Tab Links
+      const tabLink = e.target.closest('.switch-tab-link');
+      if (tabLink) {
+        const tabId = tabLink.getAttribute('data-tab');
+        if (typeof window.switchTab === 'function') {
+          window.switchTab(tabId);
+          if (window.innerWidth <= 768) {
+            chatbotWindow.classList.remove('active');
+            chatbotFab.classList.remove('active');
+          }
+        }
+      }
+      
+      // 2. Switch Equipment Links
+      const eqLink = e.target.closest('.switch-eq-link');
+      if (eqLink) {
+        const eqId = eqLink.getAttribute('data-eq');
+        if (typeof window.switchTab === 'function') {
+          window.switchTab('tab-equipment');
+        }
+        if (typeof window.switchEquipment === 'function') {
+          window.switchEquipment(eqId);
+          setTimeout(() => {
+            const el = document.getElementById(eqId);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 150);
+          if (window.innerWidth <= 768) {
+            chatbotWindow.classList.remove('active');
+            chatbotFab.classList.remove('active');
+          }
+        }
+      }
+
+      // 3. Tab Button Click in Chemical Card
+      const tabBtn = e.target.closest('.chem-tab-btn');
+      if (tabBtn) {
+        const container = tabBtn.closest('.chem-card-container');
+        if (container) {
+          const tabName = tabBtn.getAttribute('data-tab');
+          
+          // Deactivate all tabs and panels in this card
+          container.querySelectorAll('.chem-tab-btn').forEach(btn => btn.classList.remove('active'));
+          container.querySelectorAll('.chem-tab-panel').forEach(panel => panel.classList.remove('active'));
+          
+          // Activate selected tab and panel
+          tabBtn.classList.add('active');
+          const activePanel = container.querySelector(`.chem-tab-panel[data-panel="${tabName}"]`);
+          if (activePanel) {
+            activePanel.classList.add('active');
+          }
+        }
+      }
+
+      // 4. Copy Button Click in Chemical Card
+      const copyBtn = e.target.closest('.chem-copy-btn');
+      if (copyBtn) {
+        const chemId = copyBtn.getAttribute('data-chem-id');
+        if (window.chemicalMsdsDb) {
+          const chem = window.chemicalMsdsDb.find(c => c.id === chemId);
+          if (chem) {
+            const hazardsList = chem.hazards.map(h => h.label).join(' - ');
+            const incompatList = chem.incompatible.join('، ');
+            const copyText = `برگه ایمنی (MSDS) اختصاصی آزمایشگاه پسماند
+نام ماده: ${chem.nameFa} (${chem.nameEn})
+فرمول شیمیایی: ${chem.formula} | CAS: ${chem.cas}
+دسته‌بندی پسماند: ${chem.wasteGroup}
+خطرات ایمنی: ${hazardsList}
+مواد ناسازگار: ${incompatList}
+کمک‌های اولیه:
+- پوست: ${chem.firstAid.skin}
+- چشم: ${chem.firstAid.eyes}
+${chem.firstAid.inhalation ? `- استنشاق: ${chem.firstAid.inhalation}\n` : ''}اقدام اضطراری نشت: ${chem.spillAction}`;
+            
+            navigator.clipboard.writeText(copyText).then(() => {
+              const labelSpan = copyBtn.querySelector('span:not(.material-symbols-outlined)');
+              const iconSpan = copyBtn.querySelector('.material-symbols-outlined');
+              if (labelSpan && iconSpan) {
+                const originalText = labelSpan.textContent;
+                const originalIcon = iconSpan.textContent;
+                labelSpan.textContent = 'کپی شد!';
+                iconSpan.textContent = 'done';
+                copyBtn.style.color = 'var(--accent-emerald)';
+                setTimeout(() => {
+                  labelSpan.textContent = originalText;
+                  iconSpan.textContent = originalIcon;
+                  copyBtn.style.color = '';
+                }, 2000);
+              }
+            }).catch(err => {
+              console.error('Failed to copy text: ', err);
+            });
+          }
+        }
+      }
+    });
+  }
 
   // Welcome message initialization
   function initializeChat() {
@@ -422,12 +647,51 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollToBottom();
   }
 
+  // Local Storage chat history helpers
+  function loadChatHistory() {
+    const historyJson = localStorage.getItem('lab_chat_history');
+    if (historyJson) {
+      try {
+        const history = JSON.parse(historyJson);
+        if (history && history.length > 0) {
+          isInitialized = true;
+          history.forEach(msg => {
+            const msgEl = document.createElement('div');
+            msgEl.className = `chat-msg ${msg.sender}`;
+            msgEl.innerHTML = msg.htmlContent;
+            chatbotMessages.appendChild(msgEl);
+          });
+          
+          // Re-render math formulas if KaTeX is present
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(chatbotMessages, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+              ],
+              throwOnError: false
+            });
+          }
+          
+          scrollToBottom();
+          return true;
+        }
+      } catch (e) {
+        console.error('Error loading chat history from localstorage: ', e);
+      }
+    }
+    return false;
+  }
+
   // Handle message sending
   function sendMessage() {
     const query = chatbotInput.value.trim();
     if (!query) return;
     
     chatbotInput.value = '';
+    if (chatbotAutocomplete) chatbotAutocomplete.classList.remove('active');
     handleUserQuery(query);
   }
 
@@ -438,11 +702,220 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Autocomplete search suggestions engine
+  let activeAutocompleteIndex = -1;
+  let suggestionMatches = [];
+
+  function updateAutocomplete() {
+    const query = chatbotInput.value.trim();
+    chatbotAutocomplete.innerHTML = '';
+    activeAutocompleteIndex = -1;
+    suggestionMatches = [];
+
+    if (query.length < 2) {
+      chatbotAutocomplete.classList.remove('active');
+      return;
+    }
+
+    const cleanQuery = query.toLowerCase().replace(/[؟?.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").replace(/\s+/g, " ");
+    
+    // 1. Search MSDS database (max 3 matches)
+    const matchedChems = [];
+    if (window.chemicalMsdsDb) {
+      for (const chem of window.chemicalMsdsDb) {
+        const score = getChemicalMatchScore(cleanQuery, chem);
+        if (score > 1.5) {
+          matchedChems.push({
+            type: 'chemical',
+            title: `${chem.nameFa} (${chem.nameEn})`,
+            query: chem.nameFa,
+            score: score
+          });
+        }
+      }
+    }
+    matchedChems.sort((a, b) => b.score - a.score);
+
+    // 2. Search Q&A database (max 3 matches)
+    const matchedQA = [];
+    qaDatabase.forEach(item => {
+      let score = 0;
+      item.keywords.forEach(keyword => {
+        if (cleanQuery.includes(keyword)) {
+          score += 2;
+        }
+        const words = cleanQuery.split(' ');
+        words.forEach(word => {
+          if (word.length > 2 && keyword.includes(word)) {
+            score += 0.5;
+          }
+        });
+      });
+      if (score > 1.0) {
+        let displayTitle = item.answer.replace(/<[^>]*>/g, '').split('：')[0].split(':')[0].trim();
+        if (displayTitle.length > 40) displayTitle = displayTitle.substring(0, 40) + '...';
+        
+        matchedQA.push({
+          type: 'qa',
+          title: displayTitle,
+          query: item.keywords[0],
+          score: score
+        });
+      }
+    });
+    matchedQA.sort((a, b) => b.score - a.score);
+
+    // Combine and limit to 5 total matches
+    suggestionMatches = [...matchedChems.slice(0, 3), ...matchedQA.slice(0, 3)].slice(0, 5);
+
+    if (suggestionMatches.length === 0) {
+      chatbotAutocomplete.classList.remove('active');
+      return;
+    }
+
+    suggestionMatches.forEach((match, index) => {
+      const item = document.createElement('div');
+      item.className = 'autocomplete-item';
+      item.setAttribute('data-index', index);
+      
+      const icon = match.type === 'chemical' ? 'science' : 'menu_book';
+      item.innerHTML = `
+        <span class="material-symbols-outlined autocomplete-icon">${icon}</span>
+        <span class="autocomplete-text">${match.title}</span>
+      `;
+      
+      item.addEventListener('click', () => {
+        chatbotInput.value = match.query;
+        chatbotAutocomplete.classList.remove('active');
+        sendMessage();
+      });
+      
+      chatbotAutocomplete.appendChild(item);
+    });
+
+    chatbotAutocomplete.classList.add('active');
+  }
+
+  // Handle autocomplete keyboard events
+  chatbotInput.addEventListener('keydown', (e) => {
+    const items = chatbotAutocomplete.querySelectorAll('.autocomplete-item');
+    if (!chatbotAutocomplete.classList.contains('active') || items.length === 0) {
+      return;
+    }
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      activeAutocompleteIndex = (activeAutocompleteIndex + 1) % items.length;
+      highlightAutocompleteItem(items);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      activeAutocompleteIndex = (activeAutocompleteIndex - 1 + items.length) % items.length;
+      highlightAutocompleteItem(items);
+    } else if (e.key === 'Enter') {
+      if (activeAutocompleteIndex >= 0 && activeAutocompleteIndex < items.length) {
+        e.preventDefault();
+        const match = suggestionMatches[activeAutocompleteIndex];
+        chatbotInput.value = match.query;
+        chatbotAutocomplete.classList.remove('active');
+        sendMessage();
+      }
+    } else if (e.key === 'Escape') {
+      chatbotAutocomplete.classList.remove('active');
+    }
+  });
+
+  function highlightAutocompleteItem(items) {
+    items.forEach(item => item.classList.remove('highlighted'));
+    if (activeAutocompleteIndex >= 0 && activeAutocompleteIndex < items.length) {
+      const activeItem = items[activeAutocompleteIndex];
+      activeItem.classList.add('highlighted');
+      activeItem.scrollIntoView({ block: 'nearest' });
+    }
+  }
+
+  // Hide autocomplete when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.chatbot-footer')) {
+      chatbotAutocomplete.classList.remove('active');
+    }
+  });
+
+  chatbotInput.addEventListener('input', updateAutocomplete);
+
+  // Voice Input Speech-to-Text Setup
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  let recognition = null;
+  let isListening = false;
+
+  if (SpeechRecognition) {
+    recognition = new SpeechRecognition();
+    recognition.lang = 'fa-IR'; // Default to Persian speech API
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.onstart = () => {
+      isListening = true;
+      chatbotVoice.classList.add('recording');
+      chatbotInput.placeholder = 'در حال شنیدن... صحبت کنید...';
+    };
+
+    recognition.onresult = (event) => {
+      const speechToText = event.results[0][0].transcript;
+      chatbotInput.value = speechToText;
+      updateAutocomplete();
+    };
+
+    recognition.onerror = (event) => {
+      console.error('Speech recognition error:', event.error);
+      stopListening();
+    };
+
+    recognition.onend = () => {
+      stopListening();
+      if (chatbotInput.value.trim()) {
+        sendMessage();
+      }
+    };
+  } else {
+    chatbotVoice.style.display = 'none'; // Hide mic if not supported
+  }
+
+  function startListening() {
+    if (recognition && !isListening) {
+      try {
+        recognition.start();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  }
+
+  function stopListening() {
+    isListening = false;
+    if (chatbotVoice) chatbotVoice.classList.remove('recording');
+    if (chatbotInput) chatbotInput.placeholder = 'سوال خود را بپرسید...';
+    if (recognition) {
+      try {
+        recognition.stop();
+      } catch (err) {
+        // already stopped
+      }
+    }
+  }
+
+  chatbotVoice.addEventListener('click', () => {
+    if (isListening) {
+      stopListening();
+    } else {
+      startListening();
+    }
+  });
+
   // NLP Matching Engine
   function handleUserQuery(query) {
     addMessage(query, 'user');
     
-    // Show Bouncing Dots Bouncing Typing Indicator
+    // Show Bouncing Typing Indicator
     const typingIndicator = showTypingIndicator();
     
     setTimeout(() => {
@@ -622,43 +1095,65 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Require a minimum match score threshold (4.5) to activate the MSDS card presentation
     if (maxScore >= 4.5 && bestChem) {
-      let hazardsHtml = bestChem.hazards.map(h => 
-        `<div style="display: flex; align-items: center; gap: 0.4rem; margin-top: 0.25rem;">
-          <span class="material-symbols-outlined" style="color: var(--accent-red); font-size: 18px;">${h.icon}</span>
+      const hazardsHtml = bestChem.hazards.map(h => 
+        `<div class="hazard-item">
+          <span class="material-symbols-outlined">${h.icon}</span>
           <span>${h.label}</span>
         </div>`
       ).join('');
 
-      let incompatibleHtml = bestChem.incompatible.map(inc => `<li>${inc}</li>`).join('');
+      const incompatibleHtml = bestChem.incompatible.map(inc => `<li>${inc}</li>`).join('');
 
       return `
-        <div style="border-right: 4px solid var(--accent-red); padding-right: 0.75rem; margin-bottom: 0.5rem;">
-          <strong style="font-size: 1rem; color: var(--text-primary);">${bestChem.nameFa} (${bestChem.nameEn})</strong><br>
-          <span style="font-size: 0.8rem; color: var(--text-muted);">فرمول شیمیایی: <code>${bestChem.formula}</code> | کد CAS: <code>${bestChem.cas}</code></span>
-        </div>
-        <div style="margin-top: 0.5rem; font-size: 0.85rem;">
-          <strong>دسته‌بندی پسماند:</strong> ${bestChem.wasteGroup}
-        </div>
-        <div style="margin-top: 0.5rem; font-size: 0.85rem;">
-          <strong>خطرات ایمنی:</strong>
-          ${hazardsHtml}
-        </div>
-        <div style="margin-top: 0.5rem; font-size: 0.85rem;">
-          <strong>مواد ناسازگار (هرگز با هم مخلوط نشوند):</strong>
-          <ul style="margin-right: 1.25rem; margin-top: 0.25rem; list-style-type: circle;">
-            ${incompatibleHtml}
-          </ul>
-        </div>
-        <div style="margin-top: 0.5rem; font-size: 0.85rem;">
-          <strong>کمک‌های اولیه:</strong>
-          <ul style="margin-right: 1.25rem; margin-top: 0.25rem; list-style-type: circle;">
-            <li><strong>پوست:</strong> ${bestChem.firstAid.skin}</li>
-            <li><strong>چشم:</strong> ${bestChem.firstAid.eyes}</li>
-            ${bestChem.firstAid.inhalation ? `<li><strong>استنشاق:</strong> ${bestChem.firstAid.inhalation}</li>` : ''}
-          </ul>
-        </div>
-        <div style="margin-top: 0.5rem; font-size: 0.85rem;">
-          <strong>نحوه جمع‌آوری و ریزش اضطراری:</strong> ${bestChem.spillAction}
+        <div class="chem-card-container">
+          <div class="chem-card-header">
+            <div class="chem-card-title">
+              <strong>${bestChem.nameFa}</strong>
+              <span>(${bestChem.nameEn})</span>
+            </div>
+            <div class="chem-card-meta">
+              <span>فرمول: <code>${bestChem.formula}</code></span>
+              <span>CAS: <code>${bestChem.cas}</code></span>
+            </div>
+          </div>
+          
+          <div class="chem-card-waste">
+            <span class="waste-badge color-${bestChem.containerColor || 'emerald'}">${bestChem.wasteGroup}</span>
+          </div>
+
+          <div class="chem-card-tabs">
+            <button class="chem-tab-btn active" data-tab="hazards">⚠️ خطرات</button>
+            <button class="chem-tab-btn" data-tab="firstaid">🩹 کمک‌ها</button>
+            <button class="chem-tab-btn" data-tab="spill">🧹 مهار نشت</button>
+            <button class="chem-tab-btn" data-tab="incompat">🚫 ناسازگاری</button>
+          </div>
+
+          <div class="chem-card-panels">
+            <div class="chem-tab-panel active" data-panel="hazards">
+              <div class="hazards-list">${hazardsHtml}</div>
+              ${bestChem.exposure ? `<div class="exposure-info"><strong>مسیرهای مواجهه:</strong> ${bestChem.exposure}</div>` : ''}
+            </div>
+            <div class="chem-tab-panel" data-panel="firstaid">
+              <ul class="first-aid-list">
+                <li><strong>پوست:</strong> ${bestChem.firstAid.skin}</li>
+                <li><strong>چشم:</strong> ${bestChem.firstAid.eyes}</li>
+                ${bestChem.firstAid.inhalation ? `<li><strong>استنشاق:</strong> ${bestChem.firstAid.inhalation}</li>` : ''}
+              </ul>
+            </div>
+            <div class="chem-tab-panel" data-panel="spill">
+              <div class="spill-action-content">${bestChem.spillAction}</div>
+            </div>
+            <div class="chem-tab-panel" data-panel="incompat">
+              <ul class="incompat-list">${incompatibleHtml}</ul>
+            </div>
+          </div>
+
+          <div class="chem-card-footer">
+            <button class="chem-copy-btn" data-chem-id="${bestChem.id}">
+              <span class="material-symbols-outlined">content_copy</span>
+              <span>کپی برگه ایمنی</span>
+            </button>
+          </div>
         </div>
       `;
     }
@@ -724,6 +1219,21 @@ document.addEventListener('DOMContentLoaded', () => {
     msg.innerHTML = htmlContent;
     chatbotMessages.appendChild(msg);
     scrollToBottom();
+
+    // Persist to localStorage (only user queries and finalized bot answers, not typing bubbles or suggestion chips)
+    if (sender === 'user' || sender === 'bot') {
+      try {
+        const historyJson = localStorage.getItem('lab_chat_history');
+        let history = [];
+        if (historyJson) {
+          history = JSON.parse(historyJson);
+        }
+        history.push({ sender, htmlContent });
+        localStorage.setItem('lab_chat_history', JSON.stringify(history));
+      } catch (e) {
+        console.error('Failed to save message to chat history:', e);
+      }
+    }
   }
 
   function showTypingIndicator() {

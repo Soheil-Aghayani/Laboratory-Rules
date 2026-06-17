@@ -153,6 +153,111 @@
         </div>
 
       </div>
+
+      <!-- MSDS Chemical Safety Lookup Widget -->
+      <div class="widget-card msds-widget-card" style="margin-top: 2rem;">
+        <div class="widget-title">
+          <span class="material-symbols-outlined widget-icon">science</span>
+          برگه اطلاعات ایمنی و دفع پسماند مواد شیمیایی (MSDS Quick Lookup)
+        </div>
+        <div class="form-group" style="max-width: 400px; margin-bottom: 1.5rem;">
+          <label for="msds-chemical-select">ماده شیمیایی را انتخاب کنید:</label>
+          <select id="msds-chemical-select" class="error-lookup-select">
+            <option value="">-- انتخاب ماده شیمیایی --</option>
+            <!-- Populated dynamically via JS -->
+          </select>
+        </div>
+
+        <!-- Result Card (Hidden by default) -->
+        <div id="msds-details-card" class="msds-details-card" style="display: none;">
+          <div class="msds-header">
+            <div class="msds-title-block">
+              <h4 id="msds-name-fa" class="msds-name-fa">-</h4>
+              <div id="msds-name-en" class="msds-name-en">-</div>
+            </div>
+            <div class="msds-meta">
+              <span id="msds-formula" class="msds-meta-badge">-</span>
+              <span id="msds-cas" class="msds-meta-badge">-</span>
+            </div>
+          </div>
+
+          <div class="msds-grid">
+            <!-- Hazards & Incompatibilities -->
+            <div class="msds-col">
+              <div class="msds-info-section">
+                <div class="msds-section-title">
+                  <span class="material-symbols-outlined" style="color: var(--accent-red);">gpp_maybe</span>
+                  نشانه‌های خطر و آسیب‌ها
+                </div>
+                <ul id="msds-hazards-list" class="msds-list">
+                  <!-- Dynamically populated -->
+                </ul>
+              </div>
+
+              <div class="msds-info-section" style="margin-top: 1.25rem;">
+                <div class="msds-section-title">
+                  <span class="material-symbols-outlined" style="color: var(--accent-amber);">cancel</span>
+                  مواد ناسازگار (خطر واکنش شدید)
+                </div>
+                <ul id="msds-incompatible-list" class="msds-list incompatibility-list">
+                  <!-- Dynamically populated -->
+                </ul>
+              </div>
+            </div>
+
+            <!-- Disposal, Spill & Exposure -->
+            <div class="msds-col">
+              <div class="msds-info-section">
+                <div class="msds-section-title">
+                  <span class="material-symbols-outlined" style="color: var(--accent-emerald);">delete_forever</span>
+                  گروه و گالن دفع پسماند
+                </div>
+                <div id="msds-waste-group" class="msds-container-box">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+
+              <div class="msds-info-section" style="margin-top: 1.25rem;">
+                <div class="msds-section-title">
+                  <span class="material-symbols-outlined" style="color: var(--accent-emerald);">exposure</span>
+                  مسیرهای مواجهه و تماس
+                </div>
+                <p id="msds-exposure" class="msds-para">-</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- First Aid & Spill protocols -->
+          <div class="msds-footer-sections" style="border-top: 1px solid var(--border-color); padding-top: 1.25rem; margin-top: 1.25rem;">
+            <div class="msds-info-section">
+              <div class="msds-section-title">
+                <span class="material-symbols-outlined" style="color: var(--accent-emerald);">medical_services</span>
+                اقدامات کمک‌های اولیه
+              </div>
+              <div class="first-aid-tabs">
+                <button class="first-aid-tab-btn active" data-aid-tab="skin">تماس پوستی</button>
+                <button class="first-aid-tab-btn" data-aid-tab="eyes">تماس چشمی</button>
+                <button class="first-aid-tab-btn" data-aid-tab="inhalation">استنشاق</button>
+              </div>
+              <div class="first-aid-content-box">
+                <p id="first-aid-skin" class="first-aid-text active">-</p>
+                <p id="first-aid-eyes" class="first-aid-text">-</p>
+                <p id="first-aid-inhalation" class="first-aid-text">-</p>
+              </div>
+            </div>
+
+            <div class="msds-info-section" style="margin-top: 1.25rem;">
+              <div class="msds-section-title">
+                <span class="material-symbols-outlined" style="color: var(--accent-amber);">mop</span>
+                دستورالعمل پاک‌سازی ریزش و نشت (Spill Action)
+              </div>
+              <div id="msds-spill-action" class="spill-action-box">
+                -
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- TAB 2: Equipment Guides -->

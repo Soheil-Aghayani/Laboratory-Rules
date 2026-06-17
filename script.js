@@ -96,6 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Expose switching functions globally for other modules (like the chatbot)
+  window.switchTab = switchTab;
+  window.switchEquipment = switchEquipment;
+
   // Emergency Modal Controls
   const emergencyFab = document.getElementById('emergency-fab');
   const emergencyModal = document.getElementById('emergency-modal');
@@ -1068,4 +1072,138 @@ document.addEventListener('DOMContentLoaded', () => {
       throwOnError: false
     });
   }
+
+  // --- MSDS Chemical Safety Lookup Widget Logic ---
+  const msdsSelect = document.getElementById('msds-chemical-select');
+  const msdsDetailsCard = document.getElementById('msds-details-card');
+
+  // Populate chemical dropdown menu dynamically from window.chemicalMsdsDb
+  function populateMsdsDropdown() {
+    if (!msdsSelect) return;
+    
+    // Check if the MSDS database is loaded
+    if (!window.chemicalMsdsDb) {
+      // If it is not loaded yet (since it is loaded in another script), try again after a small delay
+      setTimeout(populateMsdsDropdown, 100);
+      return;
+    }
+
+    // Clear existing options except the first one
+    msdsSelect.innerHTML = '<option value="">-- انتخاب ماده شیمیایی --</option>';
+
+    // Sort chemicals alphabetically by Persian name
+    const sortedChems = [...window.chemicalMsdsDb].sort((a, b) => a.nameFa.localeCompare(b.nameFa, 'fa'));
+
+    // Loop through sorted chemicals and append options
+    sortedChems.forEach(chem => {
+      const option = document.createElement('option');
+      option.value = chem.id;
+      option.textContent = `${chem.nameFa} (${chem.nameEn})`;
+      msdsSelect.appendChild(option);
+    });
+  }
+
+  // Populate dropdown on startup
+  populateMsdsDropdown();
+
+  // Listen for selection changes
+  if (msdsSelect && msdsDetailsCard) {
+    msdsSelect.addEventListener('change', () => {
+      const chemId = msdsSelect.value;
+      if (!chemId) {
+        msdsDetailsCard.style.display = 'none';
+        return;
+      }
+
+      const chem = window.chemicalMsdsDb.find(c => c.id === chemId);
+      if (!chem) return;
+
+      // Update text fields
+      document.getElementById('msds-name-fa').textContent = chem.nameFa;
+      document.getElementById('msds-name-en').textContent = chem.nameEn;
+      document.getElementById('msds-formula').textContent = chem.formula;
+      document.getElementById('msds-cas').textContent = `CAS: ${chem.cas}`;
+      document.getElementById('msds-exposure').textContent = chem.exposure;
+
+      // Update waste container color box
+      const wasteBox = document.getElementById('msds-waste-group');
+      wasteBox.className = 'msds-container-box'; // reset class
+      wasteBox.classList.add(`${chem.containerColor}-container`);
+      wasteBox.innerHTML = `
+        <span class="material-symbols-outlined">delete</span>
+        <span>${chem.wasteGroup}</span>
+      `;
+
+      // Update Hazards list
+      const hazardsList = document.getElementById('msds-hazards-list');
+      hazardsList.innerHTML = '';
+      chem.hazards.forEach(h => {
+        const li = document.createElement('li');
+        li.innerHTML = `<strong>${h.label}</strong>`;
+        hazardsList.appendChild(li);
+      });
+
+      // Update Incompatibilities list
+      const incompatibleList = document.getElementById('msds-incompatible-list');
+      incompatibleList.innerHTML = '';
+      chem.incompatible.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        incompatibleList.appendChild(li);
+      });
+
+      // Update First Aid paragraphs
+      document.getElementById('first-aid-skin').textContent = chem.firstAid.skin;
+      document.getElementById('first-aid-eyes').textContent = chem.firstAid.eyes;
+      document.getElementById('first-aid-inhalation').textContent = chem.firstAid.inhalation;
+
+      // Update Spill Action
+      document.getElementById('msds-spill-action').textContent = chem.spillAction;
+
+      // Reset first aid tabs to Skin
+      const aidTabs = document.querySelectorAll('.first-aid-tab-btn');
+      const aidTexts = document.querySelectorAll('.first-aid-text');
+      
+      aidTabs.forEach(tab => {
+        if (tab.getAttribute('data-aid-tab') === 'skin') {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+
+      aidTexts.forEach(txt => {
+        if (txt.id === 'first-aid-skin') {
+          txt.classList.add('active');
+        } else {
+          txt.classList.remove('active');
+        }
+      });
+
+      // Show details card
+      msdsDetailsCard.style.display = 'block';
+    });
+  }
+
+  // Handle first aid tabs switching
+  const aidTabs = document.querySelectorAll('.first-aid-tab-btn');
+  aidTabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabName = btn.getAttribute('data-aid-tab');
+      
+      // Toggle tabs
+      aidTabs.forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Toggle text blocks
+      const aidTexts = document.querySelectorAll('.first-aid-text');
+      aidTexts.forEach(txt => {
+        if (txt.id === `first-aid-${tabName}`) {
+          txt.classList.add('active');
+        } else {
+          txt.classList.remove('active');
+        }
+      });
+    });
+  });
 });
