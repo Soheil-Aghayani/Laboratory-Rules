@@ -1091,8 +1091,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Clear existing options except the first one
     msdsSelect.innerHTML = '<option value="">-- انتخاب ماده شیمیایی --</option>';
 
-    // Sort chemicals alphabetically by Persian name
-    const sortedChems = [...window.chemicalMsdsDb].sort((a, b) => a.nameFa.localeCompare(b.nameFa, 'fa'));
+    // Sort chemicals alphabetically by Persian name with safety fallback for older mobile engines
+    let sortedChems = window.chemicalMsdsDb;
+    try {
+      sortedChems = [...window.chemicalMsdsDb].sort((a, b) => {
+        if (a && b && a.nameFa && b.nameFa) {
+          return a.nameFa.localeCompare(b.nameFa, 'fa');
+        }
+        return 0;
+      });
+    } catch (err) {
+      console.warn("Alphabetical sorting failed, falling back to default order:", err);
+    }
 
     // Loop through sorted chemicals and append options
     sortedChems.forEach(chem => {
