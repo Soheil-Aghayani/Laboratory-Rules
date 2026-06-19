@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "oven_errors",
-      keywords: ["خطا فور", "خطا آون", "کدهای خطا فور", "کد خطا آون", "e.h.t", "lo.t", "e.sen", "door", "oven error", "oven errors", "آلارم فور"],
+      keywords: ["خطا فور", "خطا آون", "کدهای خطا فور", "کد خطا آون", "e.h.t", "lo.t", "e.sen", "door", "oven error", "oven errors", "آلارم فور", "بوق", "صدای بوق", "آلارم", "سوت", "صدا", "بوق فور", "بوق آون"],
       answer: `<strong>راهنمای کدهای خطای دستگاه فور (Oven):</strong><br>
       - <strong>E.H.t:</strong> افزایش دمای محفظه بیش از حد مجاز (احتمال قفل رله المنت یا قطع ترموستات حفاظتی).<br>
       - <strong>Lo.t:</strong> کاهش دما کمتر از حد خطا (احتمال نشت حرارتی درب یا عملکرد ضعیف المنت).<br>
@@ -37,13 +37,22 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "ph_errors",
-      keywords: ["خطا پی اچ", "خطا پ هاش", "کد خطا پی اچ", "err.cal", "err.temp", "no.stb", "or/ur", "ph error", "ph errors", "آلارم پی اچ"],
+      keywords: ["خطا پی اچ", "خطا پ هاش", "کد خطا پی اچ", "err.cal", "err.temp", "no.stb", "or/ur", "ph error", "ph errors", "آلارم پی اچ", "ثابت نشدن", "نوسان", "ثبات", "پایدار نشدن", "تغییر مداوم", "پرش عدد", "ثابت شدن ph", "نوسان ph", "پایدار شدن", "علامت stable"],
       answer: `<strong>راهنمای خطاهای دستگاه pH متر:</strong><br>
       - <strong>Err.Cal:</strong> خطای کالیبراسیون (نشانه کثیفی غشای الکترود، آلودگی بافرها یا طول عمر بالای الکترود شیشه‌ای).<br>
       - <strong>Err.Temp:</strong> عدم شناسایی سنسور دما (سنسور ATC قطع یا خراب است؛ سوکت پشتی را چک کنید).<br>
       - <strong>no.Stb:</strong> عدم ثبات عدد (وجود حباب هوا زیر الکترود، کثیفی غشا یا ناهماهنگی نمونه).<br>
       - <strong>OR/UR:</strong> خارج از محدوده اندازه‌گیری (پ هاش نمونه زیر ۰ یا بالای ۱۴ است یا کابل کواکسیال قطع است).<br>
       جهت راهنمایی عیب‌یابی بیشتر، به <a class="switch-eq-link" data-eq="eq-phmeter">عیب‌یاب خطاهای pH متر در تب تجهیزات</a> مراجعه کنید.`
+    },
+    {
+      id: "ph_shutdown",
+      keywords: ["خاموش شدن pH", "خاموش شدن پی اچ", "خاموش شدن پ هاش", "خاموش شدن دستگاه pH", "خاموشی خودکار pH", "خاموشی پی اچ", "ph auto off", "ph shutdown", "ph turn off", "خاموش شدن دستگاه", "خاموش"],
+      answer: `<strong>علت خاموش شدن ناگهانی دستگاه pH متر (PH500):</strong><br>
+      ۱. <strong>قابلیت خاموشی خودکار (Auto-Off):</strong> به طور پیش‌فرض، دستگاه جهت محافظت و صرفه‌جویی در مصرف انرژی پس از <strong>۱۰ دقیقه عدم استفاده</strong> به صورت خودکار خاموش می‌شود. می‌توانید این قابلیت را از طریق تنظیمات پیشرفته پارامتر <code>P05</code> فعال یا غیرفعال کنید.<br>
+      ۲. <strong>نوسان یا قطعی جریان برق:</strong> از اتصال صحیح آداپتور برق به سوکت پشت دستگاه اطمینان حاصل کنید.<br>
+      ۳. <strong>فشار طولانی‌مدت کلید ON/OFF:</strong> نگه داشتن کلید <code>ON/OFF</code> به مدت ۳ ثانیه دستگاه را خاموش می‌کند.<br>
+      جهت اطلاعات بیشتر، به <a class="switch-eq-link" data-eq="eq-phmeter">راهنمای pH متر در تب تجهیزات</a> مراجعه کنید.`
     },
     {
       id: "waste_rules",
@@ -92,11 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "ph_electrode_maintenance",
-      keywords: ["نگهداری الکترود", "محلول نگهداری", "کی سی ال", "kcl", "خشک شدن الکترود", "شستشوی الکترود", "maintenance", "electrode"],
+      keywords: ["نگهداری الکترود", "محلول نگهداری", "کی سی ال", "kcl", "خشک شدن الکترود", "شستشوی الکترود", "maintenance", "electrode", "محلول kcl", "پتاسیم کلرید", "محلول نگهدارنده", "پتاسیم کلراید"],
       answer: `<strong>دستورالعمل نگهداری و شستشوی الکترود pH متر:</strong><br>
-      - <strong>نگهداری همیشگی:</strong> غلاف الکترود شیشه‌ای هرگز نباید خشک بماند. همواره آن را در محلول <strong>۳ مولار KCl (پتاسیم کلرید)</strong> یا بافر ۴ نگهداری کنید. نگهداری در آب مقطر به شدت به الکترود آسیب می‌زند.<br>
+      - <strong>نگهداری همیشگی:</strong> غلاف الکترود شیشه‌ای هرگز نباید خشک بماند. همواره آن را در محلول <strong>۳ مولار <span dir="ltr">$\text{KCl}$</span> (پتاسیم کلرید)</strong> یا بافر ۴ نگهداری کنید. نگهداری در آب مقطر به شدت به الکترود آسیب می‌زند.<br>
       - <strong>شستشوی رسوبات چربی/روغن:</strong> الکترود را با محلول آب‌صابون گرم یا اتانول به مدت چند ثانیه شستشو داده و سپس آبکشی کنید.<br>
-      - <strong>شستشوی رسوبات معدنی/پروتئینی:</strong> الکترود را ۵ دقیقه در اسید کلریدریک رقیق (0.1M HCl) قرار داده و سپس آبکشی نمایید.`
+      - <strong>شستشوی رسوبات معدنی/پروتئینی:</strong> الکترود را ۵ دقیقه در اسید کلریدریک رقیق (<span dir="ltr">0.1M $\text{HCl}$</span>) قرار داده و سپس آبکشی نمایید.`
     },
     {
       id: "acid_base_dilution",
@@ -254,6 +263,17 @@ document.addEventListener('DOMContentLoaded', () => {
       - <strong>شستشوی بسکت‌ها:</strong> در صورت سرریز نمونه، بسکت‌ها را خارج کرده، با آب گرم و صابون ملایم بشویید و پس از خشک شدن کامل مجدداً جاگذاری کنید.`
     },
     {
+      id: "centrifuge_memory_setup",
+      keywords: ["تنظیم برنامه سانتریفیوژ", "حافظه سانتریفیوژ", "سیکل سانتریفیوژ", "تغییر دور سانتریفیوژ", "تنظیم زمان سانتریفیوژ", "memory edit", "centrifuge memory", "تنظیم سانتریفیوژ", "برنامه ریزی سانتریفیوژ", "تنظیم دور", "تنظیم تایمر", "منوی حافظه"],
+      answer: `<strong>راهنمای تنظیم برنامه‌های حافظه سانتریفیوژ (Memory Edit):</strong><br>
+      برای ذخیره و تنظیم پارامترهای چرخش (سرعت و زمان) در حافظه دستگاه، مراحل زیر را طی کنید:<br>
+      ۱. با کلیدهای <strong>UP/DOWN</strong> نشانگر را روی گزینه <code>MEMORY EDIT</code> قرار داده و کلید <strong>ENTER</strong> را فشار دهید.<br>
+      ۲. شماره حافظه مورد نظر (برنامه) را با کلیدهای جهت‌دار انتخاب کرده و <strong>ENTER</strong> بزنید.<br>
+      ۳. <strong>تنظیم دور (سرعت):</strong> مقدار دور (RPM) را با کلیدهای جهت‌دار تنظیم کنید (دستگاه معادل RCF را خودکار محاسبه می‌کند). با فشردن کلید <strong>ENTER</strong> می‌توانید مستقیماً RCF را تنظیم کنید.<br>
+      ۴. <strong>تنظیم زمان:</strong> کلید <strong>ENTER</strong> را زده و به ترتیب مقدار دقیقه (<code>MINUTE</code>) و ثانیه (<code>SECOND</code>) تایمر را تنظیم کنید.<br>
+      ۵. <strong>ذخیره‌سازی:</strong> دکمه <strong>ENTER</strong> را نهایتاً فشار دهید تا تنظیمات ذخیره شوند. با کلید <strong>ESC</strong> در هر مرحله می‌توانید بدون ذخیره شدن تغییرات خارج شوید.`
+    },
+    {
       id: "ph_advanced_params",
       keywords: ["تنظیمات پیشرفته pH", "منو set", "پارامتر p01", "پارامتر p02", "پارامتر p03", "پارامتر p04", "پارامتر p05", "ریست کارخانه pH", "parameter setup"],
       answer: `<strong>راهنمای تنظیمات پارامترهای پیشرفته pH متر (منوی SET):</strong><br>
@@ -276,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "ph_buffer_temp",
-      keywords: ["تغییر بافر با دما", "بافر دمای مختلف", "جدول بافر", "تاثیر دما بر pH", "جبران دمایی", "atc pH"],
+      keywords: ["تغییر بافر با دما", "بافر دمای مختلف", "جدول بافر", "تاثیر دما بر pH", "جبران دمایی", "atc pH", "atc", "ATC", "ای تی سی", "manual", "منوال", "جبران دما"],
       answer: `<strong>تاثیر دما بر pH بافرهای استاندارد (استاندارد USA):</strong><br>
       تغییرات میزان pH بافرهای کالیبراسیون استاندارد در دماهای مختلف به دلیل جبران‌ساز دمایی (ATC) به شرح زیر است:<br>
       - <strong>دمای ۰ درجه:</strong> بافر اسیدی = <code>4.01</code> | بافر خنثی = <code>7.12</code> | بافر بازی = <code>10.32</code><br>
@@ -333,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
       id: "first_aid_incidents",
       keywords: ["سوختگی اسید", "ریختن اسید", "پاشش چشم", "دوش اضطراری", "چشم شوی", "کمک های اولیه", "glass cut", "acid spill skin", "سوختگی پوست", "کمک های اولیه سوختگی"],
       answer: `<div class="emergency-alert-box">
-      <strong>🚨 اقدامات کمک‌های اولیه در حوادث حاد آزمایشگاهی:</strong><br>
+      <strong><span class="material-symbols-outlined" style="color: var(--accent-red); font-size: 20px; vertical-align: middle; margin-left: 5px;">emergency</span> اقدامات کمک‌های اولیه در حوادث حاد آزمایشگاهی:</strong><br>
       - <strong>پاشش اسید/باز به چشم:</strong> فوراً زیر چشم‌شوی اضطراری بروید و با باز نگه داشتن پلک‌ها، <strong>حداقل ۱۵ تا ۲۰ دقیقه</strong> چشم را شستشو دهید. هرگز چشم را نمالید و فوراً به بیمارستان فارابی مراجعه کنید.<br>
       - <strong>سوختگی شیمیایی پوست:</strong> سریعاً لباس‌های آلوده را خارج کرده و موضع را <strong>حداقل ۲۰ دقیقه</strong> زیر دوش اضطراری با آب فراوان بشویید. هرگز از اسیدهای ضعیف (مانند سرکه) یا بازهای ضعیف (جوش شیرین) برای خنثی‌سازی روی پوست استفاده نکنید؛ زیرا حرارت واکنش خنثی‌سازی سوختگی را شدیدتر می‌کند!<br>
       - <strong>بریدگی با شیشه شکسته:</strong> زخم را شسته، ضدعفونی کنید و با گاز استریل فشار دهید تا خون‌ریزی بند بیاید. در صورت وجود تکه‌های شیشه درون زخم، خودتان اقدام به خارج کردن نکنید و به پزشک مراجعه کنید.<br>
@@ -345,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
       keywords: ["آتش سوزی", "کپسول آتش نشانی", "حریق", "خاموش کردن آتش", "کپسول co2", "پودر و گاز", "fire extinguisher", "pass method", "نوع کپسول"],
       answer: `<strong>راهنمای اطفای حریق و کپسول‌های آتش‌نشانی آزمایشگاه:</strong><br>
       در صورت بروز حریق، خونسردی خود را حفظ کرده و با توجه به نوع آتش، کپسول مناسب را انتخاب کنید:<br>
-      - <strong>کپسول دی‌اکسید کربن (CO2 - بدنه استوانه‌ای بدون مانومتر):</strong> مناسب برای حریق‌های الکتریکی (دستگاه‌ها و سیم‌کشی‌ها) و مایعات قابل اشتعال (حلال‌ها). هیچ اثری برجا نمی‌گذارد و به برد دستگاه‌ها آسیب نمی‌زند.<br>
+      - <strong>کپسول دی‌اکسید کربن (<span dir="ltr">$\text{CO}_2$</span> - بدنه استوانه‌ای بدون مانومتر):</strong> مناسب برای حریق‌های الکتریکی (دستگاه‌ها و سیم‌کشی‌ها) و مایعات قابل اشتعال (حلال‌ها). هیچ اثری برجا نمی‌گذارد و به برد دستگاه‌ها آسیب نمی‌زند.<br>
       - <strong>کپسول پودر و گاز (دارای عقربه مانومتر):</strong> مناسب برای آتش‌سوزی جامدات (کاغذ، چوب). توجه داشته باشید پودر شیمیایی می‌تواند به تجهیزات الکترونیکی حساس آسیب بزند.<br>
       - <strong>روش استفاده PASS (به فارسی: ضشفج):</strong><br>
         ۱. <strong>ض</strong>امن را بکشید (Pull).<br>
@@ -414,40 +434,40 @@ document.addEventListener('DOMContentLoaded', () => {
       id: "concept_alcohol",
       keywords: ["الکل", "الکلا", "الکلها", "الکل ها", "الکل چیست", "الکلها چیست", "الکل ها چیست", "alcohol", "alcohols"],
       answer: `<strong>مفهوم شیمیایی الکل (Alcohol Group):</strong><br>
-      الکل یک ماده شیمیایی واحد نیست، بلکه به دسته‌ای از ترکیبات آلی گفته می‌شود که در ساختار خود دارای یک یا چند گروه هیدروکسیل (<code>-OH</code>) متصل به کربن آلیفاتیک هستند.<br>
+      الکل یک ماده شیمیایی واحد نیست، بلکه به دسته‌ای از ترکیبات آلی گفته می‌شود که در ساختار خود دارای یک یا چند گروه هیدروکسیل (<span dir="ltr"><code>-OH</code></span>) متصل به کربن آلیفاتیک هستند.<br>
       الکل‌ها بسته به ساختارشان خواص فیزیکی و ایمنی متفاوتی دارند. در آزمایشگاه و صنعت، رایج‌ترین الکل‌ها عبارتند از:<br>
       - <strong>اتانول (الکل اتیلیک):</strong> الکل خوراکی و ضدعفونی‌کننده، بسیار قابل اشتعال.<br>
       - <strong>متانول (الکل متیلیک):</strong> به شدت سمی (حتی از راه پوست) و خطر کورکنندگی چشم.<br>
       - <strong>ایزوپروپیل الکل (ایزوپروپانول):</strong> حلال بسیار متداول در صنایع الکترونیک و آرایشی.<br>
       <br>
-      💡 برای مشاهده برگه اطلاعات ایمنی (MSDS)، کمک‌های اولیه و روش دفع پسماند هر کدام از الکل‌ها، نام دقیق آن (مانند <strong>اتانول</strong>، <strong>متانول</strong>، یا <strong>ایزوپروپیل الکل</strong>) را جستجو کنید.`
+      <span class="material-symbols-outlined" style="color: var(--accent-emerald); font-size: 20px; vertical-align: middle; margin-left: 5px;">info</span> برای مشاهده برگه اطلاعات ایمنی (MSDS)، کمک‌های اولیه و روش دفع پسماند هر کدام از الکل‌ها، نام دقیق آن (مانند <strong>اتانول</strong>، <strong>متانول</strong>، یا <strong>ایزوپروپیل الکل</strong>) را جستجو کنید.`
     },
     {
       id: "concept_base",
       keywords: ["باز", "بازها", "باز ها", "باز چیست", "بازها چیست", "باز ها چیست", "بازهای شیمیایی", "base", "bases"],
       answer: `<strong>مفهوم شیمیایی باز (Base):</strong><br>
-      باز (قلیایی) به دسته‌ای از ترکیبات شیمیایی گفته می‌شود که در محلول آبی یون هیدروکسید (<code>OH⁻</code>) آزاد می‌کنند، pH محلول را به بالای ۷ می‌رسانند، پروتون می‌پذیرند و اسیدها را خنثی می‌کنند.<br>
+      باز (قلیایی) به دسته‌ای از ترکیبات شیمیایی گفته می‌شود که در محلول آبی یون هیدروکسید (<code><span dir="ltr">$\text{OH}^-$</span></code>) آزاد می‌کنند، pH محلول را به بالای ۷ می‌رسانند، پروتون می‌پذیرند و اسیدها را خنثی می‌کنند.<br>
       بازها بسیار خورنده هستند و سوختگی حاصل از آن‌ها به دلیل صابونی کردن چربی‌های پوست (saponification) موذیانه‌تر و عمیق‌تر از اسیدهاست.<br>
       نمونه‌های متداول بازها در آزمایشگاه:<br>
-      - <strong>سدیم هیدروکسید (سود سوزآور - NaOH):</strong> باز قوی جامد.<br>
-      - <strong>پتاسیم هیدروکسید (پتاس سوزآور - KOH):</strong> باز قوی جامد.<br>
-      - <strong>آمونیاک (NH₃):</strong> باز ضعیف گازی با بوی بسیار تند و محرک.<br>
+      - <strong>سدیم هیدروکسید (سود سوزآور - <span dir="ltr">$\text{NaOH}$</span>):</strong> باز قوی جامد.<br>
+      - <strong>پتاسیم هیدروکسید (پتاس سوزآور - <span dir="ltr">$\text{KOH}$</span>):</strong> باز قوی جامد.<br>
+      - <strong>آمونیاک (<span dir="ltr">$\text{NH}_3$</span>):</strong> باز ضعیف گازی با بوی بسیار تند و محرک.<br>
       - <strong>کلسیم هیدروکسید (آهک هیدراته).</strong><br>
       <br>
-      💡 برای اطلاعات ایمنی بیشتر، نام شیمیایی دقیق باز مورد نظر خود را (مانند <strong>سدیم هیدروکسید</strong> یا <strong>آمونیاک</strong>) جستجو کنید.`
+      <span class="material-symbols-outlined" style="color: var(--accent-emerald); font-size: 20px; vertical-align: middle; margin-left: 5px;">info</span> برای اطلاعات ایمنی بیشتر، نام شیمیایی دقیق باز مورد نظر خود را (مانند <strong>سدیم هیدروکسید</strong> یا <strong>آمونیاک</strong>) جستجو کنید.`
     },
     {
       id: "concept_acid",
       keywords: ["اسید", "اسیدها", "اسید ها", "اسید چیست", "اسیدها چیست", "اسید ها چیست", "اسیدهای شیمیایی", "acid", "acids"],
       answer: `<strong>مفهوم شیمیایی اسید (Acid):</strong><br>
-      اسید به ترکیبی شیمیایی گفته می‌شود که در محلول آبی یون هیدروژن (<code>H⁺</code> یا هیدرونیوم) آزاد می‌کند، pH محلول را به زیر ۷ می‌رساند، مزه ترش دارد و بازها را خنثی می‌کند.<br>
+      اسید به ترکیبی شیمیایی گفته می‌شود که در محلول آبی یون هیدروژن (<code><span dir="ltr">$\text{H}^+$</span></code> یا هیدرونیوم) آزاد می‌کند، pH محلول را به زیر ۷ می‌رساند، مزه ترش دارد و بازها را خنثی می‌کند.<br>
       اسیدها می‌توانند آلی (مانند اسید استیک) یا معدنی/قوی (مانند اسید سولفوریک و اسید کلریدریک) باشند و به شدت خورنده پوست و فلزات هستند.<br>
       نمونه‌های متداول در آزمایشگاه:<br>
-      - <strong>اسید سولفوریک (H₂SO₄):</strong> اسید معدنی بسیار قوی و آب‌کشنده.<br>
-      - <strong>اسید کلریدریک (HCl):</strong> اسید متداول با بخارات بسیار محرک ریه.<br>
-      - <strong>اسید نیتریک (HNO₃):</strong> اکسیدکننده قوی با خطر انفجار در مجاورت مواد آلی.<br>
+      - <strong>اسید سولفوریک (<span dir="ltr">$\text{H}_2\text{SO}_4$</span>):</strong> اسید معدنی بسیار قوی و آب‌کشنده.<br>
+      - <strong>اسید کلریدریک (<span dir="ltr">$\text{HCl}$</span>):</strong> اسید متداول با بخارات بسیار محرک ریه.<br>
+      - <strong>اسید نیتریک (<span dir="ltr">$\text{HNO}_3$</span>):</strong> اکسیدکننده قوی با خطر انفجار در مجاورت مواد آلی.<br>
       <br>
-      ⚠️ <strong>نکته ایمنی حیاتی:</strong> در زمان رقیق‌سازی، همواره اسید را به آرامی به آب اضافه کنید (ریختن آب روی اسید غلیظ موجب پرتاب اسید و سوختگی شدید می‌شود). برای اطلاعات ایمنی دقیق‌تر، نام اسید مورد نظر خود (مانند <strong>اسید سولفوریک</strong>) را جستجو کنید.`
+      <span class="material-symbols-outlined" style="color: var(--accent-amber); font-size: 20px; vertical-align: middle; margin-left: 5px;">warning</span> <strong>نکته ایمنی حیاتی:</strong> در زمان رقیق‌سازی، همواره اسید را به آرامی به آب اضافه کنید (ریختن آب روی اسید غلیظ موجب پرتاب اسید و سوختگی شدید می‌شود). برای اطلاعات ایمنی دقیق‌تر، نام اسید مورد نظر خود (مانند <strong>اسید سولفوریک</strong>) را جستجو کنید.`
     },
     {
       id: "concept_transesterification",
@@ -496,7 +516,7 @@ document.addEventListener('DOMContentLoaded', () => {
       - <strong>تقطیر ساده:</strong> برای جداسازی مایعاتی با اختلاف نقطه جوش زیاد (بیش از ۸۰ درجه سانتی‌گراد) یا جداسازی مایع از ناخالصی‌های غیرفرار.<br>
       - <strong>تقطیر جزء به جزء:</strong> استفاده از ستون تقطیر (رشیگ یا ویگرو) برای جداسازی مایعاتی با نقاط جوش نزدیک به هم.<br>
       - <strong>تقطیر در خلاء:</strong> برای مایعاتی با نقطه جوش بسیار بالا یا موادی که در دماهای بالا تجزیه می‌شوند. در تقطیر خلاء حتماً از بالن‌های دیواره ضخیم استفاده کنید تا خطر مچاله شدن شیشه (Implosion) وجود نداشته باشد.<br>
-      ⚠️ <strong>نکات ایمنی:</strong> اتصالات شیشه‌ای باید قبل از کار با گریس سیلیکون آب‌بندی شوند تا نشتی گاز صورت نگیرد. هرگز ظرف اولیه را تا مرز خشک شدن کامل حرارت ندهید، زیرا تجمع پراکسیدهای فرار در ته ظرف می‌تواند باعث انفجار شود.`
+      <span class="material-symbols-outlined" style="color: var(--accent-amber); font-size: 20px; vertical-align: middle; margin-left: 5px;">warning</span> <strong>نکات ایمنی:</strong> اتصالات شیشه‌ای باید قبل از کار با گریس سیلیکون آب‌بندی شوند تا نشتی گاز صورت نگیرد. هرگز ظرف اولیه را تا مرز خشک شدن کامل حرارت ندهید، زیرا تجمع پراکسیدهای فرار در ته ظرف می‌تواند باعث انفجار شود.`
     },
     {
       id: "concept_titration",
@@ -507,7 +527,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ۱. محلول استاندارد (مثلا اسید) درون بورت ریخته می‌شود.<br>
       ۲. محلول مجهول (مثلا باز) به همراه چند قطره شناساگر (مانند فنل‌فتالئین یا متیل اورنژ) در ارلن زیر بورت قرار می‌گیرد.<br>
       ۳. تیترانت به آرامی اضافه می‌شود تا زمانی که شناساگر تغییر رنگ پایدار دهد (نقطه پایان تیتراسیون).<br>
-      ⚠️ <strong>نکات ایمنی و بهداشتی:</strong> همواره قبل از پر کردن بورت، مطمئن شوید شیر آن بسته است. از قیف کوچک برای انتقال استفاده کنید و در سطح زیر چشم بورت را پر کنید تا مایع روی صورت و چشم نریزد. از بورت‌های نشتی‌دار هرگز استفاده نکنید.`
+      <span class="material-symbols-outlined" style="color: var(--accent-amber); font-size: 20px; vertical-align: middle; margin-left: 5px;">warning</span> <strong>نکات ایمنی و بهداشتی:</strong> همواره قبل از پر کردن بورت، مطمئن شوید شیر آن بسته است. از قیف کوچک برای انتقال استفاده کنید و در سطح زیر چشم بورت را پر کنید تا مایع روی صورت و چشم نریزد. از بورت‌های نشتی‌دار هرگز استفاده نکنید.`
     },
     {
       id: "concept_hydrolysis",
@@ -526,7 +546,7 @@ document.addEventListener('DOMContentLoaded', () => {
       اسیدهای چرب آزاد، مولکول‌های اسید کربوکسیلیک با زنجیره آلیفاتیک بلند (اشباع یا غیراشباع) هستند که به مولکول گلیسرول متصل نبوده و به صورت آزاد در روغن یا چربی وجود دارند.<br>
       <strong>نکات مهم آزمایشگاهی و واکنش‌ها:</strong><br>
       - <strong>تأثیر در تولید بیودیزل:</strong> در واکنش ترانس‌استریفیکاسیون کاتالیزشده با باز، وجود FFA بالا (بیش از ۰.۵٪ تا ۱٪) بسیار مضر است؛ زیرا FFA با کاتالیزور بازی واکنش داده و تشکیل <strong>صابون</strong> می‌دهد که بازدهی واکنش را به شدت کاهش داده و جداسازی محصولات را مختل می‌کند.<br>
-      - <strong>سنجش میزان FFA و نکات حلال:</strong> مقدار اسیدهای چرب آزاد معمولاً به روش تیتراسیون اسید-باز با سدیم هیدروکسید (NaOH) یا پتاسیم هیدروکسید (KOH) در حضور شناساگر فنل‌فتالئین اندازه‌گیری می‌شود. حلال مورد استفاده معمولاً مخلوط اتانول-اتر (نسبت ۱:۱) است که باید قبل از انحلال روغن، با چند قطره سود رقیق خنثی شود تا اسیدیته خود حلال روی تست تأثیر نگذارد.`
+      - <strong>سنجش میزان FFA و نکات حلال:</strong> مقدار اسیدهای چرب آزاد معمولاً به روش تیتراسیون اسید-باز با سدیم هیدروکسید (<span dir="ltr">$\text{NaOH}$</span>) یا پتاسیم هیدروکسید (<span dir="ltr">$\text{KOH}$</span>) در حضور شناساگر فنل‌فتالئین اندازه‌گیری می‌شود. حلال مورد استفاده معمولاً مخلوط اتانول-اتر (نسبت ۱:۱) است که باید قبل از انحلال روغن، با چند قطره سود رقیق خنثی شود تا اسیدیته خود حلال روی تست تأثیر نگذارد.`
     },
     {
       id: "concept_saponification",
@@ -537,19 +557,19 @@ document.addEventListener('DOMContentLoaded', () => {
       $$\\text{Triglyceride} + 3\\text{NaOH} \\rightarrow \\text{Glycerol} + 3\\text{Soap (Sodium Carboxylate)}$$<br>
       <strong>نکات آزمایشگاهی و صنعتی:</strong><br>
       - صابون‌ها دارای یک سر قطبی (آب‌دوست) و یک دم غیرقطبی (آب‌گریز) هستند که به آن‌ها خاصیت امولسیون‌کنندگی و پاک‌کنندگی می‌دهد.<br>
-      - <strong>شاخص یا عدد صابونی شدن (Saponification Value):</strong> نشان‌دهنده مقدار میلی‌گرم KOH مورد نیاز برای صابونی کردن کامل یک گرم چربی یا روغن است. این شاخص برای تعیین میانگین وزن مولکولی (طول زنجیره) اسیدهای چرب موجود در روغن استفاده می‌شود.<br>
+      - <strong>شاخص یا عدد صابونی شدن (Saponification Value):</strong> نشان‌دهنده مقدار میلی‌گرم <span dir="ltr">$\text{KOH}$</span> مورد نیاز برای صابونی کردن کامل یک گرم چربی یا روغن است. این شاخص برای تعیین میانگین وزن مولکولی (طول زنجیره) اسیدهای چرب موجود در روغن استفاده می‌شود.<br>
       - در صنایع بیودیزل، صابونی شدن یک واکنش جانبی ناخواسته و مزاحم است که به دلیل وجود آب یا اسیدهای چرب آزاد (FFA) در روغن رخ می‌دهد.`
     },
     {
       id: "concept_acid_value",
       keywords: ["عدد اسیدی", "اندازه گیری عدد اسیدی", "محاسبه عدد اسیدی", "acid value", "acid number"],
       answer: `<strong>عدد اسیدی (Acid Value / Acid Number):</strong><br>
-      عدد اسیدی به صورت میلی‌گرم پتاسیم هیدروکسید (<code>KOH</code>) مورد نیاز برای خنثی‌سازی اسیدهای آزاد موجود در یک گرم نمونه چربی یا روغن تعریف می‌شود.<br>
+      عدد اسیدی به صورت میلی‌گرم پتاسیم هیدروکسید (<span dir="ltr">$\text{KOH}$</span>) مورد نیاز برای خنثی‌سازی اسیدهای آزاد موجود در یک گرم نمونه چربی یا روغن تعریف می‌شود.<br>
       <strong>اهمیت و روش آزمایشگاهی:</strong><br>
       - این شاخص معیار مهمی برای سنجش کیفیت، فساد و میزان تخریب روغن‌ها به شمار می‌رود (افزایش عدد اسیدی نشان‌دهنده هیدرولیز تری‌گلیسریدها و افزایش اسیدهای چرب آزاد است).<br>
       - <strong>فرمول محاسبه عدد اسیدی:</strong><br>
       $$\\text{Acid Value} = \\frac{V \\times N \\times 56.1}{W}$$<br>
-      که در آن <code>V</code> حجم مصرفی KOH (میلی‌لیتر)، <code>N</code> نرمالیته KOH، عدد <code>56.1</code> وزن مولکولی KOH، و <code>W</code> وزن نمونه روغن (گرم) است.`
+      که در آن <code>V</code> حجم مصرفی <span dir="ltr">$\text{KOH}$</span> (میلی‌لیتر)، <code>N</code> نرمالیته <span dir="ltr">$\text{KOH}$</span>، عدد <code>56.1</code> وزن مولکولی <span dir="ltr">$\text{KOH}$</span>، و <code>W</code> وزن نمونه روغن (گرم) است.`
     },
     {
       id: "concept_polymerization",
@@ -559,7 +579,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <strong>انواع پلیمریزاسیون:</strong><br>
       - <strong>پلیمریزاسیون افزایشی:</strong> اتصال مونومرها بدون حذف هیچ مولکول جانبی (مانند تولید پلی‌اتیلن از اتیلن).<br>
       - <strong>پلیمریزاسیون تراکمی:</strong> اتصال مونومرها همراه با حذف یک مولکول کوچک جانبی مانند آب یا الکل (مانند تولید نایلون یا پلی‌استر).<br>
-      ⚠️ <strong>نکات ایمنی:</strong> بسیاری از واکنش‌های پلیمریزاسیون به شدت گرمازا هستند و در صورت عدم کنترل دما یا اضافه کردن بیش از حد آغازگر (Initiator)، واکنش می‌تواند از کنترل خارج شده و منجر به انفجار یا آتش‌سوزی ظرف واکنش شود.`
+      <span class="material-symbols-outlined" style="color: var(--accent-amber); font-size: 20px; vertical-align: middle; margin-left: 5px;">warning</span> <strong>نکات ایمنی:</strong> بسیاری از واکنش‌های پلیمریزاسیون به شدت گرمازا هستند و در صورت عدم کنترل دما یا اضافه کردن بیش از حد آغازگر (Initiator)، واکنش می‌تواند از کنترل خارج شده و منجر به انفجار یا آتش‌سوزی ظرف واکنش شود.`
     },
     {
       id: "concept_extraction",
@@ -588,17 +608,17 @@ document.addEventListener('DOMContentLoaded', () => {
       شیشه‌آلاتی که با اسیدهای چرب بلند، گریس سیلیکون یا پلیمرهای چسبنده آلوده شده‌اند، با آب و صابون معمولی تمیز نمی‌شوند:<br>
       - <strong>رنس اولیه:</strong> ابتدا شیشه را با مقدار کمی استون در ظرف پسماند شستشو دهید تا بخش اصلی جرم آلی جدا شود.<br>
       - <strong>حمام سود (Base Bath):</strong> شیشه‌آلات را به مدت چند ساعت (حداکثر ۱۲ ساعت) در حمام سود (مخلوط سود یا پتاس جامد حل شده در ایزوپروپیل الکل/اتانول و آب) غوطه‌ور کنید. حمام سود با حل کردن لایه‌ای میکروسکوپی از غشای شیشه (سیلیکا)، آلودگی‌ها را کاملاً لایه‌برداری می‌کند.<br>
-      ⚠️ <strong>نکات ایمنی:</strong> حمام سود بسیار خورنده پوست و چشم است؛ همواره از دستکش ضخیم نیتریل (ساق بلند) و عینک محافظ استفاده کنید. ظروف شیشه‌ای نباید بیش از حد در حمام سود بمانند، زیرا به مرور زمان نازک شده و تحت خلاء می‌شکنند.`
+      <span class="material-symbols-outlined" style="color: var(--accent-amber); font-size: 20px; vertical-align: middle; margin-left: 5px;">warning</span> <strong>نکات ایمنی:</strong> حمام سود بسیار خورنده پوست و چشم است؛ همواره از دستکش ضخیم نیتریل (ساق بلند) و عینک محافظ استفاده کنید. ظروف شیشه‌ای نباید بیش از حد در حمام سود بمانند، زیرا به مرور زمان نازک شده و تحت خلاء می‌شکنند.`
     },
     {
       id: "concept_drying_agents",
       keywords: ["خشک کننده شیمیایی", "عامل خشک کننده", "جذب آب", "drying agents", "magnesium sulfate", "sodium sulfate"],
       answer: `<strong>عوامل خشک‌کننده شیمیایی فاز آلی (Drying Agents):</strong><br>
       پس از انجام استخراج، فاز آلی حاوی مقادیر ناچیزی آب محلول است که قبل از تبخیر حلال باید توسط نمک‌های معدنی بدون آب جذب و فیلتر شود:<br>
-      - <strong>سدیم سولفات بدون آب (Anhydrous Na₂SO₄):</strong> ظرفیت جذب بالا, سرعت متوسط و خنثی. برای حلال‌های قطبی و عمومی ایده آل است.<br>
-      - <strong>منیزیم سولفات بدون آب (Anhydrous MgSO₄):</strong> سرعت جذب بسیار بالا، اسیدیته ملایم. حلال را بسیار سریع خشک می‌کند، اما به دلیل ریز بودن ذرات، فیلتر کردن آن کمی سخت‌تر است.<br>
-      - <strong>کلسیم کلرید بدون آب (Anhydrous CaCl₂):</strong> برای خشک کردن هیدروکربن‌ها و آلکیل هالیدها بسیار عالی است؛ اما با الکل‌ها، آمین‌ها و استرها پیوند هماهنگی تشکیل داده و آن‌ها را به همراه آب جذب می‌کند (نباید برای این ترکیبات استفاده شود).<br>
-      💡 <strong>نحوه استفاده:</strong> نمک خشک‌کننده را کم‌کم به فاز آلی بیفزایید و تکان دهید. اگر نمک گلوله‌گلوله و به ته ظرف چسبید، هنوز آب وجود دارد. افزودن را تا زمانی ادامه دهید که با چرخش ظرف، دانه‌های نمک مانند یک گوی برفی آزادانه معلق بمانند.`
+      - <strong>سدیم سولفات بدون آب (Anhydrous <span dir="ltr">$\text{Na}_2\text{SO}_4$</span>):</strong> ظرفیت جذب بالا, سرعت متوسط و خنثی. برای حلال‌های قطبی و عمومی ایده آل است.<br>
+      - <strong>منیزیم سولفات بدون آب (Anhydrous <span dir="ltr">$\text{MgSO}_4$</span>):</strong> سرعت جذب بسیار بالا، اسیدیته ملایم. حلال را بسیار سریع خشک می‌کند، اما به دلیل ریز بودن ذرات، فیلتر کردن آن کمی سخت‌تر است.<br>
+      - <strong>کلسیم کلرید بدون آب (Anhydrous <span dir="ltr">$\text{CaCl}_2$</span>):</strong> برای خشک کردن هیدروکربن‌ها و آلکیل هالیدها بسیار عالی است؛ اما با الکل‌ها، آمین‌ها و استرها پیوند هماهنگی تشکیل داده و آن‌ها را به همراه آب جذب می‌کند (نباید برای این ترکیبات استفاده شود).<br>
+      <span class="material-symbols-outlined" style="color: var(--accent-emerald); font-size: 20px; vertical-align: middle; margin-left: 5px;">info</span> <strong>نحوه استفاده:</strong> نمک خشک‌کننده را کم‌کم به فاز آلی بیفزایید و تکان دهید. اگر نمک گلوله‌گلوله و به ته ظرف چسبید، هنوز آب وجود دارد. افزودن را تا زمانی ادامه دهید که با چرخش ظرف، دانه‌های نمک مانند یک گوی برفی آزادانه معلق بمانند.`
     },
     {
       id: "analysis_sem_eds",
@@ -606,7 +626,7 @@ document.addEventListener('DOMContentLoaded', () => {
       answer: `<strong>تصویربرداری FE-SEM و آنالیز EDS (شکل‌شناسی و آنالیز عنصری):</strong><br>
       - <strong>FE-SEM (میکروسکوپ الکترونی روبشی نشر میدانی):</strong> یک روش تصویربرداری با وضوح بسیار بالا (در ابعاد نانومتر) برای بررسی شکل‌شناسی (Morphology)، توپوگرافی سطح و ساختار نانوذرات و نانومواد (نظیر گرافن یا نانولوله‌های کربنی) است.<br>
       - <strong>EDS / EDX (طیف‌سنجی پراش انرژی پرتو ایکس):</strong> یک تکنیک آنالیز عنصری همراه با SEM است که برای شناسایی نوع و درصد فراوانی عناصر موجود در سطح نمونه به کار می‌رود و نقشه‌برداری عنصری (Elemental Mapping) را ارایه می‌دهد.<br>
-      ⚠️ <strong>نکات نمونه‌سازی:</strong> نمونه‌ها باید کاملاً خشک و غیرفرار باشند. نمونه‌های نارسانا (مثل پلیمرها یا نانومواد آلی) باید قبل از تصویربرداری با لایه بسیار نازکی از طلا یا کربن پوشش‌دهی (Sputter Coating) شوند تا از تجمع بار الکتریکی و سوختن نمونه جلوگیری شود.`
+      <span class="material-symbols-outlined" style="color: var(--accent-amber); font-size: 20px; vertical-align: middle; margin-left: 5px;">warning</span> <strong>نکات نمونه‌سازی:</strong> نمونه‌ها باید کاملاً خشک و غیرفرار باشند. نمونه‌های نارسانا (مثل پلیمرها یا نانومواد آلی) باید قبل از تصویربرداری با لایه بسیار نازکی از طلا یا کربن پوشش‌دهی (Sputter Coating) شوند تا از تجمع بار الکتریکی و سوختن نمونه جلوگیری شود.`
     },
     {
       id: "analysis_xrd",
@@ -1346,7 +1366,7 @@ ${chem.firstAid.inhalation ? `- استنشاق: ${chem.firstAid.inhalation}\n` :
               <span>(${bestChem.nameEn})</span>
             </div>
             <div class="chem-card-meta">
-              <span>فرمول: <code>${bestChem.formula}</code></span>
+              <span>فرمول: <span class="formula-inline" dir="ltr">$${convertFormulaToLatex(bestChem.formula)}$</span></span>
               <span>CAS: <code>${bestChem.cas}</code></span>
             </div>
           </div>
@@ -1356,10 +1376,10 @@ ${chem.firstAid.inhalation ? `- استنشاق: ${chem.firstAid.inhalation}\n` :
           </div>
 
           <div class="chem-card-tabs">
-            <button class="chem-tab-btn active" data-tab="hazards">⚠️ خطرات</button>
-            <button class="chem-tab-btn" data-tab="firstaid">🩹 کمک‌ها</button>
-            <button class="chem-tab-btn" data-tab="spill">🧹 مهار نشت</button>
-            <button class="chem-tab-btn" data-tab="incompat">🚫 ناسازگاری</button>
+            <button class="chem-tab-btn active" data-tab="hazards"><span class="material-symbols-outlined" style="font-size: 16px; vertical-align: middle; margin-left: 4px;">warning</span>خطرات</button>
+            <button class="chem-tab-btn" data-tab="firstaid"><span class="material-symbols-outlined" style="font-size: 16px; vertical-align: middle; margin-left: 4px;">medical_services</span>کمک‌ها</button>
+            <button class="chem-tab-btn" data-tab="spill"><span class="material-symbols-outlined" style="font-size: 16px; vertical-align: middle; margin-left: 4px;">mop</span>مهار نشت</button>
+            <button class="chem-tab-btn" data-tab="incompat"><span class="material-symbols-outlined" style="font-size: 16px; vertical-align: middle; margin-left: 4px;">block</span>ناسازگاری</button>
           </div>
 
           <div class="chem-card-panels">
@@ -1466,6 +1486,21 @@ ${chem.firstAid.inhalation ? `- استنشاق: ${chem.firstAid.inhalation}\n` :
             const sim = getStringSimilarity(word, keyword);
             if (sim >= 0.78) {
               score += sim * 1.5;
+            } else {
+              // For multi-word keywords, check similarity against individual words of the keyword
+              const keywordWords = keyword.split(' ').filter(w => w.length > 2);
+              if (keywordWords.length > 1) {
+                let bestWordSim = 0;
+                keywordWords.forEach(kwWord => {
+                  const wSim = getStringSimilarity(word, kwWord);
+                  if (wSim > bestWordSim) {
+                    bestWordSim = wSim;
+                  }
+                });
+                if (bestWordSim >= 0.78) {
+                  score += bestWordSim * 0.75; // Moderate boost for matching a single word in a multi-word keyword with a typo
+                }
+              }
             }
           }
         });
@@ -1488,7 +1523,13 @@ ${chem.firstAid.inhalation ? `- استنشاق: ${chem.firstAid.inhalation}\n` :
   function addMessage(htmlContent, sender) {
     const msg = document.createElement('div');
     msg.className = `chat-msg ${sender}`;
-    msg.innerHTML = htmlContent;
+    
+    let finalHtml = htmlContent;
+    if (typeof renderMathInElement !== 'function') {
+      finalHtml = cleanLatexHtml(htmlContent);
+    }
+    
+    msg.innerHTML = finalHtml;
     chatbotMessages.appendChild(msg);
     scrollToBottom();
 
@@ -1523,5 +1564,49 @@ ${chem.firstAid.inhalation ? `- استنشاق: ${chem.firstAid.inhalation}\n` :
 
   function scrollToBottom() {
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
+
+  function convertFormulaToLatex(formula) {
+    if (!formula) return '';
+    const subscriptMap = {
+      '₀': '0', '₁': '1', '₂': '2', '₃': '3', '₄': '4',
+      '₅': '5', '₆': '6', '₇': '7', '₈': '8', '₉': '9'
+    };
+    let result = formula.replace(/[₀₁₂₃₄₅₆₇₈₉]+/g, (match) => {
+      const digits = match.split('').map(sub => subscriptMap[sub]).join('');
+      return `_{${digits}}`;
+    });
+    return `\\mathrm{${result}}`;
+  }
+
+  function cleanLatexHtml(html) {
+    if (!html) return '';
+    let cleaned = html.replace(/\$\$([^$]+)\$\$/g, (match, formula) => {
+      return cleanLatexFormula(formula);
+    });
+    cleaned = cleaned.replace(/\$([^$]+)\$/g, (match, formula) => {
+      return cleanLatexFormula(formula);
+    });
+    return cleaned;
+  }
+
+  function cleanLatexFormula(latex) {
+    if (!latex) return '';
+    return latex
+      .replace(/\\mathrm\{([^}]+)\}/g, '$1')
+      .replace(/\\text\{([^}]+)\}/g, '$1')
+      .replace(/\\xrightarrow\{([^}]+)\}/g, ' --$1--> ')
+      .replace(/\\rightarrow/g, ' --> ')
+      .replace(/\\leftrightarrow/g, ' <--> ')
+      .replace(/\\uparrow/g, ' (گاز)')
+      .replace(/\\downarrow/g, ' (رسوب)')
+      .replace(/\\overset\{([^}]+)\}\{([^}]+)\}/g, ' --$1--> ')
+      .replace(/\\times/g, ' × ')
+      .replace(/\\circ/g, '°')
+      .replace(/_([a-zA-Z0-9])/g, '$1')
+      .replace(/_\{([^}]+)\}/g, '$1')
+      .replace(/[\{\}]/g, '')
+      .replace(/\\/g, '')
+      .trim();
   }
 });

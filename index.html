@@ -37,6 +37,12 @@
             <span id="status-text">درحال بررسی وضعیت آزمایشگاه...</span>
           </div>
           
+          <!-- Spill Simulator Trigger Button -->
+          <button class="control-btn" id="drill-modal-btn" title="شبیه‌ساز تعاملی ریزش مواد">
+            <span class="material-symbols-outlined" style="color: var(--accent-red);">mop</span>
+            <span>شبیه‌ساز ریزش</span>
+          </button>
+
           <!-- Theme Toggle -->
           <button class="theme-btn" id="theme-btn" aria-label="تغییر پوسته">
             <!-- Icon replaced by JS -->
@@ -226,6 +232,40 @@
                 <p id="msds-exposure" class="msds-para">-</p>
               </div>
             </div>
+
+            <!-- NFPA & GHS Visualizers -->
+            <div class="msds-col msds-visual-col">
+              <div class="msds-info-section">
+                <div class="msds-section-title">
+                  <span class="material-symbols-outlined" style="color: var(--accent-amber);">shield_heart</span>
+                  لوزی شناسایی خطر (NFPA 704)
+                </div>
+                <div class="nfpa-diamond-container">
+                  <div class="nfpa-diamond">
+                    <div class="nfpa-quadrant health" id="nfpa-health" title="خطر بهداشتی (آبی)">-</div>
+                    <div class="nfpa-quadrant flammability" id="nfpa-flammability" title="خطر آتش‌گیری (قرمز)">-</div>
+                    <div class="nfpa-quadrant instability" id="nfpa-instability" title="خطر ناپایداری (زرد)">-</div>
+                    <div class="nfpa-quadrant special" id="nfpa-special" title="خطرات خاص (سفید)">-</div>
+                  </div>
+                  <div class="nfpa-legend">
+                    <div class="nfpa-legend-item"><span class="legend-dot health"></span>سلامت (آبی)</div>
+                    <div class="nfpa-legend-item"><span class="legend-dot flammability"></span>آتش‌گیری (قرمز)</div>
+                    <div class="nfpa-legend-item"><span class="legend-dot instability"></span>ناپایداری (زرد)</div>
+                    <div class="nfpa-legend-item"><span class="legend-dot special"></span>خاص (سفید)</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="msds-info-section" style="margin-top: 1.25rem;">
+                <div class="msds-section-title">
+                  <span class="material-symbols-outlined" style="color: var(--accent-red);">warning</span>
+                  نمادهای خطر (GHS Pictograms)
+                </div>
+                <div id="msds-ghs-container" class="msds-ghs-container">
+                  <!-- Dynamically populated GHS icons -->
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- First Aid & Spill protocols -->
@@ -266,24 +306,15 @@
           <span class="material-symbols-outlined widget-icon" style="color: var(--accent-amber);">swap_horizontal_circle</span>
           بررسی‌کننده سازگاری و تداخل مواد شیمیایی (Compatibility Checker)
         </div>
-        <p class="widget-subtitle" style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">دو ماده شیمیایی را انتخاب کنید تا امکان ترکیب یا ذخیره‌سازی آن‌ها در یک ظرف و پیامدهای احتمالی آن بررسی شود:</p>
+        <p class="widget-subtitle" style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">چندین ماده شیمیایی را انتخاب کنید تا امکان ترکیب یا ذخیره‌سازی آن‌ها در یک ظرف و پیامدهای احتمالی آن بررسی شود:</p>
         
-        <div class="compatibility-form-grid" style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
-          <div class="form-group" style="flex: 1; min-width: 250px;">
-            <label for="compat-chemical-a">ماده شیمیایی اول (A):</label>
-            <select id="compat-chemical-a" class="error-lookup-select">
-              <option value="">-- انتخاب ماده اول --</option>
-              <!-- Populated dynamically via JS -->
-            </select>
-          </div>
-          <div class="form-group" style="flex: 1; min-width: 250px;">
-            <label for="compat-chemical-b">ماده شیمیایی دوم (B):</label>
-            <select id="compat-chemical-b" class="error-lookup-select">
-              <option value="">-- انتخاب ماده دوم --</option>
-              <!-- Populated dynamically via JS -->
-            </select>
-          </div>
+        <div id="compat-chemicals-container" style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1rem;">
+          <!-- Populated dynamically via JS -->
         </div>
+        <button id="add-compat-chemical-btn" class="btn-primary" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary); margin-bottom: 1.5rem; padding: 0.5rem 1rem; cursor: pointer; border-radius: 8px; font-weight: 600; display: inline-flex; align-items: center; gap: 0.25rem;">
+          <span class="material-symbols-outlined" style="font-size: 18px; color: var(--accent-emerald);">add_circle</span>
+          افزودن ماده شیمیایی جدید
+        </button>
 
         <div id="compat-result-box" class="compat-result-box" style="display: none;">
           <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
@@ -293,6 +324,18 @@
               <span id="compat-status-badge" style="font-size: 0.8rem; padding: 0.15rem 0.5rem; border-radius: 4px; display: inline-block; margin-top: 0.2rem; font-weight: 700;">نامشخص</span>
             </div>
           </div>
+
+          <!-- Compatibility Badges / Tags -->
+          <div id="compat-tags" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
+            <!-- Populated dynamically via JS -->
+          </div>
+
+          <!-- Chemical Reaction Formula Container -->
+          <div id="compat-formula-section" style="background: rgba(255, 255, 255, 0.03); padding: 0.75rem 1rem; border-radius: 8px; border-left: 4px solid var(--accent-amber); margin-bottom: 0.75rem; display: none;">
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.25rem; font-weight: 600;">معادله واکنش احتمالی / فرمول مخلوط:</div>
+            <div id="compat-formula" class="formula-math" style="margin-top: 0.25rem; padding: 0;"></div>
+          </div>
+
           <p id="compat-desc" style="line-height: 1.6; margin: 0; font-size: 0.95rem; color: var(--text-primary);"></p>
         </div>
       </div>
@@ -1346,6 +1389,96 @@
           </div>
         </div>
 
+      </div>
+    </div>
+  </div>
+
+  <!-- Spill Simulator Modal -->
+  <div id="drill-modal" class="emergency-modal-overlay">
+    <div class="emergency-modal" style="max-width: 850px;">
+      <div class="emergency-modal-header">
+        <div class="emergency-modal-title" style="color: var(--accent-red); gap: 0.5rem;">
+          <span class="material-symbols-outlined header-symbol" style="animation: none;">mop</span>
+          <h2>شبیه‌ساز تعاملی ریزش و نشت مواد شیمیایی (Spill Drill)</h2>
+        </div>
+        <button id="close-drill-modal" class="close-modal-btn">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="emergency-modal-body" style="padding: 1.5rem;">
+        <p class="widget-subtitle" style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
+          یک سناریو بحرانی را انتخاب کنید و گام‌به‌گام مراحل واکنش اضطراری و پاک‌سازی ایمن را پیش ببرید تا سطح آمادگی خود را بسنجید:
+        </p>
+
+        <!-- Scenario Selection Screen -->
+        <div id="spill-scenarios-selection" class="spill-scenarios-grid">
+          <div class="drill-scenario-card" data-scenario="acid">
+            <div class="drill-card-header">
+              <span class="material-symbols-outlined drill-icon" style="color: var(--accent-red);">acid</span>
+              <h3>نشت اسید سولفوریک غلیظ</h3>
+            </div>
+            <p>مقدار ۵۰۰ میلی‌لیتر اسید سولفوریک غلیظ (۹۸٪) روی زمین پایلوت سرازیر شده و گازهای بسیار محرک و خطرناکی منتشر می‌کند.</p>
+            <button class="btn-primary select-scenario-btn" style="background-color: var(--accent-red); border: none; color: #fff;">شروع عملیات مهار</button>
+          </div>
+
+          <div class="drill-scenario-card" data-scenario="solvent">
+            <div class="drill-card-header">
+              <span class="material-symbols-outlined drill-icon" style="color: var(--accent-amber);">local_fire_department</span>
+              <h3>ریزش حلال آلی فرار (تولوئن)</h3>
+            </div>
+            <p>یک لیتر حلال بسیار فرار و قابل اشتعال تولوئن در نزدیکی کوره داغ سرازیر شده و خطر شدید شعله‌وری و آتش‌سوزی وجود دارد.</p>
+            <button class="btn-primary select-scenario-btn" style="background-color: var(--accent-amber); border: none; color: #000;">شروع عملیات مهار</button>
+          </div>
+
+          <div class="drill-scenario-card" data-scenario="mercury">
+            <div class="drill-card-header">
+              <span class="material-symbols-outlined drill-icon" style="color: var(--text-muted);">science</span>
+              <h3>شکستن دماسنج و نشت جیوه مایع</h3>
+            </div>
+            <p>دماسنج شیشه‌ای جیوه روی میز کار شکسته و قطرات جیوه متالیک روی درزها و شکاف‌های سطح میز پراکنده شده‌اند.</p>
+            <button class="btn-primary select-scenario-btn" style="background-color: #78909c; border: none; color: #fff;">شروع عملیات مهار</button>
+          </div>
+        </div>
+
+        <!-- Active Drill Panel (Hidden by default) -->
+        <div id="drill-active-panel" class="drill-active-panel" style="display: none;">
+          <div class="drill-status-bar">
+            <span id="drill-scenario-title" class="drill-active-title">-</span>
+            <div class="drill-progress-bar-container">
+              <div id="drill-progress-bar" class="drill-progress-bar" style="width: 0%;"></div>
+            </div>
+            <span id="drill-step-indicator" class="drill-step-indicator">-</span>
+          </div>
+
+          <!-- Description and instructions -->
+          <div class="drill-step-box">
+            <h4 id="drill-step-question" class="drill-question-text">-</h4>
+            <div id="drill-choices-container" class="drill-choices-container">
+              <!-- Choices populated dynamically -->
+            </div>
+          </div>
+
+          <!-- Feedback Box -->
+          <div id="drill-feedback-box" class="drill-feedback-box" style="display: none;">
+            <div class="feedback-header">
+              <span id="drill-feedback-icon" class="material-symbols-outlined">info</span>
+              <span id="drill-feedback-title">-</span>
+            </div>
+            <p id="drill-feedback-desc">-</p>
+            <button id="drill-next-btn" class="btn-primary" style="margin-top: 1rem; display: none;">مرحله بعد</button>
+          </div>
+
+          <!-- Complete screen (Show when done) -->
+          <div id="drill-complete-box" class="drill-complete-box" style="display: none;">
+            <span class="material-symbols-outlined complete-icon">verified_user</span>
+            <h3>عملیات مهار و پاک‌سازی به پایان رسید</h3>
+            <p id="drill-score-report"></p>
+            <div class="drill-recap-notes" id="drill-recap-notes">
+              <!-- Safety takeaways -->
+            </div>
+            <button id="drill-reset-btn" class="btn-primary" style="margin-top: 1.5rem; background-color: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary);">بازگشت به انتخاب سناریوها</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
