@@ -437,7 +437,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const tabId = btn.getAttribute('data-tab');
       if (tabId === 'tab-general') {
         if (generalCount > 0) {
-          btn.innerHTML = `${originalTabTexts[tabId]} <span class="search-badge">${generalCount}</span>`;
+          btn.innerHTML = `${originalTabTexts[tabId]} <span class="search-badge">${toPersianDigits(generalCount)}</span>`;
           btn.style.opacity = '1';
         } else {
           btn.innerHTML = originalTabTexts[tabId];
@@ -445,7 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } else if (tabId === 'tab-equipment') {
         if (equipmentCount > 0) {
-          btn.innerHTML = `${originalTabTexts[tabId]} <span class="search-badge">${equipmentCount}</span>`;
+          btn.innerHTML = `${originalTabTexts[tabId]} <span class="search-badge">${toPersianDigits(equipmentCount)}</span>`;
           btn.style.opacity = '1';
         } else {
           btn.innerHTML = originalTabTexts[tabId];
@@ -464,7 +464,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (eqId === 'eq-balance') count = balanceCount;
 
       if (count > 0) {
-        btn.innerHTML = `${originalEqTexts[eqId]} <span class="search-badge">${count}</span>`;
+        btn.innerHTML = `${originalEqTexts[eqId]} <span class="search-badge">${toPersianDigits(count)}</span>`;
         btn.style.opacity = '1';
       } else {
         btn.innerHTML = originalEqTexts[eqId];
@@ -529,7 +529,7 @@ document.addEventListener('DOMContentLoaded', () => {
             searchStatusBanner.innerHTML = `
               <div class="banner-message">
                 <span class="material-symbols-outlined" style="color: var(--accent-amber);">info</span>
-                <span>موردی در قوانین عمومی یافت نشد. اما <strong>${equipmentCount} مورد</strong> در بخش راهنمای تجهیزات یافت شد.</span>
+                <span>موردی در قوانین عمومی یافت نشد. اما <strong>${toPersianDigits(equipmentCount)} مورد</strong> در بخش راهنمای تجهیزات یافت شد.</span>
               </div>
               <a class="switch-tab-link" data-tab="tab-equipment">مشاهده نتایج در راهنمای تجهیزات &larr;</a>
             `;
@@ -546,7 +546,7 @@ document.addEventListener('DOMContentLoaded', () => {
             searchStatusBanner.innerHTML = `
               <div class="banner-message">
                 <span class="material-symbols-outlined">check_circle</span>
-                <span>تعداد <strong>${generalCount} مورد</strong> در قوانین عمومی و ایمنی یافت شد.</span>
+                <span>تعداد <strong>${toPersianDigits(generalCount)} مورد</strong> در قوانین عمومی و ایمنی یافت شد.</span>
               </div>
             `;
           }
@@ -563,10 +563,10 @@ document.addEventListener('DOMContentLoaded', () => {
           if (activeEqCount === 0) {
             if (equipmentCount > 0) {
               let suggestions = [];
-              if (centrifugeCount > 0) suggestions.push(`<a class="switch-eq-link" data-eq="eq-centrifuge">سانتریفیوژ (${centrifugeCount})</a>`);
-              if (ovenCount > 0) suggestions.push(`<a class="switch-eq-link" data-eq="eq-oven">فور (${ovenCount})</a>`);
-              if (phmeterCount > 0) suggestions.push(`<a class="switch-eq-link" data-eq="eq-phmeter">pH متر (${phmeterCount})</a>`);
-              if (balanceCount > 0) suggestions.push(`<a class="switch-eq-link" data-eq="eq-balance">ترازو (${balanceCount})</a>`);
+              if (centrifugeCount > 0) suggestions.push(`<a class="switch-eq-link" data-eq="eq-centrifuge">سانتریفیوژ (${toPersianDigits(centrifugeCount)})</a>`);
+              if (ovenCount > 0) suggestions.push(`<a class="switch-eq-link" data-eq="eq-oven">فور (${toPersianDigits(ovenCount)})</a>`);
+              if (phmeterCount > 0) suggestions.push(`<a class="switch-eq-link" data-eq="eq-phmeter">pH متر (${toPersianDigits(phmeterCount)})</a>`);
+              if (balanceCount > 0) suggestions.push(`<a class="switch-eq-link" data-eq="eq-balance">ترازو (${toPersianDigits(balanceCount)})</a>`);
               
               searchStatusBanner.style.display = 'flex';
               searchStatusBanner.innerHTML = `
@@ -581,7 +581,7 @@ document.addEventListener('DOMContentLoaded', () => {
               searchStatusBanner.innerHTML = `
                 <div class="banner-message">
                   <span class="material-symbols-outlined" style="color: var(--accent-amber);">info</span>
-                  <span>موردی در تجهیزات یافت نشد. اما <strong>${generalCount} مورد</strong> در قوانین عمومی یافت شد.</span>
+                  <span>موردی در تجهیزات یافت نشد. اما <strong>${toPersianDigits(generalCount)} مورد</strong> در قوانین عمومی یافت شد.</span>
                 </div>
                 <a class="switch-tab-link" data-tab="tab-general">مشاهده نتایج در قوانین عمومی &larr;</a>
               `;
@@ -599,7 +599,7 @@ document.addEventListener('DOMContentLoaded', () => {
             searchStatusBanner.innerHTML = `
               <div class="banner-message">
                 <span class="material-symbols-outlined">check_circle</span>
-                <span>تعداد <strong>${activeEqCount} مورد</strong> در راهنمای این دستگاه یافت شد.</span>
+                <span>تعداد <strong>${toPersianDigits(activeEqCount)} مورد</strong> در راهنمای این دستگاه یافت شد.</span>
               </div>
             `;
           }
