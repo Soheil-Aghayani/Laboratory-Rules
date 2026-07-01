@@ -2424,4 +2424,73 @@ document.addEventListener('DOMContentLoaded', () => {
       if (scenariosSelection) scenariosSelection.style.display = 'grid';
     });
   }
+
+  // Voice Input Speech-to-Text Setup for Main Search Bar
+  const searchVoiceBtn = document.getElementById('search-voice-btn');
+  if (searchVoiceBtn && searchInput) {
+    const MainSpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let mainRecognition = null;
+    let mainIsListening = false;
+
+    if (MainSpeechRecognition) {
+      mainRecognition = new MainSpeechRecognition();
+      mainRecognition.lang = 'fa-IR';
+      mainRecognition.interimResults = false;
+      mainRecognition.maxAlternatives = 1;
+
+      mainRecognition.onstart = () => {
+        mainIsListening = true;
+        searchVoiceBtn.classList.add('recording');
+        searchInput.placeholder = 'در حال شنیدن... صحبت کنید...';
+      };
+
+      mainRecognition.onresult = (event) => {
+        const speechToText = event.results[0][0].transcript;
+        searchInput.value = speechToText;
+        searchInput.dispatchEvent(new Event('input'));
+      };
+
+      mainRecognition.onerror = (event) => {
+        console.error('Main search speech recognition error:', event.error);
+        mainStopListening();
+      };
+
+      mainRecognition.onend = () => {
+        mainStopListening();
+      };
+
+      function mainStartListening() {
+        if (mainRecognition && !mainIsListening) {
+          try {
+            mainRecognition.start();
+          } catch (err) {
+            console.error(err);
+          }
+        }
+      }
+
+      function mainStopListening() {
+        mainIsListening = false;
+        if (searchVoiceBtn) searchVoiceBtn.classList.remove('recording');
+        if (searchInput) searchInput.placeholder = 'جستجو در قوانین، خطاها یا دستورالعمل‌ها...';
+        if (mainRecognition) {
+          try {
+            mainRecognition.stop();
+          } catch (err) {
+            // already stopped
+          }
+        }
+      }
+
+      searchVoiceBtn.addEventListener('click', () => {
+        if (mainIsListening) {
+          mainStopListening();
+        } else {
+          mainStartListening();
+        }
+      });
+    } else {
+      searchVoiceBtn.style.display = 'none'; // Hide if not supported
+    }
+  }
 });

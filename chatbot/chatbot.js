@@ -7,6 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Knowledge Base Database
   const qaDatabase = [
     {
+      id: "designer_info",
+      keywords: ["طراح", "برنامه‌نویس", "توسعه‌دهنده", "سازنده", "سهیل", "آقایانی", "ارتباط با طراح", "طراح سایت", "designer", "developer", "creator", "soheil", "aghayani", "github", "linkedin", "telegram"],
+      answer: `<strong>اطلاعات ارتباط با طراح پورتال (سهیل آقایانی):</strong><br>
+      این سامانه توسط <strong>سهیل آقایانی</strong> طراحی و توسعه یافته است. برای ارتباط با طراح می‌توانید از راه‌های زیر استفاده کنید:<br>
+      - <strong>گیت‌هاب:</strong> <a href="https://github.com/Soheil-Aghayani" target="_blank" rel="noopener noreferrer">github.com/Soheil-Aghayani</a><br>
+      - <strong>لینکدین:</strong> <a href="https://www.linkedin.com/in/agseyl/" target="_blank" rel="noopener noreferrer">linkedin.com/in/agseyl</a><br>
+      - <strong>تلگرام:</strong> <a href="https://www.t.me/agseyl" target="_blank" rel="noopener noreferrer">t.me/agseyl</a>`
+    },
+    {
       id: "ph_calibration",
       keywords: ["کالیبره", "کالیبراسیون", "پی اچ", "پ هاش", "بافر", "اسید", "ph", "calibrate", "calibration", "buffer"],
       answer: `<strong>راهنمای کالیبراسیون pH متر رومیزی (PH500):</strong><br>
