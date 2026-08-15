@@ -1245,6 +1245,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Create select
     const select = document.createElement('select');
     select.className = 'error-lookup-select compat-chemical-select';
+    select.setAttribute('aria-label', 'انتخاب ماده شیمیایی برای بررسی سازگاری');
+    select.title = 'انتخاب ماده شیمیایی برای بررسی سازگاری';
     select.style.flex = '1';
     
     // Default/placeholder option
