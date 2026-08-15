@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/readme-hero.svg" alt="Laboratory protocols visual hero" width="100%">
+
 # <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/solar:test-tube-linear.svg?color=%2300F2FE"><source media="(prefers-color-scheme: light)" srcset="https://api.iconify.design/solar:test-tube-linear.svg?color=%230969DA"><img alt="Test Tube" src="https://api.iconify.design/solar:test-tube-linear.svg?color=%230969DA" width="36" height="36"></picture> LABORATORY SAFETY & OPERATING PROTOCOLS
 ### **Standard Operating Procedures (SOP) for Chemical, Environmental & Catalysis Laboratories**
 
