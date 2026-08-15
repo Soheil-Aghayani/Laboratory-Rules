@@ -706,7 +706,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="chatbot-title">
           <span class="material-symbols-outlined bot-icon">smart_toy</span>
           <div>
-            <h3>دستیار هوشمند آزمایشگاه</h3>
+            <h2>دستیار هوشمند آزمایشگاه</h2>
             <p>پاسخ‌گویی آفلاین بر اساس مستندات</p>
           </div>
         </div>
