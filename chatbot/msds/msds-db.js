@@ -10610,3 +10610,318 @@ window.chemicalMsdsDb = [
     "spillAction": "منابع اشتعال را حذف کنید، از ایجاد گرد و غبار جلوگیری کرده و ماده را در ظرف دربسته و دور از اکسیدکننده‌ها جمع‌آوری کنید."
   }
 ];
+
+// Periodic-table catalogue. The detailed records above remain authoritative
+// for the common elements already covered by the laboratory safety database.
+const periodicElementDefinitions = [
+  { atomicNumber: 1, id: 'element_hydrogen', symbol: 'H', nameFa: 'هیدروژن', nameEn: 'Hydrogen', formula: 'H₂', cas: '1333-74-0', category: 'flammable_gas' },
+  { atomicNumber: 2, id: 'element_helium', symbol: 'He', nameFa: 'هلیوم', nameEn: 'Helium', formula: 'He', cas: '7440-59-7', category: 'noble_gas' },
+  { atomicNumber: 3, id: 'element_lithium', symbol: 'Li', nameFa: 'لیتیوم', nameEn: 'Lithium', formula: 'Li', cas: '7439-93-2', category: 'reactive_metal' },
+  { atomicNumber: 4, id: 'element_beryllium', symbol: 'Be', nameFa: 'بریلیوم', nameEn: 'Beryllium', formula: 'Be', cas: '7440-41-7', category: 'toxic_metal' },
+  { atomicNumber: 5, id: 'element_boron', symbol: 'B', nameFa: 'بور', nameEn: 'Boron', formula: 'B', cas: '7440-42-8', category: 'metalloid' },
+  { atomicNumber: 6, id: 'element_carbon', symbol: 'C', nameFa: 'کربن', nameEn: 'Carbon', formula: 'C', cas: '7440-44-0', category: 'combustible_nonmetal' },
+  { atomicNumber: 7, id: 'element_nitrogen', symbol: 'N', nameFa: 'نیتروژن', nameEn: 'Nitrogen', formula: 'N₂', cas: '7727-37-9', category: 'inert_gas' },
+  { atomicNumber: 8, id: 'element_oxygen', symbol: 'O', nameFa: 'اکسیژن', nameEn: 'Oxygen', formula: 'O₂', cas: '7782-44-7', category: 'oxidizer' },
+  { atomicNumber: 9, id: 'element_fluorine', symbol: 'F', nameFa: 'فلوئور', nameEn: 'Fluorine', formula: 'F₂', cas: '7782-41-4', category: 'oxidizer' },
+  { atomicNumber: 10, id: 'element_neon', symbol: 'Ne', nameFa: 'نئون', nameEn: 'Neon', formula: 'Ne', cas: '7440-01-9', category: 'noble_gas' },
+  { atomicNumber: 11, id: 'element_sodium', symbol: 'Na', nameFa: 'سدیم', nameEn: 'Sodium', formula: 'Na', cas: '7440-23-5', category: 'reactive_metal' },
+  { atomicNumber: 12, id: 'element_magnesium', symbol: 'Mg', nameFa: 'منیزیم', nameEn: 'Magnesium', formula: 'Mg', cas: '7439-95-4', category: 'reactive_metal' },
+  { atomicNumber: 13, id: 'element_aluminium', symbol: 'Al', nameFa: 'آلومینیوم', nameEn: 'Aluminium', formula: 'Al', cas: '7429-90-5', category: 'reactive_metal' },
+  { atomicNumber: 14, id: 'element_silicon', symbol: 'Si', nameFa: 'سیلیسیم', nameEn: 'Silicon', formula: 'Si', cas: '7440-21-3', category: 'metalloid' },
+  { atomicNumber: 15, id: 'element_phosphorus', symbol: 'P', nameFa: 'فسفر', nameEn: 'Phosphorus', formula: 'P₄', cas: '7723-14-0', category: 'combustible_nonmetal' },
+  { atomicNumber: 16, id: 'element_sulfur', symbol: 'S', nameFa: 'گوگرد', nameEn: 'Sulfur', formula: 'S', cas: '7704-34-9', category: 'combustible_nonmetal' },
+  { atomicNumber: 17, id: 'element_chlorine', symbol: 'Cl', nameFa: 'کلر', nameEn: 'Chlorine', formula: 'Cl₂', cas: '7782-50-5', category: 'oxidizer' },
+  { atomicNumber: 18, id: 'element_argon', symbol: 'Ar', nameFa: 'آرگون', nameEn: 'Argon', formula: 'Ar', cas: '7440-37-1', category: 'noble_gas' },
+  { atomicNumber: 19, id: 'element_potassium', symbol: 'K', nameFa: 'پتاسیم', nameEn: 'Potassium', formula: 'K', cas: '7440-09-7', category: 'reactive_metal' },
+  { atomicNumber: 20, id: 'element_calcium', symbol: 'Ca', nameFa: 'کلسیم', nameEn: 'Calcium', formula: 'Ca', cas: '7440-70-2', category: 'reactive_metal' },
+  { atomicNumber: 21, id: 'element_scandium', symbol: 'Sc', nameFa: 'اسکاندیم', nameEn: 'Scandium', formula: 'Sc', cas: '7440-20-2', category: 'transition_metal' },
+  { atomicNumber: 22, id: 'element_titanium', symbol: 'Ti', nameFa: 'تیتانیم', nameEn: 'Titanium', formula: 'Ti', cas: '7440-32-6', category: 'transition_metal' },
+  { atomicNumber: 23, id: 'element_vanadium', symbol: 'V', nameFa: 'وانادیم', nameEn: 'Vanadium', formula: 'V', cas: '7440-62-2', category: 'transition_metal' },
+  { atomicNumber: 24, id: 'element_chromium', symbol: 'Cr', nameFa: 'کروم', nameEn: 'Chromium', formula: 'Cr', cas: '7440-47-3', category: 'transition_metal' },
+  { atomicNumber: 25, id: 'element_manganese', symbol: 'Mn', nameFa: 'منگنز', nameEn: 'Manganese', formula: 'Mn', cas: '7439-96-5', category: 'transition_metal' },
+  { atomicNumber: 26, id: 'element_iron', symbol: 'Fe', nameFa: 'آهن', nameEn: 'Iron', formula: 'Fe', cas: '7439-89-6', category: 'transition_metal' },
+  { atomicNumber: 27, id: 'element_cobalt', symbol: 'Co', nameFa: 'کبالت', nameEn: 'Cobalt', formula: 'Co', cas: '7440-48-4', category: 'toxic_metal' },
+  { atomicNumber: 28, id: 'element_nickel', symbol: 'Ni', nameFa: 'نیکل', nameEn: 'Nickel', formula: 'Ni', cas: '7440-02-0', category: 'toxic_metal' },
+  { atomicNumber: 29, id: 'element_copper', symbol: 'Cu', nameFa: 'مس', nameEn: 'Copper', formula: 'Cu', cas: '7440-50-8', category: 'transition_metal' },
+  { atomicNumber: 30, id: 'element_zinc', symbol: 'Zn', nameFa: 'روی', nameEn: 'Zinc', formula: 'Zn', cas: '7440-66-6', category: 'transition_metal' },
+  { atomicNumber: 31, id: 'element_gallium', symbol: 'Ga', nameFa: 'گالیم', nameEn: 'Gallium', formula: 'Ga', cas: '7440-55-3', category: 'transition_metal' },
+  { atomicNumber: 32, id: 'element_germanium', symbol: 'Ge', nameFa: 'ژرمانیم', nameEn: 'Germanium', formula: 'Ge', cas: '7440-56-4', category: 'metalloid' },
+  { atomicNumber: 33, id: 'element_arsenic', symbol: 'As', nameFa: 'آرسنیک', nameEn: 'Arsenic', formula: 'As', cas: '7440-38-2', category: 'toxic_metalloid' },
+  { atomicNumber: 34, id: 'element_selenium', symbol: 'Se', nameFa: 'سلنیوم', nameEn: 'Selenium', formula: 'Se', cas: '7782-49-2', category: 'toxic_nonmetal' },
+  { atomicNumber: 35, id: 'element_bromine', symbol: 'Br', nameFa: 'بروم', nameEn: 'Bromine', formula: 'Br₂', cas: '7726-95-6', category: 'oxidizer' },
+  { atomicNumber: 36, id: 'element_krypton', symbol: 'Kr', nameFa: 'کریپتون', nameEn: 'Krypton', formula: 'Kr', cas: '7439-90-9', category: 'noble_gas' },
+  { atomicNumber: 37, id: 'element_rubidium', symbol: 'Rb', nameFa: 'روبیدیم', nameEn: 'Rubidium', formula: 'Rb', cas: '7440-17-7', category: 'reactive_metal' },
+  { atomicNumber: 38, id: 'element_strontium', symbol: 'Sr', nameFa: 'استرانسیم', nameEn: 'Strontium', formula: 'Sr', cas: '7440-24-6', category: 'reactive_metal' },
+  { atomicNumber: 39, id: 'element_yttrium', symbol: 'Y', nameFa: 'ایتریم', nameEn: 'Yttrium', formula: 'Y', cas: '7440-65-5', category: 'transition_metal' },
+  { atomicNumber: 40, id: 'element_zirconium', symbol: 'Zr', nameFa: 'زیرکونیوم', nameEn: 'Zirconium', formula: 'Zr', cas: '7440-67-7', category: 'transition_metal' },
+  { atomicNumber: 41, id: 'element_niobium', symbol: 'Nb', nameFa: 'نیوبیوم', nameEn: 'Niobium', formula: 'Nb', cas: '7440-03-1', category: 'transition_metal' },
+  { atomicNumber: 42, id: 'element_molybdenum', symbol: 'Mo', nameFa: 'مولیبدن', nameEn: 'Molybdenum', formula: 'Mo', cas: '7439-98-7', category: 'transition_metal' },
+  { atomicNumber: 43, id: 'element_technetium', symbol: 'Tc', nameFa: 'تکنسیم', nameEn: 'Technetium', formula: 'Tc', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 44, id: 'element_ruthenium', symbol: 'Ru', nameFa: 'روتنیم', nameEn: 'Ruthenium', formula: 'Ru', cas: '7440-18-8', category: 'transition_metal' },
+  { atomicNumber: 45, id: 'element_rhodium', symbol: 'Rh', nameFa: 'رودیم', nameEn: 'Rhodium', formula: 'Rh', cas: '7440-16-6', category: 'transition_metal' },
+  { atomicNumber: 46, id: 'element_palladium', symbol: 'Pd', nameFa: 'پالادیم', nameEn: 'Palladium', formula: 'Pd', cas: '7440-05-3', category: 'transition_metal' },
+  { atomicNumber: 47, id: 'element_silver', symbol: 'Ag', nameFa: 'نقره', nameEn: 'Silver', formula: 'Ag', cas: '7440-22-4', category: 'transition_metal' },
+  { atomicNumber: 48, id: 'element_cadmium', symbol: 'Cd', nameFa: 'کادمیم', nameEn: 'Cadmium', formula: 'Cd', cas: '7440-43-9', category: 'toxic_metal' },
+  { atomicNumber: 49, id: 'element_indium', symbol: 'In', nameFa: 'ایندیم', nameEn: 'Indium', formula: 'In', cas: '7440-74-6', category: 'transition_metal' },
+  { atomicNumber: 50, id: 'element_tin', symbol: 'Sn', nameFa: 'قلع', nameEn: 'Tin', formula: 'Sn', cas: '7440-31-5', category: 'transition_metal' },
+  { atomicNumber: 51, id: 'element_antimony', symbol: 'Sb', nameFa: 'آنتیموان', nameEn: 'Antimony', formula: 'Sb', cas: '7440-36-0', category: 'toxic_metalloid' },
+  { atomicNumber: 52, id: 'element_tellurium', symbol: 'Te', nameFa: 'تلور', nameEn: 'Tellurium', formula: 'Te', cas: '13494-80-9', category: 'toxic_metalloid' },
+  { atomicNumber: 53, id: 'element_iodine', symbol: 'I', nameFa: 'ید', nameEn: 'Iodine', formula: 'I₂', cas: '7553-56-2', category: 'oxidizer' },
+  { atomicNumber: 54, id: 'element_xenon', symbol: 'Xe', nameFa: 'زنون', nameEn: 'Xenon', formula: 'Xe', cas: '7440-63-3', category: 'noble_gas' },
+  { atomicNumber: 55, id: 'element_caesium', symbol: 'Cs', nameFa: 'سزیم', nameEn: 'Caesium', formula: 'Cs', cas: '7440-46-2', category: 'reactive_metal' },
+  { atomicNumber: 56, id: 'element_barium', symbol: 'Ba', nameFa: 'باریم', nameEn: 'Barium', formula: 'Ba', cas: '7440-39-3', category: 'toxic_metal' },
+  { atomicNumber: 57, id: 'element_lanthanum', symbol: 'La', nameFa: 'لانتان', nameEn: 'Lanthanum', formula: 'La', cas: '7439-91-0', category: 'transition_metal' },
+  { atomicNumber: 58, id: 'element_cerium', symbol: 'Ce', nameFa: 'سریم', nameEn: 'Cerium', formula: 'Ce', cas: '7440-45-1', category: 'transition_metal' },
+  { atomicNumber: 59, id: 'element_praseodymium', symbol: 'Pr', nameFa: 'پرازئودیمیم', nameEn: 'Praseodymium', formula: 'Pr', cas: '7440-10-0', category: 'transition_metal' },
+  { atomicNumber: 60, id: 'element_neodymium', symbol: 'Nd', nameFa: 'نئودیمیم', nameEn: 'Neodymium', formula: 'Nd', cas: '7440-00-8', category: 'transition_metal' },
+  { atomicNumber: 61, id: 'element_promethium', symbol: 'Pm', nameFa: 'پرومتیم', nameEn: 'Promethium', formula: 'Pm', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 62, id: 'element_samarium', symbol: 'Sm', nameFa: 'ساماریم', nameEn: 'Samarium', formula: 'Sm', cas: '7440-19-9', category: 'transition_metal' },
+  { atomicNumber: 63, id: 'element_europium', symbol: 'Eu', nameFa: 'یوروپیم', nameEn: 'Europium', formula: 'Eu', cas: '7440-53-1', category: 'transition_metal' },
+  { atomicNumber: 64, id: 'element_gadolinium', symbol: 'Gd', nameFa: 'گادولینیم', nameEn: 'Gadolinium', formula: 'Gd', cas: '7440-54-2', category: 'transition_metal' },
+  { atomicNumber: 65, id: 'element_terbium', symbol: 'Tb', nameFa: 'تربیم', nameEn: 'Terbium', formula: 'Tb', cas: '7440-27-9', category: 'transition_metal' },
+  { atomicNumber: 66, id: 'element_dysprosium', symbol: 'Dy', nameFa: 'دیسپروزیم', nameEn: 'Dysprosium', formula: 'Dy', cas: '7429-91-6', category: 'transition_metal' },
+  { atomicNumber: 67, id: 'element_holmium', symbol: 'Ho', nameFa: 'هولمیم', nameEn: 'Holmium', formula: 'Ho', cas: '7440-60-0', category: 'transition_metal' },
+  { atomicNumber: 68, id: 'element_erbium', symbol: 'Er', nameFa: 'اربیم', nameEn: 'Erbium', formula: 'Er', cas: '7440-52-0', category: 'transition_metal' },
+  { atomicNumber: 69, id: 'element_thulium', symbol: 'Tm', nameFa: 'تولیم', nameEn: 'Thulium', formula: 'Tm', cas: '7440-30-4', category: 'transition_metal' },
+  { atomicNumber: 70, id: 'element_ytterbium', symbol: 'Yb', nameFa: 'ایتربیم', nameEn: 'Ytterbium', formula: 'Yb', cas: '7440-64-4', category: 'transition_metal' },
+  { atomicNumber: 71, id: 'element_lutetium', symbol: 'Lu', nameFa: 'لوتتیم', nameEn: 'Lutetium', formula: 'Lu', cas: '7439-94-3', category: 'transition_metal' },
+  { atomicNumber: 72, id: 'element_hafnium', symbol: 'Hf', nameFa: 'هافنیم', nameEn: 'Hafnium', formula: 'Hf', cas: '7440-58-6', category: 'transition_metal' },
+  { atomicNumber: 73, id: 'element_tantalum', symbol: 'Ta', nameFa: 'تانتال', nameEn: 'Tantalum', formula: 'Ta', cas: '7440-25-7', category: 'transition_metal' },
+  { atomicNumber: 74, id: 'element_tungsten', symbol: 'W', nameFa: 'تنگستن', nameEn: 'Tungsten', formula: 'W', cas: '7440-33-7', category: 'transition_metal' },
+  { atomicNumber: 75, id: 'element_rhenium', symbol: 'Re', nameFa: 'رنیوم', nameEn: 'Rhenium', formula: 'Re', cas: '7440-15-5', category: 'transition_metal' },
+  { atomicNumber: 76, id: 'element_osmium', symbol: 'Os', nameFa: 'اوسمیم', nameEn: 'Osmium', formula: 'Os', cas: '7440-04-2', category: 'toxic_metal' },
+  { atomicNumber: 77, id: 'element_iridium', symbol: 'Ir', nameFa: 'ایریدیم', nameEn: 'Iridium', formula: 'Ir', cas: '7439-88-5', category: 'transition_metal' },
+  { atomicNumber: 78, id: 'element_platinum', symbol: 'Pt', nameFa: 'پلاتین', nameEn: 'Platinum', formula: 'Pt', cas: '7440-06-4', category: 'transition_metal' },
+  { atomicNumber: 79, id: 'element_gold', symbol: 'Au', nameFa: 'طلا', nameEn: 'Gold', formula: 'Au', cas: '7440-57-5', category: 'transition_metal' },
+  { atomicNumber: 80, id: 'element_mercury', symbol: 'Hg', nameFa: 'جیوه', nameEn: 'Mercury', formula: 'Hg', cas: '7439-97-6', category: 'toxic_metal' },
+  { atomicNumber: 81, id: 'element_thallium', symbol: 'Tl', nameFa: 'تالیم', nameEn: 'Thallium', formula: 'Tl', cas: '7440-28-0', category: 'toxic_metal' },
+  { atomicNumber: 82, id: 'element_lead', symbol: 'Pb', nameFa: 'سرب', nameEn: 'Lead', formula: 'Pb', cas: '7439-92-1', category: 'toxic_metal' },
+  { atomicNumber: 83, id: 'element_bismuth', symbol: 'Bi', nameFa: 'بیسموت', nameEn: 'Bismuth', formula: 'Bi', cas: '7440-69-9', category: 'toxic_metal' },
+  { atomicNumber: 84, id: 'element_polonium', symbol: 'Po', nameFa: 'پولونیم', nameEn: 'Polonium', formula: 'Po', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 85, id: 'element_astatine', symbol: 'At', nameFa: 'آستاتین', nameEn: 'Astatine', formula: 'At', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 86, id: 'element_radon', symbol: 'Rn', nameFa: 'رادون', nameEn: 'Radon', formula: 'Rn', cas: 'N/A', category: 'radioactive_gas' },
+  { atomicNumber: 87, id: 'element_francium', symbol: 'Fr', nameFa: 'فرانسیم', nameEn: 'Francium', formula: 'Fr', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 88, id: 'element_radium', symbol: 'Ra', nameFa: 'رادیوم', nameEn: 'Radium', formula: 'Ra', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 89, id: 'element_actinium', symbol: 'Ac', nameFa: 'اکتینیم', nameEn: 'Actinium', formula: 'Ac', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 90, id: 'element_thorium', symbol: 'Th', nameFa: 'توریم', nameEn: 'Thorium', formula: 'Th', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 91, id: 'element_protactinium', symbol: 'Pa', nameFa: 'پروتاکتینیم', nameEn: 'Protactinium', formula: 'Pa', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 92, id: 'element_uranium', symbol: 'U', nameFa: 'اورانیوم', nameEn: 'Uranium', formula: 'U', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 93, id: 'element_neptunium', symbol: 'Np', nameFa: 'نپتونیم', nameEn: 'Neptunium', formula: 'Np', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 94, id: 'element_plutonium', symbol: 'Pu', nameFa: 'پلوتونیم', nameEn: 'Plutonium', formula: 'Pu', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 95, id: 'element_americium', symbol: 'Am', nameFa: 'آمریکیم', nameEn: 'Americium', formula: 'Am', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 96, id: 'element_curium', symbol: 'Cm', nameFa: 'کوریوم', nameEn: 'Curium', formula: 'Cm', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 97, id: 'element_berkelium', symbol: 'Bk', nameFa: 'برکلیم', nameEn: 'Berkelium', formula: 'Bk', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 98, id: 'element_californium', symbol: 'Cf', nameFa: 'کالیفرنیم', nameEn: 'Californium', formula: 'Cf', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 99, id: 'element_einsteinium', symbol: 'Es', nameFa: 'اینشتینیم', nameEn: 'Einsteinium', formula: 'Es', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 100, id: 'element_fermium', symbol: 'Fm', nameFa: 'فرمیم', nameEn: 'Fermium', formula: 'Fm', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 101, id: 'element_mendelevium', symbol: 'Md', nameFa: 'مندلیفیم', nameEn: 'Mendelevium', formula: 'Md', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 102, id: 'element_nobelium', symbol: 'No', nameFa: 'نوبلیم', nameEn: 'Nobelium', formula: 'No', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 103, id: 'element_lawrencium', symbol: 'Lr', nameFa: 'لارنسیم', nameEn: 'Lawrencium', formula: 'Lr', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 104, id: 'element_rutherfordium', symbol: 'Rf', nameFa: 'رادرفوردیم', nameEn: 'Rutherfordium', formula: 'Rf', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 105, id: 'element_dubnium', symbol: 'Db', nameFa: 'دوبنیم', nameEn: 'Dubnium', formula: 'Db', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 106, id: 'element_seaborgium', symbol: 'Sg', nameFa: 'سیبورگیم', nameEn: 'Seaborgium', formula: 'Sg', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 107, id: 'element_bohrium', symbol: 'Bh', nameFa: 'بوریم', nameEn: 'Bohrium', formula: 'Bh', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 108, id: 'element_hassium', symbol: 'Hs', nameFa: 'هاسیم', nameEn: 'Hassium', formula: 'Hs', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 109, id: 'element_meitnerium', symbol: 'Mt', nameFa: 'مایتنریم', nameEn: 'Meitnerium', formula: 'Mt', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 110, id: 'element_darmstadtium', symbol: 'Ds', nameFa: 'دارمشتاتیم', nameEn: 'Darmstadtium', formula: 'Ds', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 111, id: 'element_roentgenium', symbol: 'Rg', nameFa: 'رونتگنیم', nameEn: 'Roentgenium', formula: 'Rg', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 112, id: 'element_copernicium', symbol: 'Cn', nameFa: 'کوپرنیکیم', nameEn: 'Copernicium', formula: 'Cn', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 113, id: 'element_nihonium', symbol: 'Nh', nameFa: 'نیهونیوم', nameEn: 'Nihonium', formula: 'Nh', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 114, id: 'element_flerovium', symbol: 'Fl', nameFa: 'فلروویم', nameEn: 'Flerovium', formula: 'Fl', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 115, id: 'element_moscovium', symbol: 'Mc', nameFa: 'مسکوویم', nameEn: 'Moscovium', formula: 'Mc', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 116, id: 'element_livermorium', symbol: 'Lv', nameFa: 'لیورموریم', nameEn: 'Livermorium', formula: 'Lv', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 117, id: 'element_tennessine', symbol: 'Ts', nameFa: 'تنسین', nameEn: 'Tennessine', formula: 'Ts', cas: 'N/A', category: 'radioactive' },
+  { atomicNumber: 118, id: 'element_oganesson', symbol: 'Og', nameFa: 'اوگانسون', nameEn: 'Oganesson', formula: 'Og', cas: 'N/A', category: 'radioactive' }
+];
+
+const periodicElementSafetyProfiles = {
+  flammable_gas: {
+    wasteGroup: 'گازهای فشرده قابل اشتعال عنصری',
+    containerColor: 'red',
+    hazards: [
+      { icon: 'warning', label: 'گاز بسیار قابل اشتعال؛ از منابع اشتعال، جرقه و حرارت دور نگه داشته شود' },
+      { icon: 'warning', label: 'گاز فشرده؛ کپسول باید از گرما و ضربه محافظت شود' }
+    ],
+    incompatible: ['اکسیژن و اکسیدکننده‌های قوی', 'منابع جرقه و حرارت'],
+    exposure: 'نشت گاز و تماس آن با منبع اشتعال یا استنشاق در غلظت بالا.',
+    firstAid: { skin: 'در صورت سوختگی، محل را با آب خنک کنید و به پزشک مراجعه کنید.', eyes: 'چشم‌ها را با آب فراوان بشویید و به پزشک مراجعه کنید.', inhalation: 'فرد را به هوای آزاد منتقل کنید و با فوریت‌های پزشکی تماس بگیرید.' },
+    spillAction: 'منابع اشتعال را حذف کنید، محل را تخلیه و تهویه کنید و برای مهار نشت گاز بدون تجهیزات تخصصی وارد محل نشوید.'
+  },
+  noble_gas: {
+    wasteGroup: 'گازهای فشرده خنثی عنصری',
+    containerColor: 'blue',
+    hazards: [
+      { icon: 'warning', label: 'گاز فشرده؛ گرم شدن کپسول می‌تواند باعث ترکیدن آن شود' },
+      { icon: 'warning', label: 'در فضای بسته با جابه‌جایی اکسیژن خطر خفگی ایجاد می‌کند' }
+    ],
+    incompatible: ['منابع حرارت و فشار بالا', 'فضاهای بسته بدون تهویه'],
+    exposure: 'نشت گاز در فضای بسته و کاهش غلظت اکسیژن هوا.',
+    firstAid: { skin: 'اقدام ویژه‌ای لازم نیست؛ در صورت آسیب ناشی از گاز سرد به پزشک مراجعه کنید.', eyes: 'در صورت تماس با گاز سرد، چشم‌ها را با آب ولرم بشویید و به پزشک مراجعه کنید.', inhalation: 'فرد را به هوای آزاد منتقل کنید. اگر تنفس دشوار است، فوراً با اورژانس تماس بگیرید.' },
+    spillAction: 'محل را تخلیه و تهویه کنید. تا بازگشت سطح اکسیژن به وضعیت ایمن وارد فضای بسته نشوید.'
+  },
+  inert_gas: {
+    wasteGroup: 'گازهای فشرده خنثی عنصری',
+    containerColor: 'blue',
+    hazards: [
+      { icon: 'warning', label: 'در غلظت بالا با جابه‌جایی اکسیژن خطر خفگی ایجاد می‌کند' },
+      { icon: 'warning', label: 'گاز فشرده؛ کپسول باید از گرما و ضربه دور نگه داشته شود' }
+    ],
+    incompatible: ['منابع حرارت و فشار بالا', 'فضاهای بسته بدون تهویه'],
+    exposure: 'نشت گاز در فضای بسته و کاهش غلظت اکسیژن هوا.',
+    firstAid: { skin: 'اقدام ویژه‌ای لازم نیست؛ در صورت آسیب ناشی از گاز سرد به پزشک مراجعه کنید.', eyes: 'در صورت تماس با گاز سرد، چشم‌ها را با آب ولرم بشویید و به پزشک مراجعه کنید.', inhalation: 'فرد را به هوای آزاد منتقل کنید. اگر تنفس قطع شده است، فقط فرد آموزش‌دیده احیا را آغاز کند و با اورژانس تماس بگیرد.' },
+    spillAction: 'محل را تخلیه و تهویه کنید. تا بازگشت سطح اکسیژن به وضعیت ایمن وارد فضای بسته نشوید.'
+  },
+  oxidizer: {
+    wasteGroup: 'مواد خام عنصری اکسیدکننده',
+    containerColor: 'yellow',
+    hazards: [
+      { icon: 'warning', label: 'اکسیدکننده؛ شدت آتش‌سوزی مواد قابل اشتعال را افزایش می‌دهد' },
+      { icon: 'warning', label: 'با مواد آلی، سوختنی و کاهنده‌ها می‌تواند واکنش شدید بدهد' }
+    ],
+    incompatible: ['مواد آلی و حلال‌های قابل اشتعال', 'عوامل احیاکننده', 'روغن و گریس'],
+    exposure: 'تماس پوستی و چشمی، استنشاق بخار یا ذرات و تماس با مواد قابل اشتعال.',
+    firstAid: { skin: 'لباس آلوده را خارج کرده و پوست را با آب فراوان بشویید.', eyes: 'چشم‌ها را حداقل ۱۵ دقیقه با آب جاری بشویید و به پزشک مراجعه کنید.', inhalation: 'فرد را به هوای آزاد منتقل کنید و در صورت تداوم علائم با پزشک تماس بگیرید.' },
+    spillAction: 'منابع اشتعال و مواد آلی را دور کنید، از ایجاد گرد و غبار جلوگیری نمایید و جمع‌آوری را به فرد آموزش‌دیده بسپارید.'
+  },
+  reactive_metal: {
+    wasteGroup: 'مواد خام عنصری فلزی واکنش‌پذیر',
+    containerColor: 'yellow',
+    hazards: [
+      { icon: 'warning', label: 'فلز یا پودر فلزی؛ واکنش‌پذیری آن به شکل، خلوص و شرایط نگهداری وابسته است' },
+      { icon: 'warning', label: 'براده و گرد فلز ممکن است قابل اشتعال یا محرک دستگاه تنفسی باشد' }
+    ],
+    incompatible: ['اسیدهای قوی', 'اکسیدکننده‌های قوی', 'آب و رطوبت (بسته به عنصر)'],
+    exposure: 'تماس پوستی و چشمی، استنشاق گرد فلز و تماس با مواد ناسازگار.',
+    firstAid: { skin: 'پوست را با آب و صابون بشویید و در صورت سوختگی به پزشک مراجعه کنید.', eyes: 'چشم‌ها را حداقل ۱۵ دقیقه با آب جاری بشویید و به پزشک مراجعه کنید.', inhalation: 'فرد را به هوای تازه منتقل کنید و در صورت تداوم علائم تنفسی به پزشک مراجعه کنید.' },
+    spillAction: 'از ایجاد گرد و غبار و تماس با آب یا اکسیدکننده‌ها جلوگیری کنید؛ ماده را با روش مناسب و توسط فرد آموزش‌دیده جمع‌آوری نمایید.'
+  },
+  transition_metal: {
+    wasteGroup: 'مواد خام عنصری فلزی',
+    containerColor: 'emerald',
+    hazards: [
+      { icon: 'warning', label: 'خطرات عنصر به شکل، اندازه ذرات و حالت اکسایش آن وابسته است' },
+      { icon: 'warning', label: 'گرد و برادهٔ فلز می‌تواند چشم و دستگاه تنفسی را تحریک کند' }
+    ],
+    incompatible: ['اکسیدکننده‌های قوی', 'اسیدهای قوی (بسته به عنصر)', 'حرارت و گرد فلز معلق'],
+    exposure: 'تماس پوستی و چشمی و استنشاق گرد یا بخارات فلزی.',
+    firstAid: { skin: 'پوست را با آب و صابون بشویید.', eyes: 'چشم‌ها را با آب فراوان بشویید و در صورت تداوم تحریک به پزشک مراجعه کنید.', inhalation: 'فرد را به هوای تازه منتقل کنید و در صورت تداوم علائم به پزشک مراجعه کنید.' },
+    spillAction: 'از ایجاد گرد و غبار جلوگیری کنید، ماده را در ظرف برچسب‌دار جمع‌آوری کرده و طبق SDS همان عنصر دفع نمایید.'
+  },
+  toxic_metal: {
+    wasteGroup: 'پسماند عناصر فلزی سمی و فلزات سنگین',
+    containerColor: 'red',
+    hazards: [
+      { icon: 'skull', label: 'ممکن است در اثر بلع، تماس یا استنشاق غبار سمی باشد' },
+      { icon: 'warning', label: 'از انتشار آن در فاضلاب و محیط زیست جلوگیری شود' }
+    ],
+    incompatible: ['اسیدهای قوی', 'اکسیدکننده‌های قوی', 'فاضلاب و مواد غذایی'],
+    exposure: 'بلع، جذب پوستی و استنشاق گرد یا بخارات عنصر.',
+    firstAid: { skin: 'لباس آلوده را خارج کرده و پوست را با آب و صابون فراوان بشویید.', eyes: 'چشم‌ها را حداقل ۱۵ دقیقه با آب جاری بشویید و فوراً به پزشک مراجعه کنید.', inhalation: 'فرد را به هوای آزاد منتقل کنید و با پزشک یا اورژانس تماس بگیرید.' },
+    spillAction: 'از ایجاد گرد و غبار جلوگیری کنید، محل را ایزوله کرده و پسماند را در ظرف فلزات سنگین و طبق SDS دفع نمایید.'
+  },
+  metalloid: {
+    wasteGroup: 'مواد خام عنصری شبه‌فلزی',
+    containerColor: 'amber',
+    hazards: [
+      { icon: 'warning', label: 'گرد یا پودر عنصر ممکن است برای چشم و دستگاه تنفسی محرک باشد' },
+      { icon: 'warning', label: 'خطر واکنش‌پذیری به شکل و ترکیب شیمیایی عنصر وابسته است' }
+    ],
+    incompatible: ['اکسیدکننده‌های قوی', 'اسیدها و بازهای قوی (بسته به عنصر)', 'حرارت زیاد'],
+    exposure: 'استنشاق گرد و غبار و تماس پوستی یا چشمی.',
+    firstAid: { skin: 'پوست را با آب و صابون بشویید.', eyes: 'چشم‌ها را با آب فراوان بشویید و در صورت تداوم تحریک به پزشک مراجعه کنید.', inhalation: 'فرد را به هوای تازه منتقل کنید و در صورت تداوم علائم به پزشک مراجعه کنید.' },
+    spillAction: 'از ایجاد گرد و غبار جلوگیری کرده و ماده را در ظرف برچسب‌دار و دور از مواد ناسازگار جمع‌آوری کنید.'
+  },
+  toxic_metalloid: {
+    wasteGroup: 'پسماند عناصر شبه‌فلزی سمی',
+    containerColor: 'red',
+    hazards: [
+      { icon: 'skull', label: 'ممکن است سمی باشد؛ از بلع، تماس پوستی و استنشاق گرد آن جلوگیری شود' },
+      { icon: 'warning', label: 'برای محیط زیست خطرناک است و نباید وارد فاضلاب شود' }
+    ],
+    incompatible: ['اکسیدکننده‌های قوی', 'اسیدها و بازهای قوی', 'فاضلاب و مواد غذایی'],
+    exposure: 'بلع و استنشاق گرد و غبار یا بخارات ترکیبات عنصر.',
+    firstAid: { skin: 'پوست را با آب و صابون فراوان بشویید.', eyes: 'چشم‌ها را حداقل ۱۵ دقیقه با آب جاری بشویید و به پزشک مراجعه کنید.', inhalation: 'فرد را به هوای آزاد منتقل کنید و فوراً با پزشک تماس بگیرید.' },
+    spillAction: 'محل را ایزوله کنید، از ایجاد غبار جلوگیری کرده و پسماند را در ظرف مواد سمی جمع‌آوری نمایید.'
+  },
+  combustible_nonmetal: {
+    wasteGroup: 'مواد خام عنصری جامد قابل اشتعال',
+    containerColor: 'yellow',
+    hazards: [
+      { icon: 'warning', label: 'جامد یا پودر قابل اشتعال؛ گرد آن می‌تواند خطر حریق ایجاد کند' },
+      { icon: 'warning', label: 'در حضور اکسیدکننده‌ها و حرارت ممکن است واکنش شدید بدهد' }
+    ],
+    incompatible: ['اکسیدکننده‌های قوی', 'اکسیژن در دمای بالا', 'منابع اشتعال'],
+    exposure: 'استنشاق گرد یا بخارات حاصل از سوختن و تماس چشمی.',
+    firstAid: { skin: 'پوست را با آب و صابون بشویید.', eyes: 'چشم‌ها را حداقل ۱۵ دقیقه با آب فراوان بشویید و در صورت تداوم تحریک به پزشک مراجعه کنید.', inhalation: 'فرد را به هوای آزاد منتقل کنید و در صورت تداوم علائم تنفسی به پزشک مراجعه کنید.' },
+    spillAction: 'منابع اشتعال را حذف کنید، از ایجاد گرد و غبار جلوگیری کرده و ماده را در ظرف دربسته و دور از اکسیدکننده‌ها جمع‌آوری کنید.'
+  },
+  toxic_nonmetal: {
+    wasteGroup: 'پسماند عناصر نافلزی سمی',
+    containerColor: 'red',
+    hazards: [
+      { icon: 'warning', label: 'تماس یا استنشاق گرد و بخارات آن می‌تواند سمی یا محرک باشد' },
+      { icon: 'warning', label: 'از تماس با اکسیدکننده‌ها و انتشار در محیط زیست جلوگیری شود' }
+    ],
+    incompatible: ['اکسیدکننده‌های قوی', 'اسیدها و بازهای قوی', 'فاضلاب'],
+    exposure: 'استنشاق گرد و بخارات و تماس پوستی یا چشمی.',
+    firstAid: { skin: 'پوست را با آب و صابون فراوان بشویید.', eyes: 'چشم‌ها را با آب فراوان بشویید و به پزشک مراجعه کنید.', inhalation: 'فرد را به هوای تازه منتقل کنید و با پزشک تماس بگیرید.' },
+    spillAction: 'محل را ایزوله کنید، از ایجاد گرد و غبار جلوگیری کرده و پسماند را طبق SDS عنصر جمع‌آوری کنید.'
+  },
+  radioactive: {
+    wasteGroup: 'مواد پرتوزای عنصری — فقط با مجوز و کنترل حفاظت در برابر پرتو',
+    containerColor: 'red',
+    hazards: [
+      { icon: 'warning', label: 'پرتوزا؛ کار با آن فقط در تأسیسات مجاز و تحت نظر مسئول حفاظت در برابر پرتو' },
+      { icon: 'warning', label: 'خطر آلودگی داخلی و خارجی؛ از تماس و پراکنده‌سازی جلوگیری شود' }
+    ],
+    incompatible: ['دستکاری بدون مجوز و تجهیزات حفاظتی', 'منابع حرارت و آسیب فیزیکی', 'فاضلاب و محیط زیست'],
+    exposure: 'تابش خارجی، بلع، استنشاق یا انتقال آلودگی به پوست و سطوح.',
+    firstAid: { skin: 'تماس را متوقف کنید، محل را نشویید مگر طبق دستور مسئول حفاظت در برابر پرتو و فوراً گزارش دهید.', eyes: 'چشم را طبق دستورالعمل مرکز با آب بشویید و فوراً گزارش دهید.', inhalation: 'منطقه را ترک کنید، از انتشار آلودگی جلوگیری کرده و فوراً با مسئول حفاظت در برابر پرتو و اورژانس تماس بگیرید.' },
+    spillAction: 'محل را تخلیه و ایزوله کنید. به ماده دست نزنید و فقط طبق برنامهٔ پاسخ به رخداد پرتوی و با تیم مجاز اقدام کنید.'
+  },
+  radioactive_gas: {
+    wasteGroup: 'گاز پرتوزای عنصری — فقط در تأسیسات مجاز',
+    containerColor: 'red',
+    hazards: [
+      { icon: 'warning', label: 'گاز پرتوزا؛ خطر تابش و آلودگی داخلی از راه تنفس دارد' },
+      { icon: 'warning', label: 'ورود بدون مجوز و پایش پرتوی ممنوع است' }
+    ],
+    incompatible: ['فضای بسته و بدون پایش', 'دستکاری بدون مجوز', 'فاضلاب و محیط زیست'],
+    exposure: 'استنشاق گاز و تابش در فضای آلوده.',
+    firstAid: { skin: 'از منطقه دور شوید و آلودگی احتمالی را فوراً به مسئول حفاظت در برابر پرتو گزارش دهید.', eyes: 'از تماس بیشتر جلوگیری کرده و طبق دستور تیم ایمنی اقدام کنید.', inhalation: 'فرد را به هوای تازه منتقل کنید، محل را تخلیه کرده و فوراً با مسئول حفاظت در برابر پرتو و اورژانس تماس بگیرید.' },
+    spillAction: 'محل را تخلیه و ایزوله کنید و بدون پایش و تجهیزات تخصصی برای مهار نشت وارد نشوید.'
+  }
+};
+
+const periodicElementMetadata = new Map(periodicElementDefinitions.map(element => [element.id, element]));
+window.chemicalMsdsDb.forEach(chemical => {
+  const metadata = periodicElementMetadata.get(chemical.id);
+  if (metadata) {
+    chemical.atomicNumber = metadata.atomicNumber;
+    chemical.elementCategory = metadata.category;
+  }
+});
+
+const existingChemicalIds = new Set(window.chemicalMsdsDb.map(chemical => chemical.id));
+periodicElementDefinitions
+  .filter(element => !existingChemicalIds.has(element.id))
+  .forEach(element => {
+    const profile = periodicElementSafetyProfiles[element.category] || periodicElementSafetyProfiles.transition_metal;
+    window.chemicalMsdsDb.push({
+      id: element.id,
+      nameFa: element.nameFa,
+      nameEn: `${element.nameEn} (Element)`,
+      formula: element.formula,
+      cas: element.cas,
+      materialType: 'element',
+      atomicNumber: element.atomicNumber,
+      elementCategory: element.category,
+      wasteGroup: profile.wasteGroup,
+      containerColor: profile.containerColor,
+      hazards: profile.hazards.map(hazard => ({ ...hazard })),
+      incompatible: [...profile.incompatible],
+      exposure: profile.exposure,
+      firstAid: { ...profile.firstAid },
+      spillAction: profile.spillAction
+    });
+  });

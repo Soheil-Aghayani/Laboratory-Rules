@@ -1706,7 +1706,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Populate options
     let sortedChems = [];
     try {
-      sortedChems = [...window.chemicalMsdsDb].sort((a, b) => a.nameFa.localeCompare(b.nameFa, 'fa'));
+      const compounds = window.chemicalMsdsDb
+        .filter(chem => chem.materialType !== 'element')
+        .sort((a, b) => a.nameFa.localeCompare(b.nameFa, 'fa'));
+      const elements = window.chemicalMsdsDb
+        .filter(chem => chem.materialType === 'element')
+        .sort((a, b) => (a.atomicNumber || Number.MAX_SAFE_INTEGER) - (b.atomicNumber || Number.MAX_SAFE_INTEGER));
+      sortedChems = [...compounds, ...elements];
     } catch (err) {
       sortedChems = window.chemicalMsdsDb || [];
     }
@@ -1714,7 +1720,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const compoundsGroup = document.createElement('optgroup');
     compoundsGroup.label = 'مواد و ترکیبات شیمیایی';
     const elementsGroup = document.createElement('optgroup');
-    elementsGroup.label = 'مواد خام عنصری';
+    elementsGroup.label = 'عناصر جدول تناوبی (مواد خام عنصری)';
 
     sortedChems.forEach(chem => {
       const option = document.createElement('option');
@@ -1878,26 +1884,24 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // A compatibility check is not a reaction balancer. Only show a product
-    // equation when one specific, non-dangerous reaction is explicitly known.
-    let finalFormula = '';
+    // A compatibility check is not a reaction balancer. Show the selected
+    // formulas in every result, and show products only for an explicit reaction.
+    const selectedFormulaParts = selectedChems.map(c => convertFormulaToLatex(c.formula) || `\\text{${c.nameEn}}`);
+    const selectedFormula = selectedFormulaParts.join(' + ');
+    let finalFormula = selectedFormula;
     let formulaState = 'none';
     let formulaNotice = '';
-    const dangerousConflict = conflicts.some(conflict => conflict.status === 'danger' || conflict.formulaPolicy === 'hide-danger');
     if (conflicts.length === 0) {
-      formulaState = 'no-reaction';
-      formulaNotice = 'واکنش شیمیایی مشخصی بین مواد انتخاب‌شده در پایگاه داده ثبت نشده است؛ بنابراین فرمول خروجی حدس زده نمی‌شود و مواد به‌صورت یک مخلوطِ بدون واکنش نمایش داده نمی‌شوند.';
-    } else if (selectedChems.length === 2 && conflicts.length === 1 && !dangerousConflict && conflicts[0].formulaPolicy === 'show') {
-      const lhsParts = selectedChems.map(c => convertFormulaToLatex(c.formula) || `\\text{${c.nameEn}}`);
-      const lhsFormula = lhsParts.join(' + ');
+      formulaState = 'input-only';
+      formulaNotice = 'واکنش شیمیایی مشخصی بین مواد انتخاب‌شده در پایگاه داده ثبت نشده است؛ بنابراین محصول نهایی حدس زده نمی‌شود.';
+    } else if (selectedChems.length === 2 && conflicts.length === 1 && conflicts[0].formulaPolicy === 'show' && conflicts[0].productsFormula) {
       const arrowSymbol = conflicts[0].arrowCondition ? ` \\xrightarrow{${conflicts[0].arrowCondition}} ` : ' \\rightarrow ';
-      finalFormula = `${lhsFormula}${arrowSymbol}${conflicts[0].productsFormula}`;
+      const reactantsFormula = conflicts[0].reactantsFormula || selectedFormula;
+      finalFormula = `${reactantsFormula}${arrowSymbol}${conflicts[0].productsFormula}`;
       formulaState = 'show';
     } else {
-      formulaState = dangerousConflict ? 'hidden-danger' : 'hidden-uncertain';
-      formulaNotice = dangerousConflict
-        ? 'فرمول محصولات نهایی نمایش داده نمی‌شود، چون این تداخل خطرناک است و محصول به مقدار، غلظت، دما و شرایط انجام واکنش وابسته است. از ترکیب مواد خودداری کنید.'
-        : 'فرمول محصولات نهایی نمایش داده نمی‌شود، چون واکنش دقیق یا شرایط لازم برای تعیین یک معادلهٔ قابل‌اعتماد در پایگاه داده ثبت نشده است.';
+      formulaState = 'input-only';
+      formulaNotice = 'تداخل یا ناسازگاری ثبت شده است، اما برای این ترکیب معادلهٔ دقیق و قابل‌اعتماد در پایگاه داده وجود ندارد؛ فقط فرمول مواد انتخاب‌شده نمایش داده می‌شود و محصول حدس زده نمی‌شود.';
     }
 
     // Compile result details based on worst status and conflicts
@@ -1942,9 +1946,10 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         ids: ['element_sodium', 'water'],
         status: 'danger',
-        formulaPolicy: 'hide-danger',
+        formulaPolicy: 'show',
         title: 'واکنش شدید سدیم با آب (Violent Water Reaction)',
-        productsFormula: '\\text{NaOH} + \\text{H}_2 \\uparrow + \\text{Heat}',
+        reactantsFormula: '2\\text{Na} + 2\\text{H}_2\\text{O}',
+        productsFormula: '2\\text{NaOH} + \\text{H}_2 \\uparrow + \\text{Heat}',
         arrowCondition: '',
         odor: 'گاز بی‌بو و قابل اشتعال',
         toxicity: 'خورنده و بسیار خطرناک',
@@ -1954,9 +1959,10 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         ids: ['element_hydrogen', 'element_oxygen'],
         status: 'danger',
-        formulaPolicy: 'hide-danger',
+        formulaPolicy: 'show',
         title: 'خطر انفجار مخلوط هیدروژن و اکسیژن (Explosion Hazard)',
-        productsFormula: '\\text{H}_2\\text{O} + \\text{Heat}',
+        reactantsFormula: '2\\text{H}_2 + \\text{O}_2',
+        productsFormula: '2\\text{H}_2\\text{O} + \\text{Heat}',
         arrowCondition: '',
         odor: 'بدون بو',
         toxicity: 'خطر اصلی، انفجار و سوختگی است',
@@ -1966,9 +1972,10 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         ids: ['element_hydrogen', 'element_chlorine'],
         status: 'danger',
-        formulaPolicy: 'hide-danger',
+        formulaPolicy: 'show',
         title: 'واکنش خطرناک هیدروژن و کلر (Reactive Gas Mixture)',
-        productsFormula: '\\text{HCl} \\uparrow + \\text{Heat}',
+        reactantsFormula: '\\text{H}_2 + \\text{Cl}_2',
+        productsFormula: '2\\text{HCl} \\uparrow + \\text{Heat}',
         arrowCondition: '',
         odor: 'گاز محرک و خورنده',
         toxicity: 'سمی و خورنده',
@@ -1978,9 +1985,10 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         ids: ['element_sodium', 'element_chlorine'],
         status: 'danger',
-        formulaPolicy: 'hide-danger',
+        formulaPolicy: 'show',
         title: 'واکنش شدید سدیم و کلر (Reactive Element Combination)',
-        productsFormula: '\\text{NaCl} + \\text{Heat}',
+        reactantsFormula: '2\\text{Na} + \\text{Cl}_2',
+        productsFormula: '2\\text{NaCl} + \\text{Heat}',
         arrowCondition: '',
         odor: 'بدون بو',
         toxicity: 'خطر آتش‌سوزی و خورندگی در شرایط واکنش',
@@ -1990,7 +1998,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         ids: ['element_carbon', 'element_oxygen'],
         status: 'danger',
-        formulaPolicy: 'hide-danger',
+        formulaPolicy: 'show',
         title: 'احتراق کربن در اکسیژن (Combustion Hazard)',
         productsFormula: '\\text{CO}_2 + \\text{Heat}',
         arrowCondition: '',
@@ -2002,7 +2010,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         ids: ['element_sulfur', 'element_oxygen'],
         status: 'danger',
-        formulaPolicy: 'hide-danger',
+        formulaPolicy: 'show',
         title: 'احتراق گوگرد در اکسیژن (Toxic Gas Hazard)',
         productsFormula: '\\text{SO}_2 \\uparrow + \\text{Heat}',
         arrowCondition: '',
@@ -2014,14 +2022,15 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         ids: ['element_nitrogen', 'element_hydrogen'],
         status: 'warning',
-        formulaPolicy: 'hide-uncertain',
+        formulaPolicy: 'show',
         title: 'سنتز آمونیاک تحت شرایط ویژه (Controlled Synthesis)',
-        productsFormula: '\\text{NH}_3',
+        reactantsFormula: '\\text{N}_2 + 3\\text{H}_2',
+        productsFormula: '2\\text{NH}_3',
         arrowCondition: '\\text{Pressure / Catalyst / Heat}',
         odor: 'بوی تند و تحریک‌کننده',
         toxicity: 'سمی و محرک تنفسی',
         safety: 'نیازمند فشار، کاتالیزور و کنترل کامل',
-        desc: 'نیتروژن و هیدروژن در شرایط صنعتی ویژه و با فشار، دما و کاتالیزور مناسب وارد واکنش می‌شوند. این فرایند برای اختلاط معمول آزمایشگاهی مناسب نیست و فرمول محصول در این بررسی نمایش داده نمی‌شود.'
+        desc: 'نیتروژن و هیدروژن فقط در شرایط صنعتی ویژه و با فشار، دما و کاتالیزور مناسب وارد واکنش می‌شوند. این فرایند برای اختلاط معمول آزمایشگاهی مناسب نیست؛ معادله فقط برای شناسایی علمی واکنش و همراه با شرایط لازم نمایش داده می‌شود.'
       },
       {
         ids: ['melamine', 'urea'],
@@ -2038,8 +2047,9 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         ids: ['hydrochloric_acid', 'sodium_hydroxide'],
         status: 'warning',
-        formulaPolicy: 'hide-danger',
+        formulaPolicy: 'show',
         title: 'واکنش خنثی‌سازی شدید (Strong Neutralization)',
+        reactantsFormula: '\\text{HCl} + \\text{NaOH}',
         productsFormula: '\\text{NaCl} + \\text{H}_2\\text{O} + \\text{Heat}',
         arrowCondition: '',
         odor: 'بدون بو',
@@ -2050,7 +2060,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         ids: ['nitric_acid', 'ethanol'],
         status: 'danger',
-        formulaPolicy: 'hide-danger',
+        formulaPolicy: 'hide-uncertain',
         title: 'واکنش اکسیداسیون شدید و خطر انفجار (Violent Explosion)',
         productsFormula: '\\text{NO}_x \\uparrow + \\text{Explosion}',
         arrowCondition: '',
@@ -2062,14 +2072,28 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         ids: ['hydrochloric_acid', 'sodium_cyanide'],
         status: 'danger',
-        formulaPolicy: 'hide-danger',
+        formulaPolicy: 'show',
         title: 'تولید گاز مرگبار هیدروژن سیانید (Extremely Lethal Gas)',
+        reactantsFormula: '\\text{HCl} + \\text{NaCN}',
         productsFormula: '\\text{NaCl} + \\text{HCN} \\uparrow',
         arrowCondition: '',
         odor: 'دارای بوی ملایم (بادام تلخ)',
         toxicity: 'مرگبار و کشنده فوری',
         safety: 'فوق‌العاده مرگبار',
         desc: 'مرگبارترین تداخل! اسید کلریدریک در مجاورت سدیم سیانید واکنش داده و گاز هیدروژن سیانید (<span dir="ltr">$\\text{HCN}$</span>) تولید می‌کند که مانع تنفس سلولی شده و در چند ثانیه منجر به مرگ می‌شود.'
+      },
+      {
+        ids: ['sodium_chloride', 'sulfuric_acid'],
+        status: 'danger',
+        formulaPolicy: 'show',
+        title: 'واکنش سدیم‌کلرید با اسید سولفوریک غلیظ (Hydrogen Chloride Release)',
+        reactantsFormula: '\\text{NaCl} + \\text{H}_2\\text{SO}_4',
+        productsFormula: '\\text{NaHSO}_4 + \\text{HCl} \\uparrow',
+        arrowCondition: '\\text{Conc. H}_2\\text{SO}_4',
+        odor: 'بخارات تند و خورندهٔ HCl',
+        toxicity: 'خورنده و آسیب‌رسان به دستگاه تنفسی',
+        safety: 'خطر انتشار گاز اسیدی؛ فقط زیر هود',
+        desc: 'اسید سولفوریک غلیظ می‌تواند با سدیم‌کلرید واکنش دهد و هیدروژن کلرید گازی و سدیم هیدروژن‌سولفات ایجاد کند. این معادله وابسته به غلظت و دماست و هرگز نباید برای اختلاط یا تولید گاز در محیط آزمایشگاه استفاده شود.'
       },
       {
         ids: ['acetic_acid', 'sodium_bicarbonate'],
@@ -2094,6 +2118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         isReaction: true,
         status: reaction.status,
         formulaPolicy: reaction.formulaPolicy || 'hide-uncertain',
+        reactantsFormula: reaction.reactantsFormula,
         title: reaction.title,
         productsFormula: reaction.productsFormula,
         arrowCondition: reaction.arrowCondition,
@@ -2159,6 +2184,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (id === 'element_hydrogen') return 'flammable_gas';
       if (id === 'element_carbon' || id === 'element_sulfur') return 'combustible_element';
       if (id === 'element_nitrogen') return 'inert_gas';
+      if (chem.materialType === 'element') {
+        if (chem.elementCategory === 'oxidizer') return 'oxidizer';
+        if (chem.elementCategory === 'flammable_gas') return 'flammable_gas';
+        if (chem.elementCategory === 'combustible_nonmetal') return 'combustible_element';
+        return 'other';
+      }
 
       // Water-Reactive (highly dangerous)
       if (id === 'sodium_hydride' || id === 'lithium_aluminium_hydride' || id === 'titanium_tetrachloride' || 
@@ -2259,11 +2290,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (catA === 'water_reactive' || catB === 'water_reactive') {
+      const otherChem = catA === 'water_reactive' ? chemB : chemA;
+      const otherCategory = catA === 'water_reactive' ? catB : catA;
+      const canReactWithWaterReactive = otherChem.id === 'water' ||
+        ['acid', 'base', 'water_reactive'].includes(otherCategory);
+
+      // Do not turn every pair containing a reactive element into a made-up
+      // water reaction. The product formula is only known for explicit pairs.
+      if (!canReactWithWaterReactive) {
+        return {
+          isReaction: false,
+          status: 'compatible'
+        };
+      }
+
       const isHydride = idA === 'sodium_hydride' || idB === 'sodium_hydride' || 
                         idA === 'lithium_aluminium_hydride' || idB === 'lithium_aluminium_hydride' || 
                         idA === 'n_butyllithium' || idB === 'n_butyllithium' || 
                         idA === 'sodium_methoxide' || idB === 'sodium_methoxide';
-      const releasedGas = isHydride ? '\\text{H}_2 \\uparrow' : '\\text{HCl} \\uparrow';
+      const releasedGas = isHydride ? '\\text{H}_2 \\uparrow' : (otherChem.id === 'water' ? '\\text{H}_2 \\uparrow' : '\\text{HCl} \\uparrow');
       return {
         isReaction: true,
         status: 'danger',
@@ -2359,15 +2404,15 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Show formulas only for explicit, non-dangerous reactions. Never expose
-    // a guessed LHS/RHS or a dangerous product equation as if it were certain.
+    // Render the selected formulas for every result. A product equation is
+    // rendered only when the reaction table explicitly marks it as known.
     compatFormula.textContent = '';
     compatFormulaNote.textContent = '';
     compatFormulaNote.hidden = true;
     compatFormulaSection.style.display = 'none';
 
-    if (formulaState === 'show' && formula) {
-      compatFormulaLabel.textContent = 'معادلهٔ واکنش ثبت‌شده:';
+    if ((formulaState === 'show' || formulaState === 'input-only') && formula) {
+      compatFormulaLabel.textContent = formulaState === 'show' ? 'معادلهٔ واکنش ثبت‌شده:' : 'فرمول مواد انتخاب‌شده:';
       const renderCompatFormula = () => {
         if (typeof katex === 'undefined') {
           compatFormula.textContent = cleanLatexFormula(formula);
@@ -2387,6 +2432,11 @@ document.addEventListener('DOMContentLoaded', () => {
         compatFormulaSection.style.display = 'block';
       };
       renderCompatFormula();
+
+      if (formulaNotice) {
+        compatFormulaNote.textContent = formulaNotice;
+        compatFormulaNote.hidden = false;
+      }
 
       if (typeof window.ensureKatex === 'function' && typeof katex === 'undefined') {
         window.ensureKatex().then(renderCompatFormula).catch(() => {
