@@ -405,6 +405,13 @@
   color: var(--text-muted);
 }
 
+.autocomplete-icon-svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  display: block;
+}
+
 .autocomplete-item:hover .autocomplete-icon,
 .autocomplete-item.highlighted .autocomplete-icon {
   color: var(--accent-emerald);

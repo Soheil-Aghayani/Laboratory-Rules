@@ -1949,8 +1949,11 @@ footer {
   color: var(--accent-emerald);
 }
 
-.chemical-suggestion-title .header-symbol {
-  animation: none;
+.chemical-suggestion-icon {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  display: block;
 }
 
 .chemical-suggestion-body {
