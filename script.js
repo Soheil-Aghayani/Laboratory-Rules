@@ -1455,6 +1455,116 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- Suggest a missing chemical without interrupting the main lookup flow ---
+  const suggestChemicalBtn = document.getElementById('suggest-chemical-btn');
+  const chemicalSuggestionModal = document.getElementById('chemical-suggestion-modal');
+  const closeChemicalSuggestionBtn = document.getElementById('close-chemical-suggestion');
+  const cancelChemicalSuggestionBtn = document.getElementById('cancel-chemical-suggestion');
+  const chemicalSuggestionForm = document.getElementById('chemical-suggestion-form');
+  const chemicalSuggestionName = document.getElementById('chemical-suggestion-name');
+  const chemicalSuggestionNameEn = document.getElementById('chemical-suggestion-name-en');
+  const chemicalSuggestionFormula = document.getElementById('chemical-suggestion-formula');
+  const chemicalSuggestionCas = document.getElementById('chemical-suggestion-cas');
+  const chemicalSuggestionNotes = document.getElementById('chemical-suggestion-notes');
+  const chemicalSuggestionError = document.getElementById('chemical-suggestion-error');
+  const chemicalSuggestionFeedback = document.getElementById('chemical-suggestion-feedback');
+  const chemicalSuggestionIssueLink = document.getElementById('chemical-suggestion-issue-link');
+
+  if (
+    suggestChemicalBtn &&
+    chemicalSuggestionModal &&
+    chemicalSuggestionForm &&
+    chemicalSuggestionName &&
+    chemicalSuggestionNameEn &&
+    chemicalSuggestionFormula &&
+    chemicalSuggestionCas &&
+    chemicalSuggestionNotes &&
+    chemicalSuggestionError &&
+    chemicalSuggestionFeedback &&
+    chemicalSuggestionIssueLink
+  ) {
+    function resetChemicalSuggestion() {
+      chemicalSuggestionForm.reset();
+      showInlineError(chemicalSuggestionError, '');
+      chemicalSuggestionFeedback.textContent = '';
+      chemicalSuggestionFeedback.hidden = true;
+      chemicalSuggestionIssueLink.hidden = true;
+      chemicalSuggestionIssueLink.removeAttribute('href');
+    }
+
+    function clearPreparedSuggestion() {
+      chemicalSuggestionFeedback.textContent = '';
+      chemicalSuggestionFeedback.hidden = true;
+      chemicalSuggestionIssueLink.hidden = true;
+      chemicalSuggestionIssueLink.removeAttribute('href');
+    }
+
+    suggestChemicalBtn.addEventListener('click', () => {
+      resetChemicalSuggestion();
+      openModal(chemicalSuggestionModal, suggestChemicalBtn, chemicalSuggestionName);
+    });
+
+    if (closeChemicalSuggestionBtn) {
+      closeChemicalSuggestionBtn.addEventListener('click', () => {
+        closeModal(chemicalSuggestionModal);
+      });
+    }
+
+    if (cancelChemicalSuggestionBtn) {
+      cancelChemicalSuggestionBtn.addEventListener('click', () => {
+        closeModal(chemicalSuggestionModal);
+      });
+    }
+
+    chemicalSuggestionModal.addEventListener('click', (event) => {
+      if (event.target === chemicalSuggestionModal) closeModal(chemicalSuggestionModal);
+    });
+
+    chemicalSuggestionForm.addEventListener('input', () => {
+      clearPreparedSuggestion();
+    });
+
+    chemicalSuggestionForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      showInlineError(chemicalSuggestionError, '');
+      clearPreparedSuggestion();
+
+      const nameFa = chemicalSuggestionName.value.trim();
+      const nameEn = chemicalSuggestionNameEn.value.trim();
+      const formula = chemicalSuggestionFormula.value.trim();
+      const cas = chemicalSuggestionCas.value.trim();
+      const notes = chemicalSuggestionNotes.value.trim();
+
+      if (!nameFa) {
+        showInlineError(chemicalSuggestionError, 'لطفاً نام ماده را وارد کنید.');
+        chemicalSuggestionName.focus();
+        return;
+      }
+
+      const issueTitle = `پیشنهاد افزودن ماده: ${nameFa}`;
+      const issueBody = [
+        '## پیشنهاد افزودن ماده',
+        '',
+        `- نام فارسی: ${nameFa}`,
+        `- نام انگلیسی: ${nameEn || 'ثبت نشده'}`,
+        `- فرمول یا شناسه: ${formula || 'ثبت نشده'}`,
+        `- CAS: ${cas || 'ثبت نشده'}`,
+        '',
+        '### کاربرد یا توضیحات تکمیلی',
+        notes || 'ثبت نشده',
+        '',
+        'لطفاً اطلاعات ایمنی و سازگاری این ماده را از منبع معتبر بررسی و سپس دربارهٔ افزودن آن به دیتابیس تصمیم‌گیری کنید.'
+      ].join('\n');
+      const issueUrl = `https://github.com/Soheil-Aghayani/Laboratory-Rules/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}`;
+
+      chemicalSuggestionIssueLink.href = issueUrl;
+      chemicalSuggestionIssueLink.hidden = false;
+      chemicalSuggestionFeedback.textContent = 'پیشنهاد آماده شد. برای ارسال نهایی، لینک GitHub را باز کنید.';
+      chemicalSuggestionFeedback.hidden = false;
+      chemicalSuggestionIssueLink.focus();
+    });
+  }
+
   // Handle first aid tabs switching
   const aidTabs = document.querySelectorAll('.first-aid-tab-btn');
   const aidTabArray = Array.from(aidTabs);

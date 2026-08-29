@@ -9,10 +9,10 @@
   <link rel="icon" type="image/webp" href="Waste%20Lab.webp">
   <link rel="preload" href="asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="asset/material-symbols-outlined-subset.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=3.0">
-  <link rel="preload" href="chatbot/chatbot.css?v=3.0" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="chatbot/chatbot.css?v=3.0"></noscript>
-  <script defer src="script.js?v=3.0"></script>
+  <link rel="stylesheet" href="styles.css?v=3.1">
+  <link rel="preload" href="chatbot/chatbot.css?v=3.1" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="chatbot/chatbot.css?v=3.1"></noscript>
+  <script defer src="script.js?v=3.1"></script>
 </head>
 <body>
 
@@ -176,6 +176,12 @@
             <option value="">-- انتخاب ماده شیمیایی --</option>
             <!-- Populated dynamically via JS -->
           </select>
+        </div>
+        <div class="msds-suggestion-row" aria-label="پیشنهاد ماده جدید">
+          <span>ماده‌ای در فهرست نیست؟</span>
+          <button type="button" id="suggest-chemical-btn" class="text-action-button" aria-haspopup="dialog" aria-controls="chemical-suggestion-modal">
+            پیشنهاد افزودن ماده
+          </button>
         </div>
 
         <!-- Result Card (Hidden by default) -->
@@ -1290,6 +1296,59 @@
 
   </main>
 
+  <!-- Chemical Suggestion Modal -->
+  <div id="chemical-suggestion-modal" class="emergency-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="chemical-suggestion-title" aria-describedby="chemical-suggestion-help" aria-hidden="true" tabindex="-1">
+    <div class="emergency-modal chemical-suggestion-modal">
+      <div class="emergency-modal-header">
+        <div class="emergency-modal-title chemical-suggestion-title">
+          <span class="material-symbols-outlined header-symbol" aria-hidden="true">playlist_add</span>
+          <h2 id="chemical-suggestion-title">پیشنهاد افزودن ماده به پایگاه داده</h2>
+        </div>
+        <button type="button" id="close-chemical-suggestion" class="close-modal-btn" aria-label="بستن فرم پیشنهاد ماده">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="emergency-modal-body chemical-suggestion-body">
+        <div>
+          <p id="chemical-suggestion-help" class="chemical-suggestion-help">اگر ماده‌ای در فهرست نیست، اطلاعات پایهٔ آن را ارسال کنید. قبل از افزودن، اطلاعات ایمنی از منبع معتبر بررسی می‌شود.</p>
+          <p class="chemical-suggestion-privacy">این فرم فقط یک پیشنهاد می‌سازد و چیزی را خودکار به دیتابیس اضافه نمی‌کند.</p>
+        </div>
+
+        <form id="chemical-suggestion-form" novalidate>
+          <div class="chemical-suggestion-grid">
+            <div class="form-group suggestion-field-full">
+              <label for="chemical-suggestion-name">نام ماده (فارسی) <span aria-hidden="true">*</span></label>
+              <input id="chemical-suggestion-name" name="nameFa" type="text" autocomplete="off" required>
+            </div>
+            <div class="form-group">
+              <label for="chemical-suggestion-name-en">نام انگلیسی</label>
+              <input id="chemical-suggestion-name-en" name="nameEn" type="text" dir="ltr" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <label for="chemical-suggestion-formula">فرمول شیمیایی</label>
+              <input id="chemical-suggestion-formula" name="formula" type="text" dir="ltr" autocomplete="off" placeholder="مثلاً NaCl">
+            </div>
+            <div class="form-group">
+              <label for="chemical-suggestion-cas">شماره CAS (اختیاری)</label>
+              <input id="chemical-suggestion-cas" name="cas" type="text" dir="ltr" inputmode="numeric" autocomplete="off" placeholder="مثلاً 7647-14-5">
+            </div>
+            <div class="form-group suggestion-field-full">
+              <label for="chemical-suggestion-notes">کاربرد یا توضیحات تکمیلی</label>
+              <textarea id="chemical-suggestion-notes" name="notes" rows="4" placeholder="اگر منبع یا نکته‌ای دربارهٔ این ماده دارید، اینجا بنویسید."></textarea>
+            </div>
+          </div>
+          <p id="chemical-suggestion-error" class="form-error" role="alert" hidden></p>
+          <p id="chemical-suggestion-feedback" class="chemical-suggestion-feedback" role="status" hidden></p>
+          <div class="chemical-suggestion-actions">
+            <button type="submit" class="btn-primary">آماده‌سازی پیشنهاد</button>
+            <button type="button" id="cancel-chemical-suggestion" class="chemical-suggestion-cancel">انصراف</button>
+          </div>
+          <a id="chemical-suggestion-issue-link" class="chemical-suggestion-issue-link" href="#" target="_blank" rel="noopener noreferrer" hidden>باز کردن فرم ارسال در GitHub</a>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <!-- Floating Emergency Button -->
   <button id="emergency-fab" class="emergency-fab" title="فوریت‌های اضطراری" aria-label="فوریت‌های اضطراری" aria-haspopup="dialog" aria-controls="emergency-modal">
     <svg class="emergency-fab-icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -1531,8 +1590,8 @@
 
       function loadAssistant() {
         scheduleIdle(() => {
-          loadScript('chatbot/msds/msds-db.js?v=3.0')
-            .then(() => loadScript('chatbot/chatbot.js?v=3.0'))
+          loadScript('chatbot/msds/msds-db.js?v=3.1')
+            .then(() => loadScript('chatbot/chatbot.js?v=3.1'))
             .catch((error) => console.error('Assistant failed to load:', error));
         }, { timeout: 4000 });
       }
