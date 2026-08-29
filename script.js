@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Theme Toggle
   const themeBtn = document.getElementById('theme-btn');
-  const currentTheme = localStorage.getItem('theme') || 'dark';
+  const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+  const storedTheme = localStorage.getItem('theme');
+  const currentTheme = storedTheme || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
   document.documentElement.setAttribute('data-theme', currentTheme);
   updateThemeIcon(currentTheme);
 
@@ -17,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     themeBtn.innerHTML = theme === 'dark'
       ? `<span class="material-symbols-outlined">light_mode</span>`
       : `<span class="material-symbols-outlined">dark_mode</span>`;
+    if (themeColorMeta) themeColorMeta.setAttribute('content', theme === 'dark' ? '#0f172a' : '#f8fafc');
   }
 
   // Active Lab Status Widget
@@ -24,15 +27,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusDot = document.getElementById('status-dot');
     const statusText = document.getElementById('status-text');
     const now = new Date();
-    const currentHour = now.getHours();
+    let currentHour = now.getHours();
+    let currentDay = now.getDay();
+    let dayName = new Intl.DateTimeFormat('fa-IR', { weekday: 'long' }).format(now);
+
+    try {
+      const tehranParts = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'Asia/Tehran',
+        weekday: 'short',
+        hour: 'numeric',
+        hourCycle: 'h23'
+      }).formatToParts(now);
+      const weekdayMap = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+      currentHour = Number(tehranParts.find(part => part.type === 'hour').value);
+      currentDay = weekdayMap[tehranParts.find(part => part.type === 'weekday').value];
+      dayName = new Intl.DateTimeFormat('fa-IR', { timeZone: 'Asia/Tehran', weekday: 'long' }).format(now);
+    } catch (error) {
+      // Fall back to the device clock if the browser cannot resolve the timezone.
+    }
+
+    const isWorkday = [0, 1, 2, 3, 6].includes(currentDay); // شنبه تا چهارشنبه
+    const isOpen = isWorkday && currentHour >= 7 && currentHour < 16;
     
-    // Lab hours: 7:00 to 16:00
-    if (currentHour >= 7 && currentHour < 16) {
+    if (isOpen) {
       statusDot.classList.add('active');
-      statusText.textContent = 'آزمایشگاه باز است (ساعت کاری: ۷ الی ۱۶)';
+      statusText.textContent = `آزمایشگاه باز است (${dayName}، ساعت کاری: ۷ تا ۱۶)`;
     } else {
       statusDot.classList.remove('active');
-      statusText.textContent = 'آزمایشگاه در حال حاضر بسته است (ساعت کاری: ۷ الی ۱۶)';
+      statusText.textContent = `آزمایشگاه در حال حاضر بسته است (${dayName}، ساعات کاری شنبه تا چهارشنبه، ۷ تا ۱۶)`;
     }
   }
   updateLabStatus();
@@ -44,26 +66,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function switchTab(tabId) {
     tabBtns.forEach(b => {
-      if (b.getAttribute('data-tab') === tabId) {
-        b.classList.add('active');
-      } else {
-        b.classList.remove('active');
-      }
+      const isActive = b.getAttribute('data-tab') === tabId;
+      b.classList.toggle('active', isActive);
+      b.setAttribute('aria-selected', String(isActive));
+      b.tabIndex = isActive ? 0 : -1;
     });
     tabContents.forEach(c => {
-      if (c.id === tabId) {
-        c.classList.add('active');
-      } else {
-        c.classList.remove('active');
-      }
+      const isActive = c.id === tabId;
+      c.classList.toggle('active', isActive);
+      c.hidden = !isActive;
+      c.setAttribute('aria-hidden', String(!isActive));
     });
   }
 
+  const tabBtnArray = Array.from(tabBtns);
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const tabId = btn.getAttribute('data-tab');
       switchTab(tabId);
       if (searchInput) searchInput.dispatchEvent(new Event('input'));
+    });
+
+    btn.addEventListener('keydown', (event) => {
+      const currentIndex = tabBtnArray.indexOf(btn);
+      const isRtl = document.documentElement.dir === 'rtl';
+      const forwardKey = isRtl ? 'ArrowLeft' : 'ArrowRight';
+      const backwardKey = isRtl ? 'ArrowRight' : 'ArrowLeft';
+      let nextIndex = currentIndex;
+
+      if (event.key === forwardKey) nextIndex = (currentIndex + 1) % tabBtnArray.length;
+      if (event.key === backwardKey) nextIndex = (currentIndex - 1 + tabBtnArray.length) % tabBtnArray.length;
+      if (event.key === 'Home') nextIndex = 0;
+      if (event.key === 'End') nextIndex = tabBtnArray.length - 1;
+
+      if (nextIndex !== currentIndex) {
+        event.preventDefault();
+        const nextBtn = tabBtnArray[nextIndex];
+        nextBtn.focus();
+        switchTab(nextBtn.getAttribute('data-tab'));
+        if (searchInput) searchInput.dispatchEvent(new Event('input'));
+      }
     });
   });
 
@@ -73,32 +115,109 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function switchEquipment(eqId) {
     eqBtns.forEach(b => {
-      if (b.getAttribute('data-eq') === eqId) {
-        b.classList.add('active');
-      } else {
-        b.classList.remove('active');
-      }
+      const isActive = b.getAttribute('data-eq') === eqId;
+      b.classList.toggle('active', isActive);
+      b.setAttribute('aria-selected', String(isActive));
+      b.tabIndex = isActive ? 0 : -1;
     });
     eqContents.forEach(c => {
-      if (c.id === eqId) {
-        c.classList.add('active');
-      } else {
-        c.classList.remove('active');
-      }
+      const isActive = c.id === eqId;
+      c.classList.toggle('active', isActive);
+      c.hidden = !isActive;
+      c.setAttribute('aria-hidden', String(!isActive));
     });
   }
 
+  const eqBtnArray = Array.from(eqBtns);
   eqBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const eqId = btn.getAttribute('data-eq');
       switchEquipment(eqId);
       if (searchInput) searchInput.dispatchEvent(new Event('input'));
     });
+
+    btn.addEventListener('keydown', (event) => {
+      const currentIndex = eqBtnArray.indexOf(btn);
+      const isRtl = document.documentElement.dir === 'rtl';
+      const forwardKey = isRtl ? 'ArrowLeft' : 'ArrowRight';
+      const backwardKey = isRtl ? 'ArrowRight' : 'ArrowLeft';
+      let nextIndex = currentIndex;
+
+      if (event.key === forwardKey) nextIndex = (currentIndex + 1) % eqBtnArray.length;
+      if (event.key === backwardKey) nextIndex = (currentIndex - 1 + eqBtnArray.length) % eqBtnArray.length;
+      if (event.key === 'Home') nextIndex = 0;
+      if (event.key === 'End') nextIndex = eqBtnArray.length - 1;
+
+      if (nextIndex !== currentIndex) {
+        event.preventDefault();
+        const nextBtn = eqBtnArray[nextIndex];
+        nextBtn.focus();
+        switchEquipment(nextBtn.getAttribute('data-eq'));
+        if (searchInput) searchInput.dispatchEvent(new Event('input'));
+      }
+    });
   });
 
   // Expose switching functions globally for other modules (like the chatbot)
   window.switchTab = switchTab;
   window.switchEquipment = switchEquipment;
+
+  // Shared modal behavior: Escape-to-close, focus restore, and a small focus trap.
+  let activeModal = null;
+  const modalTriggers = new WeakMap();
+
+  function getFocusableElements(container) {
+    return Array.from(container.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )).filter(element => element.offsetParent !== null);
+  }
+
+  function openModal(modal, trigger, initialFocus) {
+    if (!modal) return;
+    activeModal = modal;
+    modalTriggers.set(modal, trigger);
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    const focusTarget = initialFocus || getFocusableElements(modal)[0] || modal;
+    focusTarget.focus();
+  }
+
+  function closeModal(modal) {
+    if (!modal) return;
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    if (activeModal === modal) activeModal = null;
+    const trigger = modalTriggers.get(modal);
+    if (trigger && typeof trigger.focus === 'function') trigger.focus();
+  }
+
+  document.addEventListener('keydown', (event) => {
+    if (!activeModal) return;
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeModal(activeModal);
+      return;
+    }
+
+    if (event.key !== 'Tab') return;
+    const focusable = getFocusableElements(activeModal);
+    if (!focusable.length) {
+      event.preventDefault();
+      activeModal.focus();
+      return;
+    }
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
 
   // Emergency Modal Controls
   const emergencyFab = document.getElementById('emergency-fab');
@@ -107,16 +226,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (emergencyFab && emergencyModal && closeEmergency) {
     emergencyFab.addEventListener('click', () => {
-      emergencyModal.classList.add('active');
+      openModal(emergencyModal, emergencyFab, closeEmergency);
     });
 
     closeEmergency.addEventListener('click', () => {
-      emergencyModal.classList.remove('active');
+      closeModal(emergencyModal);
     });
 
     emergencyModal.addEventListener('click', (e) => {
       if (e.target === emergencyModal) {
-        emergencyModal.classList.remove('active');
+        closeModal(emergencyModal);
       }
     });
   }
@@ -487,13 +606,14 @@ document.addEventListener('DOMContentLoaded', () => {
           const isTabActive = (activeTabId === 'tab-equipment');
           
           const isTypo = (targetMatch.score < 1.0 && targetMatch.matchedName !== query);
-          let msg = isTypo ? `نمایش راهنمای <strong>«${target.displayName}»</strong> (تصحیح شده از «${query}»)` : `نمایش راهنمای <strong>«${target.displayName}»</strong>`;
+          const safeQuery = escapeHTML(query);
+          let msg = isTypo ? `نمایش راهنمای <strong>«${target.displayName}»</strong> (تصحیح شده از «${safeQuery}»)` : `نمایش راهنمای <strong>«${target.displayName}»</strong>`;
           
           let navLink = '';
           if (!isTabActive) {
-            navLink = `<a class="switch-tab-link" data-tab="tab-equipment">ورود به بخش تجهیزات &larr;</a>`;
+            navLink = `<a class="switch-tab-link" role="button" tabindex="0" data-tab="tab-equipment">ورود به بخش تجهیزات &larr;</a>`;
           } else if (!isEqActive) {
-            navLink = `<a class="switch-eq-link" data-eq="${target.id}">ورود به بخش دستگاه &larr;</a>`;
+            navLink = `<a class="switch-eq-link" role="button" tabindex="0" data-eq="${target.id}">ورود به بخش دستگاه &larr;</a>`;
           }
           
           searchStatusBanner.style.display = 'flex';
@@ -509,7 +629,7 @@ document.addEventListener('DOMContentLoaded', () => {
           let msg = `نمایش محتوای بخش <strong>«${target.displayName}»</strong>`;
           let navLink = '';
           if (!isTabActive) {
-            navLink = `<a class="switch-tab-link" data-tab="${target.id}">ورود به این بخش &larr;</a>`;
+            navLink = `<a class="switch-tab-link" role="button" tabindex="0" data-tab="${target.id}">ورود به این بخش &larr;</a>`;
           }
           
           searchStatusBanner.style.display = 'flex';
@@ -531,7 +651,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="material-symbols-outlined" style="color: var(--accent-amber);">info</span>
                 <span>موردی در قوانین عمومی یافت نشد. اما <strong>${toPersianDigits(equipmentCount)} مورد</strong> در بخش راهنمای تجهیزات یافت شد.</span>
               </div>
-              <a class="switch-tab-link" data-tab="tab-equipment">مشاهده نتایج در راهنمای تجهیزات &larr;</a>
+              <a class="switch-tab-link" role="button" tabindex="0" data-tab="tab-equipment">مشاهده نتایج در راهنمای تجهیزات &larr;</a>
             `;
           } else if (generalCount === 0 && equipmentCount === 0) {
             searchStatusBanner.style.display = 'flex';
@@ -563,10 +683,10 @@ document.addEventListener('DOMContentLoaded', () => {
           if (activeEqCount === 0) {
             if (equipmentCount > 0) {
               let suggestions = [];
-              if (centrifugeCount > 0) suggestions.push(`<a class="switch-eq-link" data-eq="eq-centrifuge">سانتریفیوژ (${toPersianDigits(centrifugeCount)})</a>`);
-              if (ovenCount > 0) suggestions.push(`<a class="switch-eq-link" data-eq="eq-oven">فور (${toPersianDigits(ovenCount)})</a>`);
-              if (phmeterCount > 0) suggestions.push(`<a class="switch-eq-link" data-eq="eq-phmeter">pH متر (${toPersianDigits(phmeterCount)})</a>`);
-              if (balanceCount > 0) suggestions.push(`<a class="switch-eq-link" data-eq="eq-balance">ترازو (${toPersianDigits(balanceCount)})</a>`);
+              if (centrifugeCount > 0) suggestions.push(`<a class="switch-eq-link" role="button" tabindex="0" data-eq="eq-centrifuge">سانتریفیوژ (${toPersianDigits(centrifugeCount)})</a>`);
+              if (ovenCount > 0) suggestions.push(`<a class="switch-eq-link" role="button" tabindex="0" data-eq="eq-oven">فور (${toPersianDigits(ovenCount)})</a>`);
+              if (phmeterCount > 0) suggestions.push(`<a class="switch-eq-link" role="button" tabindex="0" data-eq="eq-phmeter">pH متر (${toPersianDigits(phmeterCount)})</a>`);
+              if (balanceCount > 0) suggestions.push(`<a class="switch-eq-link" role="button" tabindex="0" data-eq="eq-balance">ترازو (${toPersianDigits(balanceCount)})</a>`);
               
               searchStatusBanner.style.display = 'flex';
               searchStatusBanner.innerHTML = `
@@ -583,7 +703,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   <span class="material-symbols-outlined" style="color: var(--accent-amber);">info</span>
                   <span>موردی در تجهیزات یافت نشد. اما <strong>${toPersianDigits(generalCount)} مورد</strong> در قوانین عمومی یافت شد.</span>
                 </div>
-                <a class="switch-tab-link" data-tab="tab-general">مشاهده نتایج در قوانین عمومی &larr;</a>
+                <a class="switch-tab-link" role="button" tabindex="0" data-tab="tab-general">مشاهده نتایج در قوانین عمومی &larr;</a>
               `;
             } else {
               searchStatusBanner.style.display = 'flex';
@@ -627,10 +747,30 @@ document.addEventListener('DOMContentLoaded', () => {
         searchInput.dispatchEvent(new Event('input'));
       }
     });
+
+    searchStatusBanner.addEventListener('keydown', (e) => {
+      const actionLink = e.target.closest('.switch-tab-link, .switch-eq-link');
+      if (actionLink && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault();
+        actionLink.click();
+      }
+    });
   }
 
   function escapeRegExp(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function escapeHTML(value) {
+    const wrapper = document.createElement('div');
+    wrapper.textContent = String(value);
+    return wrapper.innerHTML;
+  }
+
+  function showInlineError(element, message) {
+    if (!element) return;
+    element.textContent = message || '';
+    element.hidden = !message;
   }
 
   function highlightHTML(html, query) {
@@ -646,14 +786,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const inputRpm = document.getElementById('calc-rpm');
   const inputRcf = document.getElementById('calc-rcf');
   const calcResult = document.getElementById('calc-result');
+  const calcError = document.getElementById('calc-error');
 
   calcBtn.addEventListener('click', () => {
     const radius = parseFloat(inputRadius.value);
     const rpm = parseFloat(inputRpm.value);
     const rcf = parseFloat(inputRcf.value);
+    showInlineError(calcError, '');
+    calcResult.hidden = true;
 
     if (isNaN(radius) || radius <= 0) {
-      alert('لطفاً شعاع روتور معتبری (بزرگتر از صفر میلی‌متر) وارد نمایید.');
+      showInlineError(calcError, 'لطفاً شعاع روتور معتبری بزرگ‌تر از صفر میلی‌متر وارد نمایید.');
       return;
     }
 
@@ -662,6 +805,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // RCF = 1.12 * Radius * (RPM/1000)^2
       const calculatedRcf = 1.12 * radius * Math.pow(rpm / 1000, 2);
       calcResult.style.display = 'block';
+      calcResult.hidden = false;
       calcResult.innerHTML = `نیروی گریز از مرکز نسبی محاسبه‌شده: <span>${Math.round(calculatedRcf)} x g</span>`;
       inputRcf.value = Math.round(calculatedRcf);
     } else if (!isNaN(rcf) && rcf > 0) {
@@ -669,10 +813,11 @@ document.addEventListener('DOMContentLoaded', () => {
       // RPM = 1000 * sqrt(RCF / (1.12 * Radius))
       const calculatedRpm = 1000 * Math.sqrt(rcf / (1.12 * radius));
       calcResult.style.display = 'block';
+      calcResult.hidden = false;
       calcResult.innerHTML = `سرعت دورانی محاسبه‌شده: <span>${Math.round(calculatedRpm)} RPM</span>`;
       inputRpm.value = Math.round(calculatedRpm);
     } else {
-      alert('لطفاً حداقل یکی از مقادیر دور (RPM) یا نیروی گریز از مرکز (RCF) را وارد کنید.');
+      showInlineError(calcError, 'لطفاً حداقل یکی از مقادیر دور (RPM) یا نیروی گریز از مرکز (RCF) را وارد کنید.');
     }
   });
 
@@ -817,7 +962,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Interactive badges in the tables to link to respective select dropdowns
   const errorBadges = document.querySelectorAll('.error-code-badge');
   errorBadges.forEach(badge => {
-    badge.addEventListener('click', () => {
+    badge.setAttribute('role', 'button');
+    badge.setAttribute('tabindex', '0');
+    badge.setAttribute('aria-label', `نمایش راهنمای خطای ${badge.textContent.trim()}`);
+
+    function openErrorDetails() {
       const code = badge.getAttribute('data-code');
       
       if (code === 'Err.Cal' || code === 'Err.Temp' || code === 'no.Stb' || code === 'OR/UR') {
@@ -839,6 +988,17 @@ document.addEventListener('DOMContentLoaded', () => {
           errorSelect.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       }
+    }
+
+    badge.addEventListener('click', () => {
+      openErrorDetails();
+    });
+
+    badge.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openErrorDetails();
+      }
     });
   });
 
@@ -850,10 +1010,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const progressFill = document.getElementById('progress-fill');
   
   // Declaration checklists toggle
+  function toggleDeclaration(item) {
+    const isChecked = item.classList.toggle('checked');
+    item.setAttribute('aria-checked', String(isChecked));
+    checkQuizPreconditions();
+  }
+
   declarations.forEach(item => {
     item.addEventListener('click', () => {
-      item.classList.toggle('checked');
-      checkQuizPreconditions();
+      toggleDeclaration(item);
+    });
+
+    item.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggleDeclaration(item);
+      }
     });
   });
 
@@ -919,8 +1091,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const studentFormSection = document.getElementById('student-form-section');
   const submitFormBtn = document.getElementById('submit-form-btn');
   const certificateBox = document.getElementById('certificate-box');
+  const quizError = document.getElementById('quiz-error');
+  const studentFormError = document.getElementById('student-form-error');
 
   startQuizBtn.addEventListener('click', () => {
+    showInlineError(quizError, '');
     declarationsContainer.style.display = 'none';
     quizSection.classList.add('active');
     loadQuestion(0);
@@ -928,28 +1103,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function loadQuestion(index) {
     const qData = quizQuestions[index];
-    progressFill.style.width = `${((index) / quizQuestions.length) * 100}%`;
+    const progressValue = Math.round((index / quizQuestions.length) * 100);
+    progressFill.style.width = `${progressValue}%`;
+    progressFill.parentElement.setAttribute('aria-valuenow', String(progressValue));
     
     let optionsHtml = '';
     qData.options.forEach((opt, oIdx) => {
-      optionsHtml += `<div class="option-item" data-idx="${oIdx}">${opt}</div>`;
+      optionsHtml += `<div class="option-item" role="radio" aria-checked="false" tabindex="0" data-idx="${oIdx}">${opt}</div>`;
     });
 
     questionContainer.innerHTML = `
       <div class="question-card">
-        <div class="question-title">${qData.question}</div>
-        <div class="option-list">${optionsHtml}</div>
+        <div class="question-title" id="quiz-question-title">${qData.question}</div>
+        <div class="option-list" role="radiogroup" aria-labelledby="quiz-question-title">${optionsHtml}</div>
       </div>
     `;
 
     // Handle Option Selection
     const options = questionContainer.querySelectorAll('.option-item');
-    options.forEach(opt => {
+    function selectOption(option) {
+      options.forEach(otherOption => {
+        otherOption.classList.remove('selected');
+        otherOption.setAttribute('aria-checked', 'false');
+      });
+      option.classList.add('selected');
+      option.setAttribute('aria-checked', 'true');
+      nextQuizBtn.removeAttribute('disabled');
+      nextQuizBtn.style.opacity = '1';
+      showInlineError(quizError, '');
+    }
+
+    options.forEach((opt, optionIndex) => {
       opt.addEventListener('click', () => {
-        options.forEach(o => o.classList.remove('selected'));
-        opt.classList.add('selected');
-        nextQuizBtn.removeAttribute('disabled');
-        nextQuizBtn.style.opacity = '1';
+        selectOption(opt);
+      });
+
+      opt.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          selectOption(opt);
+          return;
+        }
+
+        let nextIndex = optionIndex;
+        if (event.key === 'ArrowDown' || event.key === 'ArrowRight') nextIndex = (optionIndex + 1) % options.length;
+        if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') nextIndex = (optionIndex - 1 + options.length) % options.length;
+        if (event.key === 'Home') nextIndex = 0;
+        if (event.key === 'End') nextIndex = options.length - 1;
+
+        if (nextIndex !== optionIndex) {
+          event.preventDefault();
+          options[nextIndex].focus();
+          selectOption(options[nextIndex]);
+        }
       });
     });
 
@@ -972,15 +1178,19 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       // Quiz Finished, check score
       progressFill.style.width = '100%';
+      progressFill.parentElement.setAttribute('aria-valuenow', '100');
       quizSection.classList.remove('active');
       
       if (score === quizQuestions.length) {
+        showInlineError(quizError, '');
         studentFormSection.classList.add('active');
       } else {
         // Failed, restart quiz
-        alert(`شما به ${score} سوال از ${quizQuestions.length} پاسخ صحیح دادید. برای قبولی باید به تمامی سوالات پاسخ صحیح دهید. لطفاً دوباره تلاش کنید.`);
+        showInlineError(quizError, `شما به ${score} سوال از ${quizQuestions.length} پاسخ صحیح دادید. برای قبولی باید به تمامی سوالات پاسخ صحیح دهید. لطفاً دوباره تلاش کنید.`);
         currentQuestionIndex = 0;
         score = 0;
+        progressFill.style.width = '0%';
+        progressFill.parentElement.setAttribute('aria-valuenow', '0');
         declarationsContainer.style.display = 'block';
         quizSection.classList.remove('active');
         checkQuizPreconditions();
@@ -994,13 +1204,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const studentId = document.getElementById('student-id').value.trim();
 
     if (!studentName || !studentId) {
-      alert('لطفاً نام و شماره دانشجویی خود را به صورت کامل وارد کنید.');
+      showInlineError(studentFormError, 'لطفاً نام و شماره دانشجویی خود را به صورت کامل وارد کنید.');
       return;
     }
+
+    showInlineError(studentFormError, '');
 
     // Generate random verification code
     const randomCode = 'WLAB-' + Math.floor(100000 + Math.random() * 900000);
     const currentDate = new Date().toLocaleDateString('fa-IR', {
+      timeZone: 'Asia/Tehran',
       year: 'numeric',
       month: 'long',
       day: 'numeric'
@@ -1037,11 +1250,18 @@ document.addEventListener('DOMContentLoaded', () => {
     
     currentQuestionIndex = 0;
     score = 0;
+    progressFill.style.width = '0%';
+    progressFill.parentElement.setAttribute('aria-valuenow', '0');
+    showInlineError(quizError, '');
+    showInlineError(studentFormError, '');
     certificateBox.classList.remove('active');
     declarationsContainer.style.display = 'block';
     
     // Uncheck declarations
-    declarations.forEach(item => item.classList.remove('checked'));
+    declarations.forEach(item => {
+      item.classList.remove('checked');
+      item.setAttribute('aria-checked', 'false');
+    });
     checkQuizPreconditions();
   });
 
@@ -1175,24 +1395,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('msds-spill-action').textContent = chem.spillAction;
 
       // Reset first aid tabs to Skin
-      const aidTabs = document.querySelectorAll('.first-aid-tab-btn');
-      const aidTexts = document.querySelectorAll('.first-aid-text');
-      
-      aidTabs.forEach(tab => {
-        if (tab.getAttribute('data-aid-tab') === 'skin') {
-          tab.classList.add('active');
-        } else {
-          tab.classList.remove('active');
-        }
-      });
-
-      aidTexts.forEach(txt => {
-        if (txt.id === 'first-aid-skin') {
-          txt.classList.add('active');
-        } else {
-          txt.classList.remove('active');
-        }
-      });
+      setFirstAidTab('skin');
 
       // Show details card
       msdsDetailsCard.style.display = 'block';
@@ -1201,25 +1404,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Handle first aid tabs switching
   const aidTabs = document.querySelectorAll('.first-aid-tab-btn');
+  const aidTabArray = Array.from(aidTabs);
+
+  function setFirstAidTab(tabName) {
+    aidTabs.forEach(tab => {
+      const isActive = tab.getAttribute('data-aid-tab') === tabName;
+      tab.classList.toggle('active', isActive);
+      tab.setAttribute('aria-selected', String(isActive));
+      tab.tabIndex = isActive ? 0 : -1;
+    });
+
+    const aidTexts = document.querySelectorAll('.first-aid-text');
+    aidTexts.forEach(txt => {
+      const isActive = txt.id === `first-aid-${tabName}`;
+      txt.classList.toggle('active', isActive);
+      txt.hidden = !isActive;
+      txt.setAttribute('aria-hidden', String(!isActive));
+    });
+  }
+
   aidTabs.forEach(btn => {
     btn.addEventListener('click', () => {
       const tabName = btn.getAttribute('data-aid-tab');
-      
-      // Toggle tabs
-      aidTabs.forEach(t => t.classList.remove('active'));
-      btn.classList.add('active');
+      setFirstAidTab(tabName);
+    });
 
-      // Toggle text blocks
-      const aidTexts = document.querySelectorAll('.first-aid-text');
-      aidTexts.forEach(txt => {
-        if (txt.id === `first-aid-${tabName}`) {
-          txt.classList.add('active');
-        } else {
-          txt.classList.remove('active');
-        }
-      });
+    btn.addEventListener('keydown', (event) => {
+      const currentIndex = aidTabArray.indexOf(btn);
+      const isRtl = document.documentElement.dir === 'rtl';
+      const forwardKey = isRtl ? 'ArrowLeft' : 'ArrowRight';
+      const backwardKey = isRtl ? 'ArrowRight' : 'ArrowLeft';
+      let nextIndex = currentIndex;
+
+      if (event.key === forwardKey) nextIndex = (currentIndex + 1) % aidTabArray.length;
+      if (event.key === backwardKey) nextIndex = (currentIndex - 1 + aidTabArray.length) % aidTabArray.length;
+      if (event.key === 'Home') nextIndex = 0;
+      if (event.key === 'End') nextIndex = aidTabArray.length - 1;
+
+      if (nextIndex !== currentIndex) {
+        event.preventDefault();
+        const nextBtn = aidTabArray[nextIndex];
+        nextBtn.focus();
+        setFirstAidTab(nextBtn.getAttribute('data-aid-tab'));
+      }
     });
   });
+
+  setFirstAidTab('skin');
 
   // --- Chemical Compatibility Checker ---
   const compatResultBox = document.getElementById('compat-result-box');
@@ -1229,6 +1460,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const compatDesc = document.getElementById('compat-desc');
   const compatTags = document.getElementById('compat-tags');
   const compatFormulaSection = document.getElementById('compat-formula-section');
+  const compatFormulaLabel = document.getElementById('compat-formula-label');
+  const compatFormulaNote = document.getElementById('compat-formula-note');
   const compatFormula = document.getElementById('compat-formula');
 
   function addChemicalRow(selectedId = '') {
@@ -1246,6 +1479,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const select = document.createElement('select');
     select.className = 'error-lookup-select compat-chemical-select';
     select.style.flex = '1';
+    select.setAttribute('aria-label', `ماده شیمیایی شماره ${container.children.length + 1}`);
     
     // Default/placeholder option
     const placeholder = document.createElement('option');
@@ -1261,6 +1495,11 @@ document.addEventListener('DOMContentLoaded', () => {
       sortedChems = window.chemicalMsdsDb || [];
     }
 
+    const compoundsGroup = document.createElement('optgroup');
+    compoundsGroup.label = 'مواد و ترکیبات شیمیایی';
+    const elementsGroup = document.createElement('optgroup');
+    elementsGroup.label = 'مواد خام عنصری';
+
     sortedChems.forEach(chem => {
       const option = document.createElement('option');
       option.value = chem.id;
@@ -1268,11 +1507,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (chem.id === selectedId) {
         option.selected = true;
       }
-      select.appendChild(option);
+      (chem.materialType === 'element' ? elementsGroup : compoundsGroup).appendChild(option);
     });
+
+    if (compoundsGroup.children.length) select.appendChild(compoundsGroup);
+    if (elementsGroup.children.length) select.appendChild(elementsGroup);
 
     // Create remove button
     const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
     removeBtn.className = 'btn-remove-chemical';
     removeBtn.style.background = 'transparent';
     removeBtn.style.border = 'none';
@@ -1284,6 +1527,7 @@ document.addEventListener('DOMContentLoaded', () => {
     removeBtn.style.borderRadius = '6px';
     removeBtn.style.transition = 'background 0.2s';
     removeBtn.title = 'حذف این ماده';
+    removeBtn.setAttribute('aria-label', 'حذف این ماده شیمیایی');
     removeBtn.innerHTML = '<span class="material-symbols-outlined" style="font-size: 20px;">delete</span>';
 
     // Hover effect for remove button
@@ -1390,7 +1634,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let combinedOdor = '';
     let combinedToxicity = '';
     let combinedSafety = '';
-    let arrowCondition = '';
 
     for (let i = 0; i < selectedChems.length; i++) {
       for (let j = i + 1; j < selectedChems.length; j++) {
@@ -1409,64 +1652,27 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Build formula LHS & RHS
-    const lhsParts = selectedChems.map(c => convertFormulaToLatex(c.formula) || `\\text{${c.nameEn}}`);
-    const lhsFormula = lhsParts.join(' + ');
-
-    let rhsFormula = '';
+    // A compatibility check is not a reaction balancer. Only show a product
+    // equation when one specific, non-dangerous reaction is explicitly known.
+    let finalFormula = '';
+    let formulaState = 'none';
+    let formulaNotice = '';
+    const dangerousConflict = conflicts.some(conflict => conflict.status === 'danger' || conflict.formulaPolicy === 'hide-danger');
     if (conflicts.length === 0) {
-      // Safe coexistence: RHS is identical to LHS
-      const rhsParts = selectedChems.map(c => convertFormulaToLatex(c.formula) || `\\text{${c.nameEn}}`);
-      rhsFormula = rhsParts.join(' + ') + ' \\quad \\text{(Safe Coexistence)}';
+      formulaState = 'no-reaction';
+      formulaNotice = 'واکنش شیمیایی مشخصی بین مواد انتخاب‌شده در پایگاه داده ثبت نشده است؛ بنابراین فرمول خروجی حدس زده نمی‌شود و مواد به‌صورت یک مخلوطِ بدون واکنش نمایش داده نمی‌شوند.';
+    } else if (selectedChems.length === 2 && conflicts.length === 1 && !dangerousConflict && conflicts[0].formulaPolicy === 'show') {
+      const lhsParts = selectedChems.map(c => convertFormulaToLatex(c.formula) || `\\text{${c.nameEn}}`);
+      const lhsFormula = lhsParts.join(' + ');
+      const arrowSymbol = conflicts[0].arrowCondition ? ` \\xrightarrow{${conflicts[0].arrowCondition}} ` : ' \\rightarrow ';
+      finalFormula = `${lhsFormula}${arrowSymbol}${conflicts[0].productsFormula}`;
+      formulaState = 'show';
     } else {
-      // Reacting: perform group merging
-      let groups = selectedChems.map((chem, idx) => ({
-        indices: [idx],
-        formula: convertFormulaToLatex(chem.formula) || `\\text{${chem.nameEn}}`,
-        reacted: false
-      }));
-
-      let changed = true;
-      while (changed) {
-        changed = false;
-        for (let i = 0; i < groups.length; i++) {
-          for (let j = i + 1; j < groups.length; j++) {
-            let reactionFound = null;
-            for (let idxA of groups[i].indices) {
-              for (let idxB of groups[j].indices) {
-                const res = evaluatePairCompatibility(selectedChems[idxA], selectedChems[idxB]);
-                if (res.isReaction) {
-                  reactionFound = res;
-                  break;
-                }
-              }
-              if (reactionFound) break;
-            }
-
-            if (reactionFound) {
-              const mergedIndices = [...groups[i].indices, ...groups[j].indices];
-              const productFormula = reactionFound.productsFormula;
-              if (reactionFound.arrowCondition) {
-                arrowCondition = reactionFound.arrowCondition;
-              }
-              groups[i] = {
-                indices: mergedIndices,
-                formula: productFormula,
-                reacted: true
-              };
-              groups.splice(j, 1);
-              changed = true;
-              break;
-            }
-          }
-          if (changed) break;
-        }
-      }
-      rhsFormula = groups.map(g => g.formula).join(' + ');
+      formulaState = dangerousConflict ? 'hidden-danger' : 'hidden-uncertain';
+      formulaNotice = dangerousConflict
+        ? 'فرمول محصولات نهایی نمایش داده نمی‌شود، چون این تداخل خطرناک است و محصول به مقدار، غلظت، دما و شرایط انجام واکنش وابسته است. از ترکیب مواد خودداری کنید.'
+        : 'فرمول محصولات نهایی نمایش داده نمی‌شود، چون واکنش دقیق یا شرایط لازم برای تعیین یک معادلهٔ قابل‌اعتماد در پایگاه داده ثبت نشده است.';
     }
-
-    const arrowSymbol = arrowCondition ? ` \\xrightarrow{${arrowCondition}} ` : ' \\rightarrow ';
-    const finalFormula = `${lhsFormula}${arrowSymbol}${rhsFormula}`;
 
     // Compile result details based on worst status and conflicts
     let finalTitle = '';
@@ -1476,11 +1682,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let finalSafety = '';
 
     if (worstStatus === 'compatible') {
-      finalTitle = 'بدون تداخل مستقیم (Compatible for Storage)';
-      finalDesc = `تداخل مستقیم یا واکنش شدیدی بین مواد انتخاب‌شده ثبت نشده است. با این حال، جهت دفع پسماند آن‌ها حتماً اصول تفکیک را رعایت کرده و اسیدها را در گالن‌های اسیدی و حلال‌های آلی را بر اساس هالوژن‌دار بودن در گالن مخصوص (قرمز یا زرد) تخلیه نمایید.`;
+      finalTitle = 'بدون واکنش ثبت‌شده (No Known Reaction)';
+      finalDesc = `تداخل مستقیم یا واکنش شدیدی بین مواد انتخاب‌شده در داده‌های موجود ثبت نشده است. این نتیجه به معنی مجوز اختلاط یا بی‌خطر بودن همهٔ شرایط نیست. برای دفع پسماند، اصول تفکیک را رعایت کرده و اسیدها و حلال‌های آلی را در ظروف گروه‌بندی‌شده نگهداری کنید.`;
       finalOdor = 'بدون بوی خاص';
-      finalToxicity = 'غیرسمی در اثر اختلاط';
-      finalSafety = 'ایمن';
+      finalToxicity = 'سمیت اختلاط ارزیابی نشده';
+      finalSafety = 'اختلاط تأیید نشده';
     } else {
       // Collect safety tags and format descriptions
       if (conflicts.length === 1) {
@@ -1498,7 +1704,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Call showCompatResult to display everything beautifully
-    showCompatResult(worstStatus, finalTitle, finalDesc, finalFormula, finalOdor, finalToxicity, finalSafety);
+    showCompatResult(worstStatus, finalTitle, finalDesc, finalFormula, finalOdor, finalToxicity, finalSafety, formulaState, formulaNotice);
   }
 
   function evaluatePairCompatibility(chemA, chemB) {
@@ -1508,8 +1714,93 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Check for known chemical reactions / synthesis pathways
     const knownReactions = [
       {
+        ids: ['element_sodium', 'water'],
+        status: 'danger',
+        formulaPolicy: 'hide-danger',
+        title: 'واکنش شدید سدیم با آب (Violent Water Reaction)',
+        productsFormula: '\\text{NaOH} + \\text{H}_2 \\uparrow + \\text{Heat}',
+        arrowCondition: '',
+        odor: 'گاز بی‌بو و قابل اشتعال',
+        toxicity: 'خورنده و بسیار خطرناک',
+        safety: 'خطر آتش‌سوزی و انفجار',
+        desc: 'سدیم فلزی در تماس با آب به‌سرعت واکنش می‌دهد و گرما، محلول خورنده و گاز هیدروژن ایجاد می‌کند. هرگز این مواد را ترکیب نکنید و برای مهار نشت سدیم از آب استفاده نکنید.'
+      },
+      {
+        ids: ['element_hydrogen', 'element_oxygen'],
+        status: 'danger',
+        formulaPolicy: 'hide-danger',
+        title: 'خطر انفجار مخلوط هیدروژن و اکسیژن (Explosion Hazard)',
+        productsFormula: '\\text{H}_2\\text{O} + \\text{Heat}',
+        arrowCondition: '',
+        odor: 'بدون بو',
+        toxicity: 'خطر اصلی، انفجار و سوختگی است',
+        safety: 'فوق‌العاده خطرناک',
+        desc: 'هیدروژن و اکسیژن می‌توانند با جرقه یا گرما به‌صورت انفجاری واکنش دهند. از نزدیک کردن کپسول‌ها، مخلوط کردن گازها یا ایجاد هر منبع اشتعال خودداری کنید.'
+      },
+      {
+        ids: ['element_hydrogen', 'element_chlorine'],
+        status: 'danger',
+        formulaPolicy: 'hide-danger',
+        title: 'واکنش خطرناک هیدروژن و کلر (Reactive Gas Mixture)',
+        productsFormula: '\\text{HCl} \\uparrow + \\text{Heat}',
+        arrowCondition: '',
+        odor: 'گاز محرک و خورنده',
+        toxicity: 'سمی و خورنده',
+        safety: 'خطر انفجار و تولید گاز خورنده',
+        desc: 'هیدروژن و کلر در برابر نور یا جرقه می‌توانند واکنش زنجیره‌ای شدید ایجاد کنند. این گازها را هرگز در یک ظرف یا مسیر مشترک ترکیب نکنید.'
+      },
+      {
+        ids: ['element_sodium', 'element_chlorine'],
+        status: 'danger',
+        formulaPolicy: 'hide-danger',
+        title: 'واکنش شدید سدیم و کلر (Reactive Element Combination)',
+        productsFormula: '\\text{NaCl} + \\text{Heat}',
+        arrowCondition: '',
+        odor: 'بدون بو',
+        toxicity: 'خطر آتش‌سوزی و خورندگی در شرایط واکنش',
+        safety: 'واکنش شدید',
+        desc: 'سدیم فلزی و کلر عناصر بسیار واکنش‌پذیری هستند. ترکیب آن‌ها می‌تواند با گرما و خطر آتش‌سوزی همراه شود و فقط در شرایط کنترل‌شدهٔ صنعتی یا آموزشی مجاز است.'
+      },
+      {
+        ids: ['element_carbon', 'element_oxygen'],
+        status: 'danger',
+        formulaPolicy: 'hide-danger',
+        title: 'احتراق کربن در اکسیژن (Combustion Hazard)',
+        productsFormula: '\\text{CO}_2 + \\text{Heat}',
+        arrowCondition: '',
+        odor: 'بدون بو',
+        toxicity: 'خطر خفگی در فضای بسته',
+        safety: 'خطر حریق و گرمای شدید',
+        desc: 'کربن در حضور اکسیژن و منبع اشتعال می‌سوزد و گرمای زیادی آزاد می‌کند. هرگونه آزمایش احتراق باید فقط با مقدار کنترل‌شده و تهویهٔ مناسب انجام شود.'
+      },
+      {
+        ids: ['element_sulfur', 'element_oxygen'],
+        status: 'danger',
+        formulaPolicy: 'hide-danger',
+        title: 'احتراق گوگرد در اکسیژن (Toxic Gas Hazard)',
+        productsFormula: '\\text{SO}_2 \\uparrow + \\text{Heat}',
+        arrowCondition: '',
+        odor: 'گاز تند و تحریک‌کننده',
+        toxicity: 'سمی و آسیب‌رسان به دستگاه تنفسی',
+        safety: 'خطر حریق و تولید گاز سمی',
+        desc: 'گوگرد در حضور اکسیژن می‌سوزد و گازهای تحریک‌کننده تولید می‌کند. از انجام این ترکیب خارج از هود و بدون کنترل منبع احتراق خودداری کنید.'
+      },
+      {
+        ids: ['element_nitrogen', 'element_hydrogen'],
+        status: 'warning',
+        formulaPolicy: 'hide-uncertain',
+        title: 'سنتز آمونیاک تحت شرایط ویژه (Controlled Synthesis)',
+        productsFormula: '\\text{NH}_3',
+        arrowCondition: '\\text{Pressure / Catalyst / Heat}',
+        odor: 'بوی تند و تحریک‌کننده',
+        toxicity: 'سمی و محرک تنفسی',
+        safety: 'نیازمند فشار، کاتالیزور و کنترل کامل',
+        desc: 'نیتروژن و هیدروژن در شرایط صنعتی ویژه و با فشار، دما و کاتالیزور مناسب وارد واکنش می‌شوند. این فرایند برای اختلاط معمول آزمایشگاهی مناسب نیست و فرمول محصول در این بررسی نمایش داده نمی‌شود.'
+      },
+      {
         ids: ['melamine', 'urea'],
         status: 'warning',
+        formulaPolicy: 'hide-uncertain',
         title: 'واکنش پلیمریزاسیون تحت حرارت (Thermal Condensation)',
         productsFormula: '\\text{g-C}_3\\text{N}_4 + \\text{NH}_3 \\uparrow',
         arrowCondition: '\\text{Heat } 550^\\circ\\text{C}',
@@ -1521,6 +1812,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         ids: ['hydrochloric_acid', 'sodium_hydroxide'],
         status: 'warning',
+        formulaPolicy: 'hide-danger',
         title: 'واکنش خنثی‌سازی شدید (Strong Neutralization)',
         productsFormula: '\\text{NaCl} + \\text{H}_2\\text{O} + \\text{Heat}',
         arrowCondition: '',
@@ -1532,6 +1824,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         ids: ['nitric_acid', 'ethanol'],
         status: 'danger',
+        formulaPolicy: 'hide-danger',
         title: 'واکنش اکسیداسیون شدید و خطر انفجار (Violent Explosion)',
         productsFormula: '\\text{NO}_x \\uparrow + \\text{Explosion}',
         arrowCondition: '',
@@ -1543,6 +1836,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         ids: ['hydrochloric_acid', 'sodium_cyanide'],
         status: 'danger',
+        formulaPolicy: 'hide-danger',
         title: 'تولید گاز مرگبار هیدروژن سیانید (Extremely Lethal Gas)',
         productsFormula: '\\text{NaCl} + \\text{HCN} \\uparrow',
         arrowCondition: '',
@@ -1554,6 +1848,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         ids: ['acetic_acid', 'sodium_bicarbonate'],
         status: 'warning',
+        formulaPolicy: 'show',
         title: 'واکنش خنثی‌سازی ملایم (Mild Neutralization & Gas)',
         productsFormula: '\\text{CH}_3\\text{COONa} + \\text{H}_2\\text{O} + \\text{CO}_2 \\uparrow',
         arrowCondition: '',
@@ -1572,6 +1867,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return {
         isReaction: true,
         status: reaction.status,
+        formulaPolicy: reaction.formulaPolicy || 'hide-uncertain',
         title: reaction.title,
         productsFormula: reaction.productsFormula,
         arrowCondition: reaction.arrowCondition,
@@ -1611,6 +1907,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return {
         isReaction: true,
         status: 'danger',
+        formulaPolicy: 'hide-danger',
         title: 'تداخل مستقیم و شدید (Severe Incompatibility)',
         productsFormula: '\\text{Incompatible (Do Not Mix!)}',
         arrowCondition: '',
@@ -1628,6 +1925,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const id = chem.id;
       const formula = (chem.formula || '').toLowerCase();
       const wasteGroup = chem.wasteGroup.toLowerCase();
+
+      // Elemental raw materials use explicit categories so the checker can
+      // reason about common gas, metal, combustion, and water-reactive pairs.
+      if (id === 'element_sodium') return 'water_reactive';
+      if (id === 'element_oxygen' || id === 'element_chlorine') return 'oxidizer';
+      if (id === 'element_hydrogen') return 'flammable_gas';
+      if (id === 'element_carbon' || id === 'element_sulfur') return 'combustible_element';
+      if (id === 'element_nitrogen') return 'inert_gas';
 
       // Water-Reactive (highly dangerous)
       if (id === 'sodium_hydride' || id === 'lithium_aluminium_hydride' || id === 'titanium_tetrachloride' || 
@@ -1712,7 +2017,8 @@ document.addEventListener('DOMContentLoaded', () => {
       };
     }
 
-    if ((catA === 'oxidizer' && catB === 'organic_solvent') || (catB === 'oxidizer' && catA === 'organic_solvent')) {
+    if ((catA === 'oxidizer' && (catB === 'organic_solvent' || catB === 'flammable_gas' || catB === 'combustible_element')) ||
+        (catB === 'oxidizer' && (catA === 'organic_solvent' || catA === 'flammable_gas' || catA === 'combustible_element'))) {
       return {
         isReaction: true,
         status: 'danger',
@@ -1767,7 +2073,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  function showCompatResult(status, title, desc, formula = '', odor = '', toxicity = '', safety = '') {
+  function showCompatResult(status, title, desc, formula = '', odor = '', toxicity = '', safety = '', formulaState = 'none', formulaNotice = '') {
     compatResultBox.className = 'compat-result-box'; // reset
     compatResultBox.classList.add(status);
 
@@ -1777,7 +2083,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set appropriate icon
     if (status === 'compatible') {
       compatStatusIcon.textContent = 'check_circle';
-      compatStatusBadge.textContent = 'سازگار';
+      compatStatusBadge.textContent = 'بدون تداخل ثبت‌شده';
       compatFormulaSection.style.borderLeft = '4px solid var(--accent-emerald)';
       compatFormula.style.color = 'var(--accent-emerald)';
     } else if (status === 'warning') {
@@ -1817,24 +2123,34 @@ document.addEventListener('DOMContentLoaded', () => {
       compatDesc.innerHTML = cleanLatexText(desc);
     }
 
-    // Handle reaction formula display
-    if (formula && typeof katex !== 'undefined') {
-      try {
-        katex.render(formula, compatFormula, {
-          displayMode: true,
-          throwOnError: false
-        });
-        compatFormulaSection.style.display = 'block';
-      } catch (err) {
-        console.error('KaTeX error:', err);
+    // Show formulas only for explicit, non-dangerous reactions. Never expose
+    // a guessed LHS/RHS or a dangerous product equation as if it were certain.
+    compatFormula.textContent = '';
+    compatFormulaNote.textContent = '';
+    compatFormulaNote.hidden = true;
+    compatFormulaSection.style.display = 'none';
+
+    if (formulaState === 'show' && formula) {
+      compatFormulaLabel.textContent = 'معادلهٔ واکنش ثبت‌شده:';
+      if (typeof katex !== 'undefined') {
+        try {
+          katex.render(formula, compatFormula, {
+            displayMode: true,
+            throwOnError: false
+          });
+        } catch (err) {
+          console.error('KaTeX error:', err);
+          compatFormula.textContent = cleanLatexFormula(formula);
+        }
+      } else {
         compatFormula.textContent = cleanLatexFormula(formula);
-        compatFormulaSection.style.display = 'block';
       }
-    } else if (formula) {
-      compatFormula.textContent = cleanLatexFormula(formula);
       compatFormulaSection.style.display = 'block';
-    } else {
-      compatFormulaSection.style.display = 'none';
+    } else if (formulaState === 'no-reaction' || formulaState === 'hidden-danger' || formulaState === 'hidden-uncertain') {
+      compatFormulaLabel.textContent = formulaState === 'no-reaction' ? 'معادلهٔ واکنش:' : 'فرمول محصولات نهایی:';
+      compatFormulaNote.textContent = formulaNotice;
+      compatFormulaNote.hidden = false;
+      compatFormulaSection.style.display = 'block';
     }
 
     // Handle tags rendering
@@ -1947,7 +2263,14 @@ document.addEventListener('DOMContentLoaded', () => {
       'hydrogen_peroxide': { h: 3, f: 0, r: 2, s: 'OX' },
       'potassium_permanganate': { h: 2, f: 0, r: 0, s: 'OX' },
       'potassium_dichromate': { h: 3, f: 0, r: 1, s: 'OX' },
-      'sodium_metal': { h: 3, f: 3, r: 2, s: '₩' }
+      'sodium_metal': { h: 3, f: 3, r: 2, s: '₩' },
+      'element_sodium': { h: 3, f: 3, r: 2, s: 'W' },
+      'element_oxygen': { h: 1, f: 0, r: 0, s: 'OX' },
+      'element_chlorine': { h: 4, f: 0, r: 1, s: 'OX' },
+      'element_nitrogen': { h: 0, f: 0, r: 0, s: '' },
+      'element_hydrogen': { h: 1, f: 4, r: 0, s: '' },
+      'element_carbon': { h: 1, f: 1, r: 0, s: '' },
+      'element_sulfur': { h: 2, f: 1, r: 1, s: '' }
     };
 
     // If matches by ID directly, return it
@@ -2233,7 +2556,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (drillModalBtn && drillModal && closeDrillModal) {
     drillModalBtn.addEventListener('click', () => {
-      drillModal.classList.add('active');
+      openModal(drillModal, drillModalBtn, closeDrillModal);
       // Reset to selection screen when opening modal
       if (scenariosSelection) scenariosSelection.style.display = 'grid';
       if (drillActivePanel) drillActivePanel.style.display = 'none';
@@ -2241,12 +2564,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     closeDrillModal.addEventListener('click', () => {
-      drillModal.classList.remove('active');
+      closeModal(drillModal);
     });
 
     drillModal.addEventListener('click', (e) => {
       if (e.target === drillModal) {
-        drillModal.classList.remove('active');
+        closeModal(drillModal);
       }
     });
   }

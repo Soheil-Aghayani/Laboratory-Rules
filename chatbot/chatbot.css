@@ -5,7 +5,7 @@
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  background: linear-gradient(135deg, var(--accent-emerald) 0%, #0d9668 100%);
+  background: linear-gradient(135deg, var(--accent-emerald-strong) 0%, #064e3b 100%);
   color: #ffffff;
   border: none;
   border-radius: 50%;
@@ -29,12 +29,14 @@
   transform: scale(0.95);
 }
 
-.chatbot-fab span {
-  font-size: 28px;
+.chatbot-fab-icon {
+  width: 30px;
+  height: 30px;
+  display: block;
   transition: transform 0.3s ease;
 }
 
-.chatbot-fab.active span {
+.chatbot-fab.active .chatbot-fab-icon {
   transform: rotate(90deg);
 }
 
@@ -57,6 +59,19 @@
   transform: translateY(20px) scale(0.95);
   pointer-events: none;
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.chatbot-fab:focus-visible,
+.chatbot-close:focus-visible,
+.chatbot-clear:focus-visible,
+.chatbot-voice:focus-visible,
+.chatbot-input:focus-visible,
+.chatbot-send:focus-visible,
+.suggestion-chip:focus-visible,
+.chem-tab-btn:focus-visible,
+.chem-copy-btn:focus-visible {
+  outline: 3px solid var(--accent-amber);
+  outline-offset: 3px;
 }
 
 .chatbot-window.active {
@@ -155,7 +170,7 @@
 }
 
 .chat-msg.user {
-  background: linear-gradient(135deg, var(--accent-emerald) 0%, #0d9668 100%);
+  background: linear-gradient(135deg, var(--accent-emerald-strong) 0%, #064e3b 100%);
   color: #ffffff;
   align-self: flex-end;
   border-bottom-left-radius: 4px;
@@ -186,6 +201,8 @@
   padding: 0.4rem 0.8rem;
   border-radius: 20px;
   font-size: 0.8rem;
+  font-family: var(--font-fa);
+  text-align: center;
   cursor: pointer;
   transition: all 0.2s ease;
   user-select: none;
@@ -351,6 +368,13 @@
   flex-direction: column;
   padding: 0.5rem 0;
   animation: slideUpAutocomplete 0.2s ease forwards;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .chatbot-autocomplete {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 }
 
 .chatbot-autocomplete.active {
@@ -567,9 +591,9 @@
 }
 
 .chem-tab-btn.active {
-  background-color: var(--accent-emerald);
+  background-color: var(--accent-emerald-strong);
   color: #ffffff;
-  border-color: var(--accent-emerald);
+  border-color: var(--accent-emerald-strong);
 }
 
 .chem-card-panels {
@@ -682,6 +706,10 @@
     right: 1rem;
     width: 48px;
     height: 48px;
+  }
+  .chatbot-fab-icon {
+    width: 27px;
+    height: 27px;
   }
   .chatbot-window {
     bottom: 5rem;

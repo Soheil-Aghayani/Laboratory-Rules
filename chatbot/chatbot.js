@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
       answer: `<strong>فرمول فیزیک دوران سانتریفیوژ (RCF &leftrightarrow; RPM):</strong><br>
       شتاب نسبی گریز از مرکز (RCF) به صورت زیر محاسبه می‌شود:<br>
       $$RCF = 1.12 \\times \\text{Radius (mm)} \\times \\left(\\frac{\\text{RPM}}{1000}\\right)^2$$<br>
-      که در آن <code>Radius</code> شعاع روتور بر حسب میلی‌متر و <code>RPM</code> سرعت دورانی است. برای محاسبه آنلاین می‌توانید به <a class="switch-eq-link" data-eq="eq-centrifuge">بخش سانتریفیوژ در تب تجهیزات</a> رفته و از ماشین‌حساب تعبیه‌شده استفاده کنید.`
+      که در آن <code>Radius</code> شعاع روتور بر حسب میلی‌متر و <code>RPM</code> سرعت دورانی است. برای محاسبه آنلاین می‌توانید به <a class="switch-eq-link" role="button" tabindex="0" data-eq="eq-centrifuge">بخش سانتریفیوژ در تب تجهیزات</a> رفته و از ماشین‌حساب تعبیه‌شده استفاده کنید.`
     },
     {
       id: "oven_errors",
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
       - <strong>t:</strong> عدم رسیدن به دما در ۳ ساعت پس از شروع (نشانه سوختن المنت یا خرابی برد قدرت).<br>
       - <strong>E.SEN:</strong> خرابی یا قطع اتصال سنسور دمای PT100.<br>
       - <strong>صدای بوق مداوم:</strong> درب دستگاه بیش از ۱۵ ثانیه باز مانده است.<br>
-      جهت راهنمایی عیب‌یابی بیشتر، به <a class="switch-eq-link" data-eq="eq-oven">عیب‌یاب خطاهای فور در تب تجهیزات</a> مراجعه کنید.`
+      جهت راهنمایی عیب‌یابی بیشتر، به <a class="switch-eq-link" role="button" tabindex="0" data-eq="eq-oven">عیب‌یاب خطاهای فور در تب تجهیزات</a> مراجعه کنید.`
     },
     {
       id: "ph_errors",
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
       - <strong>Err.Temp:</strong> عدم شناسایی سنسور دما (سنسور ATC قطع یا خراب است؛ سوکت پشتی را چک کنید).<br>
       - <strong>no.Stb:</strong> عدم ثبات عدد (وجود حباب هوا زیر الکترود، کثیفی غشا یا ناهماهنگی نمونه).<br>
       - <strong>OR/UR:</strong> خارج از محدوده اندازه‌گیری (پ هاش نمونه زیر ۰ یا بالای ۱۴ است یا کابل کواکسیال قطع است).<br>
-      جهت راهنمایی عیب‌یابی بیشتر، به <a class="switch-eq-link" data-eq="eq-phmeter">عیب‌یاب خطاهای pH متر در تب تجهیزات</a> مراجعه کنید.`
+      جهت راهنمایی عیب‌یابی بیشتر، به <a class="switch-eq-link" role="button" tabindex="0" data-eq="eq-phmeter">عیب‌یاب خطاهای pH متر در تب تجهیزات</a> مراجعه کنید.`
     },
     {
       id: "ph_shutdown",
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ۱. <strong>قابلیت خاموشی خودکار (Auto-Off):</strong> به طور پیش‌فرض، دستگاه جهت محافظت و صرفه‌جویی در مصرف انرژی پس از <strong>۱۰ دقیقه عدم استفاده</strong> به صورت خودکار خاموش می‌شود. می‌توانید این قابلیت را از طریق تنظیمات پیشرفته پارامتر <code>P05</code> فعال یا غیرفعال کنید.<br>
       ۲. <strong>نوسان یا قطعی جریان برق:</strong> از اتصال صحیح آداپتور برق به سوکت پشت دستگاه اطمینان حاصل کنید.<br>
       ۳. <strong>فشار طولانی‌مدت کلید ON/OFF:</strong> نگه داشتن کلید <code>ON/OFF</code> به مدت ۳ ثانیه دستگاه را خاموش می‌کند.<br>
-      جهت اطلاعات بیشتر، به <a class="switch-eq-link" data-eq="eq-phmeter">راهنمای pH متر در تب تجهیزات</a> مراجعه کنید.`
+      جهت اطلاعات بیشتر، به <a class="switch-eq-link" role="button" tabindex="0" data-eq="eq-phmeter">راهنمای pH متر در تب تجهیزات</a> مراجعه کنید.`
     },
     {
       id: "waste_rules",
@@ -694,19 +694,33 @@ document.addEventListener('DOMContentLoaded', () => {
     fab.id = 'chatbot-fab';
     fab.className = 'chatbot-fab';
     fab.setAttribute('aria-label', 'دستیار هوشمند آزمایشگاه');
-    fab.innerHTML = '<span class="material-symbols-outlined">forum</span>';
+    fab.setAttribute('aria-controls', 'chatbot-window');
+    fab.setAttribute('aria-expanded', 'false');
+    fab.innerHTML = `
+      <svg class="chatbot-fab-icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <title>دستیار هوشمند آزمایشگاه</title>
+        <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5">
+          <path d="M14.17 20.89c4.184-.277 7.516-3.657 7.79-7.9c.053-.83.053-1.69 0-2.52c-.274-4.242-3.606-7.62-7.79-7.899a33 33 0 0 0-4.34 0c-4.184.278-7.516 3.657-7.79 7.9a20 20 0 0 0 0 2.52c.1 1.545.783 2.976 1.588 4.184c.467.845.159 1.9-.328 2.823c-.35.665-.526.997-.385 1.237c.14.24.455.248 1.084.263c1.245.03 2.084-.322 2.75-.813c.377-.279.566-.418.696-.434s.387.09.899.3c.46.19.995.307 1.485.34c1.425.094 2.914.094 4.342 0Z"/>
+          <path stroke-linecap="round" d="m7.5 15l1.842-5.526a.694.694 0 0 1 1.316 0L12.5 15m3-6v6m-7-2h3"/>
+        </g>
+      </svg>
+    `;
     document.body.appendChild(fab);
 
     // 2. Chat Window
     const win = document.createElement('div');
     win.id = 'chatbot-window';
     win.className = 'chatbot-window';
+    win.setAttribute('role', 'dialog');
+    win.setAttribute('aria-modal', 'false');
+    win.setAttribute('aria-labelledby', 'chatbot-title');
+    win.setAttribute('aria-hidden', 'true');
     win.innerHTML = `
       <div class="chatbot-header">
         <div class="chatbot-title">
           <span class="material-symbols-outlined bot-icon">smart_toy</span>
           <div>
-            <h3>دستیار هوشمند آزمایشگاه</h3>
+            <h3 id="chatbot-title">دستیار هوشمند آزمایشگاه</h3>
             <p>پاسخ‌گویی آفلاین بر اساس مستندات</p>
           </div>
         </div>
@@ -719,13 +733,14 @@ document.addEventListener('DOMContentLoaded', () => {
           </button>
         </div>
       </div>
-      <div id="chatbot-messages" class="chatbot-messages"></div>
+      <div id="chatbot-messages" class="chatbot-messages" role="log" aria-live="polite" aria-relevant="additions" aria-label="گفتگو با دستیار"></div>
       <div class="chatbot-footer" style="position: relative;">
-        <div id="chatbot-autocomplete" class="chatbot-autocomplete"></div>
+        <div id="chatbot-autocomplete" class="chatbot-autocomplete" role="listbox" aria-label="پیشنهادهای جستجو"></div>
         <button id="chatbot-voice" class="chatbot-voice" title="جستجوی صوتی" aria-label="جستجوی صوتی">
           <span class="material-symbols-outlined">mic</span>
         </button>
-        <input type="text" id="chatbot-input" class="chatbot-input" placeholder="سوال خود را بپرسید...">
+        <label for="chatbot-input" class="sr-only">سوال خود را از دستیار بپرسید</label>
+        <input type="text" id="chatbot-input" class="chatbot-input" placeholder="سوال خود را بپرسید..." enterkeyhint="send" autocomplete="off" aria-autocomplete="list" aria-controls="chatbot-autocomplete">
         <button id="chatbot-send" class="chatbot-send" aria-label="ارسال">
           <span class="material-symbols-outlined">send</span>
         </button>
@@ -758,11 +773,25 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Toggle Chatbot Window
+  function closeChatbot() {
+    chatbotWindow.classList.remove('active');
+    chatbotFab.classList.remove('active');
+    chatbotWindow.setAttribute('aria-hidden', 'true');
+    chatbotFab.setAttribute('aria-expanded', 'false');
+  }
+
   chatbotFab.addEventListener('click', () => {
-    chatbotWindow.classList.toggle('active');
-    chatbotFab.classList.toggle('active');
+    const isOpen = !chatbotWindow.classList.contains('active');
+    if (isOpen) {
+      chatbotWindow.classList.add('active');
+      chatbotFab.classList.add('active');
+      chatbotWindow.setAttribute('aria-hidden', 'false');
+      chatbotFab.setAttribute('aria-expanded', 'true');
+    } else {
+      closeChatbot();
+    }
     
-    if (chatbotWindow.classList.contains('active')) {
+    if (isOpen) {
       chatbotInput.focus();
       if (!isInitialized) {
         loadHistoryOrWelcome();
@@ -771,8 +800,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   chatbotClose.addEventListener('click', () => {
-    chatbotWindow.classList.remove('active');
-    chatbotFab.classList.remove('active');
+    closeChatbot();
+    chatbotFab.focus();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && chatbotWindow.classList.contains('active')) {
+      event.preventDefault();
+      closeChatbot();
+      chatbotFab.focus();
+    }
   });
 
   // Clear Conversation history
@@ -785,6 +822,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loadHistoryOrWelcome();
       }
     });
+
   }
 
   // Handle click delegation for links and tabs inside chatbot messages
@@ -797,8 +835,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof window.switchTab === 'function') {
           window.switchTab(tabId);
           if (window.innerWidth <= 768) {
-            chatbotWindow.classList.remove('active');
-            chatbotFab.classList.remove('active');
+            closeChatbot();
           }
         }
       }
@@ -817,8 +854,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }, 150);
           if (window.innerWidth <= 768) {
-            chatbotWindow.classList.remove('active');
-            chatbotFab.classList.remove('active');
+            closeChatbot();
           }
         }
       }
@@ -885,6 +921,14 @@ ${chem.firstAid.inhalation ? `- استنشاق: ${chem.firstAid.inhalation}\n` :
         }
       }
     });
+
+    chatbotMessages.addEventListener('keydown', (e) => {
+      const actionLink = e.target.closest('.switch-tab-link, .switch-eq-link');
+      if (actionLink && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault();
+        actionLink.click();
+      }
+    });
   }
 
   // Welcome message initialization
@@ -897,8 +941,10 @@ ${chem.firstAid.inhalation ? `- استنشاق: ${chem.firstAid.inhalation}\n` :
     suggestionsContainer.className = 'chatbot-suggestions';
     
     suggestionList.forEach(s => {
-      const chip = document.createElement('span');
+      const chip = document.createElement('button');
+      chip.type = 'button';
       chip.className = 'suggestion-chip';
+      chip.setAttribute('aria-label', `پرسش: ${s.text}`);
       chip.textContent = s.text;
       chip.addEventListener('click', () => {
         handleUserQuery(s.query);
@@ -910,6 +956,40 @@ ${chem.firstAid.inhalation ? `- استنشاق: ${chem.firstAid.inhalation}\n` :
     scrollToBottom();
   }
 
+  function sanitizeBotHtml(html) {
+    const template = document.createElement('template');
+    template.innerHTML = String(html || '');
+    const allowedTags = new Set(['A', 'BR', 'BUTTON', 'CODE', 'DIV', 'EM', 'H4', 'LI', 'OL', 'P', 'SMALL', 'SPAN', 'STRONG', 'SUB', 'SUP', 'UL']);
+    const allowedAttributes = new Set(['aria-label', 'class', 'data-chem-id', 'data-eq', 'data-panel', 'data-tab', 'href', 'rel', 'role', 'tabindex', 'target', 'title', 'type']);
+
+    template.content.querySelectorAll('*').forEach(element => {
+      if (!allowedTags.has(element.tagName)) {
+        element.replaceWith(document.createTextNode(element.textContent || ''));
+        return;
+      }
+
+      Array.from(element.attributes).forEach(attribute => {
+        const attributeName = attribute.name.toLowerCase();
+        const isAllowedDataAttribute = attributeName === 'data-chem-id' || attributeName === 'data-eq' || attributeName === 'data-panel' || attributeName === 'data-tab';
+        if (!allowedAttributes.has(attributeName) && !isAllowedDataAttribute) {
+          element.removeAttribute(attribute.name);
+        }
+      });
+
+      if (element.tagName === 'A') {
+        const href = element.getAttribute('href');
+        if (href && !/^(https?:\/\/|#|\/(?!\/))/i.test(href)) {
+          element.removeAttribute('href');
+        }
+        if (element.getAttribute('target') === '_blank') {
+          element.setAttribute('rel', 'noopener noreferrer');
+        }
+      }
+    });
+
+    return template.innerHTML;
+  }
+
   // Local Storage chat history helpers
   function loadChatHistory() {
     const historyJson = localStorage.getItem('lab_chat_history');
@@ -919,9 +999,18 @@ ${chem.firstAid.inhalation ? `- استنشاق: ${chem.firstAid.inhalation}\n` :
         if (history && history.length > 0) {
           isInitialized = true;
           history.forEach(msg => {
+            if (!msg || !['user', 'bot'].includes(msg.sender) || typeof msg.htmlContent !== 'string') return;
             const msgEl = document.createElement('div');
             msgEl.className = `chat-msg ${msg.sender}`;
-            msgEl.innerHTML = msg.htmlContent;
+            if (msg.sender === 'user') {
+              msgEl.textContent = msg.htmlContent;
+            } else {
+              let finalHtml = msg.htmlContent;
+              if (typeof renderMathInElement !== 'function') {
+                finalHtml = cleanLatexHtml(finalHtml);
+              }
+              msgEl.innerHTML = sanitizeBotHtml(finalHtml);
+            }
             chatbotMessages.appendChild(msgEl);
           });
           
@@ -974,6 +1063,7 @@ ${chem.firstAid.inhalation ? `- استنشاق: ${chem.firstAid.inhalation}\n` :
     chatbotAutocomplete.innerHTML = '';
     activeAutocompleteIndex = -1;
     suggestionMatches = [];
+    chatbotInput.removeAttribute('aria-activedescendant');
 
     if (query.length < 2) {
       chatbotAutocomplete.classList.remove('active');
@@ -1039,6 +1129,9 @@ ${chem.firstAid.inhalation ? `- استنشاق: ${chem.firstAid.inhalation}\n` :
     suggestionMatches.forEach((match, index) => {
       const item = document.createElement('div');
       item.className = 'autocomplete-item';
+      item.id = `chatbot-autocomplete-${index}`;
+      item.setAttribute('role', 'option');
+      item.setAttribute('aria-selected', 'false');
       item.setAttribute('data-index', index);
       
       const icon = match.type === 'chemical' ? 'science' : 'menu_book';
@@ -1088,11 +1181,18 @@ ${chem.firstAid.inhalation ? `- استنشاق: ${chem.firstAid.inhalation}\n` :
   });
 
   function highlightAutocompleteItem(items) {
-    items.forEach(item => item.classList.remove('highlighted'));
+    items.forEach(item => {
+      item.classList.remove('highlighted');
+      item.setAttribute('aria-selected', 'false');
+    });
     if (activeAutocompleteIndex >= 0 && activeAutocompleteIndex < items.length) {
       const activeItem = items[activeAutocompleteIndex];
       activeItem.classList.add('highlighted');
+      activeItem.setAttribute('aria-selected', 'true');
+      chatbotInput.setAttribute('aria-activedescendant', activeItem.id);
       activeItem.scrollIntoView({ block: 'nearest' });
+    } else {
+      chatbotInput.removeAttribute('aria-activedescendant');
     }
   }
 
@@ -1532,13 +1632,17 @@ ${chem.firstAid.inhalation ? `- استنشاق: ${chem.firstAid.inhalation}\n` :
   function addMessage(htmlContent, sender) {
     const msg = document.createElement('div');
     msg.className = `chat-msg ${sender}`;
-    
-    let finalHtml = htmlContent;
-    if (typeof renderMathInElement !== 'function') {
-      finalHtml = cleanLatexHtml(htmlContent);
+
+    const normalizedContent = String(htmlContent || '');
+    if (sender === 'user') {
+      msg.textContent = normalizedContent;
+    } else {
+      let finalHtml = normalizedContent;
+      if (typeof renderMathInElement !== 'function') {
+        finalHtml = cleanLatexHtml(finalHtml);
+      }
+      msg.innerHTML = sanitizeBotHtml(finalHtml);
     }
-    
-    msg.innerHTML = finalHtml;
     chatbotMessages.appendChild(msg);
     scrollToBottom();
 
@@ -1550,7 +1654,7 @@ ${chem.firstAid.inhalation ? `- استنشاق: ${chem.firstAid.inhalation}\n` :
         if (historyJson) {
           history = JSON.parse(historyJson);
         }
-        history.push({ sender, htmlContent });
+        history.push({ sender, htmlContent: normalizedContent });
         localStorage.setItem('lab_chat_history', JSON.stringify(history));
       } catch (e) {
         console.error('Failed to save message to chat history:', e);
