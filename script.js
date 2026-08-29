@@ -222,6 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modalTriggers.set(modal, trigger);
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
+    modal.removeAttribute('inert');
     const focusTarget = initialFocus || getFocusableElements(modal)[0] || modal;
     focusTarget.focus();
   }
@@ -230,6 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!modal) return;
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
+    modal.setAttribute('inert', '');
     if (activeModal === modal) activeModal = null;
     const trigger = modalTriggers.get(modal);
     if (trigger && typeof trigger.focus === 'function') trigger.focus();
@@ -1349,6 +1351,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- MSDS Chemical Safety Lookup Widget Logic ---
   const msdsSelect = document.getElementById('msds-chemical-select');
   const msdsDetailsCard = document.getElementById('msds-details-card');
+  let msdsDropdownWaitingForDb = false;
 
   // Populate chemical dropdown menu dynamically from window.chemicalMsdsDb
   function populateMsdsDropdown() {
@@ -1356,10 +1359,17 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Check if the MSDS database is loaded
     if (!window.chemicalMsdsDb) {
-      // If it is not loaded yet (since it is loaded in another script), try again after a small delay
-      setTimeout(populateMsdsDropdown, 100);
+      if (!msdsDropdownWaitingForDb) {
+        msdsDropdownWaitingForDb = true;
+        window.addEventListener('msdsdb:ready', () => {
+          msdsDropdownWaitingForDb = false;
+          populateMsdsDropdown();
+        }, { once: true });
+      }
       return;
     }
+
+    msdsDropdownWaitingForDb = false;
 
     // Clear existing options except the first one
     msdsSelect.innerHTML = '<option value="">-- انتخاب ماده شیمیایی --</option>';
@@ -1391,6 +1401,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Listen for selection changes
   if (msdsSelect && msdsDetailsCard) {
+    msdsSelect.addEventListener('focus', () => {
+      if (!window.chemicalMsdsDb && typeof window.loadMsdsDatabase === 'function') {
+        window.loadMsdsDatabase().catch((error) => console.error('MSDS database failed to load:', error));
+      }
+    }, { once: true });
+
     msdsSelect.addEventListener('change', () => {
       const chemId = msdsSelect.value;
       if (!chemId) {
@@ -1738,15 +1754,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  let compatWidgetWaitingForDb = false;
+
   function initCompatWidget() {
     const container = document.getElementById('compat-chemicals-container');
     const addBtn = document.getElementById('add-compat-chemical-btn');
     if (!container) return;
 
     if (!window.chemicalMsdsDb) {
-      setTimeout(initCompatWidget, 100);
+      if (!compatWidgetWaitingForDb) {
+        compatWidgetWaitingForDb = true;
+        window.addEventListener('msdsdb:ready', () => {
+          compatWidgetWaitingForDb = false;
+          initCompatWidget();
+        }, { once: true });
+      }
       return;
     }
+
+    compatWidgetWaitingForDb = false;
 
     // Clear and add 2 initial rows
     container.innerHTML = '';

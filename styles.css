@@ -73,7 +73,7 @@
   --bg-tertiary: #f1f5f9;
   --border-color: #e2e8f0;
   --text-primary: #0f172a;
-  --text-muted: #64748b;
+  --text-muted: #475569;
   --accent-emerald: #047857;
   --accent-emerald-strong: #065f46;
   --accent-emerald-light: #10b981;
@@ -1481,9 +1481,8 @@ header {
 }
 
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
-  70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.72; }
 }
 
 /* Search Highlighting */
@@ -1631,6 +1630,36 @@ footer {
 
 
 
+/* Lightweight chatbot loader shown before the optional chatbot bundle is ready */
+.chatbot-fab-loader {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: linear-gradient(135deg, var(--accent-emerald-strong) 0%, #064e3b 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+  z-index: 999;
+}
+
+.chatbot-fab-loader svg {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+.chatbot-fab-loader:disabled {
+  cursor: wait;
+  opacity: 0.75;
+}
+
 /* Floating Emergency Button */
 .emergency-fab {
   position: fixed;
@@ -1668,15 +1697,8 @@ footer {
 }
 
 @keyframes pulseRed {
-  0% {
-    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6);
-  }
-  70% {
-    box-shadow: 0 0 0 15px rgba(239, 68, 68, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.88; }
 }
 
 /* Emergency Modal Overlay */
@@ -1890,6 +1912,18 @@ footer {
 }
 
 @media (max-width: 480px) {
+  .chatbot-fab-loader {
+    bottom: 1rem;
+    right: 1rem;
+    width: 48px;
+    height: 48px;
+  }
+
+  .chatbot-fab-loader svg {
+    width: 27px;
+    height: 27px;
+  }
+
   .emergency-fab {
     width: 50px;
     height: 50px;

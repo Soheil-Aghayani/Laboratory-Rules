@@ -9,10 +9,38 @@
   <link rel="icon" type="image/webp" href="Waste%20Lab.webp">
   <link rel="preload" href="asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="asset/material-symbols-outlined-subset.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=3.2">
-  <link rel="preload" href="chatbot/chatbot.css?v=3.2" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="chatbot/chatbot.css?v=3.2"></noscript>
-  <script defer src="script.js?v=3.2"></script>
+  <link rel="preload" href="styles.min.css?v=4.0" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="styles.min.css?v=4.0"></noscript>
+  <script>
+    try {
+      const savedTheme = localStorage.getItem('theme');
+      const preferredTheme = savedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', preferredTheme);
+    } catch (error) {
+      // The full theme setup runs again after the document is ready.
+    }
+  </script>
+  <style id="critical-css">
+    @font-face{font-family:'Vazirmatn';font-style:normal;font-weight:300 800;font-display:swap;src:url('asset/vazirmatn-arabic.woff2') format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+200C-200E,U+FB50-FDFF,U+FE70-FEFC}
+    @font-face{font-family:'Material Symbols Outlined';font-style:normal;font-weight:100 700;font-display:swap;src:url('asset/material-symbols-outlined-subset.woff2') format('woff2')}
+    .material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;font-size:24px;line-height:1;display:inline-block;white-space:nowrap;direction:ltr;font-feature-settings:'liga';-webkit-font-smoothing:antialiased}
+    :root{--bg-primary:#0f172a;--bg-secondary:#1e293b;--bg-tertiary:#334155;--border-color:#334155;--text-primary:#f8fafc;--text-muted:#b6c2d1;--accent-emerald:#10b981;--accent-emerald-strong:#047857;--accent-emerald-glow:rgba(16,185,129,.15);--accent-amber:#f59e0b;--accent-red:#ef4444;--accent-red-strong:#b91c1c;--accent-red-glow:rgba(239,68,68,.2);--card-shadow:0 10px 30px -10px rgba(0,0,0,.7);--font-fa:'Vazirmatn',system-ui,-apple-system,sans-serif}
+    [data-theme="light"]{--bg-primary:#f8fafc;--bg-secondary:#fff;--bg-tertiary:#f1f5f9;--border-color:#e2e8f0;--text-primary:#0f172a;--text-muted:#475569;--accent-emerald:#047857;--accent-emerald-strong:#065f46;--accent-emerald-glow:rgba(5,150,105,.1);--accent-amber:#d97706;--accent-red:#b91c1c;--accent-red-strong:#991b1b;--accent-red-glow:rgba(220,38,38,.1);--card-shadow:0 10px 25px -10px rgba(15,23,42,.08)}
+    *,*::before,*::after{box-sizing:border-box}
+    body{margin:0;background-color:var(--bg-primary);color:var(--text-primary);font-family:var(--font-fa);line-height:1.9;overflow-x:hidden}
+    .container{max-width:1200px;margin:0 auto;padding:2rem 1.5rem}
+    header{display:flex;flex-direction:column;gap:1.5rem;margin-bottom:2.5rem;border-bottom:1px solid var(--border-color);padding-bottom:2rem}
+    .header-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+    .brand{display:flex;align-items:center;gap:1rem}.brand-icon{font-size:48px;color:var(--accent-emerald);display:inline-block}.brand-text h1{margin:0;font-size:1.75rem;font-weight:800;letter-spacing:-.025em;background:linear-gradient(135deg,var(--text-primary) 30%,var(--accent-emerald));-webkit-background-clip:text;-webkit-text-fill-color:transparent}.brand-text p{margin:0;font-size:.9rem;color:var(--text-muted)}
+    .controls{display:flex;align-items:center;gap:1rem}.status-widget{display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:9999px;background-color:var(--bg-secondary);border:1px solid var(--border-color);font-size:.85rem;font-weight:500}.status-dot{width:10px;height:10px;border-radius:50%;background-color:var(--accent-amber)}
+    .control-btn,.theme-btn{background:var(--bg-secondary);border:1px solid var(--border-color);color:var(--text-primary);cursor:pointer;box-shadow:var(--card-shadow)}.control-btn{padding:.5rem 1rem;border-radius:12px;display:flex;align-items:center;gap:.5rem;font-family:var(--font-fa);font-weight:700;font-size:.85rem}.theme-btn{padding:.6rem;border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center}.search-container{position:relative;flex-grow:1;max-width:450px}.search-input{width:100%;padding:.75rem 2.75rem;border-radius:12px;border:1px solid var(--border-color);background-color:var(--bg-secondary);color:var(--text-primary);font-family:var(--font-fa);font-size:.95rem;outline:none}.search-icon{position:absolute;top:50%;right:1rem;transform:translateY(-50%);font-size:20px;color:var(--text-muted);pointer-events:none}.search-voice-btn{position:absolute;top:50%;left:1rem;transform:translateY(-50%);background:none;border:0;color:var(--text-muted);cursor:pointer;padding:0;min-width:24px;min-height:24px;display:flex;align-items:center;justify-content:center;z-index:5}
+    .penalty-banner{background-color:var(--accent-red-glow);border:1px solid var(--accent-red);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;margin-bottom:2rem}.penalty-icon{font-size:28px;color:var(--accent-red);flex-shrink:0}.penalty-text{font-size:.95rem;font-weight:600;color:var(--text-primary)}
+    .tabs{display:flex;justify-content:center;gap:1.5rem;border-bottom:2px solid var(--border-color);margin-bottom:2.5rem}.tab-btn{background:none;border:0;color:var(--text-muted);cursor:pointer;padding:1rem 1.5rem;font-family:var(--font-fa);font-size:1.05rem;font-weight:600;position:relative}.tab-btn.active{color:var(--accent-emerald)}.tab-btn.active::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background-color:var(--accent-emerald);border-radius:2px}.tab-content{display:none}.tab-content.active{display:block}.rules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-bottom:3rem}.rule-card{background-color:var(--bg-secondary);border:1px solid var(--border-color);border-radius:16px;padding:1.5rem;box-shadow:var(--card-shadow);display:flex;flex-direction:column}
+    .chatbot-fab-loader{position:fixed;bottom:2rem;right:2rem;background:linear-gradient(135deg,var(--accent-emerald-strong) 0%,#064e3b 100%);color:#fff;border:0;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 25px rgba(16,185,129,.4);z-index:999}.chatbot-fab-loader svg{width:30px;height:30px;display:block}.chatbot-fab-loader:disabled{cursor:wait;opacity:.75}
+    @media(max-width:768px){.container{padding:1.25rem 1rem}.tabs{flex-wrap:wrap;gap:.5rem;border-bottom:0;margin-bottom:1.5rem}.tab-btn{flex:1 1 calc(50% - .5rem);min-width:140px;text-align:center;border:1px solid var(--border-color);border-radius:10px;padding:.6rem 1rem;font-size:.9rem;background-color:var(--bg-secondary)}.tab-btn.active{background-color:var(--accent-emerald-glow);border-color:var(--accent-emerald)}.tab-btn.active::after{display:none}}
+    @media(max-width:480px){.tab-btn{flex:1 1 100%}.chatbot-fab-loader{bottom:1rem;right:1rem;width:48px;height:48px}.chatbot-fab-loader svg{width:27px;height:27px}}
+  </style>
+  <script defer src="script.min.js?v=4.0"></script>
 </head>
 <body>
 
@@ -1297,7 +1325,7 @@
   </main>
 
   <!-- Chemical Suggestion Modal -->
-  <div id="chemical-suggestion-modal" class="emergency-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="chemical-suggestion-title" aria-describedby="chemical-suggestion-help" aria-hidden="true" tabindex="-1">
+  <div id="chemical-suggestion-modal" class="emergency-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="chemical-suggestion-title" aria-describedby="chemical-suggestion-help" aria-hidden="true" inert tabindex="-1">
     <div class="emergency-modal chemical-suggestion-modal">
       <div class="emergency-modal-header">
         <div class="emergency-modal-title chemical-suggestion-title">
@@ -1363,8 +1391,18 @@
     </svg>
   </button>
 
+  <!-- Lightweight placeholder; the full chatbot UI loads only after interaction. -->
+  <button id="chatbot-loader-fab" class="chatbot-fab-loader" type="button" aria-label="دستیار هوشمند آزمایشگاه" aria-controls="chatbot-window" aria-expanded="false">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5">
+        <path d="M14.17 20.89c4.184-.277 7.516-3.657 7.79-7.9c.053-.83.053-1.69 0-2.52c-.274-4.242-3.606-7.62-7.79-7.899a33 33 0 0 0-4.34 0c-4.184.278-7.516 3.657-7.79 7.9a20 20 0 0 0 0 2.52c.1 1.545.783 2.976 1.588 4.184c.467.845.159 1.9-.328 2.823c-.35.665-.526.997-0.385 1.237c.14.24.455.248 1.084.263c1.245.03 2.084-.322 2.75-.813c.377-.279.566-.418.696-.434s.387.09.899.3c.46.19.995.307 1.485.34c1.425.094 2.914.094 4.342 0Z"/>
+        <path stroke-linecap="round" d="m7.5 15l1.842-5.526a.694.694 0 0 1 1.316 0L12.5 15m3-6v6m-7-2h3"/>
+      </g>
+    </svg>
+  </button>
+
   <!-- Emergency Modal -->
-  <div id="emergency-modal" class="emergency-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="emergency-modal-title" aria-hidden="true" tabindex="-1">
+  <div id="emergency-modal" class="emergency-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="emergency-modal-title" aria-hidden="true" inert tabindex="-1">
     <div class="emergency-modal">
       <div class="emergency-modal-header">
         <div class="emergency-modal-title">
@@ -1490,7 +1528,7 @@
   </div>
 
   <!-- Spill Simulator Modal -->
-  <div id="drill-modal" class="emergency-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="drill-modal-title" aria-hidden="true" tabindex="-1">
+  <div id="drill-modal" class="emergency-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="drill-modal-title" aria-hidden="true" inert tabindex="-1">
     <div class="emergency-modal" style="max-width: 850px;">
       <div class="emergency-modal-header">
         <div class="emergency-modal-title" style="color: var(--accent-red); gap: 0.5rem;">
@@ -1581,7 +1619,9 @@
 
   <script>
     (() => {
-      const scheduleIdle = window.requestIdleCallback || ((callback) => window.setTimeout(callback, 1500));
+      const assetVersion = '4.0';
+      let msdsDbPromise = null;
+      let chatbotPromise = null;
 
       function loadScript(src) {
         return new Promise((resolve, reject) => {
@@ -1594,18 +1634,98 @@
         });
       }
 
-      function loadAssistant() {
-        scheduleIdle(() => {
-          loadScript('chatbot/msds/msds-db.js?v=3.2')
-            .then(() => loadScript('chatbot/chatbot.js?v=3.2'))
-            .catch((error) => console.error('Assistant failed to load:', error));
-        }, { timeout: 4000 });
+      function loadStyle(href) {
+        const existing = document.querySelector(`link[data-lazy-style="${href}"]`);
+        if (existing) return Promise.resolve();
+
+        return new Promise((resolve, reject) => {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = href;
+          link.dataset.lazyStyle = href;
+          link.onload = resolve;
+          link.onerror = reject;
+          document.head.appendChild(link);
+        });
       }
 
-      if (document.readyState === 'complete') {
-        loadAssistant();
-      } else {
-        window.addEventListener('load', loadAssistant, { once: true });
+      function loadMsdsDatabase() {
+        if (window.chemicalMsdsDb) return Promise.resolve(window.chemicalMsdsDb);
+        if (msdsDbPromise) return msdsDbPromise;
+
+        msdsDbPromise = loadScript(`chatbot/msds/msds-db.min.js?v=${assetVersion}`)
+          .then(() => {
+            window.dispatchEvent(new Event('msdsdb:ready'));
+            return window.chemicalMsdsDb;
+          })
+          .catch((error) => {
+            msdsDbPromise = null;
+            throw error;
+          });
+
+        return msdsDbPromise;
+      }
+
+      function loadChatbot() {
+        if (chatbotPromise) return chatbotPromise;
+
+        chatbotPromise = Promise.all([
+          loadStyle(`chatbot/chatbot.min.css?v=${assetVersion}`),
+          loadMsdsDatabase()
+        ])
+          .then(() => loadScript(`chatbot/chatbot.min.js?v=${assetVersion}`))
+          .catch((error) => {
+            chatbotPromise = null;
+            throw error;
+          });
+
+        return chatbotPromise;
+      }
+
+      window.loadMsdsDatabase = loadMsdsDatabase;
+      window.loadChatbot = loadChatbot;
+
+      const msdsCard = document.querySelector('.msds-widget-card');
+      const hydrateMsds = () => loadMsdsDatabase().catch((error) => console.error('MSDS database failed to load:', error));
+
+      if (msdsCard && 'IntersectionObserver' in window) {
+        const msdsObserver = new IntersectionObserver((entries) => {
+          if (entries.some(entry => entry.isIntersecting)) {
+            hydrateMsds();
+            msdsObserver.disconnect();
+          }
+        }, { rootMargin: '300px 0px' });
+        msdsObserver.observe(msdsCard);
+      } else if (msdsCard) {
+        window.addEventListener('load', () => setTimeout(hydrateMsds, 2000), { once: true });
+      }
+
+      const msdsSelect = document.getElementById('msds-chemical-select');
+      if (msdsSelect) msdsSelect.addEventListener('focus', hydrateMsds, { once: true });
+
+      const compatContainer = document.getElementById('compat-chemicals-container');
+      const compatAddButton = document.getElementById('add-compat-chemical-btn');
+      if (compatContainer) compatContainer.addEventListener('focusin', hydrateMsds, { once: true });
+      if (compatAddButton) compatAddButton.addEventListener('click', hydrateMsds, { once: true });
+
+      const chatbotLoader = document.getElementById('chatbot-loader-fab');
+      if (chatbotLoader) {
+        chatbotLoader.addEventListener('click', async () => {
+          if (chatbotLoader.disabled) return;
+          chatbotLoader.disabled = true;
+          chatbotLoader.setAttribute('aria-busy', 'true');
+
+          try {
+            await loadChatbot();
+            chatbotLoader.remove();
+            const chatbotFab = document.getElementById('chatbot-fab');
+            if (chatbotFab) chatbotFab.click();
+          } catch (error) {
+            chatbotLoader.disabled = false;
+            chatbotLoader.removeAttribute('aria-busy');
+            console.error('Assistant failed to load:', error);
+          }
+        });
       }
     })();
   </script>

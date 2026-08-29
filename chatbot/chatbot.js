@@ -715,6 +715,7 @@ const startLaboratoryChatbot = () => {
     win.setAttribute('aria-modal', 'false');
     win.setAttribute('aria-labelledby', 'chatbot-title');
     win.setAttribute('aria-hidden', 'true');
+    win.setAttribute('inert', '');
     win.innerHTML = `
       <div class="chatbot-header">
         <div class="chatbot-title">
@@ -777,6 +778,7 @@ const startLaboratoryChatbot = () => {
     chatbotWindow.classList.remove('active');
     chatbotFab.classList.remove('active');
     chatbotWindow.setAttribute('aria-hidden', 'true');
+    chatbotWindow.setAttribute('inert', '');
     chatbotFab.setAttribute('aria-expanded', 'false');
   }
 
@@ -786,6 +788,7 @@ const startLaboratoryChatbot = () => {
       chatbotWindow.classList.add('active');
       chatbotFab.classList.add('active');
       chatbotWindow.setAttribute('aria-hidden', 'false');
+      chatbotWindow.removeAttribute('inert');
       chatbotFab.setAttribute('aria-expanded', 'true');
     } else {
       closeChatbot();
