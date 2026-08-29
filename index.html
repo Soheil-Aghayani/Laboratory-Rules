@@ -7,21 +7,16 @@
   <title>پورتال مقررات و ایمنی آزمایشگاه پسماند</title>
   <meta name="description" content="سامانه جامع راهنمای ایمنی، قوانین عمومی کار و دستورالعمل‌های نگهداری تجهیزات تخصصی آزمایشگاه پسماند">
   <link rel="icon" type="image/webp" href="Waste%20Lab.webp">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preload" href="asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="asset/material-symbols-outlined-subset.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css?v=3.0">
-  <link rel="stylesheet" href="chatbot/chatbot.css?v=3.0">
-  <!-- Google Material Symbols -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-  <!-- KaTeX for rendering LaTeX formulas -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="preload" href="chatbot/chatbot.css?v=3.0" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="chatbot/chatbot.css?v=3.0"></noscript>
+  <script defer src="script.js?v=3.0"></script>
 </head>
 <body>
 
-  <div class="container">
+  <main class="container">
     
     <!-- Header Area -->
     <header>
@@ -245,7 +240,7 @@
             <div class="msds-col msds-visual-col">
               <div class="msds-info-section">
                 <div class="msds-section-title">
-                  <span class="material-symbols-outlined" style="color: var(--accent-amber);">shield_heart</span>
+                  <span class="material-symbols-outlined" style="color: var(--accent-amber);">health_and_safety</span>
                   لوزی شناسایی خطر (NFPA 704)
                 </div>
                 <div class="nfpa-diamond-container">
@@ -1293,7 +1288,7 @@
       </div>
     </footer>
 
-  </div>
+  </main>
 
   <!-- Floating Emergency Button -->
   <button id="emergency-fab" class="emergency-fab" title="فوریت‌های اضطراری" aria-label="فوریت‌های اضطراری" aria-haspopup="dialog" aria-controls="emergency-modal">
@@ -1450,7 +1445,7 @@
         <div id="spill-scenarios-selection" class="spill-scenarios-grid">
           <div class="drill-scenario-card" data-scenario="acid">
             <div class="drill-card-header">
-              <span class="material-symbols-outlined drill-icon" style="color: var(--accent-red);">acid</span>
+              <span class="material-symbols-outlined drill-icon" style="color: var(--accent-red);">science</span>
               <h3>نشت اسید سولفوریک غلیظ</h3>
             </div>
             <p>مقدار ۵۰۰ میلی‌لیتر اسید سولفوریک غلیظ (۹۸٪) روی زمین پایلوت سرازیر شده و گازهای بسیار محرک و خطرناکی منتشر می‌کند.</p>
@@ -1519,8 +1514,35 @@
     </div>
   </div>
 
-  <script src="script.js?v=3.0"></script>
-  <script src="chatbot/msds/msds-db.js?v=3.0"></script>
-  <script src="chatbot/chatbot.js?v=3.0"></script>
+  <script>
+    (() => {
+      const scheduleIdle = window.requestIdleCallback || ((callback) => window.setTimeout(callback, 1500));
+
+      function loadScript(src) {
+        return new Promise((resolve, reject) => {
+          const script = document.createElement('script');
+          script.src = src;
+          script.async = true;
+          script.onload = resolve;
+          script.onerror = reject;
+          document.body.appendChild(script);
+        });
+      }
+
+      function loadAssistant() {
+        scheduleIdle(() => {
+          loadScript('chatbot/msds/msds-db.js?v=3.0')
+            .then(() => loadScript('chatbot/chatbot.js?v=3.0'))
+            .catch((error) => console.error('Assistant failed to load:', error));
+        }, { timeout: 4000 });
+      }
+
+      if (document.readyState === 'complete') {
+        loadAssistant();
+      } else {
+        window.addEventListener('load', loadAssistant, { once: true });
+      }
+    })();
+  </script>
 </body>
 </html>

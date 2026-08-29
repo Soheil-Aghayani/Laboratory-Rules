@@ -1,3 +1,43 @@
+(() => {
+  let katexPromise;
+
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+  }
+
+  window.ensureKatex = () => {
+    if (typeof window.katex !== 'undefined' && typeof window.renderMathInElement === 'function') {
+      return Promise.resolve();
+    }
+
+    if (katexPromise) return katexPromise;
+
+    if (!document.querySelector('link[data-katex-styles]')) {
+      const style = document.createElement('link');
+      style.rel = 'stylesheet';
+      style.href = 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css';
+      style.dataset.katexStyles = 'true';
+      document.head.appendChild(style);
+    }
+
+    katexPromise = loadScript('https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js')
+      .then(() => loadScript('https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js'))
+      .catch((error) => {
+        katexPromise = null;
+        throw error;
+      });
+
+    return katexPromise;
+  };
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
   // Theme Toggle
   const themeBtn = document.getElementById('theme-btn');
@@ -77,6 +117,10 @@ document.addEventListener('DOMContentLoaded', () => {
       c.hidden = !isActive;
       c.setAttribute('aria-hidden', String(!isActive));
     });
+
+    if (tabId === 'tab-equipment') {
+      ensurePageMath();
+    }
   }
 
   const tabBtnArray = Array.from(tabBtns);
@@ -1280,16 +1324,25 @@ document.addEventListener('DOMContentLoaded', () => {
     certificateBox.classList.add('active');
   }
 
-  // Initialize KaTeX Auto-Render for LaTeX equations
-  if (typeof renderMathInElement === 'function') {
-    renderMathInElement(document.body, {
-      delimiters: [
-        {left: '$$', right: '$$', display: true},
-        {left: '$', right: '$', display: false},
-        {left: '\\(', right: '\\)', display: false},
-        {left: '\\[', right: '\\]', display: true}
-      ],
-      throwOnError: false
+  // Load and render equations only when the equipment tab is opened.
+  function renderPageMath() {
+    if (typeof renderMathInElement === 'function') {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ],
+        throwOnError: false
+      });
+    }
+  }
+
+  function ensurePageMath() {
+    if (typeof window.ensureKatex !== 'function') return Promise.resolve();
+    return window.ensureKatex().then(renderPageMath).catch(() => {
+      // The plain-text formula fallback remains usable if the CDN is unavailable.
     });
   }
 
@@ -1478,6 +1531,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Create select
     const select = document.createElement('select');
     select.className = 'error-lookup-select compat-chemical-select';
+    select.setAttribute('aria-label', 'انتخاب ماده شیمیایی برای بررسی سازگاری');
+    select.title = 'انتخاب ماده شیمیایی برای بررسی سازگاری';
     select.style.flex = '1';
     select.setAttribute('aria-label', `ماده شیمیایی شماره ${container.children.length + 1}`);
     
@@ -2103,8 +2158,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     compatStatusTitle.textContent = title;
     
-    if (typeof renderMathInElement === 'function') {
-      compatDesc.innerHTML = desc;
+    compatDesc.innerHTML = desc;
+    const renderCompatDescription = () => {
+      if (typeof renderMathInElement !== 'function') {
+        compatDesc.innerHTML = cleanLatexText(desc);
+        return;
+      }
+
       try {
         renderMathInElement(compatDesc, {
           delimiters: [
@@ -2119,8 +2179,13 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('KaTeX text render error:', e);
         compatDesc.innerHTML = cleanLatexText(desc);
       }
-    } else {
-      compatDesc.innerHTML = cleanLatexText(desc);
+    };
+    renderCompatDescription();
+
+    if (typeof window.ensureKatex === 'function' && typeof renderMathInElement !== 'function') {
+      window.ensureKatex().then(renderCompatDescription).catch(() => {
+        // The plain-text description remains usable if the CDN is unavailable.
+      });
     }
 
     // Show formulas only for explicit, non-dangerous reactions. Never expose
@@ -2132,7 +2197,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (formulaState === 'show' && formula) {
       compatFormulaLabel.textContent = 'معادلهٔ واکنش ثبت‌شده:';
-      if (typeof katex !== 'undefined') {
+      const renderCompatFormula = () => {
+        if (typeof katex === 'undefined') {
+          compatFormula.textContent = cleanLatexFormula(formula);
+          compatFormulaSection.style.display = 'block';
+          return;
+        }
+
         try {
           katex.render(formula, compatFormula, {
             displayMode: true,
@@ -2142,10 +2213,15 @@ document.addEventListener('DOMContentLoaded', () => {
           console.error('KaTeX error:', err);
           compatFormula.textContent = cleanLatexFormula(formula);
         }
-      } else {
-        compatFormula.textContent = cleanLatexFormula(formula);
+        compatFormulaSection.style.display = 'block';
+      };
+      renderCompatFormula();
+
+      if (typeof window.ensureKatex === 'function' && typeof katex === 'undefined') {
+        window.ensureKatex().then(renderCompatFormula).catch(() => {
+          // The plain-text formula remains usable if the CDN is unavailable.
+        });
       }
-      compatFormulaSection.style.display = 'block';
     } else if (formulaState === 'no-reaction' || formulaState === 'hidden-danger' || formulaState === 'hidden-uncertain') {
       compatFormulaLabel.textContent = formulaState === 'no-reaction' ? 'معادلهٔ واکنش:' : 'فرمول محصولات نهایی:';
       compatFormulaNote.textContent = formulaNotice;

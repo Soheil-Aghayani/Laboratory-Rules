@@ -3,7 +3,7 @@
  * This script runs completely client-side and matches user queries against a local laboratory safety & equipment database.
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+const startLaboratoryChatbot = () => {
   // Knowledge Base Database
   const qaDatabase = [
     {
@@ -720,7 +720,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="chatbot-title">
           <span class="material-symbols-outlined bot-icon">smart_toy</span>
           <div>
-            <h3 id="chatbot-title">دستیار هوشمند آزمایشگاه</h3>
+            <h2 id="chatbot-title">دستیار هوشمند آزمایشگاه</h2>
             <p>پاسخ‌گویی آفلاین بر اساس مستندات</p>
           </div>
         </div>
@@ -1722,4 +1722,10 @@ ${chem.firstAid.inhalation ? `- استنشاق: ${chem.firstAid.inhalation}\n` :
       .replace(/\\/g, '')
       .trim();
   }
-});
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', startLaboratoryChatbot, { once: true });
+} else {
+  startLaboratoryChatbot();
+}
