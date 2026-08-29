@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://soheil-aghyani.github.io/Laboratory-Rules/sitemap.xml

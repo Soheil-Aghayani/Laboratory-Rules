@@ -206,6 +206,23 @@ document.addEventListener('DOMContentLoaded', () => {
   window.switchTab = switchTab;
   window.switchEquipment = switchEquipment;
 
+  // Keep footer navigation crawlable while still switching hidden tab panels for users.
+  document.querySelectorAll('[data-tab-link]').forEach(link => {
+    link.addEventListener('click', event => {
+      const tabId = link.getAttribute('data-tab-link');
+      const targetId = new URL(link.getAttribute('href') || '', window.location.href).hash.replace(/^#/, '');
+      if (!tabId) return;
+
+      event.preventDefault();
+      switchTab(tabId);
+      history.replaceState(null, '', `#${targetId}`);
+      setTimeout(() => {
+        const target = document.getElementById(targetId);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 0);
+    });
+  });
+
   // Shared modal behavior: Escape-to-close, focus restore, and a small focus trap.
   let activeModal = null;
   const modalTriggers = new WeakMap();
@@ -319,6 +336,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const el = document.getElementById('eq-phmeter');
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 100);
+    } else if (hash === 'equipment' || hash === 'tab-equipment') {
+      switchTab('tab-equipment');
+      setTimeout(() => {
+        const el = document.getElementById('tab-equipment');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
     } else if (hash === 'rules' || hash === 'tab-general') {
       switchTab('tab-general');
       setTimeout(() => {
@@ -329,6 +352,18 @@ document.addEventListener('DOMContentLoaded', () => {
       switchTab('tab-quiz');
       setTimeout(() => {
         const el = document.getElementById('tab-quiz');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    } else if (hash === 'msds-widget-card') {
+      switchTab('tab-general');
+      setTimeout(() => {
+        const el = document.getElementById('msds-widget-card');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    } else if (hash === 'compatibility-widget-card') {
+      switchTab('tab-equipment');
+      setTimeout(() => {
+        const el = document.getElementById('compatibility-widget-card');
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 100);
     }

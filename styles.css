@@ -1521,6 +1521,28 @@ footer {
   color: var(--text-muted);
 }
 
+.footer-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+.footer-nav a {
+  color: var(--accent-emerald-strong);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.footer-nav a:hover,
+.footer-nav a:focus-visible {
+  color: var(--accent-emerald);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 .footer-socials {
   display: flex;
   align-items: center;
