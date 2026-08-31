@@ -1,0 +1,20 @@
+{
+  "name": "پورتال مقررات و ایمنی آزمایشگاه پسماند",
+  "short_name": "ایمنی آزمایشگاه",
+  "lang": "fa-IR",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0f172a",
+  "description": "راهنمای آفلاین مقررات، ایمنی، تجهیزات، مواد شیمیایی و مدیریت پسماندهای آزمایشگاهی.",
+  "icons": [
+    {
+      "src": "./Waste%20Lab.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ]
+}
