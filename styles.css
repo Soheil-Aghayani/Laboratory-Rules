@@ -1776,7 +1776,7 @@ footer {
   width: 100%;
   max-width: 600px;
   max-height: 90vh;
-  overflow-y: auto;
+  overflow: hidden;
   box-shadow: var(--card-shadow);
   display: flex;
   flex-direction: column;
@@ -1836,6 +1836,32 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-muted) transparent;
+}
+
+.emergency-modal-body::-webkit-scrollbar {
+  width: 7px;
+}
+
+.emergency-modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.emergency-modal-body::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+}
+
+.emergency-modal-body::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-emerald);
+  border-width: 1px;
 }
 
 .emergency-section-card {
