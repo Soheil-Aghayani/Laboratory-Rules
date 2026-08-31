@@ -10868,7 +10868,7 @@ const periodicElementSafetyProfiles = {
     spillAction: 'محل را ایزوله کنید، از ایجاد گرد و غبار جلوگیری کرده و پسماند را طبق SDS عنصر جمع‌آوری کنید.'
   },
   radioactive: {
-    wasteGroup: 'مواد پرتوزای عنصری — فقط با مجوز و کنترل حفاظت در برابر پرتو',
+    wasteGroup: 'مواد پرتوزای عنصری، فقط با مجوز و کنترل حفاظت در برابر پرتو',
     containerColor: 'red',
     hazards: [
       { icon: 'warning', label: 'پرتوزا؛ کار با آن فقط در تأسیسات مجاز و تحت نظر مسئول حفاظت در برابر پرتو' },
@@ -10880,7 +10880,7 @@ const periodicElementSafetyProfiles = {
     spillAction: 'محل را تخلیه و ایزوله کنید. به ماده دست نزنید و فقط طبق برنامهٔ پاسخ به رخداد پرتوی و با تیم مجاز اقدام کنید.'
   },
   radioactive_gas: {
-    wasteGroup: 'گاز پرتوزای عنصری — فقط در تأسیسات مجاز',
+    wasteGroup: 'گاز پرتوزای عنصری، فقط در تأسیسات مجاز',
     containerColor: 'red',
     hazards: [
       { icon: 'warning', label: 'گاز پرتوزا؛ خطر تابش و آلودگی داخلی از راه تنفس دارد' },

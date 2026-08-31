@@ -1386,7 +1386,28 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- MSDS Chemical Safety Lookup Widget Logic ---
   const msdsSelect = document.getElementById('msds-chemical-select');
   const msdsDetailsCard = document.getElementById('msds-details-card');
+  const msdsWikipediaBtn = document.getElementById('msds-wikipedia-btn');
   let msdsDropdownWaitingForDb = false;
+
+  function updateMsdsWikipediaButton(chem) {
+    if (!msdsWikipediaBtn) return;
+
+    const searchTerm = chem && (chem.nameFa || chem.nameEn || chem.formula);
+    if (!searchTerm) {
+      msdsWikipediaBtn.hidden = true;
+      msdsWikipediaBtn.removeAttribute('href');
+      msdsWikipediaBtn.setAttribute('aria-label', 'جستجوی ماده انتخاب‌شده در ویکی‌پدیای فارسی');
+      msdsWikipediaBtn.title = 'جستجوی ماده انتخاب‌شده در ویکی‌پدیای فارسی';
+      return;
+    }
+
+    const encodedSearchTerm = encodeURIComponent(searchTerm.trim());
+    const label = `جستجوی ${searchTerm} در ویکی‌پدیای فارسی`;
+    msdsWikipediaBtn.href = `https://fa.wikipedia.org/w/index.php?search=${encodedSearchTerm}`;
+    msdsWikipediaBtn.hidden = false;
+    msdsWikipediaBtn.setAttribute('aria-label', label);
+    msdsWikipediaBtn.title = label;
+  }
 
   // Populate chemical dropdown menu dynamically from window.chemicalMsdsDb
   function populateMsdsDropdown() {
@@ -1445,12 +1466,18 @@ document.addEventListener('DOMContentLoaded', () => {
     msdsSelect.addEventListener('change', () => {
       const chemId = msdsSelect.value;
       if (!chemId) {
+        updateMsdsWikipediaButton(null);
         msdsDetailsCard.style.display = 'none';
         return;
       }
 
       const chem = window.chemicalMsdsDb.find(c => c.id === chemId);
-      if (!chem) return;
+      if (!chem) {
+        updateMsdsWikipediaButton(null);
+        return;
+      }
+
+      updateMsdsWikipediaButton(chem);
 
       // Update NFPA and GHS Visualizers
       updateNfpaAndGhs(chem);
@@ -2491,21 +2518,73 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function cleanLatexFormula(latex) {
     if (!latex) return '';
-    return latex
-      .replace(/\\mathrm\{([^}]+)\}/g, '$1')
-      .replace(/\\text\{([^}]+)\}/g, '$1')
-      .replace(/\\xrightarrow\{([^}]+)\}/g, ' --$1--> ')
-      .replace(/\\rightarrow/g, ' --> ')
-      .replace(/\\leftrightarrow/g, ' <--> ')
-      .replace(/\\uparrow/g, ' (گاز)')
-      .replace(/\\downarrow/g, ' (رسوب)')
-      .replace(/\\overset\{([^}]+)\}\{([^}]+)\}/g, ' --$1--> ')
+    const subscriptMap = {
+      '0': '₀', '1': '₁', '2': '₂', '3': '₃', '4': '₄',
+      '5': '₅', '6': '₆', '7': '₇', '8': '₈', '9': '₉',
+      '+': '₊', '-': '₋', '(': '₍', ')': '₎', 'x': 'ₓ'
+    };
+    const toSubscript = (value) => [...value].map(char => subscriptMap[char] || char).join('');
+    const findGroupEnd = (source, groupStart) => {
+      if (source[groupStart] !== '{') return -1;
+      let depth = 0;
+      for (let index = groupStart; index < source.length; index += 1) {
+        if (source[index] === '{') depth += 1;
+        if (source[index] === '}') {
+          depth -= 1;
+          if (depth === 0) return index;
+        }
+      }
+      return -1;
+    };
+
+    let result = String(latex);
+    const replaceCommandArgument = (command, replacement) => {
+      const token = `\\${command}`;
+      let start = result.indexOf(token);
+      while (start !== -1) {
+        const groupStart = start + token.length;
+        const groupEnd = findGroupEnd(result, groupStart);
+        if (groupEnd === -1) break;
+        const inner = result.slice(groupStart + 1, groupEnd);
+        const replacementText = replacement(inner);
+        result = `${result.slice(0, start)}${replacementText}${result.slice(groupEnd + 1)}`;
+        start = result.indexOf(token, start + replacementText.length);
+      }
+    };
+    const replaceTwoArgumentCommand = (command, replacement) => {
+      const token = `\\${command}`;
+      let start = result.indexOf(token);
+      while (start !== -1) {
+        const firstStart = start + token.length;
+        const firstEnd = findGroupEnd(result, firstStart);
+        const secondStart = firstEnd + 1;
+        const secondEnd = firstEnd === -1 ? -1 : findGroupEnd(result, secondStart);
+        if (firstEnd === -1 || secondEnd === -1) break;
+        const first = result.slice(firstStart + 1, firstEnd);
+        const second = result.slice(secondStart + 1, secondEnd);
+        const replacementText = replacement(first, second);
+        result = `${result.slice(0, start)}${replacementText}${result.slice(secondEnd + 1)}`;
+        start = result.indexOf(token, start + replacementText.length);
+      }
+    };
+
+    replaceCommandArgument('xrightarrow', inner => ` → ${inner} `);
+    replaceTwoArgumentCommand('overset', (top) => ` → ${top} `);
+    replaceCommandArgument('mathrm', inner => inner);
+    replaceCommandArgument('text', inner => inner);
+
+    return result
+      .replace(/\\rightarrow|\\to/g, ' → ')
+      .replace(/\\leftrightarrow/g, ' ↔ ')
+      .replace(/\\uparrow/g, ' ↑')
+      .replace(/\\downarrow/g, ' ↓')
       .replace(/\\times/g, ' × ')
       .replace(/\\circ/g, '°')
-      .replace(/_([a-zA-Z0-9])/g, '$1')
-      .replace(/_\{([^}]+)\}/g, '$1')
+      .replace(/_\{([^{}]*)\}/g, (_, value) => toSubscript(value))
+      .replace(/_([0-9A-Za-z+\-()]+)/g, (_, value) => toSubscript(value))
       .replace(/[\{\}]/g, '')
       .replace(/\\/g, '')
+      .replace(/\s+/g, ' ')
       .trim();
   }
 
