@@ -2293,11 +2293,25 @@ footer {
   .emergency-modal {
     max-height: calc(100vh - 1rem);
     max-height: calc(100dvh - 1rem);
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+    overscroll-behavior-y: contain;
+  }
+
+  .emergency-modal-header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: var(--bg-secondary);
   }
 
   .emergency-modal-body {
-    max-height: calc(100vh - 10rem);
-    max-height: calc(100dvh - 10rem);
+    max-height: none;
+    overflow: visible;
+    flex: 0 0 auto;
+    touch-action: auto;
   }
 }
 
