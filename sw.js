@@ -1,14 +1,14 @@
-const CACHE_VERSION = 'lab-rules-v12';
+const CACHE_VERSION = 'lab-rules-v15';
 const APP_SHELL = [
   './',
   './index.html',
   './offline.html',
   './manifest.webmanifest',
-  './styles.min.css?v=5.1',
-  './script.min.js?v=5.1',
-  './chatbot/chatbot.min.css?v=5.1',
-  './chatbot/chatbot.min.js?v=5.1',
-  './chatbot/msds/msds-db.min.js?v=5.1',
+  './styles.min.css?v=5.4',
+  './script.min.js?v=5.4',
+  './chatbot/chatbot.min.css?v=5.4',
+  './chatbot/chatbot.min.js?v=5.4',
+  './chatbot/msds/msds-db.min.js?v=5.4',
   './asset/vazirmatn-arabic.woff2',
   './asset/material-symbols-outlined-subset.woff2',
   './asset/outfit-latin.woff2',
