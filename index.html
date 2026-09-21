@@ -26,8 +26,8 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="preload" href="./asset/material-symbols-outlined-subset.woff2" as="font" type="font/woff2" crossorigin fetchpriority="low">
-  <link rel="preload" href="./styles.min.css?v=4.0" as="style" crossorigin fetchpriority="high" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="./styles.min.css?v=4.0"></noscript>
+  <link rel="preload" href="./styles.min.css?v=5.1" as="style" crossorigin fetchpriority="high" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="./styles.min.css?v=5.1"></noscript>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -86,15 +86,19 @@
     .penalty-banner{background-color:var(--accent-red-glow);border:1px solid var(--accent-red);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;margin-bottom:2rem}.penalty-icon{font-size:28px;color:var(--accent-red);flex-shrink:0}.penalty-text{font-size:.95rem;font-weight:600;color:var(--text-primary)}
     .tabs{display:flex;justify-content:center;gap:1.5rem;border-bottom:2px solid var(--border-color);margin-bottom:2.5rem}.tab-btn{background:none;border:0;color:var(--text-muted);cursor:pointer;padding:1rem 1.5rem;font-family:var(--font-fa);font-size:1.05rem;font-weight:600;position:relative}.tab-btn.active{color:var(--accent-emerald)}.tab-btn.active::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background-color:var(--accent-emerald);border-radius:2px}.tab-content{display:none}.tab-content.active{display:block}.rules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-bottom:3rem}.rule-card{background-color:var(--bg-secondary);border:1px solid var(--border-color);border-radius:16px;padding:1.5rem;box-shadow:var(--card-shadow);display:flex;flex-direction:column}
     .chatbot-fab-loader{position:fixed;bottom:2rem;right:2rem;background:linear-gradient(135deg,var(--accent-emerald-strong) 0%,#064e3b 100%);color:#fff;border:0;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 25px rgba(16,185,129,.4);z-index:999}.chatbot-fab-loader svg{width:30px;height:30px;display:block}.chatbot-fab-loader:disabled{cursor:wait;opacity:.75}
-    @media(max-width:768px){.container{padding:1.25rem 1rem}.tabs{flex-wrap:wrap;gap:.5rem;border-bottom:0;margin-bottom:1.5rem}.tab-btn{flex:1 1 calc(50% - .5rem);min-width:140px;text-align:center;border:1px solid var(--border-color);border-radius:10px;padding:.6rem 1rem;font-size:.9rem;background-color:var(--bg-secondary)}.tab-btn.active{background-color:var(--accent-emerald-glow);border-color:var(--accent-emerald)}.tab-btn.active::after{display:none}}
+    @media(max-width:768px){.container{padding:1.25rem 1rem}.controls{width:100%;gap:.5rem}.status-widget{flex:1 1 auto;min-width:0;padding:.4rem .7rem;font-size:.78rem;line-height:1.35;white-space:nowrap}.status-widget #status-text{min-width:0;overflow:visible;text-overflow:clip;white-space:nowrap}.tabs{flex-wrap:wrap;gap:.5rem;border-bottom:0;margin-bottom:1.5rem}.tab-btn{flex:1 1 calc(50% - .5rem);min-width:140px;text-align:center;border:1px solid var(--border-color);border-radius:10px;padding:.6rem 1rem;font-size:.9rem;background-color:var(--bg-secondary)}.tab-btn.active{background-color:var(--accent-emerald-glow);border-color:var(--accent-emerald)}.tab-btn.active::after{display:none}}
     @media(max-width:480px){.tab-btn{flex:1 1 100%}.chatbot-fab-loader{bottom:1rem;right:1rem;width:48px;height:48px}.chatbot-fab-loader svg{width:27px;height:27px}}
+  </style>
+  <style id="rules-carousel-critical-css">
+    .rules-carousel{position:relative;min-width:0}.rules-carousel-controls{display:none}
+    @media(max-width:992px){.rules-carousel{overflow:hidden;padding-bottom:3.75rem}.rules-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:0;overflow:visible;margin:0;padding:.85rem 2.75rem .25rem;perspective:1200px;transform-style:preserve-3d;touch-action:pan-y}.rules-grid .rule-card{grid-area:1/1;width:100%;min-width:0;padding:1.15rem 1.25rem}.rules-grid .rule-card-title{font-size:1rem}.rules-grid .rule-item{font-size:.84rem;line-height:1.65}.rules-grid .rule-list{gap:.85rem}.rules-grid .rule-card-header{margin-bottom:.95rem;padding-bottom:.6rem}.rules-grid .rule-card[data-carousel-position=previous]>*,.rules-grid .rule-card[data-carousel-position=next]>*{opacity:0;visibility:hidden}.rules-carousel-controls{display:block;position:absolute;inset:0;pointer-events:none}}
   </style>
   <style id="offline-critical-css">
     .offline-status{display:flex;align-items:flex-start;gap:.6rem;margin-top:.75rem;padding:.7rem .9rem;border:1px solid var(--accent-amber);border-radius:12px;background:var(--accent-amber-glow);color:var(--text-primary);font-size:.82rem;line-height:1.7}
     .offline-status .material-symbols-outlined{font-size:1.15rem;color:var(--accent-amber);flex:0 0 auto;margin-top:.25rem}
     .offline-status[hidden]{display:none}
   </style>
-  <script defer fetchpriority="low" src="./script.min.js?v=4.0"></script>
+  <script defer fetchpriority="low" src="./script.min.js?v=5.1"></script>
 </head>
 <body>
 
@@ -164,24 +168,25 @@
 
     <!-- TAB 1: General Rules -->
     <div class="tab-content active" id="tab-general" role="tabpanel" aria-labelledby="tab-btn-general" tabindex="0">
-      <div class="rules-grid">
+      <div class="rules-carousel" role="region" aria-roledescription="carousel" aria-label="قوانین عمومی و ایمنی" tabindex="0">
+        <div id="rules-grid" class="rules-grid">
         
         <!-- Card 1: Hours & Access -->
-        <div class="rule-card">
+        <div class="rule-card" role="group" aria-roledescription="slide" aria-label="کارت ۱ از ۶">
           <div class="rule-card-header">
             <span class="material-symbols-outlined rule-card-icon">schedule</span>
             <div class="rule-card-title">ساعت کاری و ضوابط ورود</div>
           </div>
           <ul class="rule-list">
             <li class="rule-item"><strong>ساعت کاری آزمایشگاه:</strong> از ساعت <span class="highlight-mark">۷:۰۰ صبح تا ۱۶:۰۰</span> می‌باشد.</li>
-            <li class="rule-item"><strong>افراد مجاز:</strong> فقط دانشجویان لیست پیوست اجازه حضور در آزمایشگاه و کار با دستگاه‌های مربوطه را دارند.</li>
+            <li class="rule-item"><strong>افراد مجاز:</strong> فقط دانشجویان سهیل آقایانی، عرشیا شادروان، آیدا باوندپور، امیرحسین حامدی و عرفان هاشمی اجازه حضور در آزمایشگاه و کار با دستگاه‌های مربوطه را دارند.</li>
             <li class="rule-item"><strong>حداکثر مدت دوره:</strong> مدت حضور در آزمایشگاه برای دانشجویان کارشناسی ارشد حداکثر <span class="highlight-mark">۹ ماه</span> است.</li>
             <li class="rule-item"><strong>خروج از آزمایشگاه:</strong> پس از خروج، حتماً چک کنید درب قفل، چراغ‌ها خاموش و کولر خاموش باشد.</li>
           </ul>
         </div>
 
         <!-- Card 2: PPE & General Protection -->
-        <div class="rule-card">
+        <div class="rule-card" role="group" aria-roledescription="slide" aria-label="کارت ۲ از ۶">
           <div class="rule-card-header">
             <span class="material-symbols-outlined rule-card-icon">health_and_safety</span>
             <div class="rule-card-title">پوشش حفاظتی و بهداشت</div>
@@ -194,7 +199,7 @@
         </div>
 
         <!-- Card 3: Acids & Bases -->
-        <div class="rule-card">
+        <div class="rule-card" role="group" aria-roledescription="slide" aria-label="کارت ۳ از ۶">
           <div class="rule-card-header">
             <span class="material-symbols-outlined rule-card-icon">warning</span>
             <div class="rule-card-title">کار با اسیدها و بازها</div>
@@ -208,7 +213,7 @@
         </div>
 
         <!-- Card 4: Waste Disposal -->
-        <div class="rule-card">
+        <div class="rule-card" role="group" aria-roledescription="slide" aria-label="کارت ۴ از ۶">
           <div class="rule-card-header">
             <span class="material-symbols-outlined rule-card-icon">delete_forever</span>
             <div class="rule-card-title">دفع پسماندهای آزمایشگاهی</div>
@@ -221,7 +226,7 @@
         </div>
 
         <!-- Card 5: Equipment & Glassware -->
-        <div class="rule-card">
+        <div class="rule-card" role="group" aria-roledescription="slide" aria-label="کارت ۵ از ۶">
           <div class="rule-card-header">
             <span class="material-symbols-outlined rule-card-icon">construction</span>
             <div class="rule-card-title">تجهیزات، نظافت و خسارت</div>
@@ -236,7 +241,7 @@
         </div>
 
         <!-- Card 6: Discipline & Desk Hygiene -->
-        <div class="rule-card">
+        <div class="rule-card" role="group" aria-roledescription="slide" aria-label="کارت ۶ از ۶">
           <div class="rule-card-header">
             <span class="material-symbols-outlined rule-card-icon">clean_hands</span>
             <div class="rule-card-title">انضباط و بهداشت میز کار</div>
@@ -248,6 +253,20 @@
           </ul>
         </div>
 
+        </div>
+        <div class="rules-carousel-controls" aria-label="کنترل کارت‌های قوانین">
+          <button type="button" class="rules-carousel-button" data-rules-carousel-action="next" aria-label="نمایش کارت بعدی" aria-controls="rules-grid">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 6l6 6l-6 6"/>
+            </svg>
+          </button>
+          <div class="rules-carousel-dots" data-rules-carousel-dots aria-label="انتخاب کارت قوانین"></div>
+          <button type="button" class="rules-carousel-button" data-rules-carousel-action="previous" aria-label="نمایش کارت قبلی" aria-controls="rules-grid">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 6l-6 6l6 6"/>
+            </svg>
+          </button>
+        </div>
       </div>
 
       <!-- MSDS Chemical Safety Lookup Widget -->
@@ -1399,7 +1418,7 @@
   </main>
 
   <!-- Chemical Suggestion Modal -->
-  <div id="chemical-suggestion-modal" class="emergency-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="chemical-suggestion-title" aria-describedby="chemical-suggestion-help" aria-hidden="true" inert tabindex="-1">
+  <div id="chemical-suggestion-modal" class="emergency-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="chemical-suggestion-title" aria-describedby="chemical-suggestion-help" aria-hidden="true" inert hidden tabindex="-1">
     <div class="emergency-modal chemical-suggestion-modal">
       <div class="emergency-modal-header">
         <div class="emergency-modal-title chemical-suggestion-title">
@@ -1476,7 +1495,7 @@
   </button>
 
   <!-- Emergency Modal -->
-  <div id="emergency-modal" class="emergency-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="emergency-modal-title" aria-hidden="true" inert tabindex="-1">
+  <div id="emergency-modal" class="emergency-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="emergency-modal-title" aria-hidden="true" inert hidden tabindex="-1">
     <div class="emergency-modal">
       <div class="emergency-modal-header">
         <div class="emergency-modal-title">
@@ -1602,7 +1621,7 @@
   </div>
 
   <!-- Spill Simulator Modal -->
-  <div id="drill-modal" class="emergency-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="drill-modal-title" aria-hidden="true" inert tabindex="-1">
+  <div id="drill-modal" class="emergency-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="drill-modal-title" aria-hidden="true" inert hidden tabindex="-1">
     <div class="emergency-modal" style="max-width: 850px;">
       <div class="emergency-modal-header">
         <div class="emergency-modal-title" style="color: var(--accent-red); gap: 0.5rem;">
@@ -1693,7 +1712,7 @@
 
   <script>
     (() => {
-      const assetVersion = '4.0';
+      const assetVersion = '5.1';
       const assetCdnBase = '.';
       let msdsDbPromise = null;
       let chatbotPromise = null;

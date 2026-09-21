@@ -89,13 +89,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const isWorkday = [0, 1, 2, 3, 6].includes(currentDay); // شنبه تا چهارشنبه
     const isOpen = isWorkday && currentHour >= 7 && currentHour < 16;
     
+    const fullStatusText = isOpen
+      ? `آزمایشگاه باز است (${dayName}، ساعت کاری: ۷ تا ۱۶)`
+      : `آزمایشگاه در حال حاضر بسته است (${dayName}، ساعات کاری شنبه تا چهارشنبه، ۷ تا ۱۶)`;
+    const compactStatusText = isOpen
+      ? `آزمایشگاه باز است · ${dayName} · ۷ تا ۱۶`
+      : `آزمایشگاه بسته است · ${dayName} · ۷ تا ۱۶`;
+
     if (isOpen) {
       statusDot.classList.add('active');
-      statusText.textContent = `آزمایشگاه باز است (${dayName}، ساعت کاری: ۷ تا ۱۶)`;
+      statusText.textContent = compactStatusText;
     } else {
       statusDot.classList.remove('active');
-      statusText.textContent = `آزمایشگاه در حال حاضر بسته است (${dayName}، ساعات کاری شنبه تا چهارشنبه، ۷ تا ۱۶)`;
+      statusText.textContent = compactStatusText;
     }
+    statusText.title = fullStatusText;
   }
   updateLabStatus();
   setInterval(updateLabStatus, 60000); // Update every minute
@@ -152,6 +160,113 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // Mobile/tablet rules carousel. Desktop keeps the full six-card grid.
+  const rulesGrid = document.getElementById('rules-grid');
+  const rulesCarousel = document.querySelector('.rules-carousel');
+  const rulesCarouselDots = document.querySelector('[data-rules-carousel-dots]');
+  const rulesCarouselButtons = document.querySelectorAll('[data-rules-carousel-action]');
+
+  if (rulesGrid && rulesCarousel && rulesCarouselDots && rulesCarouselButtons.length) {
+    const ruleCards = Array.from(rulesGrid.querySelectorAll('.rule-card'));
+    if (!ruleCards.length) return;
+    const rulesCarouselQuery = window.matchMedia('(max-width: 992px)');
+    let activeRuleIndex = 0;
+    let pointerStartX = null;
+
+    const normaliseRuleIndex = index => (index + ruleCards.length) % ruleCards.length;
+
+    const updateRulesCarousel = (index = activeRuleIndex) => {
+      activeRuleIndex = normaliseRuleIndex(index);
+      const isCarouselViewport = rulesCarouselQuery.matches;
+      const previousRuleIndex = normaliseRuleIndex(activeRuleIndex - 1);
+      const nextRuleIndex = normaliseRuleIndex(activeRuleIndex + 1);
+
+      ruleCards.forEach((card, cardIndex) => {
+        let position = 'grid';
+        if (isCarouselViewport) {
+          if (cardIndex === activeRuleIndex) position = 'active';
+          else if (cardIndex === previousRuleIndex) position = 'previous';
+          else if (cardIndex === nextRuleIndex) position = 'next';
+          else position = 'hidden';
+        }
+
+        const isActive = !isCarouselViewport || cardIndex === activeRuleIndex;
+        card.setAttribute('data-carousel-position', position);
+        card.setAttribute('aria-hidden', String(!isActive));
+        if ('inert' in card) card.inert = !isActive;
+      });
+
+      rulesCarouselDots.querySelectorAll('.rules-carousel-dot').forEach((dot, dotIndex) => {
+        dot.setAttribute('aria-current', String(dotIndex === activeRuleIndex));
+      });
+      rulesCarouselButtons.forEach(button => {
+        button.disabled = !isCarouselViewport;
+      });
+    };
+
+    ruleCards.forEach((card, index) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'rules-carousel-dot';
+      dot.setAttribute('aria-label', `نمایش کارت ${index + 1} از ${ruleCards.length}`);
+      dot.setAttribute('aria-current', 'false');
+      dot.addEventListener('click', () => {
+        updateRulesCarousel(index);
+      });
+      rulesCarouselDots.appendChild(dot);
+    });
+
+    rulesCarouselButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const direction = button.getAttribute('data-rules-carousel-action') === 'next' ? 1 : -1;
+        updateRulesCarousel(activeRuleIndex + direction);
+      });
+    });
+
+    rulesCarousel.addEventListener('pointerdown', event => {
+      if (!rulesCarouselQuery.matches || (event.pointerType === 'mouse' && event.button !== 0)) return;
+      pointerStartX = event.clientX;
+    });
+
+    rulesCarousel.addEventListener('pointerup', event => {
+      if (pointerStartX === null) return;
+      const distance = event.clientX - pointerStartX;
+      pointerStartX = null;
+      if (!rulesCarouselQuery.matches || Math.abs(distance) < 45) return;
+      updateRulesCarousel(activeRuleIndex + (distance < 0 ? 1 : -1));
+    });
+
+    rulesCarousel.addEventListener('pointercancel', () => {
+      pointerStartX = null;
+    });
+
+    rulesCarousel.addEventListener('keydown', event => {
+      if (event.target !== rulesCarousel) return;
+      const forwardKey = 'ArrowRight';
+      const backwardKey = 'ArrowLeft';
+      let nextIndex = activeRuleIndex;
+
+      if (event.key === forwardKey) nextIndex += 1;
+      if (event.key === backwardKey) nextIndex -= 1;
+      if (event.key === 'Home') nextIndex = 0;
+      if (event.key === 'End') nextIndex = ruleCards.length - 1;
+
+      if (nextIndex !== activeRuleIndex) {
+        event.preventDefault();
+        updateRulesCarousel(nextIndex);
+      }
+    });
+
+    const handleRulesCarouselViewportChange = () => updateRulesCarousel(activeRuleIndex);
+    if (typeof rulesCarouselQuery.addEventListener === 'function') {
+      rulesCarouselQuery.addEventListener('change', handleRulesCarouselViewportChange);
+    } else if (typeof rulesCarouselQuery.addListener === 'function') {
+      rulesCarouselQuery.addListener(handleRulesCarouselViewportChange);
+    }
+
+    updateRulesCarousel(0);
+  }
 
   // Equipment Sub-navigation
   const eqBtns = document.querySelectorAll('.eq-nav-btn');
@@ -237,6 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!modal) return;
     activeModal = modal;
     modalTriggers.set(modal, trigger);
+    modal.hidden = false;
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     modal.removeAttribute('inert');
@@ -247,6 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeModal(modal) {
     if (!modal) return;
     modal.classList.remove('active');
+    modal.hidden = true;
     modal.setAttribute('aria-hidden', 'true');
     modal.setAttribute('inert', '');
     if (activeModal === modal) activeModal = null;

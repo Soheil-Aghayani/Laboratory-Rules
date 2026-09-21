@@ -711,6 +711,7 @@ const startLaboratoryChatbot = () => {
     const win = document.createElement('div');
     win.id = 'chatbot-window';
     win.className = 'chatbot-window';
+    win.hidden = true;
     win.setAttribute('role', 'dialog');
     win.setAttribute('aria-modal', 'false');
     win.setAttribute('aria-labelledby', 'chatbot-title');
@@ -776,7 +777,9 @@ const startLaboratoryChatbot = () => {
   // Toggle Chatbot Window
   function closeChatbot() {
     chatbotWindow.classList.remove('active');
+    chatbotWindow.hidden = true;
     chatbotFab.classList.remove('active');
+    document.documentElement.classList.remove('chatbot-open');
     chatbotWindow.setAttribute('aria-hidden', 'true');
     chatbotWindow.setAttribute('inert', '');
     chatbotFab.setAttribute('aria-expanded', 'false');
@@ -785,8 +788,10 @@ const startLaboratoryChatbot = () => {
   chatbotFab.addEventListener('click', () => {
     const isOpen = !chatbotWindow.classList.contains('active');
     if (isOpen) {
+      chatbotWindow.hidden = false;
       chatbotWindow.classList.add('active');
       chatbotFab.classList.add('active');
+      document.documentElement.classList.add('chatbot-open');
       chatbotWindow.setAttribute('aria-hidden', 'false');
       chatbotWindow.removeAttribute('inert');
       chatbotFab.setAttribute('aria-expanded', 'true');
@@ -1719,21 +1724,29 @@ ${chem.firstAid.inhalation ? `- استنشاق: ${chem.firstAid.inhalation}\n` :
 
   function cleanLatexFormula(latex) {
     if (!latex) return '';
+    const subscriptMap = {
+      '0': '₀', '1': '₁', '2': '₂', '3': '₃', '4': '₄',
+      '5': '₅', '6': '₆', '7': '₇', '8': '₈', '9': '₉',
+      '+': '₊', '-': '₋', '(': '₍', ')': '₎', 'x': 'ₓ'
+    };
+    const toSubscript = (value) => [...value].map(char => subscriptMap[char] || char).join('');
+
     return latex
       .replace(/\\mathrm\{([^}]+)\}/g, '$1')
       .replace(/\\text\{([^}]+)\}/g, '$1')
-      .replace(/\\xrightarrow\{([^}]+)\}/g, ' --$1--> ')
-      .replace(/\\rightarrow/g, ' --> ')
-      .replace(/\\leftrightarrow/g, ' <--> ')
-      .replace(/\\uparrow/g, ' (گاز)')
-      .replace(/\\downarrow/g, ' (رسوب)')
-      .replace(/\\overset\{([^}]+)\}\{([^}]+)\}/g, ' --$1--> ')
+      .replace(/\\xrightarrow\{([^}]+)\}/g, ' → $1 ')
+      .replace(/\\rightarrow/g, ' → ')
+      .replace(/\\leftrightarrow/g, ' ↔ ')
+      .replace(/\\uparrow/g, ' ↑')
+      .replace(/\\downarrow/g, ' ↓')
+      .replace(/\\overset\{([^}]+)\}\{([^}]+)\}/g, ' → $1 ')
       .replace(/\\times/g, ' × ')
       .replace(/\\circ/g, '°')
-      .replace(/_([a-zA-Z0-9])/g, '$1')
-      .replace(/_\{([^}]+)\}/g, '$1')
+      .replace(/_\{([^{}]*)\}/g, (_, value) => toSubscript(value))
+      .replace(/_([0-9A-Za-z+\-()]+)/g, (_, value) => toSubscript(value))
       .replace(/[\{\}]/g, '')
       .replace(/\\/g, '')
+      .replace(/\s+/g, ' ')
       .trim();
   }
 };
