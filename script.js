@@ -1750,7 +1750,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '',
         'لطفاً اطلاعات ایمنی و سازگاری این ماده را از منبع معتبر بررسی و سپس دربارهٔ افزودن آن به دیتابیس تصمیم‌گیری کنید.'
       ].join('\n');
-      const issueUrl = `https://github.com/Soheil-Aghayani/Laboratory-Rules/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}`;
+      const issueUrl = `https://github.com/Soheil-Aghayani/Solid-Waste-Laboratory/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}`;
 
       chemicalSuggestionIssueLink.href = issueUrl;
       chemicalSuggestionIssueLink.hidden = false;
@@ -2726,6 +2726,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- NFPA 704 & GHS Estimation and Rendering ---
+  function isNonFlammableText(text) {
+    const normalizedText = String(text || '').toLowerCase().replace(/\u200c/g, ' ');
+    return /غیر\s*قابل\s*اشتعال|non[-\s]?flammable/.test(normalizedText);
+  }
+
   function getNfpaRatings(chem) {
     // 1. Explicit mapping for common/high-profile chemicals by ID
     const explicitMap = {
@@ -2790,9 +2795,9 @@ document.addEventListener('DOMContentLoaded', () => {
       (chem.nameFa || '') + ' ' + 
       (chem.nameEn || '') + ' ' + 
       (chem.formula || '') + ' ' + 
-      chem.hazards.map(haz => haz.label).join(' ') + ' ' + 
-      (chem.spillAction || '')
+      chem.hazards.map(haz => haz.label).join(' ')
     ).toLowerCase();
+    const nonFlammableText = isNonFlammableText(textToSearch);
 
     // Health
     if (textToSearch.includes('کشنده') || textToSearch.includes('مرگبار') || textToSearch.includes('سیانید') || textToSearch.includes('جیوه') || textToSearch.includes('آزید') || textToSearch.includes('deadly') || textToSearch.includes('fatal')) {
@@ -2806,11 +2811,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Flammability
-    if (textToSearch.includes('بسیار قابل اشتعال') || textToSearch.includes('اتر') || textToSearch.includes('دی‌اتیل اتر') || textToSearch.includes('highly flammable')) {
+    if (!nonFlammableText && (textToSearch.includes('بسیار قابل اشتعال') || textToSearch.includes('اتر') || textToSearch.includes('دی‌اتیل اتر') || textToSearch.includes('highly flammable'))) {
       f = 4;
-    } else if (textToSearch.includes('قابل اشتعال') || textToSearch.includes('مشتعل') || textToSearch.includes('آتش') || textToSearch.includes('flammable')) {
+    } else if (!nonFlammableText && (textToSearch.includes('قابل اشتعال') || textToSearch.includes('مشتعل') || textToSearch.includes('آتش') || textToSearch.includes('flammable'))) {
       f = 3;
-    } else if (textToSearch.includes('کمی قابل اشتعال') || textToSearch.includes('روغن') || textToSearch.includes('گرم کردن') || textToSearch.includes('combustible')) {
+    } else if (!nonFlammableText && (textToSearch.includes('کمی قابل اشتعال') || textToSearch.includes('روغن') || textToSearch.includes('گرم کردن') || textToSearch.includes('combustible'))) {
       f = 2;
     } else if (textToSearch.includes('هالوژنه') || textToSearch.includes('کلروفرم') || textToSearch.includes('دی‌کلرومتان')) {
       f = 1;
@@ -2852,16 +2857,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const textToSearch = (
       (chem.nameFa || '') + ' ' + 
       (chem.nameEn || '') + ' ' + 
-      chem.hazards.map(haz => haz.label).join(' ') + ' ' + 
-      (chem.spillAction || '')
+      chem.hazards.map(haz => haz.label).join(' ')
     ).toLowerCase();
+    const nonFlammableText = isNonFlammableText(textToSearch);
 
     const ghsMap = [];
 
     if (textToSearch.includes('بمب') || textToSearch.includes('انفجار') || textToSearch.includes('پراکسیدهای انفجاری') || textToSearch.includes('شوک') || textToSearch.includes('explosive')) {
       ghsMap.push({ icon: 'explosion', label: 'انفجاری' });
     }
-    if (textToSearch.includes('اشتعال') || textToSearch.includes('مشتعل') || textToSearch.includes('آتش') || textToSearch.includes('flammable')) {
+    if (!nonFlammableText && (textToSearch.includes('اشتعال') || textToSearch.includes('مشتعل') || textToSearch.includes('آتش') || textToSearch.includes('flammable'))) {
       ghsMap.push({ icon: 'local_fire_department', label: 'قابل اشتعال' });
     }
     if (textToSearch.includes('اکسیدکننده') || textToSearch.includes('oxidiz') || textToSearch.includes('پرمنگنات')) {

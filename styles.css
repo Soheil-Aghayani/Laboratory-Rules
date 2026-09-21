@@ -2298,6 +2298,13 @@ footer {
     -webkit-overflow-scrolling: touch;
     touch-action: pan-y;
     overscroll-behavior-y: contain;
+    scrollbar-gutter: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .emergency-modal::-webkit-scrollbar {
+    display: none;
   }
 
   .emergency-modal-header {
