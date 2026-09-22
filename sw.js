@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'lab-rules-v28';
+const CACHE_VERSION = 'lab-rules-v29';
 const APP_SHELL = [
   './',
   './index.html',
@@ -37,13 +37,7 @@ const APP_SHELL = [
   './chatbot/msds/msds-db.min.js?v=5.7',
   './asset/vazirmatn-arabic.woff2',
   './asset/outfit-latin.woff2',
-  './Waste%20Lab.webp',
-  './asset/gallery/lab-courtyard-optimized.webp',
-  './asset/gallery/lab-workbench-optimized.webp',
-  './asset/gallery/lab-interior-optimized.webp',
-  './asset/gallery/lab-courtyard-mobile.webp',
-  './asset/gallery/lab-workbench-mobile.webp',
-  './asset/gallery/lab-interior-mobile.webp'
+  './Waste%20Lab.webp'
 ];
 
 self.addEventListener('install', (event) => {
