@@ -1,0 +1,58 @@
+<section id="elements-root" class="elements-shell" aria-labelledby="elements-title">
+        <div class="elements-header">
+          <div>
+            <h2 id="elements-title" class="elements-title">عناصر و مواد</h2>
+            <p class="elements-intro">جدول تناوبی برای شناخت اولیهٔ عناصر، خواص کلیدی، کاربردهای رایج و ملاحظات ایمنی. این صفحه جایگزین SDS فرم مشخص ماده، ایزوتوپ یا محصول تجاری نیست.</p>
+          </div>
+        </div>
+
+        <div class="elements-toolbar">
+          <div>
+            <label class="element-search-label" for="element-search">جستجو در عناصر</label>
+            <div class="element-search-wrap">
+              <span class="material-symbols-outlined" aria-hidden="true">search</span>
+              <input id="element-search" type="search" autocomplete="off" placeholder="نام، نماد، CAS یا عدد اتمی...">
+            </div>
+          </div>
+          <div>
+            <span class="element-search-label">فیلتر آموزشی</span>
+            <div class="element-filter-list" role="group" aria-label="فیلتر عناصر">
+              <button type="button" class="element-filter-btn active" data-element-filter="all" aria-pressed="true">همه</button>
+              <button type="button" class="element-filter-btn" data-element-filter="metal" aria-pressed="false">فلزها</button>
+              <button type="button" class="element-filter-btn" data-element-filter="nonmetal" aria-pressed="false">نافلزها</button>
+              <button type="button" class="element-filter-btn" data-element-filter="metalloid" aria-pressed="false">شبه‌فلزها</button>
+              <button type="button" class="element-filter-btn" data-element-filter="gas" aria-pressed="false">گازها</button>
+              <button type="button" class="element-filter-btn" data-element-filter="radioactive" aria-pressed="false">پرتوزا</button>
+            </div>
+            <div class="element-select-filters" aria-label="فیلترهای جدول تناوبی">
+              <label>گروه<select id="element-group-filter"><option value="">همه</option></select></label>
+              <label>دوره<select id="element-period-filter"><option value="">همه</option></select></label>
+              <label>خانواده<select id="element-family-filter"><option value="">همه</option></select></label>
+            </div>
+          </div>
+        </div>
+        <p id="element-result-count" class="element-result-count" role="status" aria-live="polite"></p>
+        <div class="element-view-toggle" role="group" aria-label="نحوهٔ نمایش عناصر">
+          <button type="button" data-element-view-toggle="list" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">view_list</span>فهرست کارت‌ها</button>
+          <button type="button" data-element-view-toggle="table" aria-pressed="true"><span class="material-symbols-outlined" aria-hidden="true">grid_view</span>جدول تناوبی</button>
+        </div>
+        <div class="element-family-legend" aria-label="راهنمای رنگ خانواده‌های عناصر">
+          <span class="element-family-legend-item" data-element-family="alkali-metal">فلزهای قلیایی</span>
+          <span class="element-family-legend-item" data-element-family="alkaline-earth-metal">قلیایی خاکی</span>
+          <span class="element-family-legend-item" data-element-family="transition-metal">فلزهای واسطه</span>
+          <span class="element-family-legend-item" data-element-family="post-transition-metal">پس‌واسطه</span>
+          <span class="element-family-legend-item" data-element-family="metalloid">شبه‌فلزها</span>
+          <span class="element-family-legend-item" data-element-family="nonmetal">نافلزها</span>
+          <span class="element-family-legend-item" data-element-family="halogen">هالوژن‌ها</span>
+          <span class="element-family-legend-item" data-element-family="noble-gas">گازهای نجیب</span>
+          <span class="element-family-legend-item" data-element-family="lanthanide">لانتانیدها</span>
+          <span class="element-family-legend-item" data-element-family="actinide">اکتینیدها</span>
+        </div>
+        <div class="element-table-scroll">
+          <div id="element-periodic-table" class="element-periodic-table" aria-label="جدول تناوبی عناصر"></div>
+        </div>
+        <div id="element-list" class="element-list" aria-label="فهرست عناصر"></div>
+        <div id="element-empty-state" class="element-empty-state" hidden>موردی با این جستجو و فیلتر پیدا نشد. نام، نماد، CAS یا عدد اتمی دیگری را امتحان کنید.</div>
+        <div id="element-detail-root" hidden></div>
+        <a class="catalog-suggestion-link" href="mailto:soheyl.aghayani+github@gmail.com?subject=پیشنهاد افزودن به کاتالوگ" aria-label="پیشنهاد افزودن ماده یا عنصر به کاتالوگ"><span class="material-symbols-outlined" aria-hidden="true">add_circle</span>پیشنهاد افزودن عنصر یا ماده</a>
+      </section>

@@ -1,0 +1,53 @@
+<div class="gallery-layout">
+        <section class="gallery-intro-block" aria-labelledby="gallery-title">
+          <div class="gallery-intro-copy">
+            <span class="gallery-kicker">کاتالوگ ابزارهای آزمایشگاه</span>
+            <h2 class="gallery-title" id="gallery-title">اتاق تجهیزات آزمایشگاه</h2>
+            <p>ابزارهای شیشه‌ای، چینی، فلزی و مواد مصرفی را جستجو کنید و جزئیات کاربردی هر مورد را ببینید.</p>
+          </div>
+          <div class="gallery-stat-list" aria-label="خلاصهٔ گالری">
+            <div class="gallery-stat"><strong id="gallery-family-count">۲۰</strong><span>خانوادهٔ تجهیز</span></div>
+            <div class="gallery-stat"><strong id="gallery-variant-count">۱۰۰</strong><span>گزینهٔ قابل انتخاب</span></div>
+            <div class="gallery-stat"><strong>۴</strong><span>راهنمای عملیاتی</span></div>
+          </div>
+        </section>
+
+        <section class="equipment-catalog-section" aria-labelledby="equipment-catalog-title">
+          <div class="gallery-section-heading equipment-catalog-heading">
+            <div>
+              <h3 id="equipment-catalog-title">کاتالوگ ابزار و مواد مصرفی</h3>
+              <p>برای دیدن معرفی و جزئیات، یک خانواده را انتخاب کنید و گزینهٔ مناسب را در صفحهٔ اختصاصی آن ببینید. راهنماهای عملیاتی دستگاه‌ها در تب تجهیزات باقی می‌مانند.</p>
+            </div>
+          </div>
+
+          <div class="equipment-catalog-toolbar">
+            <label class="gallery-search-field" for="gallery-equipment-search">
+              <span class="material-symbols-outlined" aria-hidden="true">search</span>
+              <span class="sr-only">جستجو در کاتالوگ تجهیزات</span>
+              <input id="gallery-equipment-search" type="search" autocomplete="off" placeholder="جستجو در نام ابزار یا دسته‌بندی">
+            </label>
+            <div class="equipment-filter-list" role="group" aria-label="فیلتر دسته‌بندی تجهیزات">
+              <button type="button" class="equipment-filter-btn active" data-equipment-filter="all" aria-pressed="true"><span class="material-symbols-outlined" aria-hidden="true">gallery</span><span>همه</span></button>
+              <button type="button" class="equipment-filter-btn" data-equipment-filter="glassware" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>شیشه‌آلات</span></button>
+              <button type="button" class="equipment-filter-btn" data-equipment-filter="porcelain" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">waterdrop</span><span>چینی</span></button>
+              <button type="button" class="equipment-filter-btn" data-equipment-filter="crucibles" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">science</span><span>بوته‌ها</span></button>
+              <button type="button" class="equipment-filter-btn" data-equipment-filter="metal" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">scale</span><span>فلزی</span></button>
+              <button type="button" class="equipment-filter-btn" data-equipment-filter="solutions" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">waterdrop</span><span>محلول و خشک‌کننده</span></button>
+              <button type="button" class="equipment-filter-btn" data-equipment-filter="accessories" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">settings</span><span>لوازم جانبی</span></button>
+            </div>
+          </div>
+
+          <p class="gallery-result-count" id="gallery-equipment-count" role="status" aria-live="polite"></p>
+          <div class="equipment-catalog-grid" id="gallery-equipment-grid"></div>
+          <div class="gallery-empty-state" id="gallery-equipment-empty" role="status" aria-live="polite" aria-atomic="true" hidden>
+            <span class="material-symbols-outlined" aria-hidden="true">search_off</span>
+            <strong>موردی پیدا نشد</strong>
+            <span>عبارت جستجو یا دسته‌بندی دیگری را امتحان کنید.</span>
+          </div>
+          <div class="equipment-catalog-suggestion">
+            <span class="material-symbols-outlined" aria-hidden="true">add_circle</span>
+            <span id="equipment-suggestion-help">موردی در کاتالوگ نیست؟</span>
+            <a class="catalog-suggestion-link" href="https://github.com/Soheil-Aghayani/Solid-Waste-Laboratory/issues/new" target="_blank" rel="noopener noreferrer" aria-describedby="equipment-suggestion-help">پیشنهاد افزودن ماده یا تجهیز</a>
+          </div>
+        </section>
+      </div>

@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.documentElement.setAttribute('data-theme', currentTheme);
   updateThemeIcon(currentTheme);
 
-  themeBtn.addEventListener('click', () => {
+  themeBtn?.addEventListener('click', () => {
     const activeTheme = document.documentElement.getAttribute('data-theme');
     const newTheme = activeTheme === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', newTheme);
@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function updateThemeIcon(theme) {
+    if (!themeBtn) return;
     themeBtn.innerHTML = theme === 'dark'
       ? `<span class="material-symbols-outlined">light_mode</span>`
       : `<span class="material-symbols-outlined">dark_mode</span>`;
@@ -96,6 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
       ? `آزمایشگاه باز است · ${dayName} · ۷ تا ۱۶`
       : `آزمایشگاه بسته است · ${dayName} · ۷ تا ۱۶`;
 
+    if (!statusDot || !statusText) return;
+
     if (isOpen) {
       statusDot.classList.add('active');
       statusText.textContent = compactStatusText;
@@ -129,6 +132,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (tabId === 'tab-equipment') {
       ensurePageMath();
     }
+
+    window.dispatchEvent(new CustomEvent('main-tab:change', { detail: { tabId } }));
   }
 
   function selectMainTab(tabId) {
@@ -427,11 +432,68 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // URL Hash Routing for QR Codes
+  function redirectLegacyIndexHash() {
+    const pathName = window.location.pathname.toLowerCase();
+    const isIndexPage = pathName.endsWith('/index.html') || pathName.endsWith('/');
+    if (!isIndexPage) return false;
+
+    const hash = window.location.hash.toLowerCase().replace(/^#/, '');
+    if (!hash) return false;
+
+    const routes = {
+      'tab-general': 'rules.html',
+      rules: 'rules.html',
+      'tab-quiz': 'quiz.html',
+      quiz: 'quiz.html',
+      'tab-equipment': 'equipment.html',
+      equipment: 'equipment.html',
+      centrifuge: 'equipment.html#centrifuge',
+      'eq-centrifuge': 'equipment.html#centrifuge',
+      oven: 'equipment.html#oven',
+      'eq-oven': 'equipment.html#oven',
+      balance: 'equipment.html#balance',
+      measure: 'equipment.html#balance',
+      'eq-balance': 'equipment.html#balance',
+      phmeter: 'equipment.html#phmeter',
+      'eq-phmeter': 'equipment.html#phmeter',
+      'tab-gallery': 'gallery.html',
+      gallery: 'gallery.html',
+      'tab-elements': 'elements.html',
+      elements: 'elements.html',
+      'msds-widget-card': 'elements.html#msds-widget-card',
+      'compatibility-widget-card': 'elements.html#compatibility-widget-card'
+    };
+    const target = /^element-\d+$/.test(hash) ? `elements.html#${hash}` : routes[hash];
+    if (!target) return false;
+    window.location.replace(`./${target}`);
+    return true;
+  }
+
+  redirectLegacyIndexHash();
+
   function handleHashRoute() {
     const hash = window.location.hash.toLowerCase().substring(1);
     if (!hash) return;
-    
-    if (hash === 'centrifuge' || hash === 'eq-centrifuge') {
+
+    if (!tabContents.length) {
+      const target = document.getElementById(hash);
+      if (target) target.scrollIntoView({ behavior: 'auto', block: 'start' });
+      return;
+    }
+
+    if (/^element-\d+$/.test(hash)) {
+      switchTab('tab-elements');
+      const atomicNumber = Number(hash.substring('element-'.length));
+      setTimeout(() => {
+        if (window.openElementDetail) window.openElementDetail(atomicNumber, { fromHash: true });
+      }, 100);
+    } else if (hash === 'elements' || hash === 'tab-elements') {
+      switchTab('tab-elements');
+      setTimeout(() => {
+        const el = document.getElementById('tab-elements');
+        if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }, 100);
+    } else if (hash === 'centrifuge' || hash === 'eq-centrifuge') {
       switchTab('tab-equipment');
       switchEquipment('eq-centrifuge');
       setTimeout(() => {
@@ -499,6 +561,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   window.addEventListener('hashchange', handleHashRoute);
+  window.addEventListener('popstate', handleHashRoute);
   setTimeout(handleHashRoute, 250);
 
   // Original texts for buttons
@@ -506,7 +569,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'tab-general': 'قوانین عمومی و ایمنی',
     'tab-equipment': 'راهنمای کاربری تجهیزات',
     'tab-gallery': 'گالری آزمایشگاه',
-    'tab-quiz': 'آزمون و تعهدنامه ورود'
+    'tab-quiz': 'آزمون و تعهدنامه ورود',
+    'tab-elements': 'عناصر و مواد'
   };
 
   const originalEqTexts = {
@@ -546,6 +610,12 @@ document.addEventListener('DOMContentLoaded', () => {
       type: 'tab',
       names: ['قوانین', 'مقررات', 'ایمنی', 'پوشش', 'ساعت', 'پسماند', 'rules', 'general', 'safety'],
       displayName: 'قوانین عمومی و ایمنی'
+    },
+    {
+      id: 'tab-elements',
+      type: 'tab',
+      names: ['عنصر', 'عناصر', 'مواد', 'جدول تناوبی', 'periodic', 'elements', 'materials'],
+      displayName: 'عناصر و مواد'
     }
   ];
 
@@ -618,7 +688,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('search-input');
   const searchStatusBanner = document.getElementById('search-status-banner');
   
-  searchInput.addEventListener('input', () => {
+  if (searchInput) searchInput.addEventListener('input', () => {
     const query = searchInput.value.trim().toLowerCase();
     
     // Find all rule items and paragraphs that can be searched
@@ -1000,46 +1070,48 @@ document.addEventListener('DOMContentLoaded', () => {
   const calcResult = document.getElementById('calc-result');
   const calcError = document.getElementById('calc-error');
 
-  calcBtn.addEventListener('click', () => {
-    const radius = parseFloat(inputRadius.value);
-    const rpm = parseFloat(inputRpm.value);
-    const rcf = parseFloat(inputRcf.value);
-    showInlineError(calcError, '');
-    calcResult.hidden = true;
+  if (calcBtn && inputRadius && inputRpm && inputRcf && calcResult && calcError) {
+    calcBtn.addEventListener('click', () => {
+      const radius = parseFloat(inputRadius.value);
+      const rpm = parseFloat(inputRpm.value);
+      const rcf = parseFloat(inputRcf.value);
+      showInlineError(calcError, '');
+      calcResult.hidden = true;
 
-    if (isNaN(radius) || radius <= 0) {
-      showInlineError(calcError, 'لطفاً شعاع روتور معتبری بزرگ‌تر از صفر میلی‌متر وارد نمایید.');
-      return;
-    }
+      if (isNaN(radius) || radius <= 0) {
+        showInlineError(calcError, 'لطفاً شعاع روتور معتبری بزرگ‌تر از صفر میلی‌متر وارد نمایید.');
+        return;
+      }
 
-    if (!isNaN(rpm) && rpm > 0) {
-      // Calculate RCF from RPM
-      // RCF = 1.12 * Radius * (RPM/1000)^2
-      const calculatedRcf = 1.12 * radius * Math.pow(rpm / 1000, 2);
-      calcResult.style.display = 'block';
-      calcResult.hidden = false;
-      calcResult.innerHTML = `نیروی گریز از مرکز نسبی محاسبه‌شده: <span>${Math.round(calculatedRcf)} x g</span>`;
-      inputRcf.value = Math.round(calculatedRcf);
-    } else if (!isNaN(rcf) && rcf > 0) {
-      // Calculate RPM from RCF
-      // RPM = 1000 * sqrt(RCF / (1.12 * Radius))
-      const calculatedRpm = 1000 * Math.sqrt(rcf / (1.12 * radius));
-      calcResult.style.display = 'block';
-      calcResult.hidden = false;
-      calcResult.innerHTML = `سرعت دورانی محاسبه‌شده: <span>${Math.round(calculatedRpm)} RPM</span>`;
-      inputRpm.value = Math.round(calculatedRpm);
-    } else {
-      showInlineError(calcError, 'لطفاً حداقل یکی از مقادیر دور (RPM) یا نیروی گریز از مرکز (RCF) را وارد کنید.');
-    }
-  });
+      if (!isNaN(rpm) && rpm > 0) {
+        // Calculate RCF from RPM
+        // RCF = 1.12 * Radius * (RPM/1000)^2
+        const calculatedRcf = 1.12 * radius * Math.pow(rpm / 1000, 2);
+        calcResult.style.display = 'block';
+        calcResult.hidden = false;
+        calcResult.innerHTML = `نیروی گریز از مرکز نسبی محاسبه‌شده: <span>${Math.round(calculatedRcf)} x g</span>`;
+        inputRcf.value = Math.round(calculatedRcf);
+      } else if (!isNaN(rcf) && rcf > 0) {
+        // Calculate RPM from RCF
+        // RPM = 1000 * sqrt(RCF / (1.12 * Radius))
+        const calculatedRpm = 1000 * Math.sqrt(rcf / (1.12 * radius));
+        calcResult.style.display = 'block';
+        calcResult.hidden = false;
+        calcResult.innerHTML = `سرعت دورانی محاسبه‌شده: <span>${Math.round(calculatedRpm)} RPM</span>`;
+        inputRpm.value = Math.round(calculatedRpm);
+      } else {
+        showInlineError(calcError, 'لطفاً حداقل یکی از مقادیر دور (RPM) یا نیروی گریز از مرکز (RCF) را وارد کنید.');
+      }
+    });
 
-  // Sync inputs clearing for calculator
-  inputRpm.addEventListener('input', () => {
-    if (inputRpm.value !== '') inputRcf.value = '';
-  });
-  inputRcf.addEventListener('input', () => {
-    if (inputRcf.value !== '') inputRpm.value = '';
-  });
+    // Sync inputs clearing for calculator
+    inputRpm.addEventListener('input', () => {
+      if (inputRpm.value !== '') inputRcf.value = '';
+    });
+    inputRcf.addEventListener('input', () => {
+      if (inputRcf.value !== '') inputRpm.value = '';
+    });
+  }
 
   // Oven Error Lookup interactive widget
   const errorSelect = document.getElementById('error-select');
@@ -1220,6 +1292,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const quizSection = document.getElementById('quiz-section');
   const declarationsContainer = document.getElementById('declarations-container');
   const progressFill = document.getElementById('progress-fill');
+
+  if (startQuizBtn && quizSection && declarationsContainer && progressFill) {
   
   // Declaration checklists toggle
   function toggleDeclaration(item) {
@@ -1490,6 +1564,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('cert-code-val').textContent = savedCode;
     document.getElementById('cert-date-val').textContent = savedDate;
     certificateBox.classList.add('active');
+  }
   }
 
   // Load and render equations only when the equipment tab is opened.

@@ -1,0 +1,144 @@
+<div class="quiz-container">
+        
+        <!-- Checklist Container -->
+        <div id="declarations-container">
+          <h2 class="quiz-title">تعهدنامه و قوانین ایمنی ورود به آزمایشگاه</h2>
+          <p class="quiz-description">برای فعال شدن دکمه شروع آزمون ایمنی، لطفاً مفاد تعهدنامه زیر را به دقت مطالعه کرده و تایید نمایید:</p>
+          
+          <div class="declaration-list">
+            <div class="declaration-item" role="checkbox" aria-checked="false" tabindex="0">
+              <div class="declaration-checkbox">
+                <span class="material-symbols-outlined check-icon">check</span>
+              </div>
+              <div class="declaration-text">تعهد می‌دهم در تمامی زمان‌های حضور، از روپوش، دستکش، ماسک و عینک ایمنی استفاده کنم.</div>
+            </div>
+            
+            <div class="declaration-item" role="checkbox" aria-checked="false" tabindex="0">
+              <div class="declaration-checkbox">
+                <span class="material-symbols-outlined check-icon">check</span>
+              </div>
+              <div class="declaration-text">متعهد می‌شوم به هیچ عنوان هیچ‌گونه پسماند، اسید، باز یا حلال شیمیایی را در سینک تخلیه نکرده و آنها را در ظروف لیبل‌دار پسماند بریزم.</div>
+            </div>
+
+            <div class="declaration-item" role="checkbox" aria-checked="false" tabindex="0">
+              <div class="declaration-checkbox">
+                <span class="material-symbols-outlined check-icon">check</span>
+              </div>
+              <div class="declaration-text">پذیرش کامل دارم که رقیق‌سازی اسید را فقط با اضافه کردن تدریجی اسید به آب و زیر هود انجام دهم.</div>
+            </div>
+
+            <div class="declaration-item" role="checkbox" aria-checked="false" tabindex="0">
+              <div class="declaration-checkbox">
+                <span class="material-symbols-outlined check-icon">check</span>
+              </div>
+              <div class="declaration-text">متعهد می‌شوم بلافاصله پس از اتمام کار با دستگاه‌ها، آنها را از پریز برق جدا کنم و بدون آموزش با دستگاهی کار نکنم.</div>
+            </div>
+
+            <div class="declaration-item" role="checkbox" aria-checked="false" tabindex="0">
+              <div class="declaration-checkbox">
+                <span class="material-symbols-outlined check-icon">check</span>
+              </div>
+              <div class="declaration-text">متعهد می‌شوم هیچ‌گونه تجهیزات، وسایل شیشه‌ای یا مواد شیمیایی را تحت هیچ شرایطی از آزمایشگاه خارج نکنم.</div>
+            </div>
+
+            <div class="declaration-item" role="checkbox" aria-checked="false" tabindex="0">
+              <div class="declaration-checkbox">
+                <span class="material-symbols-outlined check-icon">check</span>
+              </div>
+              <div class="declaration-text">می‌پذیرم که نقض هر یک از این قوانین موجب لغو مجوز کار در آزمایشگاه به مدت ۱۰ روز خواهد شد.</div>
+            </div>
+          </div>
+          
+          <button id="start-quiz-btn" class="btn-primary" style="width: 100%; justify-content: center; opacity: 0.5;" disabled>
+            <span class="material-symbols-outlined" aria-hidden="true">play_circle</span>
+            شروع آزمون سنجش ایمنی آزمایشگاه
+          </button>
+          <p id="quiz-error" class="form-error" role="alert" hidden></p>
+        </div>
+
+        <!-- Quiz Section -->
+        <div id="quiz-section" class="quiz-section">
+          <h2 class="quiz-title">آزمون صحت‌سنجی اطلاعات ایمنی</h2>
+          <p class="quiz-description">جهت دریافت مجوز، به سوالات چهارگزینه‌ای زیر به درستی پاسخ دهید:</p>
+          
+          <div id="question-container"></div>
+          
+            <div class="quiz-actions">
+              <div class="progress-bar" role="progressbar" aria-label="پیشرفت آزمون" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <div id="progress-fill" class="progress-fill"></div>
+              </div>
+              <button id="next-quiz-btn" class="btn-primary" style="opacity: 0.5;" disabled><span class="material-symbols-outlined" aria-hidden="true">round-transfer-horizontal</span>سوال بعدی</button>
+            </div>
+        </div>
+
+        <!-- Student Form Section -->
+        <div id="student-form-section" class="student-form-section">
+          <h2 class="quiz-title">ثبت اطلاعات دانشجویی</h2>
+          <p class="quiz-description">تبریک! شما آزمون ایمنی را با موفقیت پشت سر گذاشتید. مشخصات خود را برای ثبت محلی نتیجه وارد نمایید:</p>
+          
+          <div class="student-grid">
+            <div class="form-group">
+              <label for="student-name">نام و نام خانوادگی:</label>
+              <input type="text" id="student-name" class="form-input" style="direction: rtl; text-align: right;" placeholder="مثلاً: علی رضایی" autocomplete="name" required>
+            </div>
+            <div class="form-group">
+              <label for="student-id">شماره دانشجویی:</label>
+              <input type="text" id="student-id" class="form-input" style="direction: ltr; text-align: left;" placeholder="مثلاً: ۴۰۰۱۲۳۴۵۶" inputmode="numeric" autocomplete="off" required>
+            </div>
+          </div>
+          <button id="submit-form-btn" class="btn-primary" style="width: 100%; justify-content: center;">
+            <span class="material-symbols-outlined" aria-hidden="true">check</span>
+            صدور گواهی ثبت محلی
+          </button>
+          <p id="student-form-error" class="form-error" role="alert" hidden></p>
+          <p class="privacy-note">اطلاعات این فرم فقط در همین مرورگر ذخیره می‌شود و برای تأیید رسمی، به مسئول آزمایشگاه مراجعه کنید.</p>
+        </div>
+
+        <!-- Certificate Box (Result) -->
+        <div id="certificate-box" class="certificate-box" role="region" aria-label="گواهی ثبت محلی" aria-live="polite">
+          <div class="certificate">
+            <div class="cert-border-corner cert-top-right"></div>
+            <div class="cert-border-corner cert-top-left"></div>
+            <div class="cert-border-corner cert-bottom-right"></div>
+            <div class="cert-border-corner cert-bottom-left"></div>
+            
+            <div class="cert-header">جمهوری اسلامی ایران</div>
+            <div class="cert-title">گواهی ثبت محلی تعهدنامه ایمنی آزمایشگاه پسماند</div>
+            
+            <div class="cert-body">
+              بدین‌وسیله ثبت می‌شود دانشجو <span class="cert-student-name" id="cert-name">علی رضایی</span> با مطالعه آیین‌نامه ایمنی و گذراندن موفقیت‌آمیز آزمون، تعهد خود به رعایت پروتکل‌های HSE، دستورالعمل‌های کار با اسیدها و بازها و روش صحیح دفع پسماندهای شیمیایی را در این سامانه ثبت کرده است. این ثبت محلی به‌تنهایی مجوز رسمی فعالیت یا جایگزین تأیید مسئول آزمایشگاه نیست.
+            </div>
+            
+            <div class="cert-badge">
+              <span class="material-symbols-outlined cert-badge-icon">verified_user</span>
+            </div>
+            
+            <div class="cert-footer">
+              <div class="cert-info-item">
+                <div class="cert-info-label">شماره دانشجویی:</div>
+                <div class="cert-info-value" id="cert-id-val">-</div>
+              </div>
+              <div class="cert-info-item">
+                <div class="cert-info-label">شناسهٔ ثبت محلی:</div>
+                <div class="cert-info-value" id="cert-code-val">-</div>
+              </div>
+              <div class="cert-info-item">
+                <div class="cert-info-label">تاریخ صدور:</div>
+                <div class="cert-info-value" id="cert-date-val">-</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="cert-actions">
+            <button id="print-btn" class="btn-primary">
+              <span class="material-symbols-outlined" style="font-size: 18px; margin-left: 0.5rem;">print</span>
+              چاپ گواهی ثبت محلی
+            </button>
+            <button id="restart-btn" class="btn-primary" style="background-color: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border-color)">
+              <span class="material-symbols-outlined" style="font-size: 18px; margin-left: 0.5rem;">restart_alt</span>
+              حذف ثبت محلی و شروع مجدد
+            </button>
+          </div>
+        </div>
+
+      </div>

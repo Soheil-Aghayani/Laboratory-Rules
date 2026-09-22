@@ -94,7 +94,8 @@
 
       grid.innerHTML = filtered.map(renderEquipmentCard).join('');
       empty.hidden = filtered.length !== 0;
-      count.textContent = `نمایش ${toPersianDigits(filtered.length)} خانواده از ${toPersianDigits(catalog.length)} خانواده`;
+      const hasConstraints = Boolean(query || activeFilter !== 'all');
+      count.textContent = hasConstraints ? `نتیجهٔ فیلتر: ${toPersianDigits(filtered.length)} خانواده` : '';
       filterButtons.forEach(filterButton => {
         filterButton.classList.toggle('active', filterButton.dataset.equipmentFilter === activeFilter);
         filterButton.setAttribute('aria-pressed', String(filterButton.dataset.equipmentFilter === activeFilter));
@@ -112,8 +113,7 @@
 
     if (mainSearch) {
       mainSearch.addEventListener('input', () => {
-        const activeTab = document.querySelector('.tab-btn.active');
-        if (activeTab && activeTab.dataset.tab === 'tab-gallery' && document.activeElement !== search) {
+        if (document.activeElement !== search) {
           search.value = mainSearch.value;
           render();
         }

@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <title>راهنمای کاربری تجهیزات | آزمایشگاه پسماند</title>
+  <meta name="description" content="راهنمای عملیاتی، نگهداری و خطاهای رایج تجهیزات آزمایشگاه پسماند.">
+  <meta name="author" content="سهیل آقایانی">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://soheil-aghyani.github.io/Solid-Waste-Laboratory/equipment.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fa_IR">
+  <meta property="og:site_name" content="آزمایشگاه پسماند">
+  <meta property="og:title" content="راهنمای کاربری تجهیزات | آزمایشگاه پسماند">
+  <meta property="og:description" content="راهنمای عملیاتی، نگهداری و خطاهای رایج تجهیزات آزمایشگاه پسماند.">
+  <meta property="og:url" content="https://soheil-aghyani.github.io/Solid-Waste-Laboratory/equipment.html">
+  <meta property="og:image" content="https://soheil-aghyani.github.io/Solid-Waste-Laboratory/Waste%20Lab.webp">
+  <meta property="og:image:alt" content="آزمایشگاه پسماند">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="راهنمای کاربری تجهیزات | آزمایشگاه پسماند">
+  <meta name="twitter:description" content="راهنمای عملیاتی، نگهداری و خطاهای رایج تجهیزات آزمایشگاه پسماند.">
+  <link rel="icon" type="image/webp" href="Waste%20Lab.webp">
+  <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
+  <link rel="stylesheet" href="./styles.min.css?v=6.3">
+  <link rel="stylesheet" href="./elements.min.css?v=1.3">
+  <link rel="stylesheet" href="./site-pages.min.css?v=1.1">
+  <script>
+    try {
+      const savedTheme = localStorage.getItem('theme');
+      const preferredTheme = savedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', preferredTheme);
+    } catch (error) {}
+  </script>
+
+  <script defer src="./asset/icon-system.min.js?v=1.0"></script>
+  <script defer src="./script.min.js?v=7.1"></script>
+  <script defer src="./site-runtime.min.js?v=1.1"></script>
+
+</head>
+<body data-page="equipment">
+  <a class="skip-link" href="#main-content">پرش به محتوای اصلی</a>
+  <main class="container site-container" id="main-content">
+    <header class="site-header">
+      <div class="header-top">
+        <div class="brand">
+          <span class="material-symbols-outlined brand-icon">science</span>
+          <div class="brand-text">
+            <h1>آزمایشگاه پسماند</h1>
+            <p>سامانه جامع مقررات، ایمنی و کاربری تجهیزات</p>
+          </div>
+        </div>
+        
+        <div class="controls">
+          <!-- Live Status -->
+          <div class="status-widget">
+            <span class="status-dot" id="status-dot"></span>
+            <span id="status-text" role="status" aria-live="polite">درحال بررسی وضعیت آزمایشگاه...</span>
+          </div>
+          
+          <!-- Spill Simulator Trigger Button -->
+          <button class="control-btn" id="drill-modal-btn" title="شبیه‌ساز تعاملی ریزش مواد" aria-label="باز کردن شبیه‌ساز ریزش و نشت مواد شیمیایی" aria-haspopup="dialog" aria-controls="drill-modal">
+            <svg class="spill-simulator-icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+              <title>barrel-leak</title>
+              <path fill="currentColor" d="M151 28c-34.4 0-65.6 5.33-87.35 13.49c-10.88 4.08-19.36 8.9-24.62 13.56S32 63.62 32 67s1.77 7.29 7.03 11.95s13.74 9.48 24.62 13.56C85.4 100.7 116.6 106 151 106s65.6-5.3 87.3-13.49c10.9-4.08 19.4-8.9 24.7-13.56c5.2-4.66 7-8.57 7-11.95s-1.8-7.29-7-11.95c-5.3-4.66-13.8-9.48-24.7-13.56C216.6 33.33 185.4 28 151 28m65 28a24 8 0 0 1 24 8a24 8 0 0 1-24 8a24 8 0 0 1-24-8a24 8 0 0 1 24-8M32 96.35V179c0 2 1.23 4.6 6.87 8.2c5.63 3.6 14.88 7.2 26.31 10.1C88.04 203 119.6 206 151 206s63-3 85.8-8.7c11.4-2.9 20.7-6.5 26.3-10.1c5.7-3.6 6.9-6.2 6.9-8.2V96.35c-7 5.05-15.5 9.35-25.3 13.05c-24.6 9.2-57.4 14.6-93.7 14.6s-69.1-5.4-93.67-14.6c-9.84-3.7-18.37-8-25.33-13.05M288 107v244.1l39.8 9.1c-3.4-7.9-5.8-17.1-7.2-27.5c-3.5-26.1-1.5-59.3 6.6-94.7c8-35.4 20.5-66.1 35-88.1c5.8-8.8 11.9-16.1 18.3-21.8zm140.2 77.9c-56 7.6-114.1 108.3-74.4 180.8c.9.5 1.7.8 2.6 1c3.3.8 7.5-.1 13.1-4.2c5.8-4.1 12.4-11.3 18.8-21c12.8-19.4 24.9-48.6 32.5-82.2c6.2-27.3 8.5-53.3 7.4-74.4M32 204v84c0 2 1.23 4.6 6.87 8.2c5.63 3.6 14.88 7.2 26.31 10.1C88.04 312 119.6 315 151 315s63-3 85.8-8.7c11.4-2.9 20.7-6.5 26.3-10.1c5.7-3.6 6.9-6.2 6.9-8.2v-84c-7.9 4.6-17.6 7.9-28.8 10.7C216 221 183.6 224 151 224s-65.04-3-90.18-9.3C49.64 211.9 39.91 208.5 32 204m0 109v58c0 5 2.2 9.3 7.86 14.2c5.66 4.8 14.7 9.5 25.99 13.3C88.42 406 119.8 410 151 410s62.6-4 85.2-11.5c11.2-3.8 20.3-8.5 25.9-13.3c5.7-4.9 7.9-9.2 7.9-14.2v-58c-7.9 4.6-17.6 7.9-28.8 10.7C216 330 183.6 333 151 333s-65.04-3-90.18-9.3C49.64 320.9 39.91 317.5 32 313m378.5 54.9c-.7 0-1.5 0-2.2.1c-19.5 1.5-6.5 45.2-24.3 53.2c-15.3 7-31.5-16.6-48.2-14.5c-27.9 3.5-78.1 15.8-72.3 43.3c8 37.7 76.7 8.1 114.8 14c36 5.6 87.2 50.9 107.4 20.5c25.4-38.2-29.1-117.7-75.2-116.6m-181.9 91.3c-5.1 0-9.4 2.1-12 6.4c-4.7 7.7 6.2 19.1 14.3 23c9.4 4.5 35.6 5.8 31.1-3.6c-7.8-16.4-22.3-26-33.4-25.8"/>
+            </svg>
+            <span>شبیه‌ساز ریزش</span>
+          </button>
+
+          <!-- Theme Toggle -->
+          <button class="theme-btn" id="theme-btn" aria-label="تغییر پوسته">
+            <!-- Icon replaced by JS -->
+          </button>
+        </div>
+      </div>
+      
+      <!-- Live Search Bar -->
+      <div class="search-container">
+        <label for="search-input" class="sr-only">جستجو در محتوای پورتال</label>
+        <input type="text" id="search-input" class="search-input" placeholder="جستجو در قوانین، خطاها یا دستورالعمل‌ها...">
+        <button id="search-voice-btn" class="search-voice-btn" title="جستجوی صوتی" aria-label="جستجوی صوتی">
+          <span class="material-symbols-outlined">mic</span>
+        </button>
+        <span class="material-symbols-outlined search-icon">search</span>
+      </div>
+      <div id="search-status-banner" class="search-status-banner" role="status" aria-live="polite" style="display: none;"></div>
+      <div id="offline-status" class="offline-status" role="status" aria-live="polite" hidden>
+        <span class="material-symbols-outlined" aria-hidden="true">cloud_off</span>
+        <span>اتصال اینترنت قطع است. اطلاعات ذخیره‌شدهٔ پورتال، راهنماها و داده‌های MSDS در دسترس هستند؛ ویکی‌پدیا و سرویس‌های آنلاین ممکن است باز نشوند.</span>
+      </div>
+
+    </header>
+
+    <nav class="site-primary-nav" aria-label="ناوبری اصلی">
+      <a class="site-nav-link site-nav-home" href="./index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span><span>خانه</span></a>
+      <div class="site-nav-group">
+        <span class="site-nav-group-label"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span>ایمنی</span>
+        <div class="site-nav-subnav">
+          <a class="site-nav-link" href="./rules.html"><span class="material-symbols-outlined" aria-hidden="true">book-bookmark</span><span>قوانین عمومی و ایمنی</span></a>
+          <a class="site-nav-link" href="./quiz.html"><span class="material-symbols-outlined" aria-hidden="true">clipboard-check</span><span>آزمون و تعهدنامه ورود</span></a>
+        </div>
+      </div>
+      <div class="site-nav-group is-active">
+        <span class="site-nav-group-label"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span>کاتالوگ</span>
+        <div class="site-nav-subnav">
+          <a class="site-nav-link is-active" href="./equipment.html" aria-current="page"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>راهنمای کاربری تجهیزات</span></a>
+          <a class="site-nav-link" href="./elements.html"><span class="material-symbols-outlined" aria-hidden="true">science</span><span>عناصر و مواد</span></a>
+        </div>
+      </div>
+      <a class="site-nav-link site-nav-gallery" href="./gallery.html"><span class="material-symbols-outlined" aria-hidden="true">gallery</span><span>گالری آزمایشگاه</span></a>
+    </nav>
+
+    <div class="page-context">
+      <div class="page-context-heading"><span class="page-kicker">کاتالوگ</span><h2>راهنمای کاربری تجهیزات</h2></div>
+      <nav class="page-context-links" aria-label="زیرصفحه‌های کاتالوگ"><a class="site-nav-link is-active" href="./equipment.html" aria-current="page"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>راهنمای کاربری تجهیزات</span></a><a class="site-nav-link" href="./elements.html"><span class="material-symbols-outlined" aria-hidden="true">science</span><span>عناصر و مواد</span></a></nav>
+    </div>
+    <section class="standalone-page equipment-page" aria-labelledby="equipment-page-title"><div class="sr-only"><h1 id="equipment-page-title">راهنمای کاربری تجهیزات</h1></div><div class="eq-container">
+        
+        <!-- Sidebar Navigation for Equipment -->
+        <aside class="eq-sidebar" role="tablist" aria-label="راهنمای تجهیزات">
+          <button class="eq-nav-btn active" id="eq-btn-centrifuge" role="tab" aria-controls="eq-centrifuge" aria-selected="true" tabindex="0" data-eq="eq-centrifuge"><span class="material-symbols-outlined" aria-hidden="true">refresh</span><span>دستگاه سانتریفیوژ</span></button>
+          <button class="eq-nav-btn" id="eq-btn-oven" role="tab" aria-controls="eq-oven" aria-selected="false" tabindex="-1" data-eq="eq-oven"><span class="material-symbols-outlined" aria-hidden="true">flame</span><span>دستگاه فور (Oven)</span></button>
+          <button class="eq-nav-btn" id="eq-btn-phmeter" role="tab" aria-controls="eq-phmeter" aria-selected="false" tabindex="-1" data-eq="eq-phmeter"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>دستگاه pH متر</span></button>
+          <button class="eq-nav-btn" id="eq-btn-balance" role="tab" aria-controls="eq-balance" aria-selected="false" tabindex="-1" data-eq="eq-balance"><span class="material-symbols-outlined" aria-hidden="true">scale</span><span>ترازوی دیجیتال دقیق (Radwag)</span></button>
+        </aside>
+
+        <!-- Centrifuge Content -->
+        <div class="eq-content active" id="eq-centrifuge" role="tabpanel" aria-labelledby="eq-btn-centrifuge" tabindex="0">
+          <h2 class="eq-title">راهنمای کاربری و نگهداری دستگاه سانتریفیوژ</h2>
+          <div class="eq-subtitle">دستورالعمل جامع آماده‌سازی، تنظیمات دورانی و ایمنی کاربری</div>
+
+          <div class="eq-section">
+            <h3>۱. آماده‌سازی و اقدامات قبل از کار</h3>
+            <ul class="eq-list">
+              <li><strong>باز کردن اضطراری درب:</strong> در صورت لزوم، پیچ‌گوشتی همراه دستگاه را از سوراخ سمت راست بدنه وارد کرده و به آرامی فشار دهید.</li>
+              <li><strong>جاگذاری بسکت‌ها:</strong> بسکت‌ها را دقیقاً روبروی شماره حک‌شده روی روتور و با جهت شماره به سمت هد قرار دهید.</li>
+              <li><strong>بالانس نمونه‌ها:</strong> بالانس کامل هد، بسکت‌ها و لوله‌ها الزامی است. در دستگاه‌های سوئینگ ۴۰۰۰ دور، حتماً از <strong class="highlight-mark">پولک ضربه‌گیر</strong> برای جلوگیری از شکستن لوله‌ها استفاده کنید.</li>
+              <li><strong>اتصال برق:</strong> دوشاخه را مستقیماً به پریز ارت متصل کنید. استفاده از سه-راهی دیواری اکیداً ممنوع است.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۲. تنظیمات حافظه و سیکل کاری (Memory Edit)</h3>
+            <ul class="eq-list">
+              <li>توسط کلیدهای UP و DOWN روی منوی <code>MEMORY EDIT</code> رفته و ENTER بزنید.</li>
+              <li>شماره حافظه را انتخاب کنید. با کلیدهای جهت‌دار دور دستگاه (RPM) یا نیروی گریز از مرکز (RCF) را تنظیم نمایید.</li>
+              <li>تایمر را برحسب دقیقه و ثانیه تنظیم و با فشردن نهایی ENTER ذخیره کنید (کلید ESC بدون ذخیره‌سازی خارج می‌شود).</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۳. راه‌اندازی و اتمام سیکل</h3>
+            <ul class="eq-list">
+              <li><strong>راه‌اندازی عادی (Memory Run):</strong> منوی مربوطه را انتخاب کرده و اجرا کنید.</li>
+              <li><strong>راه‌اندازی سریع (Fast Run):</strong> با انتخاب <code>FAST RUN (M1)</code> حافظه شماره ۱ فوراً اجرا می‌شود.</li>
+              <li><strong>وضعیت درب:</strong> دستگاه تا زمان بسته شدن کامل درب، کار را آغاز نخواهد کرد.</li>
+              <li><strong>تغییر واحد نمایش:</strong> فشردن کلید ENTER در حین چرخش، نمایش را بین RPM و RCF سوئیچ می‌کند.</li>
+              <li><strong>توقف:</strong> دستگاه پس از اتمام تایمر طبق شیب کاهش سرعت متوقف شده و درب باز می‌شود (ESC برای توقف اضطراری است).</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۴. تنظیم شیب شتاب و ترمز (Brake Rate)</h3>
+            <ul class="eq-list">
+              <li>در منوی <code>RAMP RATE SET</code> شیب افزایش (Rise Ramp) را از ۱۰٪ تا ۱۰۰٪ تنظیم کنید.</li>
+              <li>شیب کاهش (Fall Ramp) را تنظیم کنید (در دستگاه‌های بالای ۱۰ هزار دور، این مقدار ایمنی حداکثر ۶۰٪ است):
+                <br>&bull; <strong>۱۰٪ تا ۴۵٪:</strong> کاهش تدریجی و آرام دور موتور.
+                <br>&bull; <strong>۵۰٪:</strong> توقف طبیعی موتور بدون استفاده از سیستم ترمز الکتریکی.
+                <br>&bull; <strong>۵۵٪ تا ۱۰۰٪:</strong> ترمز الکتریکی فعال (اعداد بالاتر = ترمز شدیدتر و توقف سریع‌تر).
+              </li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۵. راهنمای تعویض روتور</h3>
+            <ul class="eq-list">
+              <li>نشانه رنگی روی روتور جدید باید دقیقاً با نشانه روی شفت دستگاه هم‌راستا باشد.</li>
+              <li>پیچ روتور را با <strong>آچار بکس</strong> در جهت عقربه‌های ساعت محکم و برای باز کردن در خلاف جهت بچرخانید.</li>
+              <li><strong>محدودیت‌های سرعت روتورها:</strong>
+                <br>&bull; روتور فیکس فالکن ۵۰ و ۱۵: فقط محدوده <strong class="highlight-mark">۵۰۰ تا ۱۰,۰۰۰ RPM</strong> مجاز است.
+                <br>&bull; هد فیکس میکروتیوب: فقط محدوده <strong class="highlight-mark">۵۰۰ تا ۱۴,۰۰۰ RPM</strong> مجاز است.
+              </li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۶. نگهداری و اصول HSE</h3>
+            <ul class="eq-list">
+              <li><strong>نظافت روزانه:</strong> محفظه دستگاه را روزانه با محلول <strong class="highlight-mark">هیپوکلریت سدیم ۳٪</strong> تمیز کنید.</li>
+              <li><strong>صدای ناهنجار:</strong> در صورت شنیدن هرگونه صدای غیرطبیعی، دستگاه را بلافاصله خاموش کنید.</li>
+              <li><strong>شکستن لوله‌ها:</strong> دستگاه را خاموش کرده و <strong class="highlight-mark">حداقل ۳۰ دقیقه درب آن را باز نکنید</strong> تا ذرات معلق (ایروسل) فروکش کنند؛ سپس با دستکش و ماسک و هیپوکلریت ۳٪ ضدعفونی کنید.</li>
+              <li><strong>هشدار مهم:</strong> هرگز محلول تمیزکننده را مستقیماً داخل دستگاه اسپری نکنید؛ فقط از پارچه نیمه‌مرطوب استفاده کنید.</li>
+              <li>بازدید فنی ذغال‌های موتور باید به صورت <strong>سالانه</strong> انجام شود.</li>
+            </ul>
+          </div>
+
+          <!-- Interactive Calculator Widget -->
+          <div class="widget-card">
+            <div class="widget-title">
+              <span class="material-symbols-outlined widget-icon">calculate</span>
+              محاسبه‌گر فیزیک دوران سانتریفیوژ (RCF &harr; RPM)
+            </div>
+            <div class="calc-grid">
+              <div class="form-group">
+                <label for="calc-radius">شعاع روتور (Radius - میلی‌متر):</label>
+                <input type="number" id="calc-radius" class="form-input" placeholder="مثلاً ۱۵۰">
+              </div>
+              <div class="form-group">
+                <label for="calc-rpm">سرعت دورانی (RPM - دور بر دقیقه):</label>
+                <input type="number" id="calc-rpm" class="form-input" placeholder="مثلاً ۴۰۰۰">
+              </div>
+              <div class="form-group form-group-full">
+                <label for="calc-rcf">یا نیروی گریز از مرکز (RCF - ضربدری از g):</label>
+                <input type="number" id="calc-rcf" class="form-input" placeholder="مثلاً ۲۶۸۸">
+              </div>
+            </div>
+            <button id="calc-btn" class="btn-primary">
+              <span class="material-symbols-outlined" style="font-size: 18px; margin-left: 0.5rem;">calculate</span>
+              محاسبه و تبدیل واحد
+            </button>
+            <p id="calc-error" class="form-error" role="alert" hidden></p>
+            <div id="calc-result" class="calc-result" role="status" aria-live="polite" hidden></div>
+
+            <!-- LaTeX Formula Display -->
+            <div class="formula-box">
+              <div class="formula-title">فرمول محاسباتی شتاب گریز از مرکز نسبی:</div>
+              <div class="formula-math">
+                $$RCF = 1.12 \times \text{Radius (mm)} \times \left(\frac{\text{RPM}}{1000}\right)^2$$
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Oven Content -->
+        <div class="eq-content" id="eq-oven" role="tabpanel" aria-labelledby="eq-btn-oven" tabindex="0" hidden>
+          <h2 class="eq-title">راهنمای کاربری و نگهداری دستگاه فور (Oven)</h2>
+          <div class="eq-subtitle">راهنمای استقرار، برنامه‌ریزی حرارتی، عیب‌یابی و خطاها</div>
+
+          <div class="eq-section">
+            <h3>۱. استقرار و راه‌اندازی اولیه</h3>
+            <ul class="eq-list">
+              <li>دستگاه را روی سطح تراز قرار داده و دوشاخه مجهز به ارت را وصل کنید.</li>
+              <li>دستگاه را با کلید POWER (۰/۱) روشن کنید. عبارت <code>STOP</code> و دمای مخزن به طور متناوب نمایش داده می‌شوند.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۲. تنظیم زمان و دما</h3>
+            <ul class="eq-list">
+              <li><strong>تنظیم زمان:</strong> ولوم را ۱ بار فشار دهید و بچرخانید (حداکثر ۹۹۰ دقیقه). مقدار <code>0</code> معادل کارکرد دائم است (نمایش <code>OFF.t</code>). زیر ۱۲۰ دقیقه گام‌ها ۱ دقیقه‌ای و بالای آن ۱۰ دقیقه‌ای هستند.</li>
+              <li><strong>تنظیم دما:</strong> ولوم را مجدد فشار دهید و دما را از دمای محیط تا <strong class="highlight-mark">حداکثر ۲۰۰ درجه سانتی‌گراد</strong> تنظیم کنید.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۳. عملیات گرمادهی و پایان کار</h3>
+            <ul class="eq-list">
+              <li>ولوم را مجدداً فشار دهید تا عبارت <code>START</code> دیده شود.</li>
+              <li>حدود ۳۰ الی ۱۲۰ دقیقه طول می‌کشد تا دستگاه به دمای تنظیم‌شده برسد. پس از رسیدن به دما، <strong>۳ بوق هشدار</strong> صوتی پخش شده و تایمر آغاز می‌شود.</li>
+              <li>پس از اتمام زمان، عملیات متوقف شده و <code>End.t</code> یا <code>End.E</code> نمایش داده می‌شود.</li>
+              <li><strong>نکات مهم:</strong> پس از استارت، پارامترها قفل می‌شوند. برای تغییر، ولوم را بیش از ۳ ثانیه نگه دارید تا سیستم ریست شود. در صورت قطع برق، چرخه به صورت خودکار ادامه می‌یابد.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۴. سرویس، نگهداری و ایمنی</h3>
+            <ul class="eq-list">
+              <li>قبل از استارت، مطمئن شوید هیچ شیء متفرقه‌ای درون مخزن قرار ندارد.</li>
+              <li><strong>مهم:</strong> از ورود مواد اسیدی به داخل مخزن اکیداً خودداری کرده و هرگز نمونه‌های اسیدی با درصد بالا را در این دستگاه قرار ندهید.</li>
+              <li><strong>درب دستگاه:</strong> جهت ثبات دما، برای گذاشتن و برداشتن نمونه‌ها درب دستگاه را <strong class="highlight-mark">بیشتر از ۱۵ ثانیه باز نگه ندارید</strong> (در غیر این صورت بوق هشدار پخش خواهد شد).</li>
+              <li>در صورت وقوع حادثه یا واژگونی، فوراً دوشاخه برق را جدا کنید یا فیوز مینیاتوری پریز را قطع نمایید.</li>
+              <li>دستگاه را در محیط بدون رطوبت، گرد و غبار و عاری از بخارات قابل اشتعال نصب کنید. از غوطه‌ور کردن آن در آب خودداری نمایید.</li>
+            </ul>
+          </div>
+
+          <!-- Error Codes Section -->
+          <div class="eq-section">
+            <h3>۵. راهنمای خطاها و کدهای وضعیت</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1rem;">
+              برد فرمان فور مجهز به الگوریتم کنترلی PID و رله قطع المنت است. در جدول زیر، کدهای خطا به همراه معنای آن آمده است:
+            </p>
+            <div class="error-table-container">
+              <table class="error-table">
+                <thead>
+                  <tr>
+                    <th scope="col">کد خطا</th>
+                    <th scope="col">مفهوم خطا</th>
+                    <th scope="col">اقدام / تأثیر بر کاربری</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="E.H.t">E.H.t</span></td>
+                    <td>افزایش دما بیش از حد مجاز</td>
+                    <td>سیستم المنت را قطع می‌کند. تنظیمات ایمنی را بررسی کنید.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="Lo.t">Lo.t</span></td>
+                    <td>کاهش دما کمتر از حد خطا</td>
+                    <td>بررسی نشت حرارتی درب یا عملکرد المنت.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="t">t</span></td>
+                    <td>عدم رسیدن به دما در ۳ ساعت</td>
+                    <td>نشانه خرابی سیستم گرمایشی یا سوختن المنت‌ها.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="E.SEN">E.SEN</span></td>
+                    <td>خرابی یا عدم شناسایی سنسور دما</td>
+                    <td>کنترلر سنسور PT100 را نمی‌شناسد. نیاز به تعویض سنسور.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="door">آلارم مکرر</span></td>
+                    <td>باز ماندن درب بیش از ۱۵ ثانیه</td>
+                    <td>بوق هشدار در هر ثانیه جهت یادآوری بستن درب دستگاه.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Error Lookup Widget -->
+            <div class="widget-card">
+              <div class="widget-title">
+                <span class="material-symbols-outlined widget-icon">troubleshoot</span>
+                عیب‌یابی سریع خطاهای فور
+              </div>
+              <div class="form-group">
+                <label for="error-select">کد خطای نمایش‌داده‌شده را انتخاب کنید:</label>
+                <select id="error-select" class="error-lookup-select">
+                  <option value="">-- انتخاب خطا --</option>
+                  <option value="E.H.t">E.H.t - افزایش بیش از حد دما</option>
+                  <option value="Lo.t">Lo.t - افت غیرطبیعی دما</option>
+                  <option value="t">t - خطای گرمادهی ۳ ساعته</option>
+                  <option value="E.SEN">E.SEN - قطع سنسور دما</option>
+                  <option value="door">صدای بوق مستمر (درب)</option>
+                  <option value="End.E">End.E - توقف با خطا</option>
+                  <option value="End.t">End.t - پایان موفق بدون خطا</option>
+                </select>
+              </div>
+              <div id="error-details-box" class="error-details-box" role="alert" aria-live="assertive"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- pH Meter Content -->
+        <div class="eq-content" id="eq-phmeter" role="tabpanel" aria-labelledby="eq-btn-phmeter" tabindex="0" hidden>
+          <h2 class="eq-title">راهنمای کاربری و نگهداری دستگاه pH متر رومیزی مدل PH500</h2>
+          <div class="eq-subtitle">راهنمای کامل آماده‌سازی، کالیبراسیون چندنقطه‌ای، تنظیم پارامترها و عیب‌یابی خطاهای الکترود</div>
+
+          <div class="eq-section">
+            <h3>۱. نکات ایمنی و اقدامات احتیاطی</h3>
+            <ul class="eq-list">
+              <li><strong>محیط‌های انفجاری:</strong> هرگز دستگاه را در معرض محیط‌های انفجاری قرار ندهید. بدنه دستگاه کاملاً آب‌بندی نشده است و ورود جرقه یا گازهای خورنده ممکن است منجر به انفجار یا آسیب شدید شود.</li>
+              <li><strong>ایمنی مواد شیمیایی:</strong> هنگام کار با حلال‌ها و مواد شیمیایی، دستورالعمل‌های کاربری و مقررات عمومی ایمنی آزمایشگاه را به دقت رعایت فرمایید.</li>
+              <li><strong>تعمیر و نگهداری:</strong> هرگز بدنه دستگاه را باز نکنید. تعمیرات تنها توسط تکنسین‌های مجاز شرکت سازنده مجاز است.</li>
+              <li><strong>شرایط محیطی ممنوعه:</strong> دستگاه را در معرض لرزش شدید، نور مستقیم خورشید، رطوبت جوی بالای ۹۰٪، گازهای خورنده، میدان‌های الکتریکی یا مغناطیسی قوی و دمای محیطی زیر ۱۰ درجه سانتی‌گراد یا بالای ۶۰ درجه سانتی‌گراد قرار ندهید.</li>
+              <li><strong>نفوذ مایعات:</strong> در صورت تماس تصادفی دستگاه با آب یا سایر مایعات، بلافاصله آن را خشک و تمیز کنید.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۲. عملیات کاربری پایه</h3>
+            <ul class="eq-list">
+              <li><strong>نصب الکترود:</strong> جهت استفاده و نگهداری صحیح، به دفترچه راهنمای الکترود مراجعه فرمایید. در زمان نصب، نشانگر نقطه قرمز روی کابل الکترود را با برآمدگی سوکت روی دستگاه هم‌راستا کرده و جا بزنید. جهت جدا کردن الکترود، ضامن فلزی دور سوکت را به بیرون بکشید.</li>
+              <li><strong>روشن کردن:</strong> کلید <strong>ON/OFF</strong> را به صورت کوتاه فشار دهید. صفحه نمایش کامل در عرض ۱ ثانیه ظاهر می‌شود.</li>
+              <li><strong>خاموش کردن:</strong> کلید <strong>ON/OFF</strong> را به مدت ۳ ثانیه فشرده نگاه دارید. دستگاه در صورت عدم استفاده، پس از ۱۰ دقیقه به صورت خودکار خاموش می‌شود.</li>
+              <li><strong>نور پس‌زمینه:</strong> کلید <strong>ON/OFF</strong> را به صورت کوتاه بفشارید تا نور پس‌زمینه صفحه نمایش خاموش یا روشن شود.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۳. راهنمای کلیدهای پنل دستگاه</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+              فشردن کلیدهای پنل دستگاه به سه روش صورت می‌گیرد: <strong>فشار کوتاه</strong> (فشردن و رها کردن فوری)، <strong>فشار طولانی</strong> (نگه داشتن به مدت ۳ ثانیه) و <strong>نگه داشتن (Hold)</strong> (فشردن مستمر جهت تنظیم مقادیر یا تغییر سریع گزینه‌ها).
+            </p>
+            <div class="error-table-container">
+              <table class="error-table">
+                <thead>
+                  <tr>
+                    <th scope="col">کلید روی پنل</th>
+                    <th scope="col">شرح عملکرد</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>ON/OFF</strong></td>
+                    <td>روشن کردن دستگاه، خاموش/روشن کردن نور پس‌زمینه، خاموش کردن دستگاه (با فشار طولانی).</td>
+                  </tr>
+                  <tr>
+                    <td><strong>MODE / ESC</strong></td>
+                    <td>خروج از منوی جاری، انصراف از تنظیمات، یا تغییر حالت اندازه‌گیری (pH / ORP).</td>
+                  </tr>
+                  <tr>
+                    <td><strong>SET / CAL / INFO</strong></td>
+                    <td>حرکت نشانگر به سمت راست در تنظیمات، ورود به حالت کالیبراسیون (فشار کوتاه)، یا بررسی پارامترهای فنی (فشار طولانی).</td>
+                  </tr>
+                  <tr>
+                    <td><strong>ENT / HOLD</strong></td>
+                    <td>ثابت نگه داشتن (قفل کردن) مقدار نمایشی روی صفحه، یا خارج کردن از حالت قفل.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>UP / A</strong></td>
+                    <td>ذخیره‌سازی داده‌های اندازه‌گیری، افزایش مقادیر در منوها، یا مرور داده‌های ذخیره‌شده.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>DOWN / MR</strong></td>
+                    <td>فراخوانی داده‌های ذخیره‌شده، کاهش مقادیر در منوها، یا مرور داده‌های ذخیره‌شده.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="eq-section">
+            <h3>۴. مشخصات فنی دستگاه</h3>
+            <div class="error-table-container">
+              <table class="error-table">
+                <thead>
+                  <tr>
+                    <th scope="col">پارامتر فنی</th>
+                    <th scope="col">مشخصات و محدوده اندازه‌گیری</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>محدوده اندازه‌گیری pH</strong></td>
+                    <td>بازه ۲.۰۰- تا ۱۶.۰۰ pH</td>
+                  </tr>
+                  <tr>
+                    <td><strong>دقت و وضوح pH</strong></td>
+                    <td>وضوح ۰.۰۱ pH / دقت علمی %۰.۲ &plusmn; F.S.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>محدوده اندازه‌گیری ORP</strong></td>
+                    <td>بازه ۲۰۰۰- تا ۲۰۰۰+ میلی‌ولت (mV)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>دقت و وضوح ORP</strong></td>
+                    <td>وضوح ۱ میلی‌ولت / دقت علمی %۰.۲ &plusmn; F.S.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>محدوده دمایی</strong></td>
+                    <td>بازه ۱۰.۰- تا ۱۱۰.۰ درجه سانتی‌گراد</td>
+                  </tr>
+                  <tr>
+                    <td><strong>دقت و وضوح دما</strong></td>
+                    <td>وضوح ۰.۱ درجه سانتی‌گراد / دقت دمایی ۰.۲&plusmn; درجه سانتی‌گراد</td>
+                  </tr>
+                  <tr>
+                    <td><strong>استاندارد بافرهای NIST</strong></td>
+                    <td>شامل بافرهای ۱.۶۸، ۴.۰۱، ۶.۸۶، ۹.۱۸، ۱۲.۴۶</td>
+                  </tr>
+                  <tr>
+                    <td><strong>استاندارد بافرهای USA</strong></td>
+                    <td>شامل بافرهای ۱.۶۸، ۴.۰۱، ۷.۰۰، ۱۰.۰۱، ۱۲.۴۶</td>
+                  </tr>
+                  <tr>
+                    <td><strong>شرایط محیط کاربری</strong></td>
+                    <td>دمای ۵ تا ۶۰ درجه سانتی‌گراد / رطوبت نسبی کمتر از ۹۰٪</td>
+                  </tr>
+                  <tr>
+                    <td><strong>حافظه ذخیره‌سازی</strong></td>
+                    <td>۲۵۶ سری داده کامل</td>
+                  </tr>
+                  <tr>
+                    <td><strong>ابعاد و وزن دستگاه</strong></td>
+                    <td>ابعاد ۱۴۰ &times; ۲۱۰ &times; ۳۵ میلی‌متر / وزن ۶۵۰ گرم</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="eq-section">
+            <h3>۵. تنظیمات پارامترهای پیشرفته (Parameter Setup)</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+              کلید <strong>SET</strong> را جهت ورود به منوی تنظیمات فشار دهید. توسط کلیدهای <strong>UP/DOWN</strong> مقادیر را تغییر داده و با <strong>SET</strong> تایید نمایید.
+            </p>
+            <ul class="eq-list">
+              <li><strong>P01 (تنظیمات دما):</strong> تنظیم دستی جبران دمایی (بین ۰ تا ۱۰۰ درجه سانتی‌گراد) یا کالیبراسیون انحراف سنسور دما (دامنه تغییر تا ۱۰ درجه سانتی‌گراد). در صورت خارج بودن مقدار از بازه مجاز، عبارت <code>ERR</code> ظاهر می‌شود.</li>
+              <li><strong>P02 (نوع الکترود):</strong> انتخاب الکترود شیشه‌ای pH (عبارت <code>GLAS</code>) یا الکترود آنتیموان (عبارت <code>ANTI</code>).</li>
+              <li><strong>P03 (محلول استاندارد بافر):</strong> انتخاب استاندارد کالیبراسیون بین استاندارد آمریکایی/اروپایی (<code>USA</code>) یا استاندارد بین‌المللی (<code>NIST</code>).</li>
+              <li><strong>P04 (قفل خودکار صفحه):</strong> فعال/غیرفعال کردن قفل خودکار داده (وقتی روی <code>ON</code> باشد، دستگاه عدد اندازه‌گیری شده را پس از به ثبات رسیدن قفل می‌کند).</li>
+              <li><strong>P05 (خاموشی خودکار):</strong> فعال/غیرفعال کردن خاموشی خودکار پس از ۱۰ دقیقه عدم استفاده از دستگاه.</li>
+              <li><strong>P06 (پاک کردن حافظه):</strong> انتخاب گزینه <code>YES</code> جهت حذف کامل داده‌های ذخیره‌شده در حافظه.</li>
+              <li><strong>P07 (بازگشت به کارخانه):</strong> انتخاب گزینه <code>YES</code> جهت ریست کردن کل تنظیمات دستگاه به مقادیر اولیه کارخانه.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۶. دستورالعمل کالیبراسیون (Calibration Mode)</h3>
+            <h4 style="color: var(--text-main); margin: 1rem 0 0.5rem 0; font-size: 1.05rem;">الف) کالیبراسیون سنسور pH:</h4>
+            <ul class="eq-list">
+              <li>الکترود تمیز را داخل بافر استاندارد از پیش تعیین‌شده قرار دهید.</li>
+              <li>دکمه <strong>CAL</strong> را فشار دهید. صفحه عبارت <code>Wait</code> را نشان می‌دهد تا عدد پایدار شود. سپس درصد شیب الکترود نمایش داده شده و نقطه کالیبراسیون ذخیره می‌شود.</li>
+              <li>نقطه اول کالیبراسیون به صورت پیش‌فرض بافرهای ۶.۸۶ یا ۷.۰۰ است. پس از ثبت نقطه اول، می‌توانید ۴ نقطه دیگر را به صورت دلخواه کالیبره کنید.</li>
+            </ul>
+            <h4 style="color: var(--text-main); margin: 1.2rem 0 0.5rem 0; font-size: 1.05rem;">ب) کالیبراسیون سنسور ORP:</h4>
+            <ul class="eq-list">
+              <li>الکترود را در محلول بافر کوینهیدرون (Quinhydrone) قرار دهید (اضافه کردن کوینهیدرون به بافر ۴.۰۰ ولتاژ ۲۵۶ میلی‌ولت و اضافه کردن به بافر ۷.۰۰ ولتاژ ۸۶ میلی‌ولت تولید می‌کند).</li>
+              <li>کلید <strong>CAL</strong> را فشار دهید، منتظر بمانید تا عدد پایدار شود و با کلیدهای <strong>UP/DOWN</strong> ولتاژ متناظر با محلول را تنظیم کنید. سپس <strong>SET</strong> را جهت ذخیره فشار دهید.</li>
+              <li><strong>نکته مهم کالیبراسیون:</strong> در صورتی که ولتاژ اندازه‌گیری شده خارج از دامنه باشد، عبارت <code>Err</code> نشان‌دهنده کثیفی یا کهنگی الکترود یا بافرها است. فشردن دکمه <strong>CAL</strong> در حین کالیبراسیون، نقاط ذخیره‌شده قبلی را پاک می‌کند.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۷. اندازه‌گیری و ذخیره‌سازی داده‌ها</h3>
+            <h4 style="color: var(--text-main); margin: 1rem 0 0.5rem 0; font-size: 1.05rem;">روش اندازه‌گیری:</h4>
+            <ul class="eq-list">
+              <li>الکترود را با آب مقطر بشویید و به آرامی خشک کنید.</li>
+              <li>پس از روشن کردن دستگاه، با کلید <strong>MODE</strong> حالت اندازه‌گیری را بین pH و ORP تغییر دهید.</li>
+              <li>الکترود را در نمونه قرار داده و به آرامی هم بزنید. پس از ظاهر شدن علامت پایداری (Stable)، عدد را ثبت کنید.</li>
+              <li>نشانگر <strong>ATC</strong> روی صفحه نشان‌دهنده فعال بودن سنسور دمای خودکار است. عبارت <strong>Manual</strong> نشان‌دهنده قطع بودن سنسور دما است (در این حالت دما پیش‌فرض روی ۲۵ درجه سانتی‌گراد در نظر گرفته می‌شود).</li>
+            </ul>
+            <h4 style="color: var(--text-main); margin: 1.2rem 0 0.5rem 0; font-size: 1.05rem;">ذخیره داده‌ها:</h4>
+            <ul class="eq-list">
+              <li>برای ذخیره داده اندازه‌گیری‌شده پایدار، کلید <strong>UP / A</strong> را فشار دهید. دستگاه حداکثر ۲۵۶ داده ذخیره می‌کند و در صورت پر شدن حافظه، عبارت <code>OVER</code> را نشان می‌دهد.</li>
+              <li>برای مرور داده‌های ذخیره‌شده، کلید <strong>DOWN / MR</strong> را بزنید. در صورت خالی بودن حافظه عبارت <code>NONE</code> ظاهر می‌شود.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۸. پیوست: مقادیر بافرهای pH بر اساس دما (استاندارد USA)</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+              تغییرات میزان pH بافرهای کالیبراسیون استاندارد در دماهای مختلف جهت بررسی صحت عملکرد جبران‌ساز دمایی (ATC):
+            </p>
+            <div class="error-table-container">
+              <table class="error-table">
+                <thead>
+                  <tr>
+                    <th scope="col">دما (&deg;C)</th>
+                    <th scope="col">بافر اسیدی ۴.۰۰</th>
+                    <th scope="col">بافر خنثی ۷.۰۰</th>
+                    <th scope="col">بافر بازی ۱۰.۰۱</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>۰</strong></td>
+                    <td>۴.۰۱</td>
+                    <td>۷.۱۲</td>
+                    <td>۱۰.۳۲</td>
+                  </tr>
+                  <tr>
+                    <td><strong>۱۰</strong></td>
+                    <td>۴.۰۰</td>
+                    <td>۷.۰۶</td>
+                    <td>۱۰.۱۸</td>
+                  </tr>
+                  <tr>
+                    <td><strong>۲۰</strong></td>
+                    <td>۴.۰۰</td>
+                    <td>۷.۰۲</td>
+                    <td>۱۰.۰۶</td>
+                  </tr>
+                  <tr>
+                    <td><strong>۲۵</strong></td>
+                    <td>۴.۰۰</td>
+                    <td>۷.۰۰</td>
+                    <td>۱۰.۰۱</td>
+                  </tr>
+                  <tr>
+                    <td><strong>۳۰</strong></td>
+                    <td>۴.۰۱</td>
+                    <td>۶.۹۹</td>
+                    <td>۹.۹۷</td>
+                  </tr>
+                  <tr>
+                    <td><strong>۴۰</strong></td>
+                    <td>۴.۰۳</td>
+                    <td>۶.۹۷</td>
+                    <td>۹.۸۹</td>
+                  </tr>
+                  <tr>
+                    <td><strong>۵۰</strong></td>
+                    <td>۴.۰۶</td>
+                    <td>۶.۹۷</td>
+                    <td>۹.۸۳</td>
+                  </tr>
+                  <tr>
+                    <td><strong>۶۰</strong></td>
+                    <td>۴.۰۹</td>
+                    <td>۶.۹۸</td>
+                    <td>۹.۷۹</td>
+                  </tr>
+                  <tr>
+                    <td><strong>۹۰</strong></td>
+                    <td>۴.۲۰</td>
+                    <td>۷.۰۲</td>
+                    <td>۹.۷۳</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Error Codes Section for pH Meter -->
+          <div class="eq-section">
+            <h3>۹. راهنمای خطاها و عیب‌یابی سریع</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1rem;">
+              در صورت بروز هرگونه اختلال در عملکرد دستگاه pH متر، کدهای زیر را بررسی نمایید:
+            </p>
+            <div class="error-table-container">
+              <table class="error-table">
+                <thead>
+                  <tr>
+                    <th scope="col">کد خطا</th>
+                    <th scope="col">علت احتمالی</th>
+                    <th scope="col">اقدام پیشنهادی</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="Err.Cal">Err.Cal</span></td>
+                    <td>خطای کالیبراسیون</td>
+                    <td>کثیف بودن الکترود، فساد محلول بافر یا طول عمر بالای الکترود. بافرهای تازه استفاده کنید.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="Err.Temp">Err.Temp</span></td>
+                    <td>عدم شناسایی سنسور دما</td>
+                    <td>سنسور دما (ATC) قطع است یا آسیب دیده است. فیش پشت دستگاه را چک کنید.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="no.Stb">no.Stb</span></td>
+                    <td>عدم ثبات و پایداری عدد</td>
+                    <td>وجود حباب هوا در الکترود، کثیفی غشای شیشه‌ای، یا عدم یکنواختی نمونه. الکترود را تکان دهید.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="OR/UR">OR/UR</span></td>
+                    <td>خارج از محدوده اندازه‌گیری</td>
+                    <td>pH نمونه خارج از محدوده ۰ تا ۱۴ است یا اتصالات الکترود قطع می‌باشد.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Error Lookup Widget for pH Meter -->
+            <div class="widget-card">
+              <div class="widget-title">
+                <span class="material-symbols-outlined widget-icon">troubleshoot</span>
+                عیب‌یابی خطاهای دستگاه pH متر
+              </div>
+              <div class="form-group">
+                <label for="ph-error-select">کد خطای نمایش‌داده‌شده را انتخاب کنید:</label>
+                <select id="ph-error-select" class="error-lookup-select">
+                  <option value="">-- انتخاب خطا --</option>
+                  <option value="Err.Cal">Err.Cal - خطای کالیبراسیون</option>
+                  <option value="Err.Temp">Err.Temp - عدم شناسایی سنسور دما</option>
+                  <option value="no.Stb">no.Stb - عدم ثبات و پایداری عدد</option>
+                  <option value="OR/UR">OR/UR - خارج از محدوده اندازه‌گیری</option>
+                </select>
+              </div>
+              <div id="ph-error-details-box" class="error-details-box" role="alert" aria-live="assertive"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Digital Balance Content -->
+        <div class="eq-content" id="eq-balance" role="tabpanel" aria-labelledby="eq-btn-balance" tabindex="0" hidden>
+          <h2 class="eq-title">راهنمای کاربری و نگهداری ترازوی دیجیتال دقیق (Radwag R Series)</h2>
+          <div class="eq-subtitle">دستورالعمل جامع شرایط محیطی، راه‌اندازی فیزیکی، تراز کردن، توزین صحیح و کالیبراسیون داخلی سری AS R PLUS و PS R</div>
+
+          <div class="eq-section">
+            <h3>۱. اهمیت دقت و تعهد به صحت توزین</h3>
+            <ul class="eq-list">
+              <li><strong>حساسیت ابزار:</strong> ترازو یک ابزار غیرفعال نیست، بلکه یک اکوسیستم الکترونیکی بسیار حساس است. پایداری و دقت داده‌های آزمایشگاهی مستقیماً به مهارت و تعهد کاربر بستگی دارد.</li>
+              <li><strong>نقش کاربر در پیشگیری از خطا:</strong> مهارت تکنسین مانع از بروز خطاهای پنهان توزین (نظیر خزش حرارتی یا اثر الکتریسیته ساکن) می‌شود که می‌تواند کل نتایج تحقیق یا کنترل کیفیت را باطل کند.</li>
+              <li><strong>هدف راهنما:</strong> آموزش کامل جهت آمادگی کاربری ایمن، کنترل دقیق شرایط محیطی، نحوه نصب قطعات فیزیکی و اجرای صحیح کالیبراسیون و نگهداری دوره‌ای.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۲. شرایط محیطی بهینه و الزامات استقرار</h3>
+            <ul class="eq-list">
+              <li><strong>پایداری مکانیکی:</strong> نصب ترازو روی میزهای سنگین توزین ضد لرزش یا کنسول‌های دیواری بسیار پایدار الزامی است.</li>
+              <li><strong>آرامش هوا و محیط تمیز:</strong> دستگاه را دور از جریان مستقیم باد (کولر، تهویه، درب‌ها) و در محیط کاملاً تمیز و عاری از گرد و غبار قرار دهید.</li>
+              <li><strong>پیشگیری از تداخل‌ها:</strong> فاصله مناسب با منابع گرمایی مستقیم و میدان‌های الکترومغناطیسی قوی را رعایت کنید.</li>
+              <li><strong>تخلیه بارهای الکترواستاتیک (ارت):</strong> اتصال بدنه ترازو به سیستم ارت از طریق پیچ اتصال زمین پشتی برای جلوگیری از تجمع بارهای ساکن الزامی است.</li>
+              <li><strong>محدوده‌های دمایی و رطوبتی کارکرد:</strong> بازه دمایی بهینه بین <strong class="highlight-mark">۱۰+ تا ۴۰+ درجه سانتی‌گراد</strong> و رطوبت نسبی حداکثر تا ۸۰٪ می‌باشد.</li>
+              <li><strong>زمان تثبیت دمایی (پایداری حرارتی):</strong> در صورت جابجایی یا اتصال جدید به برق، دستگاه باید به تعادل دمایی برسد تا دچار "خزش یا دریفت" نشود:
+                <br>&bull; <strong>سری دقیق PS:</strong> حداقل ۴ ساعت زمان پیش‌گرمایش.
+                <br>&bull; <strong>سری آنالیتیکال AS:</strong> حداقل ۸ ساعت زمان پیش‌گرمایش.
+              </li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۳. راه‌اندازی فیزیکی و دستورالعمل تراز کردن</h3>
+            <ul class="eq-list">
+              <li><strong>نصب قطعات در سری آنالیتیکال AS R2.PLUS:</strong>
+                <br>۱. باز کردن قفل قرمز حمل و نقل با چرخش به حالت <code>&lt;OPEN&gt;</code>.
+                <br>۲. قرار دادن کفی محافظ پایینی داخل محفظه شیشه‌ای.
+                <br>۳. قرار دادن حلقه سانتراژ به صورتی که بخش برجسته آن رو به بالا باشد.
+                <br>۴. نصب محفظه شیشه‌ای بادگیر کوچک و در نهایت قرار دادن کفه توزین روی پین مرکزی.
+              </li>
+              <li><strong>نصب قطعات در سری دقیق PS:</strong>
+                <br>۱. برداشتن چسب روی فنر تخلیه الکتریکی ارت (واقع در پین‌های لاستیکی زیر کفه).
+                <br>۲. قرار دادن کفه با احتیاط روی پین‌های لاستیکی.
+                <br>۳. نصب محفظه بادگیر شیشه‌ای (فقط برای مدل‌های دارای دقت ۱ میلی‌گرم d=0.001g).
+              </li>
+              <li><strong>روش تراز کردن (Leveling):</strong> با چرخاندن پایه‌های ترازو، حباب هوای نشانگر تراز را دقیقاً به مرکز دایره داخلی هدایت کنید. تمام پایه‌ها باید به طور پایدار و محکم روی سطح میز قرار گیرند.</li>
+              <li><strong>روشن کردن:</strong> اتصال آداپتور به برق و دستگاه. بعد از تست خودکار صفحه نمایش و شنیدن صدای وزنه کالیبراسیون داخلی، ترازو باید عدد صفر پایدار را نشان دهد. در غیر این صورت کلید <strong>Zero</strong> را بزنید.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۴. راهنمای کلیدها و پنل کاربری</h3>
+            <ul class="eq-list">
+              <li><strong>سیستم ثبت و رهگیری (ورود):</strong> برای دسترسی به پایگاه داده و ذخیره توزین‌ها، دکمه Database را زده، کاربر <code>&lt;ADMIN&gt;</code> را انتخاب کرده و پسورد پیش‌فرض <strong class="highlight-mark">1111</strong> را وارد نمایید.</li>
+              <li><strong>تفاوت توزین صفر (Zero) و ترا (Tare):</strong>
+                <br>&bull; <strong>کلید Zero:</strong> نقطه مبنای صفر را در حالت کفه خالی تنظیم می‌کند.
+                <br>&bull; <strong>کلید Tare:</strong> وزن ظرف نمونه را کسر کرده و نمایشگر را صفر می‌کند. توجه داشته باشید وزن ظرف + وزن نمونه نباید از ظرفیت نهایی (Max) ترازو بیشتر شود.
+              </li>
+            </ul>
+            <div class="error-table-container">
+              <table class="error-table">
+                <thead>
+                  <tr>
+                    <th scope="col">کلید پنل</th>
+                    <th scope="col">عملکرد (میانبر صفحه کلید)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>ON/OFF</strong></td>
+                    <td>روشن و خاموش کردن دستگاه یا حالت آماده‌باش (Stand-by) (F9)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Zero</strong></td>
+                    <td>صفر کردن مقدار وزن (فقط در حالت کفه خالی)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Tare</strong></td>
+                    <td>ترا کردن وزن ظرف و مخزن نمونه</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Adjustment</strong></td>
+                    <td>اجرای سریع کالیبراسیون داخلی دستگاه (F6)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Database</strong></td>
+                    <td>ورود به پایگاه داده کاربران، محصولات و اوزان کسر شده (F10)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Mode</strong></td>
+                    <td>تغییر حالت کاری دستگاه (شمارش قطعات، توزین و...) (F5)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Setup</strong></td>
+                    <td>ورود به تنظیمات حالت کاری فعال (F11)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Menu</strong></td>
+                    <td>ورود به منوی اصلی تنظیمات دستگاه (F7)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="eq-section">
+            <h3>۵. اصول و قوانین توزین دقیق و عیب‌یابی ارقام</h3>
+            <ul class="eq-list">
+              <li><strong>بارگذاری و مرکزگرایی:</strong> نمونه‌ها را به صورت دستی و با احتیاط کامل در مرکز کفه قرار دهید تا خطای گوشه‌ای یا بارگذاری خارج از مرکز رخ ندهد.</li>
+              <li><strong>شاخص ثبات (Stability):</strong> توزین را تنها زمانی یادداشت یا ثبت کنید که نماد دایره یا تیک پایداری در سمت چپ نمایشگر ظاهر شده باشد.</li>
+              <li><strong>ممنوعیت اندازه‌گیری متحرک (دینامیک):</strong> از توزین نمونه‌های در حال حرکت خودداری کنید. هنگام اضافه کردن تدریجی مواد، بین هر افزودن صبر کنید تا علامت ثبات مجدداً روشن شود.</li>
+              <li><strong>ملاحظات میدان مغناطیسی:</strong> از توزین نمونه‌های مغناطیسی به طور مستقیم روی کفه خودداری کنید تا از آسیب دائمی به سنسور پیشگیری شود.</li>
+              <li><strong>نکته پایداری ترازوهای فوق‌دقیق (d=0.01 mg):</strong> قابلیت خاموشی خودکار نور پس‌زمینه را غیرفعال کنید. گرمای ناشی از روشن/خاموش شدن لامپ نمایشگر باعث تغییر دمای محیطی سنسور و بروز خطا می‌شود.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۶. راهنمای تمیزکاری و مواد مجاز</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+              <strong>هشدار:</strong> قبل از شروع تمیزکاری، دوشاخه برق را جدا کرده و درگاه‌های باز پشت بدنه را با درپوش‌های پلاستیکی بپوشانید. نفوذ مایعات به دهانه پین کفه به سنسور آسیب دائمی می‌زند. اطراف مجرای پین را با قلم‌موی نرم تمیز کنید.
+            </p>
+            <div class="error-table-container">
+              <table class="error-table">
+                <thead>
+                  <tr>
+                    <th scope="col">قطعه ترازو</th>
+                    <th scope="col">حلال تمیزکننده مجاز</th>
+                    <th scope="col">پروتکل و هشدارها</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>شیشه محافظ</strong></td>
+                    <td>استون (شوینده آلی) یا آب</td>
+                    <td>از مواد پاک‌کننده قلیایی و ساینده اکیداً استفاده نشود.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>پلاستیک ABS بدنه</strong></td>
+                    <td>آب و صابون ملایم</td>
+                    <td>استفاده از دستمال کتان یا سلولزی. از مواد شیمیایی خورنده استفاده نشود.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>کفه استیل</strong></td>
+                    <td>آب گرم و صابون ملایم</td>
+                    <td>استفاده از دستمال میکروفایبر تمیز. از سفیدکننده یا کلر استفاده نشود.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>بخش‌های آلومینیومی</strong></td>
+                    <td>سرکه یا آب‌لیمو ملایم</td>
+                    <td>استفاده از تمیزکننده‌های اسیدی سبک با میکروفایبر. از برس‌های زبر استفاده نشود.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <ul class="eq-list" style="margin-top: 1rem;">
+              <li><strong>ممنوعیت دستمال کاغذی:</strong> هرگز قطعات را با دستمال کاغذی خشک نکنید؛ الیاف میکروسکوپی جدا شده از آن باعث اختلال مکانیکی در سنسور توزین می‌شود. قطعات را در هوای آزاد بگذارید تا خشک شوند یا از دستمال میکروفایبر بدون پرز استفاده نمایید.</li>
+            </ul>
+          </div>
+
+          <div class="eq-section">
+            <h3>۷. عیب‌یابی خطاها و نشانگرهای فنی</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1rem;">
+              در صورت بروز خطا یا مشاهده نمادهای غیرعادی کدهای زیر را بررسی نمایید:
+            </p>
+            <div class="error-table-container">
+              <table class="error-table">
+                <thead>
+                  <tr>
+                    <th scope="col">کد وضعیت/خطا</th>
+                    <th scope="col">علت احتمالی</th>
+                    <th scope="col">اقدام پیشنهادی</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="Lo.mass">Lo mass</span></td>
+                    <td>کمتر بودن وزن از حداقل توزین</td>
+                    <td>وزن نمونه از حداقل ظرفیت مجاز کمتر است. نمونه بیشتری بگذارید و Zero بزنید.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="Thermometer">نماد دماسنج چشمک‌زن</span></td>
+                    <td>ناپایداری دمای بدنه ترازو</td>
+                    <td>نوسان دمای محیطی شدید در سری AS. تا تثبیت دما صبر کرده و کالیبراسیون داخلی بزنید.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="Drift">نوسان دائم رقم آخر</span></td>
+                    <td>نویز باد، لرزش یا بار ساکن</td>
+                    <td>میز تراز نیست، درب باز است، یا اتصال ارت قطع است. شرایط استقرار را بررسی کنید.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="Err.Null">Err.Null</span></td>
+                    <td>خطای نقطه صفر هنگام روشن کردن</td>
+                    <td>موانعی زیر کفه است یا پین کالیبراتور گیر کرده است. کفه را بردارید و چک کنید.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="error-code-badge" data-code="Err.Full">Err.Full</span></td>
+                    <td>اضافه‌بار روی کفه ترازو</td>
+                    <td>سریعاً وزنه سنگین را بردارید؛ وزن روی کفه فراتر از ظرفیت نهایی (Max) است.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Error Lookup Widget for Balance -->
+            <div class="widget-card">
+              <div class="widget-title">
+                <span class="material-symbols-outlined widget-icon">troubleshoot</span>
+                عیب‌یابی خطاهای ترازوی Radwag
+              </div>
+              <div class="form-group">
+                <label for="balance-error-select">کد خطای نمایش‌داده‌شده را انتخاب کنید:</label>
+                <select id="balance-error-select" class="error-lookup-select">
+                  <option value="">-- انتخاب خطا --</option>
+                  <option value="Lo.mass">Lo mass - وزن کمتر از حد مجاز</option>
+                  <option value="Thermometer">نماد دماسنج چشمک‌زن (نوسان دما)</option>
+                  <option value="Drift">نوسان مداوم رقم آخر (دریفت یا لرزش)</option>
+                  <option value="Err.Null">Err.Null - عدم تشخیص نقطه صفر</option>
+                  <option value="Err.Full">Err.Full - بار بیش از حد مجاز (Max)</option>
+                </select>
+              </div>
+              <div id="balance-error-details-box" class="error-details-box" role="alert" aria-live="assertive"></div>
+            </div>
+          </div>
+        </div>
+
+      </div></section>
+      <footer>
+      <div class="footer-info">
+        <p>آزمایشگاه پسماند &copy; ۱۴۰۵</p>
+        <p style="font-size: 0.75rem; font-family: var(--font-en); margin-top: 0.25rem;">Solid Waste Laboratory | Safety &amp; Waste Management Portal</p>
+      </div>
+      <nav class="footer-nav" aria-label="دسترسی داخلی پورتال">
+        <a href="./rules.html">قوانین عمومی</a>
+        <a href="./elements.html">عناصر و مواد</a>
+        <a href="./equipment.html">تجهیزات</a>
+        <a href="./gallery.html">گالری آزمایشگاه</a>
+        <a href="./elements.html#msds-widget-card">MSDS مواد</a>
+        <a href="./elements.html#compatibility-widget-card">سازگاری مواد</a>
+        <a href="./quiz.html">آزمون ورود</a>
+      </nav>
+      <div class="footer-socials">
+        <div class="social-icons">
+          <a href="https://github.com/Soheil-Aghayani" target="_blank" rel="noopener noreferrer" class="social-icon github" aria-label="GitHub">
+            <svg viewBox="0 0 25 25" width="20" height="20" fill="currentColor">
+              <path d="m12.301 0h.093c2.242 0 4.34.613 6.137 1.68l-.055-.031c1.871 1.094 3.386 2.609 4.449 4.422l.031.058c1.04 1.769 1.654 3.896 1.654 6.166 0 5.406-3.483 10-8.327 11.658l-.087.026c-.063.02-.135.031-.209.031-.162 0-.312-.054-.433-.144l.002.001c-.128-.115-.208-.281-.208-.466 0-.005 0-.01 0-.014v.001q0-.048.008-1.226t.008-2.154c.007-.075.011-.161.011-.249 0-.792-.323-1.508-.844-2.025.618-.061 1.176-.163 1.718-.305l-.076.017c.573-.16 1.073-.373 1.537-.642l-.031.017c.508-.28.938-.636 1.292-1.058l.006-.007c.372-.476.663-1.036.84-1.645l.009-.035c.209-.683.329-1.468.329-2.281 0-.045 0-.091-.001-.136v.007c0-.022.001-.047.001-.072 0-1.248-.482-2.383-1.269-3.23l.003.003c.168-.44.265-.948.265-1.479 0-.649-.145-1.263-.404-1.814l.011.026c-.115-.022-.246-.035-.381-.035-.334 0-.649.078-.929.216l.012-.005c-.568.21-1.054.448-1.512.726l.038-.022-.609.384c-.922-.264-1.981-.416-3.075-.416s-2.153.152-3.157.436l.081-.02q-.256-.176-.681-.433c-.373-.214-.814-.421-1.272-.595l-.066-.022c-.293-.154-.64-.244-1.009-.244-.124 0-.246.01-.364.03l.013-.002c-.248.524-.393 1.139-.393 1.788 0 .531.097 1.04.275 1.509l-.01-.029c-.785.844-1.266 1.979-1.266 3.227 0 .025 0 .051.001.076v-.004c-.001.039-.001.084-.001.13 0 .809.12 1.591.344 2.327l-.015-.057c.189.643.476 1.202.85 1.693l-.009-.013c.354.435.782.793 1.267 1.062l.022.011c.432.252.933.465 1.46.614l.046.011c.466.125 1.024.227 1.595.284l.046.004c-.431.428-.718 1-.784 1.638l-.001.012c-.207.101-.448.183-.699.236l-.021.004c-.256.051-.549.08-.85.08-.022 0-.044 0-.066 0h.003c-.394-.008-.756-.136-1.055-.348l.006.004c-.371-.259-.671-.595-.881-.986l-.007-.015c-.198-.336-.459-.614-.768-.827l-.009-.006c-.225-.169-.49-.301-.776-.38l-.016-.004-.32-.048c-.023-.002-.05-.003-.077-.003-.14 0-.273.028-.394.077l.007-.003q-.128.072-.08.184c.039.086.087.16.145.225l-.001-.001c.061.072.13.135.205.19l.003.002.112.08c.283.148.516.354.693.603l.004.006c.191.237.359.505.494.792l.01.024.16.368c.135.402.38.738.7.981l.005.004c.3.234.662.402 1.057.478l.016.002c.33.064.714.104 1.106.112h.007c.045.002.097.002.15.002.261 0 .517-.021.767-.062l-.027.004.368-.064q0 .609.008 1.418t.008.873v.014c0 .185-.08.351-.208.466h-.001c-.119.089-.268.143-.431.143-.075 0-.147-.011-.214-.032l.005.001c-4.929-1.689-8.409-6.283-8.409-11.69 0-2.268.612-4.393 1.681-6.219l-.032.058c1.094-1.871 2.609-3.386 4.422-4.449l.058-.031c1.739-1.034 3.835-1.645 6.073-1.645h.098-.005zm-7.64 17.666q.048-.112-.112-.192-.16-.048-.208.032-.048.112.112.192.144.096.208-.032zm.497.545q.112-.08-.032-.256-.16-.144-.256-.048-.112.08.032.256.159.157.256.047zm.48.72q.144-.112 0-.304-.128-.208-.272-.096-.144.08 0 .288t.272.112zm.672.673q.128-.128-.064-.304-.192-.192-.32-.048-.144.128.064.304.192.192.32.044zm.913.4q.048-.176-.208-.256-.24-.064-.304.112t.208.24q.24.097.304-.096zm1.009.08q0-.208-.272-.176-.256 0-.256.176 0 .208.272.176.256.001.256-.175zm.929-.16q-.032-.176-.288-.144-.256.048-.224.24t.288.128.225-.224z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/agseyl/" target="_blank" rel="noopener noreferrer" class="social-icon linkedin" aria-label="LinkedIn">
+            <svg viewBox="-143 145 512 512" width="20" height="20" fill="currentColor">
+              <path d="M113,145c-141.4,0-256,114.6-256,256s114.6,256,256,256s256-114.6,256-256S254.4,145,113,145z M41.4,508.1H-8.5V348.4h49.9V508.1z M15.1,328.4h-0.4c-18.1,0-29.8-12.2-29.8-27.7c0-15.8,12.1-27.7,30.5-27.7c18.4,0,29.7,11.9,30.1,27.7C45.6,316.1,33.9,328.4,15.1,328.4z M241,508.1h-56.6v-82.6c0-21.6-8.8-36.4-28.3-36.4c-14.9,0-23.2,10-27,19.6c-1.4,3.4-1.2,8.2-1.2,13.1v86.3H71.8c0,0,0.7-146.4,0-159.7h56.1v25.1c3.3-11,21.2-26.6,49.8-26.6c35.5,0,63.3,23,63.3,72.4V508.1z"/>
+            </svg>
+          </a>
+          <a href="https://www.t.me/agseyl" target="_blank" rel="noopener noreferrer" class="social-icon telegram" aria-label="Telegram">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12ZM12.43 8.85893C11.2629 9.3444 8.93015 10.3492 5.43191 11.8733C4.86385 12.0992 4.56628 12.3202 4.53919 12.5363C4.4934 12.9015 4.95073 13.0453 5.57349 13.2411C5.6582 13.2678 5.74598 13.2954 5.83596 13.3246C6.44866 13.5238 7.27284 13.7568 7.70131 13.766C8.08996 13.7744 8.52375 13.6142 9.00266 13.2853C12.2712 11.079 13.9584 9.96381 14.0643 9.93977C14.1391 9.92281 14.2426 9.90148 14.3128 9.96385C14.3829 10.0262 14.3761 10.1443 14.3686 10.176C14.3233 10.3691 12.5281 12.0381 11.5991 12.9018C11.3095 13.171 11.1041 13.362 11.0621 13.4056C10.968 13.5034 10.8721 13.5958 10.78 13.6846C10.2108 14.2333 9.78393 14.6448 10.8036 15.3168C11.2937 15.6397 11.6858 15.9067 12.077 16.1731C12.5042 16.4641 12.9303 16.7543 13.4816 17.1157C13.6221 17.2078 13.7562 17.3034 13.8869 17.3965C14.3841 17.751 14.8308 18.0694 15.3826 18.0186C15.7033 17.9891 16.0345 17.6876 16.2027 16.7884C16.6002 14.6632 17.3816 10.0585 17.5622 8.16098C17.5781 7.99473 17.5582 7.78197 17.5422 7.68858C17.5262 7.59518 17.4928 7.46211 17.3714 7.3636C17.2276 7.24694 17.0057 7.22234 16.9064 7.22408C16.455 7.23204 15.7626 7.47282 12.43 8.85893Z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </main>
+  <!-- Chemical Suggestion Modal -->
+  <div id="chemical-suggestion-modal" class="emergency-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="chemical-suggestion-title" aria-describedby="chemical-suggestion-help" aria-hidden="true" inert hidden tabindex="-1">
+    <div class="emergency-modal chemical-suggestion-modal">
+      <div class="emergency-modal-header">
+        <div class="emergency-modal-title chemical-suggestion-title">
+          <svg class="chemical-suggestion-icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <title>add-square-linear</title>
+            <g fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12Z"/>
+              <path stroke-linecap="round" d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15"/>
+            </g>
+          </svg>
+          <h2 id="chemical-suggestion-title">پیشنهاد افزودن ماده به پایگاه داده</h2>
+        </div>
+        <button type="button" id="close-chemical-suggestion" class="close-modal-btn" aria-label="بستن فرم پیشنهاد ماده">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="emergency-modal-body chemical-suggestion-body">
+        <div>
+          <p id="chemical-suggestion-help" class="chemical-suggestion-help">اگر ماده‌ای در فهرست نیست، اطلاعات پایهٔ آن را ارسال کنید. قبل از افزودن، اطلاعات ایمنی از منبع معتبر بررسی می‌شود.</p>
+          <p class="chemical-suggestion-privacy">این فرم فقط یک پیشنهاد می‌سازد و چیزی را خودکار به دیتابیس اضافه نمی‌کند.</p>
+        </div>
+
+        <form id="chemical-suggestion-form" novalidate>
+          <div class="chemical-suggestion-grid">
+            <div class="form-group suggestion-field-full">
+              <label for="chemical-suggestion-name">نام ماده (فارسی) <span aria-hidden="true">*</span></label>
+              <input id="chemical-suggestion-name" name="nameFa" type="text" autocomplete="off" required>
+            </div>
+            <div class="form-group">
+              <label for="chemical-suggestion-name-en">نام انگلیسی</label>
+              <input id="chemical-suggestion-name-en" name="nameEn" type="text" dir="ltr" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <label for="chemical-suggestion-formula">فرمول شیمیایی</label>
+              <input id="chemical-suggestion-formula" name="formula" type="text" dir="ltr" autocomplete="off" placeholder="مثلاً NaCl">
+            </div>
+            <div class="form-group">
+              <label for="chemical-suggestion-cas">شماره CAS (اختیاری)</label>
+              <input id="chemical-suggestion-cas" name="cas" type="text" dir="ltr" inputmode="numeric" autocomplete="off" placeholder="مثلاً 7647-14-5">
+            </div>
+            <div class="form-group suggestion-field-full">
+              <label for="chemical-suggestion-notes">کاربرد یا توضیحات تکمیلی</label>
+              <textarea id="chemical-suggestion-notes" name="notes" rows="4" placeholder="اگر منبع یا نکته‌ای دربارهٔ این ماده دارید، اینجا بنویسید."></textarea>
+            </div>
+          </div>
+          <p id="chemical-suggestion-error" class="form-error" role="alert" hidden></p>
+          <p id="chemical-suggestion-feedback" class="chemical-suggestion-feedback" role="status" hidden></p>
+          <div class="chemical-suggestion-actions">
+            <button type="submit" class="btn-primary">آماده‌سازی پیشنهاد</button>
+            <button type="button" id="cancel-chemical-suggestion" class="chemical-suggestion-cancel">انصراف</button>
+          </div>
+          <a id="chemical-suggestion-issue-link" class="chemical-suggestion-issue-link" href="#" target="_blank" rel="noopener noreferrer" hidden>باز کردن فرم ارسال در GitHub</a>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Emergency Button -->
+  <button id="emergency-fab" class="emergency-fab" title="فوریت‌های اضطراری" aria-label="فوریت‌های اضطراری" aria-haspopup="dialog" aria-controls="emergency-modal">
+    <svg class="emergency-fab-icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <title>فوریت‌های اضطراری</title>
+      <path fill="currentColor" d="M10.25 19.25v-4.2l-3.65 2.1q-.625.35-1.325.175t-1.05-.825q-.35-.625-.175-1.325t.8-1.05L8.5 12L4.85 9.9q-.625-.35-.8-1.062T4.225 7.5t1.05-.8t1.325.175l3.65 2.1V4.75q0-.725.513-1.237T12 3t1.238.513t.512 1.237v4.225l3.65-2.1q.625-.35 1.325-.175t1.05.8t.163 1.338t-.813 1.062L15.5 12l3.65 2.125q.625.35.8 1.05t-.175 1.35q-.35.625-1.05.8T17.4 17.15l-3.65-2.1v4.2q0 .725-.513 1.238T12 21t-1.237-.513t-.513-1.237"/>
+    </svg>
+  </button>
+
+  <!-- Lightweight placeholder; the full chatbot UI loads only after interaction. -->
+  <button id="chatbot-loader-fab" class="chatbot-fab-loader" type="button" aria-label="دستیار هوشمند آزمایشگاه" aria-controls="chatbot-window" aria-expanded="false">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5">
+        <path d="M14.17 20.89c4.184-.277 7.516-3.657 7.79-7.9c.053-.83.053-1.69 0-2.52c-.274-4.242-3.606-7.62-7.79-7.899a33 33 0 0 0-4.34 0c-4.184.278-7.516 3.657-7.79 7.9a20 20 0 0 0 0 2.52c.1 1.545.783 2.976 1.588 4.184c.467.845.159 1.9-.328 2.823c-.35.665-.526.997-0.385 1.237c.14.24.455.248 1.084.263c1.245.03 2.084-.322 2.75-.813c.377-.279.566-.418.696-.434s.387.09.899.3c.46.19.995.307 1.485.34c1.425.094 2.914.094 4.342 0Z"/>
+        <path stroke-linecap="round" d="m7.5 15l1.842-5.526a.694.694 0 0 1 1.316 0L12.5 15m3-6v6m-7-2h3"/>
+      </g>
+    </svg>
+  </button>
+
+  <!-- Emergency Modal -->
+  <div id="emergency-modal" class="emergency-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="emergency-modal-title" aria-hidden="true" inert hidden tabindex="-1">
+    <div class="emergency-modal">
+      <div class="emergency-modal-header">
+        <div class="emergency-modal-title">
+          <span class="material-symbols-outlined header-symbol">emergency</span>
+          <h2 id="emergency-modal-title">شماره‌های اضطراری و فوریت‌ها</h2>
+        </div>
+        <button id="close-emergency" class="close-modal-btn" aria-label="بستن شماره‌های اضطراری">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="emergency-modal-body">
+        
+        <!-- Category 1: Medical -->
+        <div class="emergency-section-card medical">
+          <div class="emergency-section-title">
+            <span class="material-symbols-outlined">local_hospital</span>
+            <h3>فوریت‌های پزشکی</h3>
+          </div>
+          <div class="emergency-list-items">
+            <div class="emergency-contact-item main-alert">
+              <div class="contact-info">
+                <span class="contact-name">اورژانس تهران</span>
+                <span class="contact-number">۱۱۵</span>
+              </div>
+              <a href="tel:115" class="call-action-btn">
+                <span class="material-symbols-outlined" style="font-size: 16px; margin-left: 0.25rem;">call</span>
+                <span>تماس</span>
+              </a>
+            </div>
+            
+            <div class="emergency-contact-item main-alert">
+              <div class="contact-info">
+                <span class="contact-name">مرکز فوریت‌های دارویی</span>
+                <span class="contact-number">۱۴۹۰</span>
+              </div>
+              <a href="tel:1490" class="call-action-btn">
+                <span class="material-symbols-outlined" style="font-size: 16px; margin-left: 0.25rem;">call</span>
+                <span>تماس</span>
+              </a>
+            </div>
+
+            <div class="emergency-contact-item">
+              <div class="contact-info">
+                <span class="contact-name">بیمارستان لقمان (مسمومیت‌های شیمیایی)</span>
+                <span class="contact-number">۰۲۱-۵۵۴۱۹۰۰۵</span>
+                <span class="contact-address">تهران، خ کارگر جنوبی، چهارراه لشگر، خ مخصوص</span>
+              </div>
+              <a href="tel:02155419005" class="call-action-btn">
+                <span class="material-symbols-outlined" style="font-size: 16px; margin-left: 0.25rem;">call</span>
+                <span>تماس</span>
+              </a>
+            </div>
+
+            <div class="emergency-contact-item">
+              <div class="contact-info">
+                <span class="contact-name">بیمارستان فارابی (سوختگی‌های چشم)</span>
+                <span class="contact-number">۰۲۱-۵۵۴۰۰۰۰۳</span>
+                <span class="contact-address">تهران، خ کارگر جنوبی، میدان قزوین</span>
+              </div>
+              <a href="tel:02155400003" class="call-action-btn">
+                <span class="material-symbols-outlined" style="font-size: 16px; margin-left: 0.25rem;">call</span>
+                <span>تماس</span>
+              </a>
+            </div>
+
+            <div class="emergency-contact-item">
+              <div class="contact-info">
+                <span class="contact-name">بیمارستان مطهری (سوختگی‌های پوست)</span>
+                <span class="contact-number">۰۲۱-۸۸۷۷۰۰۳۱</span>
+                <span class="contact-address">تهران، خ ولیعصر، بالاتر از میدان ونک، خ رشید یاسمی</span>
+              </div>
+              <a href="tel:02188770031" class="call-action-btn">
+                <span class="material-symbols-outlined" style="font-size: 16px; margin-left: 0.25rem;">call</span>
+                <span>تماس</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 2: Fire -->
+        <div class="emergency-section-card fire">
+          <div class="emergency-section-title">
+            <span class="material-symbols-outlined">local_fire_department</span>
+            <h3>فوریت‌های آتش‌سوزی</h3>
+          </div>
+          <div class="emergency-list-items">
+            <div class="emergency-contact-item main-alert">
+              <div class="contact-info">
+                <span class="contact-name">سازمان آتش‌نشانی</span>
+                <span class="contact-number">۱۲۵</span>
+              </div>
+              <a href="tel:125" class="call-action-btn">
+                <span class="material-symbols-outlined" style="font-size: 16px; margin-left: 0.25rem;">call</span>
+                <span>تماس</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 3: Hazardous Waste -->
+        <div class="emergency-section-card waste-management">
+          <div class="emergency-section-title">
+            <span class="material-symbols-outlined">eco</span>
+            <h3>مدیریت پسماندهای خطرناک</h3>
+          </div>
+          <div class="emergency-list-items">
+            <div class="emergency-contact-item">
+              <div class="contact-info">
+                <span class="contact-name">سامانه آزمایشگاه‌های پاک (کیمیا گستر شریف)</span>
+                <span class="contact-number">۰۲۱-۶۶۰۸۸۸۰۳</span>
+                <span class="contact-address">تهران، خ آزادی، ضلع غربی دانشگاه شریف، خ ولی‌الله صادقی، پ ۳۸</span>
+              </div>
+              <a href="tel:02166088803" class="call-action-btn">
+                <span class="material-symbols-outlined" style="font-size: 16px; margin-left: 0.25rem;">call</span>
+                <span>تماس</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Spill Simulator Modal -->
+  <div id="drill-modal" class="emergency-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="drill-modal-title" aria-hidden="true" inert hidden tabindex="-1">
+    <div class="emergency-modal" style="max-width: 850px;">
+      <div class="emergency-modal-header">
+        <div class="emergency-modal-title" style="color: var(--accent-red); gap: 0.5rem;">
+          <span class="material-symbols-outlined header-symbol" style="animation: none;">mop</span>
+          <h2 id="drill-modal-title">شبیه‌ساز ریزش مواد</h2>
+        </div>
+        <button id="close-drill-modal" class="close-modal-btn" aria-label="بستن شبیه‌ساز ریزش">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="emergency-modal-body" style="padding: 1.5rem;">
+        <p class="widget-subtitle" style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
+          یک سناریو بحرانی را انتخاب کنید و گام‌به‌گام مراحل واکنش اضطراری و پاک‌سازی ایمن را پیش ببرید تا سطح آمادگی خود را بسنجید:
+        </p>
+
+        <!-- Scenario Selection Screen -->
+        <div id="spill-scenarios-selection" class="spill-scenarios-grid">
+          <div class="drill-scenario-card" data-scenario="acid">
+            <div class="drill-card-header">
+              <span class="material-symbols-outlined drill-icon" style="color: var(--accent-red);">science</span>
+              <h3>نشت اسید سولفوریک غلیظ</h3>
+            </div>
+            <p>مقدار ۵۰۰ میلی‌لیتر اسید سولفوریک غلیظ (۹۸٪) روی زمین پایلوت سرازیر شده و گازهای بسیار محرک و خطرناکی منتشر می‌کند.</p>
+            <button class="btn-primary select-scenario-btn" style="background-color: var(--accent-red-strong); border: none; color: #fff;"><span class="material-symbols-outlined" aria-hidden="true">play_circle</span>شروع عملیات مهار</button>
+          </div>
+
+          <div class="drill-scenario-card" data-scenario="solvent">
+            <div class="drill-card-header">
+              <span class="material-symbols-outlined drill-icon" style="color: var(--accent-amber);">local_fire_department</span>
+              <h3>ریزش حلال آلی فرار (تولوئن)</h3>
+            </div>
+            <p>یک لیتر حلال بسیار فرار و قابل اشتعال تولوئن در نزدیکی کوره داغ سرازیر شده و خطر شدید شعله‌وری و آتش‌سوزی وجود دارد.</p>
+            <button class="btn-primary select-scenario-btn" style="background-color: var(--accent-amber); border: none; color: #000;"><span class="material-symbols-outlined" aria-hidden="true">play_circle</span>شروع عملیات مهار</button>
+          </div>
+
+          <div class="drill-scenario-card" data-scenario="mercury">
+            <div class="drill-card-header">
+              <span class="material-symbols-outlined drill-icon" style="color: var(--text-muted);">science</span>
+              <h3>شکستن دماسنج و نشت جیوه مایع</h3>
+            </div>
+            <p>دماسنج شیشه‌ای جیوه روی میز کار شکسته و قطرات جیوه متالیک روی درزها و شکاف‌های سطح میز پراکنده شده‌اند.</p>
+            <button class="btn-primary select-scenario-btn" style="background-color: #475569; border: none; color: #fff;"><span class="material-symbols-outlined" aria-hidden="true">play_circle</span>شروع عملیات مهار</button>
+          </div>
+        </div>
+
+        <!-- Active Drill Panel (Hidden by default) -->
+        <div id="drill-active-panel" class="drill-active-panel" style="display: none;">
+          <div class="drill-status-bar">
+            <span id="drill-scenario-title" class="drill-active-title">-</span>
+            <div class="drill-progress-bar-container">
+              <div id="drill-progress-bar" class="drill-progress-bar" style="width: 0%;"></div>
+            </div>
+            <span id="drill-step-indicator" class="drill-step-indicator">-</span>
+          </div>
+
+          <!-- Description and instructions -->
+          <div class="drill-step-box">
+            <h4 id="drill-step-question" class="drill-question-text">-</h4>
+            <div id="drill-choices-container" class="drill-choices-container">
+              <!-- Choices populated dynamically -->
+            </div>
+          </div>
+
+          <!-- Feedback Box -->
+          <div id="drill-feedback-box" class="drill-feedback-box" role="status" aria-live="polite" style="display: none;">
+            <div class="feedback-header">
+              <span id="drill-feedback-icon" class="material-symbols-outlined">info</span>
+              <span id="drill-feedback-title">-</span>
+            </div>
+            <p id="drill-feedback-desc">-</p>
+            <button id="drill-next-btn" class="btn-primary" style="margin-top: 1rem; display: none;"><span class="material-symbols-outlined" aria-hidden="true">round-transfer-horizontal</span>مرحله بعد</button>
+          </div>
+
+          <!-- Complete screen (Show when done) -->
+          <div id="drill-complete-box" class="drill-complete-box" style="display: none;">
+            <span class="material-symbols-outlined complete-icon">verified_user</span>
+            <h3>عملیات مهار و پاک‌سازی به پایان رسید</h3>
+            <p id="drill-score-report" role="status" aria-live="polite"></p>
+            <div class="drill-recap-notes" id="drill-recap-notes">
+              <!-- Safety takeaways -->
+            </div>
+            <button id="drill-reset-btn" class="btn-primary" style="margin-top: 1.5rem; background-color: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary);"><span class="material-symbols-outlined" aria-hidden="true">restart_alt</span>بازگشت به انتخاب سناریوها</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <nav class="mobile-bottom-dock" aria-label="دسترسی سریع موبایل">
+      <a class="site-nav-link mobile-dock-item" href="./index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span><span>خانه</span></a>
+      <a class="site-nav-link mobile-dock-item" href="./rules.html"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span>ایمنی</span></a>
+      <a class="site-nav-link is-active mobile-dock-item" href="./equipment.html" aria-current="page"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span><span>کاتالوگ</span></a>
+      <a class="site-nav-link mobile-dock-item" href="./gallery.html"><span class="material-symbols-outlined" aria-hidden="true">gallery</span><span>گالری</span></a>
+    </nav>
+</body>
+</html>
