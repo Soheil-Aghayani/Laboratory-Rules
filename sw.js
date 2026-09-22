@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'lab-rules-v35';
+const CACHE_VERSION = 'lab-rules-v36';
 const APP_SHELL = [
   './',
   './index.html',
@@ -7,7 +7,7 @@ const APP_SHELL = [
   './styles.min.css?v=6.3',
   './asset/icon-system.min.js?v=1.0',
   './asset/icons.svg',
-  './script.min.js?v=5.8',
+  './script.min.js?v=5.9',
   './equipment-data.min.js?v=1.4',
   './gallery.min.js?v=2.2',
   './equipment-detail.min.js?v=1.5',

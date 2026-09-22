@@ -131,12 +131,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function selectMainTab(tabId) {
+    switchTab(tabId);
+    if (window.location.hash !== `#${tabId}`) {
+      window.history.replaceState(null, '', `#${tabId}`);
+    }
+    if (searchInput) searchInput.dispatchEvent(new Event('input'));
+  }
+
   const tabBtnArray = Array.from(tabBtns);
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const tabId = btn.getAttribute('data-tab');
-      switchTab(tabId);
-      if (searchInput) searchInput.dispatchEvent(new Event('input'));
+      selectMainTab(tabId);
     });
 
     btn.addEventListener('keydown', (event) => {
@@ -155,8 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         const nextBtn = tabBtnArray[nextIndex];
         nextBtn.focus();
-        switchTab(nextBtn.getAttribute('data-tab'));
-        if (searchInput) searchInput.dispatchEvent(new Event('input'));
+        selectMainTab(nextBtn.getAttribute('data-tab'));
       }
     });
   });
@@ -430,64 +436,64 @@ document.addEventListener('DOMContentLoaded', () => {
       switchEquipment('eq-centrifuge');
       setTimeout(() => {
         const el = document.getElementById('eq-centrifuge');
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
       }, 100);
     } else if (hash === 'oven' || hash === 'eq-oven') {
       switchTab('tab-equipment');
       switchEquipment('eq-oven');
       setTimeout(() => {
         const el = document.getElementById('eq-oven');
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
       }, 100);
     } else if (hash === 'balance' || hash === 'eq-balance' || hash === 'measure') {
       switchTab('tab-equipment');
       switchEquipment('eq-balance');
       setTimeout(() => {
         const el = document.getElementById('eq-balance');
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
       }, 100);
     } else if (hash === 'phmeter' || hash === 'eq-phmeter') {
       switchTab('tab-equipment');
       switchEquipment('eq-phmeter');
       setTimeout(() => {
         const el = document.getElementById('eq-phmeter');
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
       }, 100);
     } else if (hash === 'equipment' || hash === 'tab-equipment') {
       switchTab('tab-equipment');
       setTimeout(() => {
         const el = document.getElementById('tab-equipment');
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
       }, 100);
     } else if (hash === 'rules' || hash === 'tab-general') {
       switchTab('tab-general');
       setTimeout(() => {
         const el = document.getElementById('tab-general');
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
       }, 100);
     } else if (hash === 'quiz' || hash === 'tab-quiz') {
       switchTab('tab-quiz');
       setTimeout(() => {
         const el = document.getElementById('tab-quiz');
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
       }, 100);
     } else if (hash === 'gallery' || hash === 'tab-gallery') {
       switchTab('tab-gallery');
       setTimeout(() => {
         const el = document.getElementById('tab-gallery');
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
       }, 100);
     } else if (hash === 'msds-widget-card') {
       switchTab('tab-general');
       setTimeout(() => {
         const el = document.getElementById('msds-widget-card');
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
       }, 100);
     } else if (hash === 'compatibility-widget-card') {
       switchTab('tab-equipment');
       setTimeout(() => {
         const el = document.getElementById('compatibility-widget-card');
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
       }, 100);
     }
   }
