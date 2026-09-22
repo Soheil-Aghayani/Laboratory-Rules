@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'lab-rules-v20';
+const CACHE_VERSION = 'lab-rules-v21';
 const APP_SHELL = [
   './',
   './index.html',
@@ -6,7 +6,30 @@ const APP_SHELL = [
   './manifest.webmanifest',
   './styles.min.css?v=5.8',
   './script.min.js?v=5.8',
-  './gallery.min.js?v=1.1',
+  './equipment-data.min.js?v=1.0',
+  './gallery.min.js?v=2.0',
+  './equipment-detail.min.js?v=1.0',
+  './equipment-detail.min.css?v=1.0',
+  './Equipment/volumetric-flasks.html',
+  './Equipment/reagent-bottles.html',
+  './Equipment/petri-dishes.html',
+  './Equipment/porcelain-crucible.html',
+  './Equipment/glass-funnel-long-stem.html',
+  './Equipment/serological-pipettes.html',
+  './Equipment/watch-glass.html',
+  './Equipment/glass-burette.html',
+  './Equipment/separating-funnel.html',
+  './Equipment/buchner-funnel.html',
+  './Equipment/porcelain-mortar-pestle.html',
+  './Equipment/screw-cap-test-tube.html',
+  './Equipment/crucible-tongs.html',
+  './Equipment/crystallizing-dish.html',
+  './Equipment/vacuum-desiccator.html',
+  './Equipment/coiled-distillate.html',
+  './Equipment/pipette-stand.html',
+  './Equipment/allihn-condenser.html',
+  './Equipment/buffer-solutions.html',
+  './Equipment/silica-gel.html',
   './chatbot/chatbot.min.css?v=5.7',
   './chatbot/chatbot.min.js?v=5.7',
   './chatbot/msds/msds-db.min.js?v=5.7',
@@ -51,7 +74,7 @@ self.addEventListener('fetch', (event) => {
         .then((response) => {
           if (response.ok) {
             const responseCopy = response.clone();
-            caches.open(CACHE_VERSION).then((cache) => cache.put('./index.html', responseCopy));
+            caches.open(CACHE_VERSION).then((cache) => cache.put(request, responseCopy));
           }
           return response;
         })
