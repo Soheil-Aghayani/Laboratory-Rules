@@ -16,28 +16,32 @@
   src: url('asset/outfit-latin.woff2') format('woff2');
 }
 
-@font-face {
-  font-family: 'Material Symbols Outlined';
-  font-style: normal;
-  font-weight: 100 700;
-  font-display: swap;
-  src: url('asset/material-symbols-outlined-subset.woff2') format('woff2');
-}
-
 .material-symbols-outlined {
-  font-family: 'Material Symbols Outlined';
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
   line-height: 1;
   letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   white-space: nowrap;
-  word-wrap: normal;
   direction: ltr;
-  font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
+  flex: 0 0 auto;
+}
+
+.icon {
+  display: block;
+  width: 1em;
+  height: 1em;
+  flex: 0 0 auto;
+  overflow: visible;
+  color: currentColor;
+}
+
+.material-symbols-outlined > .icon {
+  width: 1em;
+  height: 1em;
 }
 
 :root {
@@ -520,7 +524,15 @@ header {
   font-size: 1.05rem;
   font-weight: 600;
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
   transition: color var(--transition-speed);
+}
+
+.tab-btn > .material-symbols-outlined {
+  font-size: 1.2em;
 }
 
 .tab-btn:hover {
@@ -994,7 +1006,16 @@ header {
   font-size: 0.95rem;
   font-weight: 600;
   text-align: right;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   transition: all var(--transition-speed);
+}
+
+.eq-nav-btn > .material-symbols-outlined {
+  color: var(--accent-emerald);
+  font-size: 1.2rem;
+  flex: 0 0 auto;
 }
 
 .eq-nav-btn:hover {
@@ -4610,6 +4631,12 @@ footer {
 }
 
 /* Final showroom cascade */
+/* Final icon CTA override */
+.equipment-card-cta::after {
+  display: none !important;
+  content: none !important;
+}
+
 .gallery-intro-block {
   position: relative;
   overflow: hidden;
@@ -4703,6 +4730,59 @@ footer {
   padding-inline: 0.85rem;
   border-radius: 12px;
   font-size: 0.82rem;
+}
+
+/* Solar icon affordances: keep labels for clarity, use icons for faster scanning. */
+.btn-primary > .material-symbols-outlined,
+.text-action-button > .material-symbols-outlined,
+.first-aid-tab-btn > .material-symbols-outlined,
+.equipment-filter-btn > .material-symbols-outlined {
+  flex: 0 0 auto;
+  margin: 0 !important;
+}
+
+.btn-primary > .material-symbols-outlined {
+  font-size: 1.15em;
+}
+
+.text-action-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.first-aid-tab-btn,
+.equipment-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.first-aid-tab-btn > .material-symbols-outlined,
+.equipment-filter-btn > .material-symbols-outlined {
+  font-size: 1.1em;
+}
+
+.equipment-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.equipment-card-cta::after {
+  display: none;
+  content: none;
+}
+
+.equipment-card-cta > .material-symbols-outlined {
+  flex: 0 0 auto;
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.equipment-catalog-card:hover .equipment-card-cta > .material-symbols-outlined {
+  transform: translateX(-3px);
 }
 
 .gallery-result-count {

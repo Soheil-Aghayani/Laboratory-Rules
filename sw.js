@@ -1,10 +1,12 @@
-const CACHE_VERSION = 'lab-rules-v24';
+const CACHE_VERSION = 'lab-rules-v25';
 const APP_SHELL = [
   './',
   './index.html',
   './offline.html',
   './manifest.webmanifest',
-  './styles.min.css?v=5.9',
+  './styles.min.css?v=6.0',
+  './asset/icon-system.min.js?v=1.0',
+  './asset/icons.svg',
   './script.min.js?v=5.8',
   './equipment-data.min.js?v=1.1',
   './gallery.min.js?v=2.1',
@@ -34,7 +36,6 @@ const APP_SHELL = [
   './chatbot/chatbot.min.js?v=5.7',
   './chatbot/msds/msds-db.min.js?v=5.7',
   './asset/vazirmatn-arabic.woff2',
-  './asset/material-symbols-outlined-subset.woff2',
   './asset/outfit-latin.woff2',
   './Waste%20Lab.webp',
   './asset/gallery/lab-courtyard.webp',

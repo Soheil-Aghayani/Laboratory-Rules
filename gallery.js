@@ -39,7 +39,7 @@
             <p class="equipment-card-summary">${family.summary}</p>
             <div class="equipment-card-footer">
               <span>${variantCount > 1 ? 'انتخاب حجم یا نوع' : 'معرفی و کاربرد'}</span>
-              <span class="equipment-card-cta">مشاهدهٔ معرفی</span>
+              <span class="equipment-card-cta"><span>مشاهدهٔ معرفی</span><span class="material-symbols-outlined" aria-hidden="true">arrow-left</span></span>
             </div>
           </div>
         </a>

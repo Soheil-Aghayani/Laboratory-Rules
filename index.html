@@ -25,10 +25,9 @@
   <link rel="icon" type="image/webp" href="Waste%20Lab.webp">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
-  <link rel="preload" href="./asset/material-symbols-outlined-subset.woff2" as="font" type="font/woff2" crossorigin fetchpriority="low">
   <link rel="preload" href="./asset/gallery/lab-interior.webp" as="image" type="image/webp" fetchpriority="high">
-  <link rel="preload" href="./styles.min.css?v=5.9" as="style" crossorigin fetchpriority="high" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="./styles.min.css?v=5.9"></noscript>
+  <link rel="preload" href="./styles.min.css?v=6.0" as="style" crossorigin fetchpriority="high" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="./styles.min.css?v=6.0"></noscript>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -73,8 +72,7 @@
   </script>
   <style id="critical-css">
     @font-face{font-family:'Vazirmatn';font-style:normal;font-weight:300 800;font-display:swap;src:url('./asset/vazirmatn-arabic.woff2') format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+200C-200E,U+FB50-FDFF,U+FE70-FEFC}
-    @font-face{font-family:'Material Symbols Outlined';font-style:normal;font-weight:100 700;font-display:swap;src:url('./asset/material-symbols-outlined-subset.woff2') format('woff2')}
-    .material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;font-size:24px;line-height:1;display:inline-block;white-space:nowrap;direction:ltr;font-feature-settings:'liga';-webkit-font-smoothing:antialiased}
+    .material-symbols-outlined{font-weight:normal;font-style:normal;font-size:24px;line-height:1;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;direction:ltr;flex:0 0 auto}.icon{display:block;width:1em;height:1em;flex:0 0 auto;overflow:visible;color:currentColor}
     :root{--bg-primary:#0f172a;--bg-secondary:#1e293b;--bg-tertiary:#334155;--border-color:#334155;--text-primary:#f8fafc;--text-muted:#b6c2d1;--accent-emerald:#10b981;--accent-emerald-strong:#047857;--accent-emerald-glow:rgba(16,185,129,.15);--accent-amber:#f59e0b;--accent-red:#ef4444;--accent-red-strong:#b91c1c;--accent-red-glow:rgba(239,68,68,.2);--card-shadow:0 10px 30px -10px rgba(0,0,0,.7);--font-fa:'Vazirmatn',system-ui,-apple-system,sans-serif}
     [data-theme="light"]{--bg-primary:#f8fafc;--bg-secondary:#fff;--bg-tertiary:#f1f5f9;--border-color:#e2e8f0;--text-primary:#0f172a;--text-muted:#475569;--accent-emerald:#047857;--accent-emerald-strong:#065f46;--accent-emerald-glow:rgba(5,150,105,.1);--accent-amber:#d97706;--accent-red:#b91c1c;--accent-red-strong:#991b1b;--accent-red-glow:rgba(220,38,38,.1);--card-shadow:0 10px 25px -10px rgba(15,23,42,.08)}
     *,*::before,*::after{box-sizing:border-box}
@@ -101,6 +99,7 @@
     .offline-status .material-symbols-outlined{font-size:1.15rem;color:var(--accent-amber);flex:0 0 auto;margin-top:.25rem}
     .offline-status[hidden]{display:none}
   </style>
+  <script defer fetchpriority="high" src="./asset/icon-system.min.js?v=1.0"></script>
   <script defer fetchpriority="low" src="./script.min.js?v=5.8"></script>
   <script defer fetchpriority="low" src="./equipment-data.min.js?v=1.1"></script>
   <script defer fetchpriority="low" src="./gallery.min.js?v=2.1"></script>
@@ -191,10 +190,10 @@
 
     <!-- Navigation Tabs -->
     <nav class="tabs" role="tablist" aria-label="بخش‌های پورتال">
-      <button class="tab-btn active" id="tab-btn-general" role="tab" aria-controls="tab-general" aria-selected="true" tabindex="0" data-tab="tab-general">قوانین عمومی و ایمنی</button>
-      <button class="tab-btn" id="tab-btn-equipment" role="tab" aria-controls="tab-equipment" aria-selected="false" tabindex="-1" data-tab="tab-equipment">راهنمای کاربری تجهیزات</button>
-      <button class="tab-btn" id="tab-btn-gallery" role="tab" aria-controls="tab-gallery" aria-selected="false" tabindex="-1" data-tab="tab-gallery">گالری آزمایشگاه</button>
-      <button class="tab-btn" id="tab-btn-quiz" role="tab" aria-controls="tab-quiz" aria-selected="false" tabindex="-1" data-tab="tab-quiz">آزمون و تعهدنامه ورود</button>
+      <button class="tab-btn active" id="tab-btn-general" role="tab" aria-controls="tab-general" aria-selected="true" tabindex="0" data-tab="tab-general"><span class="material-symbols-outlined" aria-hidden="true">book-bookmark</span><span class="tab-btn-label">قوانین عمومی و ایمنی</span></button>
+      <button class="tab-btn" id="tab-btn-equipment" role="tab" aria-controls="tab-equipment" aria-selected="false" tabindex="-1" data-tab="tab-equipment"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span class="tab-btn-label">راهنمای کاربری تجهیزات</span></button>
+      <button class="tab-btn" id="tab-btn-gallery" role="tab" aria-controls="tab-gallery" aria-selected="false" tabindex="-1" data-tab="tab-gallery"><span class="material-symbols-outlined" aria-hidden="true">gallery</span><span class="tab-btn-label">گالری آزمایشگاه</span></button>
+      <button class="tab-btn" id="tab-btn-quiz" role="tab" aria-controls="tab-quiz" aria-selected="false" tabindex="-1" data-tab="tab-quiz"><span class="material-symbols-outlined" aria-hidden="true">clipboard-check</span><span class="tab-btn-label">آزمون و تعهدنامه ورود</span></button>
     </nav>
 
     <!-- TAB 1: General Rules -->
@@ -325,6 +324,7 @@
         <div class="msds-suggestion-row" aria-label="پیشنهاد ماده جدید">
           <span>ماده‌ای در فهرست نیست؟</span>
           <button type="button" id="suggest-chemical-btn" class="text-action-button" aria-haspopup="dialog" aria-controls="chemical-suggestion-modal">
+            <span class="material-symbols-outlined" aria-hidden="true">add_circle</span>
             پیشنهاد افزودن ماده
           </button>
         </div>
@@ -430,9 +430,9 @@
                 اقدامات کمک‌های اولیه
               </div>
               <div class="first-aid-tabs" role="tablist" aria-label="اقدامات کمک‌های اولیه">
-                <button class="first-aid-tab-btn active" id="first-aid-tab-skin" role="tab" aria-controls="first-aid-skin" aria-selected="true" tabindex="0" data-aid-tab="skin">تماس پوستی</button>
-                <button class="first-aid-tab-btn" id="first-aid-tab-eyes" role="tab" aria-controls="first-aid-eyes" aria-selected="false" tabindex="-1" data-aid-tab="eyes">تماس چشمی</button>
-                <button class="first-aid-tab-btn" id="first-aid-tab-inhalation" role="tab" aria-controls="first-aid-inhalation" aria-selected="false" tabindex="-1" data-aid-tab="inhalation">استنشاق</button>
+                <button class="first-aid-tab-btn active" id="first-aid-tab-skin" role="tab" aria-controls="first-aid-skin" aria-selected="true" tabindex="0" data-aid-tab="skin"><span class="material-symbols-outlined" aria-hidden="true">clean_hands</span><span>تماس پوستی</span></button>
+                <button class="first-aid-tab-btn" id="first-aid-tab-eyes" role="tab" aria-controls="first-aid-eyes" aria-selected="false" tabindex="-1" data-aid-tab="eyes"><span class="material-symbols-outlined" aria-hidden="true">exposure</span><span>تماس چشمی</span></button>
+                <button class="first-aid-tab-btn" id="first-aid-tab-inhalation" role="tab" aria-controls="first-aid-inhalation" aria-selected="false" tabindex="-1" data-aid-tab="inhalation"><span class="material-symbols-outlined" aria-hidden="true">air</span><span>استنشاق</span></button>
               </div>
               <div class="first-aid-content-box">
                 <p id="first-aid-skin" class="first-aid-text active" role="tabpanel" aria-labelledby="first-aid-tab-skin">-</p>
@@ -502,10 +502,10 @@
         
         <!-- Sidebar Navigation for Equipment -->
         <aside class="eq-sidebar" role="tablist" aria-label="راهنمای تجهیزات">
-          <button class="eq-nav-btn active" id="eq-btn-centrifuge" role="tab" aria-controls="eq-centrifuge" aria-selected="true" tabindex="0" data-eq="eq-centrifuge">دستگاه سانتریفیوژ</button>
-          <button class="eq-nav-btn" id="eq-btn-oven" role="tab" aria-controls="eq-oven" aria-selected="false" tabindex="-1" data-eq="eq-oven">دستگاه فور (Oven)</button>
-          <button class="eq-nav-btn" id="eq-btn-phmeter" role="tab" aria-controls="eq-phmeter" aria-selected="false" tabindex="-1" data-eq="eq-phmeter">دستگاه pH متر</button>
-          <button class="eq-nav-btn" id="eq-btn-balance" role="tab" aria-controls="eq-balance" aria-selected="false" tabindex="-1" data-eq="eq-balance">ترازوی دیجیتال دقیق (Radwag)</button>
+          <button class="eq-nav-btn active" id="eq-btn-centrifuge" role="tab" aria-controls="eq-centrifuge" aria-selected="true" tabindex="0" data-eq="eq-centrifuge"><span class="material-symbols-outlined" aria-hidden="true">refresh</span><span>دستگاه سانتریفیوژ</span></button>
+          <button class="eq-nav-btn" id="eq-btn-oven" role="tab" aria-controls="eq-oven" aria-selected="false" tabindex="-1" data-eq="eq-oven"><span class="material-symbols-outlined" aria-hidden="true">flame</span><span>دستگاه فور (Oven)</span></button>
+          <button class="eq-nav-btn" id="eq-btn-phmeter" role="tab" aria-controls="eq-phmeter" aria-selected="false" tabindex="-1" data-eq="eq-phmeter"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>دستگاه pH متر</span></button>
+          <button class="eq-nav-btn" id="eq-btn-balance" role="tab" aria-controls="eq-balance" aria-selected="false" tabindex="-1" data-eq="eq-balance"><span class="material-symbols-outlined" aria-hidden="true">scale</span><span>ترازوی دیجیتال دقیق (Radwag)</span></button>
         </aside>
 
         <!-- Centrifuge Content -->
@@ -1298,12 +1298,12 @@
               <input id="gallery-equipment-search" type="search" autocomplete="off" placeholder="جستجو در نام ابزار یا دسته‌بندی">
             </label>
             <div class="equipment-filter-list" role="group" aria-label="فیلتر دسته‌بندی تجهیزات">
-              <button type="button" class="equipment-filter-btn active" data-equipment-filter="all">همه</button>
-              <button type="button" class="equipment-filter-btn" data-equipment-filter="glassware">شیشه‌آلات</button>
-              <button type="button" class="equipment-filter-btn" data-equipment-filter="porcelain">چینی</button>
-              <button type="button" class="equipment-filter-btn" data-equipment-filter="metal">فلزی</button>
-              <button type="button" class="equipment-filter-btn" data-equipment-filter="solutions">محلول و خشک‌کننده</button>
-              <button type="button" class="equipment-filter-btn" data-equipment-filter="accessories">لوازم جانبی</button>
+              <button type="button" class="equipment-filter-btn active" data-equipment-filter="all"><span class="material-symbols-outlined" aria-hidden="true">gallery</span><span>همه</span></button>
+              <button type="button" class="equipment-filter-btn" data-equipment-filter="glassware"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>شیشه‌آلات</span></button>
+              <button type="button" class="equipment-filter-btn" data-equipment-filter="porcelain"><span class="material-symbols-outlined" aria-hidden="true">waterdrop</span><span>چینی</span></button>
+              <button type="button" class="equipment-filter-btn" data-equipment-filter="metal"><span class="material-symbols-outlined" aria-hidden="true">scale</span><span>فلزی</span></button>
+              <button type="button" class="equipment-filter-btn" data-equipment-filter="solutions"><span class="material-symbols-outlined" aria-hidden="true">waterdrop</span><span>محلول و خشک‌کننده</span></button>
+              <button type="button" class="equipment-filter-btn" data-equipment-filter="accessories"><span class="material-symbols-outlined" aria-hidden="true">settings</span><span>لوازم جانبی</span></button>
             </div>
           </div>
 
@@ -1372,6 +1372,7 @@
           </div>
           
           <button id="start-quiz-btn" class="btn-primary" style="width: 100%; justify-content: center; opacity: 0.5;" disabled>
+            <span class="material-symbols-outlined" aria-hidden="true">play_circle</span>
             شروع آزمون سنجش ایمنی آزمایشگاه
           </button>
           <p id="quiz-error" class="form-error" role="alert" hidden></p>
@@ -1388,7 +1389,7 @@
               <div class="progress-bar" role="progressbar" aria-label="پیشرفت آزمون" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                 <div id="progress-fill" class="progress-fill"></div>
               </div>
-              <button id="next-quiz-btn" class="btn-primary" style="opacity: 0.5;" disabled>سوال بعدی</button>
+              <button id="next-quiz-btn" class="btn-primary" style="opacity: 0.5;" disabled><span class="material-symbols-outlined" aria-hidden="true">round-transfer-horizontal</span>سوال بعدی</button>
             </div>
         </div>
 
@@ -1408,6 +1409,7 @@
             </div>
           </div>
           <button id="submit-form-btn" class="btn-primary" style="width: 100%; justify-content: center;">
+            <span class="material-symbols-outlined" aria-hidden="true">check</span>
             صدور گواهی ثبت محلی
           </button>
           <p id="student-form-error" class="form-error" role="alert" hidden></p>
@@ -1729,7 +1731,7 @@
               <h3>نشت اسید سولفوریک غلیظ</h3>
             </div>
             <p>مقدار ۵۰۰ میلی‌لیتر اسید سولفوریک غلیظ (۹۸٪) روی زمین پایلوت سرازیر شده و گازهای بسیار محرک و خطرناکی منتشر می‌کند.</p>
-            <button class="btn-primary select-scenario-btn" style="background-color: var(--accent-red-strong); border: none; color: #fff;">شروع عملیات مهار</button>
+            <button class="btn-primary select-scenario-btn" style="background-color: var(--accent-red-strong); border: none; color: #fff;"><span class="material-symbols-outlined" aria-hidden="true">play_circle</span>شروع عملیات مهار</button>
           </div>
 
           <div class="drill-scenario-card" data-scenario="solvent">
@@ -1738,7 +1740,7 @@
               <h3>ریزش حلال آلی فرار (تولوئن)</h3>
             </div>
             <p>یک لیتر حلال بسیار فرار و قابل اشتعال تولوئن در نزدیکی کوره داغ سرازیر شده و خطر شدید شعله‌وری و آتش‌سوزی وجود دارد.</p>
-            <button class="btn-primary select-scenario-btn" style="background-color: var(--accent-amber); border: none; color: #000;">شروع عملیات مهار</button>
+            <button class="btn-primary select-scenario-btn" style="background-color: var(--accent-amber); border: none; color: #000;"><span class="material-symbols-outlined" aria-hidden="true">play_circle</span>شروع عملیات مهار</button>
           </div>
 
           <div class="drill-scenario-card" data-scenario="mercury">
@@ -1747,7 +1749,7 @@
               <h3>شکستن دماسنج و نشت جیوه مایع</h3>
             </div>
             <p>دماسنج شیشه‌ای جیوه روی میز کار شکسته و قطرات جیوه متالیک روی درزها و شکاف‌های سطح میز پراکنده شده‌اند.</p>
-            <button class="btn-primary select-scenario-btn" style="background-color: #475569; border: none; color: #fff;">شروع عملیات مهار</button>
+            <button class="btn-primary select-scenario-btn" style="background-color: #475569; border: none; color: #fff;"><span class="material-symbols-outlined" aria-hidden="true">play_circle</span>شروع عملیات مهار</button>
           </div>
         </div>
 
@@ -1776,7 +1778,7 @@
               <span id="drill-feedback-title">-</span>
             </div>
             <p id="drill-feedback-desc">-</p>
-            <button id="drill-next-btn" class="btn-primary" style="margin-top: 1rem; display: none;">مرحله بعد</button>
+            <button id="drill-next-btn" class="btn-primary" style="margin-top: 1rem; display: none;"><span class="material-symbols-outlined" aria-hidden="true">round-transfer-horizontal</span>مرحله بعد</button>
           </div>
 
           <!-- Complete screen (Show when done) -->
@@ -1787,7 +1789,7 @@
             <div class="drill-recap-notes" id="drill-recap-notes">
               <!-- Safety takeaways -->
             </div>
-            <button id="drill-reset-btn" class="btn-primary" style="margin-top: 1.5rem; background-color: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary);">بازگشت به انتخاب سناریوها</button>
+            <button id="drill-reset-btn" class="btn-primary" style="margin-top: 1.5rem; background-color: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary);"><span class="material-symbols-outlined" aria-hidden="true">restart_alt</span>بازگشت به انتخاب سناریوها</button>
           </div>
         </div>
       </div>
