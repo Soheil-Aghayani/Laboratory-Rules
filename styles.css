@@ -8,14 +8,6 @@
   unicode-range: U+0600-06FF, U+0750-077F, U+0870-08FF, U+200C-200E, U+FB50-FDFF, U+FE70-FEFC;
 }
 
-@font-face {
-  font-family: 'Outfit';
-  font-style: normal;
-  font-weight: 300 700;
-  font-display: swap;
-  src: url('asset/outfit-latin.woff2') format('woff2');
-}
-
 .material-symbols-outlined {
   font-weight: normal;
   font-style: normal;
@@ -74,7 +66,7 @@
   --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
   --transition-speed: 0.3s;
   --font-fa: 'Vazirmatn', system-ui, -apple-system, sans-serif;
-  --font-en: 'Outfit', sans-serif;
+  --font-en: system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
 [data-theme="light"] {
