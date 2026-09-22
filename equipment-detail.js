@@ -153,7 +153,161 @@
     `;
   }
 
+  function findCrucibleSection(family, variant) {
+    return family.variantSections?.find(section => section.id === variant.metadata?.material) || family.variantSections?.[0];
+  }
+
+  function crucibleModelPickerMarkup(family, selectedVariant) {
+    const section = findCrucibleSection(family, selectedVariant);
+    if (!section) return '';
+
+    const variantById = new Map(family.variants.map(variant => [variant.id, variant]));
+    const options = section.variantIds.map(id => variantById.get(id)).filter(Boolean).map(variant => `
+      <button type="button" role="radio" class="crucible-guide-model-button" data-variant-group="model" data-variant-id="${variant.id}" aria-label="${variant.titleFa}" aria-checked="${variant.id === selectedVariant.id}" tabindex="${variant.id === selectedVariant.id ? '0' : '-1'}">
+        ${variant.label}
+      </button>
+    `).join('');
+
+    return `
+      <div class="crucible-guide-model-picker">
+        <span class="crucible-guide-model-label">مدل‌های مرجع این جنس</span>
+        <div class="crucible-guide-model-list" role="radiogroup" aria-label="ظرفیت‌های مرجع ${section.label}">
+          ${options}
+        </div>
+      </div>
+    `;
+  }
+
+  function crucibleMaterialCardsMarkup(family, selectedVariant) {
+    const variantById = new Map(family.variants.map(variant => [variant.id, variant]));
+    const icons = {
+      porcelain: 'local_fire_department',
+      quartz: 'diamond',
+      alumina: 'thermostat',
+      nickel: 'toll',
+      'nickel-chromium': 'layers',
+      zirconium: 'hub'
+    };
+
+    return family.variantSections.map(section => {
+      const primaryVariant = variantById.get(section.primaryVariantId || section.variantIds[0]);
+      if (!primaryVariant) return '';
+      const isSelected = primaryVariant.metadata?.material === selectedVariant.metadata?.material;
+      return `
+        <button type="button" role="radio" class="crucible-material-card" data-material-option="${section.id}" data-variant-group="material" data-variant-id="${primaryVariant.id}" aria-label="انتخاب جنس ${section.label}" aria-checked="${isSelected}" tabindex="${isSelected ? '0' : '-1'}">
+          <span class="crucible-material-icon material-symbols-outlined" aria-hidden="true">${icons[section.id] || 'science'}</span>
+          <span class="crucible-material-copy">
+            <strong>${section.label}</strong>
+            <span>${section.description}</span>
+            <small><span class="material-symbols-outlined" aria-hidden="true">check</span>${section.bestFor}</small>
+          </span>
+          <span class="crucible-material-arrow material-symbols-outlined" aria-hidden="true">arrow_back</span>
+        </button>
+      `;
+    }).join('');
+  }
+
+  function renderCrucibleGuidePage(family, selectedVariant) {
+    const selectedSection = findCrucibleSection(family, selectedVariant);
+    const selectedTemperature = selectedVariant.metadata?.maxTemperature || 'در صفحهٔ مدل مشخص شود';
+    return `
+      <header class="equipment-detail-header crucible-guide-header">
+        <div>
+          <span class="equipment-detail-kicker">راهنمای آشنایی با تجهیزات حرارتی</span>
+          <h1 class="equipment-detail-title">${family.titleFa}</h1>
+          <p class="equipment-detail-title-en" dir="ltr">${family.titleEn}</p>
+        </div>
+        <span class="equipment-detail-category">${family.categoryLabel}</span>
+      </header>
+
+      <section class="crucible-guide-hero" aria-labelledby="crucible-guide-hero-title">
+        <div class="crucible-guide-hero-copy">
+          <span class="crucible-guide-kicker">قبل از ظرفیت، جنس را بشناس</span>
+          <h2 id="crucible-guide-hero-title">جنس بدنه، انتخاب بوته را مشخص می‌کند</h2>
+          <p>بوته‌ها ظاهر مشابهی دارند، اما برای دما و مواد یکسان ساخته نشده‌اند. این راهنما برای آشنایی دانشجو با تفاوت جنس‌هاست، نه یک جدول خرید.</p>
+          <div class="crucible-guide-principles">
+            <article>
+              <span class="material-symbols-outlined" aria-hidden="true">thermostat</span>
+              <div><strong>دما</strong><p>هر جنس محدودهٔ حرارتی و رفتار خودش را دارد.</p></div>
+            </article>
+            <article>
+              <span class="material-symbols-outlined" aria-hidden="true">science</span>
+              <div><strong>سازگاری</strong><p>جنس بدنه باید با ماده و روش آزمون هماهنگ باشد.</p></div>
+            </article>
+            <article>
+              <span class="material-symbols-outlined" aria-hidden="true">straighten</span>
+              <div><strong>ظرفیت</strong><p>سایز بعد از انتخاب جنس و روش کار بررسی می‌شود.</p></div>
+            </article>
+          </div>
+        </div>
+        <div class="crucible-guide-visual" aria-live="polite">
+          <div class="crucible-guide-image-frame">
+            <img class="crucible-guide-image" data-detail-image src="${assetPrefix}${selectedVariant.image}" alt="${selectedVariant.titleFa}" width="720" height="540">
+          </div>
+          <div class="crucible-guide-image-caption">
+            <span>جنس انتخاب‌شده</span>
+            <strong data-crucible-material>${selectedSection?.label || 'بوته'}</strong>
+            <p data-detail-caption>${selectedVariant.imageCaption || selectedVariant.titleFa}</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="crucible-guide-materials" aria-labelledby="crucible-guide-materials-title">
+        <div class="crucible-guide-section-heading">
+          <div>
+            <span class="crucible-guide-kicker">انتخاب آموزشی</span>
+            <h2 id="crucible-guide-materials-title">اول جنس بدنه را انتخاب کن</h2>
+          </div>
+          <p>روی هر جنس بزن تا پروفایل کاربرد، محدودیت و مدل‌های مرجع آن را ببینی.</p>
+        </div>
+        <div class="crucible-material-grid" role="radiogroup" aria-label="جنس بدنهٔ بوته">
+          ${crucibleMaterialCardsMarkup(family, selectedVariant)}
+        </div>
+      </section>
+
+      <section class="crucible-guide-profile" aria-labelledby="crucible-guide-profile-title" aria-live="polite">
+        <div class="crucible-guide-profile-heading">
+          <div>
+            <span class="crucible-guide-kicker">پروفایل جنس انتخاب‌شده</span>
+            <h2 id="crucible-guide-profile-title" data-crucible-profile-title>${selectedSection?.label || 'بوته'}</h2>
+            <p class="crucible-guide-profile-model" data-detail-title>${selectedVariant.titleFa}</p>
+            <p data-detail-copy>${selectedVariant.detail}</p>
+          </div>
+          <span class="crucible-guide-profile-mark material-symbols-outlined" aria-hidden="true">science</span>
+        </div>
+        <div class="crucible-guide-facts">
+          <div><span>بهترین کاربرد</span><strong data-crucible-best-for>${selectedSection?.bestFor || ''}</strong></div>
+          <div><span>احتیاط مهم</span><strong data-crucible-caution>${selectedSection?.caution || ''}</strong></div>
+          <div><span>دمای مدل مرجع</span><strong data-crucible-temperature>${selectedTemperature}</strong></div>
+        </div>
+        <details class="crucible-guide-model-details">
+          <summary><span class="material-symbols-outlined" aria-hidden="true">tune</span><span>اندازه‌ها و مشخصات مدل مرجع</span><span class="material-symbols-outlined" aria-hidden="true">expand_more</span></summary>
+          <div data-crucible-models>${crucibleModelPickerMarkup(family, selectedVariant)}</div>
+        </details>
+      </section>
+
+      <section class="crucible-guide-safety" aria-labelledby="crucible-guide-safety-title">
+        <details>
+          <summary id="crucible-guide-safety-title"><span class="material-symbols-outlined" aria-hidden="true">shield</span><span>نکات ایمنی قبل از گرمادهی</span><span class="material-symbols-outlined" aria-hidden="true">expand_more</span></summary>
+          <div class="crucible-guide-safety-content">
+            <p>${family.safety}</p>
+            <ul>${family.details.map(detail => `<li>${detail}</li>`).join('')}</ul>
+          </div>
+        </details>
+      </section>
+
+      <section class="equipment-detail-reference crucible-guide-reference" aria-label="مرجع و یادداشت">
+        <div class="equipment-detail-reference-copy">
+          <h2>منابع و ادامهٔ مطالعه</h2>
+          ${sourceMarkup(family)}
+        </div>
+      </section>
+    `;
+  }
+
   function renderPage(family, selectedVariant) {
+    if (family.presentation === 'crucible-guide') return renderCrucibleGuidePage(family, selectedVariant);
+
     return `
       <header class="equipment-detail-header">
         <div>
@@ -224,6 +378,27 @@
     `;
   }
 
+  function updateCrucibleGuide(root, family, variant) {
+    if (family.presentation !== 'crucible-guide') return;
+
+    const section = findCrucibleSection(family, variant);
+    if (!section) return;
+
+    const profileTitle = root.querySelector('[data-crucible-profile-title]');
+    const material = root.querySelector('[data-crucible-material]');
+    const bestFor = root.querySelector('[data-crucible-best-for]');
+    const caution = root.querySelector('[data-crucible-caution]');
+    const temperature = root.querySelector('[data-crucible-temperature]');
+    const models = root.querySelector('[data-crucible-models]');
+
+    if (profileTitle) profileTitle.textContent = section.label;
+    if (material) material.textContent = section.label;
+    if (bestFor) bestFor.textContent = section.bestFor;
+    if (caution) caution.textContent = section.caution;
+    if (temperature) temperature.textContent = variant.metadata?.maxTemperature || 'در دیتاشیت مدل بررسی شود';
+    if (models) models.innerHTML = crucibleModelPickerMarkup(family, variant);
+  }
+
   function updateSelectedVariant(root, family, variant) {
     const image = root.querySelector('[data-detail-image]');
     const caption = root.querySelector('[data-detail-caption]');
@@ -238,10 +413,14 @@
     caption.textContent = variant.imageCaption || variant.titleFa;
     title.textContent = variant.titleFa;
     copy.textContent = variant.detail;
+    updateCrucibleGuide(root, family, variant);
     updateComparison(root, family, variant);
 
     root.querySelectorAll('[data-variant-id]').forEach(button => {
-      const isSelected = button.dataset.variantId === variant.id;
+      const isMaterialButton = button.dataset.materialOption;
+      const isSelected = isMaterialButton
+        ? isMaterialButton === variant.metadata?.material
+        : button.dataset.variantId === variant.id;
       button.setAttribute('aria-checked', String(isSelected));
       button.tabIndex = isSelected ? 0 : -1;
     });
@@ -310,54 +489,81 @@
       updateSelectedVariant(root, family, variant);
     };
 
-    const variantButtons = Array.from(root.querySelectorAll('[data-variant-id]'));
-    variantButtons.forEach((button, index) => {
-      button.addEventListener('click', () => {
-        const variant = family.variants.find(item => item.id === button.dataset.variantId);
-        selectVariant(variant);
+    if (family.presentation === 'crucible-guide') {
+      root.addEventListener('click', event => {
+        const button = event.target.closest('[data-variant-id]');
+        if (!button || !root.contains(button)) return;
+        selectVariant(family.variants.find(item => item.id === button.dataset.variantId));
       });
-      button.addEventListener('keydown', event => {
+
+      root.addEventListener('keydown', event => {
+        const button = event.target.closest('[data-variant-id]');
         const isForward = event.key === 'ArrowLeft' || event.key === 'ArrowDown';
         const isBackward = event.key === 'ArrowRight' || event.key === 'ArrowUp';
-        if (!isForward && !isBackward) return;
+        if (!button || (!isForward && !isBackward)) return;
 
         event.preventDefault();
-        const offset = isForward ? 1 : -1;
-        const nextIndex = (index + offset + variantButtons.length) % variantButtons.length;
-        const nextButton = variantButtons[nextIndex];
-        const nextVariant = family.variants.find(item => item.id === nextButton.dataset.variantId);
-        selectVariant(nextVariant);
-        nextButton.focus();
-      });
-    });
-
-    const groupedVariantButtons = Array.from(root.querySelectorAll('[data-variant-group][data-option-id]'));
-    groupedVariantButtons.forEach(button => {
-      const groupButtons = groupedVariantButtons.filter(item => item.dataset.variantGroup === button.dataset.variantGroup);
-      const selectGroupedVariant = () => {
-        const selection = {};
-        family.variantGroups.forEach(group => {
-          selection[group.id] = activeVariant.metadata?.[group.id] || group.options[0].id;
-        });
-        selection[button.dataset.variantGroup] = button.dataset.optionId;
-        const variant = family.variants.find(item => family.variantGroups.every(group => item.metadata?.[group.id] === selection[group.id]));
-        selectVariant(variant);
-      };
-
-      button.addEventListener('click', selectGroupedVariant);
-      button.addEventListener('keydown', event => {
-        const isForward = event.key === 'ArrowLeft' || event.key === 'ArrowDown';
-        const isBackward = event.key === 'ArrowRight' || event.key === 'ArrowUp';
-        if (!isForward && !isBackward) return;
-
-        event.preventDefault();
+        const groupButtons = Array.from(root.querySelectorAll(`[data-variant-group="${button.dataset.variantGroup}"][data-variant-id]`));
         const index = groupButtons.indexOf(button);
+        if (index < 0 || !groupButtons.length) return;
+
         const offset = isForward ? 1 : -1;
         const nextButton = groupButtons[(index + offset + groupButtons.length) % groupButtons.length];
-        nextButton.click();
-        nextButton.focus();
+        const nextVariant = family.variants.find(item => item.id === nextButton.dataset.variantId);
+        selectVariant(nextVariant);
+        const focusTarget = Array.from(root.querySelectorAll('[data-variant-id]')).find(item => item.dataset.variantGroup === button.dataset.variantGroup && item.dataset.variantId === nextVariant.id);
+        focusTarget?.focus();
       });
-    });
+    } else {
+      const variantButtons = Array.from(root.querySelectorAll('[data-variant-id]'));
+      variantButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+          const variant = family.variants.find(item => item.id === button.dataset.variantId);
+          selectVariant(variant);
+        });
+        button.addEventListener('keydown', event => {
+          const isForward = event.key === 'ArrowLeft' || event.key === 'ArrowDown';
+          const isBackward = event.key === 'ArrowRight' || event.key === 'ArrowUp';
+          if (!isForward && !isBackward) return;
+
+          event.preventDefault();
+          const offset = isForward ? 1 : -1;
+          const nextIndex = (index + offset + variantButtons.length) % variantButtons.length;
+          const nextButton = variantButtons[nextIndex];
+          const nextVariant = family.variants.find(item => item.id === nextButton.dataset.variantId);
+          selectVariant(nextVariant);
+          nextButton.focus();
+        });
+      });
+
+      const groupedVariantButtons = Array.from(root.querySelectorAll('[data-variant-group][data-option-id]'));
+      groupedVariantButtons.forEach(button => {
+        const groupButtons = groupedVariantButtons.filter(item => item.dataset.variantGroup === button.dataset.variantGroup);
+        const selectGroupedVariant = () => {
+          const selection = {};
+          family.variantGroups.forEach(group => {
+            selection[group.id] = activeVariant.metadata?.[group.id] || group.options[0].id;
+          });
+          selection[button.dataset.variantGroup] = button.dataset.optionId;
+          const variant = family.variants.find(item => family.variantGroups.every(group => item.metadata?.[group.id] === selection[group.id]));
+          selectVariant(variant);
+        };
+
+        button.addEventListener('click', selectGroupedVariant);
+        button.addEventListener('keydown', event => {
+          const isForward = event.key === 'ArrowLeft' || event.key === 'ArrowDown';
+          const isBackward = event.key === 'ArrowRight' || event.key === 'ArrowUp';
+          if (!isForward && !isBackward) return;
+
+          event.preventDefault();
+          const index = groupButtons.indexOf(button);
+          const offset = isForward ? 1 : -1;
+          const nextButton = groupButtons[(index + offset + groupButtons.length) % groupButtons.length];
+          nextButton.click();
+          nextButton.focus();
+        });
+      });
+    }
 
     const compareRange = root.querySelector('[data-compare-range]');
     compareRange?.addEventListener('input', () => updateComparisonPosition(root, compareRange.value));

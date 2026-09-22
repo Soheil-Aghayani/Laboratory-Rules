@@ -245,12 +245,60 @@
   ];
 
   const crucibleVariantSections = [
-    { id: 'porcelain', label: 'چینی', description: 'برای گرمادهی عمومی و عملیات حرارتی؛ مدل مرجع ۲۵ میلی‌لیتر است.', variantIds: ['porcelain-25ml'] },
-    { id: 'quartz', label: 'کوارتز ذوب‌شده', description: 'برای تغییرات دمایی شدید؛ با HF و اسید فسفریک سازگار فرض نشود.', variantIds: ['quartz-30ml'] },
-    { id: 'alumina', label: 'آلومینا (Al₂O₃)', description: '۹۹٫۷٪، بدون لعاب و مناسب دمای بالاتر؛ ظرفیت‌های مرجع ۲ و ۲۵۰ میلی‌لیتر.', variantIds: ['alumina-2ml', 'alumina-250ml'] },
-    { id: 'nickel', label: 'نیکل', description: 'نیکل خالص برای کاربردهای قلیایی مشخص؛ مدل مرجع ۳۰ میلی‌لیتر است.', variantIds: ['nickel-30ml'] },
-    { id: 'nickel-chromium', label: 'نیکل‌کروم', description: 'آلیاژ یکنواخت برای آزمون‌های ignition و خاکسترکردن در شرایط مناسب.', variantIds: ['nickel-chromium-13ml'] },
-    { id: 'zirconium', label: 'زیرکونیوم', description: 'برای fusion با سدیم پراکسید؛ ظرفیت‌های مرجع ۲۵، ۳۵، ۴۵ و ۵۵ میلی‌لیتر.', variantIds: ['zirconium-25ml', 'zirconium-35ml', 'zirconium-45ml', 'zirconium-55ml'] }
+    {
+      id: 'porcelain',
+      label: 'چینی',
+      description: 'انتخاب عمومی برای گرمادهی و خاکسترکردن.',
+      bestFor: 'کارهای روتین، گرمادهی و خاکسترکردن',
+      caution: 'در برابر شوک حرارتی و سردشدن ناگهانی احتیاط کنید.',
+      primaryVariantId: 'porcelain-25ml',
+      variantIds: ['porcelain-25ml']
+    },
+    {
+      id: 'quartz',
+      label: 'کوارتز ذوب‌شده',
+      description: 'برای تغییرات دمایی شدید، به جز محیط‌های ناسازگار.',
+      bestFor: 'تغییرات سریع دما و گرمادهی تا دمای مرجع',
+      caution: 'با HF و اسید فسفریک سازگار فرض نشود.',
+      primaryVariantId: 'quartz-30ml',
+      variantIds: ['quartz-30ml']
+    },
+    {
+      id: 'alumina',
+      label: 'آلومینا (Al₂O₃)',
+      description: 'بدون لعاب و مناسب دمای بالاتر.',
+      bestFor: 'دمای بالا و محیط‌های شیمیایی سخت‌تر',
+      caution: 'ظرفیت و فرم را با فضای کوره و نمونه هماهنگ کنید.',
+      primaryVariantId: 'alumina-2ml',
+      variantIds: ['alumina-2ml', 'alumina-250ml']
+    },
+    {
+      id: 'nickel',
+      label: 'نیکل',
+      description: 'برای کاربردهای قلیایی مشخص، نه انتخاب عمومی.',
+      bestFor: 'رقیق‌سازی قلیاها در مدل مرجع',
+      caution: 'سازگاری شیمیایی ماده را پیش از کار بررسی کنید.',
+      primaryVariantId: 'nickel-30ml',
+      variantIds: ['nickel-30ml']
+    },
+    {
+      id: 'nickel-chromium',
+      label: 'نیکل‌کروم',
+      description: 'آلیاژ یکنواخت برای آزمون‌های احتراق و خاکسترکردن.',
+      bestFor: 'آزمون مواد فرار و خاکسترکردن بدون اسید آزاد',
+      caution: 'برای هر روش آزمون، محدودیت‌های مدل را جداگانه بخوانید.',
+      primaryVariantId: 'nickel-chromium-13ml',
+      variantIds: ['nickel-chromium-13ml']
+    },
+    {
+      id: 'zirconium',
+      label: 'زیرکونیوم',
+      description: 'برای fusion با سدیم پراکسید و روش‌های مشخص.',
+      bestFor: 'fusion با سدیم پراکسید در روش معتبر',
+      caution: 'آن را فقط بر اساس روش fusion و سازگاری ماده انتخاب کنید.',
+      primaryVariantId: 'zirconium-55ml',
+      variantIds: ['zirconium-25ml', 'zirconium-35ml', 'zirconium-45ml', 'zirconium-55ml']
+    }
   ];
 
   const bufferVariants = [
@@ -452,6 +500,7 @@
       category: 'crucibles',
       categoryLabel: 'بوته‌ها',
       aliases: ['کروزه', 'crucible', 'crucibles'],
+      presentation: 'crucible-guide',
       summary: 'مقایسهٔ بوته‌ها بر اساس جنس بدنه، ظرفیت، دما و کاربرد.',
       variantSummary: '۶ جنس بدنه، ۱۰ گزینهٔ مرجع',
       variantPickerTitle: 'انتخاب جنس بدنه و ظرفیت',

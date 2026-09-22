@@ -663,3 +663,596 @@
     order: 2;
   }
 }
+
+/* Crucible guide: material-first, educational presentation. */
+.crucible-guide-header {
+  margin-bottom: 0;
+}
+
+.equipment-detail-page,
+.equipment-detail-shell,
+#equipment-detail-root,
+.crucible-guide-header,
+.crucible-guide-hero {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.equipment-detail-topbar > * {
+  min-width: 0;
+}
+
+.equipment-detail-back {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.crucible-guide-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.85fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  border: 1px solid var(--border-color);
+  border-top: 0;
+  border-radius: 0 0 24px 24px;
+  background: linear-gradient(135deg, var(--accent-emerald-glow), transparent 45%), var(--bg-secondary);
+  box-shadow: var(--card-shadow);
+  direction: rtl;
+}
+
+.crucible-guide-hero-copy {
+  display: grid;
+  align-content: center;
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.crucible-guide-kicker {
+  display: inline-block;
+  color: var(--accent-emerald-strong);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.crucible-guide-hero-copy h2,
+.crucible-guide-section-heading h2,
+.crucible-guide-profile h2 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: clamp(1.3rem, 2.7vw, 2rem);
+  font-weight: 850;
+  letter-spacing: -0.035em;
+  line-height: 1.4;
+}
+
+.crucible-guide-hero-copy > p {
+  max-width: 58ch;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.94rem;
+  line-height: 2;
+}
+
+.crucible-guide-principles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin-top: 0.25rem;
+}
+
+.crucible-guide-principles article {
+  display: grid;
+  gap: 0.45rem;
+  align-content: start;
+  min-width: 0;
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--bg-tertiary) 72%, var(--bg-secondary));
+}
+
+.crucible-guide-principles article > .material-symbols-outlined {
+  color: var(--accent-emerald-strong);
+  font-size: 1.35rem;
+}
+
+.crucible-guide-principles article div {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.crucible-guide-principles strong {
+  color: var(--text-primary);
+  font-size: 0.82rem;
+}
+
+.crucible-guide-principles p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  line-height: 1.7;
+}
+
+.crucible-guide-visual {
+  display: grid;
+  align-content: start;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.crucible-guide-image-frame {
+  display: grid;
+  min-height: 350px;
+  place-items: center;
+  overflow: hidden;
+  padding: 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--accent-emerald) 30%, var(--border-color));
+  border-radius: 20px;
+  background: radial-gradient(circle at 50% 42%, var(--bg-secondary), var(--bg-tertiary));
+}
+
+.crucible-guide-image {
+  display: block;
+  width: 100%;
+  height: 320px;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 18px color-mix(in srgb, var(--text-primary) 13%, transparent));
+}
+
+.crucible-guide-image-caption {
+  display: grid;
+  gap: 0.08rem;
+  padding-inline: 0.25rem;
+}
+
+.crucible-guide-image-caption span {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+.crucible-guide-image-caption strong {
+  color: var(--accent-emerald-strong);
+  font-size: 0.98rem;
+}
+
+.crucible-guide-image-caption p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.73rem;
+  line-height: 1.7;
+}
+
+.crucible-guide-materials {
+  display: grid;
+  gap: 1rem;
+  padding-top: 2rem;
+}
+
+.crucible-guide-section-heading {
+  display: grid;
+  gap: 0.5rem;
+  padding-inline: 0.25rem;
+}
+
+.crucible-guide-section-heading > p {
+  max-width: 58ch;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.86rem;
+  line-height: 1.8;
+}
+
+.crucible-material-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.crucible-material-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-content: start;
+  gap: 0.7rem;
+  min-height: 166px;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  cursor: pointer;
+  font: inherit;
+  text-align: right;
+  transition: border-color var(--transition-speed), background-color var(--transition-speed), box-shadow var(--transition-speed), transform var(--transition-speed);
+}
+
+.crucible-material-card:hover,
+.crucible-material-card:focus-visible {
+  border-color: var(--accent-emerald);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--accent-emerald) 12%, transparent);
+}
+
+.crucible-material-card:active {
+  transform: translateY(1px);
+}
+
+.crucible-material-card[aria-checked="true"] {
+  border-color: var(--accent-emerald);
+  background: linear-gradient(135deg, var(--accent-emerald-glow), var(--bg-secondary) 72%);
+  box-shadow: inset 0 -3px 0 var(--accent-emerald);
+}
+
+.crucible-material-icon {
+  display: grid;
+  width: 2.4rem;
+  height: 2.4rem;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--accent-emerald) 28%, var(--border-color));
+  border-radius: 11px;
+  background: var(--accent-emerald-glow);
+  color: var(--accent-emerald-strong);
+  font-size: 1.25rem;
+}
+
+.crucible-material-copy {
+  display: grid;
+  align-content: start;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.crucible-material-copy strong {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.crucible-material-copy > span {
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  line-height: 1.7;
+}
+
+.crucible-material-copy small {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.25rem;
+  color: var(--accent-emerald-strong);
+  font-size: 0.7rem;
+  font-weight: 750;
+  line-height: 1.65;
+}
+
+.crucible-material-copy small .material-symbols-outlined {
+  margin-top: 0.1rem;
+  font-size: 0.9rem;
+}
+
+.crucible-material-arrow {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+.crucible-material-card[aria-checked="true"] .crucible-material-arrow {
+  color: var(--accent-emerald-strong);
+}
+
+.crucible-guide-profile {
+  display: grid;
+  gap: 1.15rem;
+  margin-top: 1rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid color-mix(in srgb, var(--accent-emerald) 45%, var(--border-color));
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--accent-emerald-glow), transparent 68%), var(--bg-secondary);
+  box-shadow: var(--card-shadow);
+}
+
+.crucible-guide-profile-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: start;
+}
+
+.crucible-guide-profile-heading > div {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.crucible-guide-profile-model {
+  margin: 0;
+  color: var(--accent-emerald-strong);
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.crucible-guide-profile-heading p[data-detail-copy] {
+  max-width: 75ch;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.9;
+}
+
+.crucible-guide-profile-mark {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--accent-emerald) 35%, var(--border-color));
+  border-radius: 14px;
+  background: var(--accent-emerald-glow);
+  color: var(--accent-emerald-strong);
+  font-size: 1.5rem;
+}
+
+.crucible-guide-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.crucible-guide-facts > div {
+  display: grid;
+  align-content: start;
+  gap: 0.25rem;
+  min-width: 0;
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--bg-tertiary) 72%, var(--bg-secondary));
+}
+
+.crucible-guide-facts span {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+}
+
+.crucible-guide-facts strong {
+  color: var(--text-primary);
+  font-size: 0.78rem;
+  line-height: 1.7;
+}
+
+.crucible-guide-model-details,
+.crucible-guide-safety details {
+  border-top: 1px solid var(--border-color);
+}
+
+.crucible-guide-model-details summary,
+.crucible-guide-safety summary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 52px;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 0.84rem;
+  font-weight: 800;
+  list-style: none;
+}
+
+.crucible-guide-model-details summary::-webkit-details-marker,
+.crucible-guide-safety summary::-webkit-details-marker {
+  display: none;
+}
+
+.crucible-guide-model-details summary .material-symbols-outlined:first-child,
+.crucible-guide-safety summary .material-symbols-outlined:first-child {
+  color: var(--accent-emerald-strong);
+  font-size: 1.2rem;
+}
+
+.crucible-guide-model-details[open] summary .material-symbols-outlined:last-child,
+.crucible-guide-safety details[open] summary .material-symbols-outlined:last-child {
+  transform: rotate(180deg);
+}
+
+.crucible-guide-model-picker {
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.2rem 0 0.25rem;
+}
+
+.crucible-guide-model-label {
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  font-weight: 750;
+}
+
+.crucible-guide-model-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.55rem;
+}
+
+.crucible-guide-model-button {
+  min-height: 46px;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--bg-tertiary);
+  color: var(--text-muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 750;
+}
+
+.crucible-guide-model-button:hover,
+.crucible-guide-model-button:focus-visible {
+  border-color: var(--accent-emerald);
+  color: var(--accent-emerald-strong);
+}
+
+.crucible-guide-model-button[aria-checked="true"] {
+  border-color: var(--accent-emerald);
+  background: var(--accent-emerald);
+  color: #fff;
+}
+
+.crucible-guide-safety {
+  margin-top: 1rem;
+  padding: 0 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  background: var(--bg-secondary);
+  box-shadow: var(--card-shadow);
+}
+
+.crucible-guide-safety-content {
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.2rem 0 1rem;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  line-height: 1.9;
+}
+
+.crucible-guide-safety-content p,
+.crucible-guide-safety-content ul {
+  margin: 0;
+}
+
+.crucible-guide-safety-content ul {
+  padding-right: 1.15rem;
+}
+
+.crucible-guide-safety-content li + li {
+  margin-top: 0.25rem;
+}
+
+.crucible-guide-reference {
+  margin-top: 1rem;
+}
+
+@media (max-width: 900px) {
+  .crucible-guide-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.8fr);
+    gap: 1.25rem;
+  }
+
+  .crucible-guide-principles {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .crucible-guide-principles article {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+@media (max-width: 760px) {
+  .crucible-guide-hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.1rem;
+    padding: 1rem;
+  }
+
+  .crucible-guide-visual {
+    order: -1;
+  }
+
+  .crucible-guide-image-frame {
+    min-height: 225px;
+    padding: 0.75rem;
+    border-radius: 16px;
+  }
+
+  .crucible-guide-image {
+    height: 210px;
+  }
+
+  .crucible-guide-hero-copy h2,
+  .crucible-guide-section-heading h2,
+  .crucible-guide-profile h2 {
+    font-size: 1.28rem;
+  }
+
+  .crucible-guide-hero-copy > p {
+    font-size: 0.84rem;
+    line-height: 1.85;
+  }
+
+  .crucible-guide-materials {
+    padding-top: 1.35rem;
+  }
+
+  .crucible-material-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+  }
+
+  .crucible-material-card {
+    grid-template-columns: auto minmax(0, 1fr);
+    min-height: 165px;
+    padding: 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .crucible-material-icon {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.05rem;
+  }
+
+  .crucible-material-copy strong {
+    font-size: 0.78rem;
+  }
+
+  .crucible-material-copy > span {
+    font-size: 0.67rem;
+    line-height: 1.55;
+  }
+
+  .crucible-material-copy small {
+    font-size: 0.65rem;
+    line-height: 1.5;
+  }
+
+  .crucible-material-arrow {
+    position: absolute;
+    bottom: 0.55rem;
+    left: 0.55rem;
+    font-size: 0.95rem;
+  }
+
+  .crucible-guide-profile {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .crucible-guide-facts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .crucible-guide-model-details summary,
+  .crucible-guide-safety summary {
+    min-height: 50px;
+    font-size: 0.78rem;
+  }
+
+  .crucible-guide-model-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .crucible-guide-safety {
+    padding-inline: 0.8rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .crucible-material-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crucible-material-card,
+  .crucible-guide-model-button {
+    transition: none;
+  }
+}
