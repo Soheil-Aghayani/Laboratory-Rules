@@ -15,6 +15,148 @@
     detail: `برای تهیهٔ محلول با حجم نهایی ${label}.`
   }));
 
+  const reagentBottleVariants = [
+    ['50ml', '۵۰ میلی‌لیتر', '50 ml Reagent Bottle', 'GL32', 'برای نگهداری حجم‌های کم؛ در مدل مرجع Borosil با رزوهٔ GL32.'],
+    ['100ml', '۱۰۰ میلی‌لیتر', '100 ml Reagent Bottle', 'GL45', 'بطری جمع‌وجور برای محلول‌ها و معرف‌های آماده؛ در مدل مرجع Borosil با رزوهٔ GL45.'],
+    ['250ml', '۲۵۰ میلی‌لیتر', '250 ml Reagent Bottle', 'GL45', 'برای نگهداری روتین محلول‌ها؛ در مدل مرجع Borosil با رزوهٔ GL45.'],
+    ['500ml', '۵۰۰ میلی‌لیتر', '500 ml Reagent Bottle', 'GL45', 'برای حجم‌های متوسط؛ در مدل مرجع Borosil با رزوهٔ GL45.'],
+    ['1000ml', '۱۰۰۰ میلی‌لیتر', '1000 ml Reagent Bottle', 'GL45', 'برای نگهداری حجم‌های بالاتر؛ در مدل مرجع Borosil با رزوهٔ GL45.'],
+    ['2000ml', '۲۰۰۰ میلی‌لیتر', '2000 ml Reagent Bottle', 'GL45', 'برای نگهداری حجم‌های بالاتر؛ در مدل مرجع Borosil با رزوهٔ GL45.']
+  ].map(([id, label, titleEn, thread, detail]) => ({
+    id,
+    label,
+    titleFa: `بطری معرف ${label}`,
+    titleEn,
+    image: 'reagent-bottles.webp',
+    detail: `${detail} درپوش و ابعاد دقیق را با مدل انتخابی تطبیق دهید.`,
+    metadata: { thread }
+  }));
+
+  const petriDishVariants = [
+    ['50mm', '۵۰ میلی‌متر', '50 mm Borosilicate Petri Dish', '50 × 17 میلی‌متر'],
+    ['80mm', '۸۰ میلی‌متر', '80 mm Borosilicate Petri Dish', '80 × 17 میلی‌متر'],
+    ['100mm', '۱۰۰ میلی‌متر', '100 mm Borosilicate Petri Dish', '100 × 17 میلی‌متر'],
+    ['150mm', '۱۵۰ میلی‌متر', '150 mm Borosilicate Petri Dish', '150 × 20 میلی‌متر'],
+    ['200mm', '۲۰۰ میلی‌متر', '200 mm Borosilicate Petri Dish', '200 × 20 میلی‌متر']
+  ].map(([id, label, titleEn, dimensions]) => ({
+    id,
+    label,
+    titleFa: `پتری‌دیش ${label}`,
+    titleEn,
+    image: 'petri-dishes.webp',
+    detail: `مدل مرجع Borosil 3160 با ابعاد تقریبی ${dimensions}؛ جنس بوروسیلیکات و قابلیت استریل‌سازی را با مدل نهایی تطبیق دهید.`,
+    metadata: { dimensions, model: '3160' }
+  }));
+
+  const serologicalPipetteVariants = [
+    ['0_1ml', '۰٫۱ میلی‌لیتر', '0.1 ml Glass Serological Pipette'],
+    ['0_2ml', '۰٫۲ میلی‌لیتر', '0.2 ml Glass Serological Pipette'],
+    ['1ml', '۱ میلی‌لیتر', '1 ml Glass Serological Pipette'],
+    ['2ml', '۲ میلی‌لیتر', '2 ml Glass Serological Pipette'],
+    ['5ml', '۵ میلی‌لیتر', '5 ml Glass Serological Pipette'],
+    ['10ml', '۱۰ میلی‌لیتر', '10 ml Glass Serological Pipette'],
+    ['25ml', '۲۵ میلی‌لیتر', '25 ml Glass Serological Pipette']
+  ].map(([id, label, titleEn]) => ({
+    id,
+    label,
+    titleFa: `پیپت سرولوژیک ${label}`,
+    titleEn,
+    image: 'serological-pipettes.webp',
+    detail: `ظرفیت ${label} در سری مرجع Borosil 7081/7080 عرضه شده است؛ کلاس دقت و روش کالیبراسیون را با مدل نهایی بررسی کنید.`
+  }));
+
+  const buretteVariants = [
+    ['5ml', '۵ میلی‌لیتر', '5 ml Straight Bore Glass Burette'],
+    ['10ml', '۱۰ میلی‌لیتر', '10 ml Straight Bore Glass Burette'],
+    ['25ml', '۲۵ میلی‌لیتر', '25 ml Straight Bore Glass Burette'],
+    ['50ml', '۵۰ میلی‌لیتر', '50 ml Straight Bore Glass Burette'],
+    ['100ml', '۱۰۰ میلی‌لیتر', '100 ml Straight Bore Glass Burette']
+  ].map(([id, label, titleEn]) => ({
+    id,
+    label,
+    titleFa: `بورت ${label}`,
+    titleEn,
+    image: 'glass-burette.webp',
+    detail: `مدل مرجع Borosil 2123 با ظرفیت ${label}، درجه‌بندی و تلرانس مخصوص همان ظرفیت را دارد.`
+  }));
+
+  const separatingFunnelVariants = [
+    ['125ml', '۱۲۵ میلی‌لیتر', '125 ml Pear-Shaped Separating Funnel', '۱۹/۲۶'],
+    ['250ml', '۲۵۰ میلی‌لیتر', '250 ml Pear-Shaped Separating Funnel', '۲۴/۲۹'],
+    ['500ml', '۵۰۰ میلی‌لیتر', '500 ml Pear-Shaped Separating Funnel', '۲۴/۲۹'],
+    ['1000ml', '۱۰۰۰ میلی‌لیتر', '1000 ml Pear-Shaped Separating Funnel', '۲۹/۳۲'],
+    ['2000ml', '۲۰۰۰ میلی‌لیتر', '2000 ml Pear-Shaped Separating Funnel', '۲۹/۳۲'],
+    ['5000ml', '۵۰۰۰ میلی‌لیتر', '5000 ml Pear-Shaped Separating Funnel', '۳۴/۳۵']
+  ].map(([id, label, titleEn, stopper]) => ({
+    id,
+    label,
+    titleFa: `قیف جداکننده ${label}`,
+    titleEn,
+    image: 'separating-funnel.webp',
+    detail: `مدل مرجع Borosil 6403 با درپوش استاندارد ${stopper} برای این ظرفیت فهرست شده است؛ نوع شیر و اتصال را با مدل نهایی تطبیق دهید.`,
+    metadata: { stopper }
+  }));
+
+  const watchGlassVariants = [
+    ['80mm', '۸۰ میلی‌متر', '80 mm Watch Glass'],
+    ['100mm', '۱۰۰ میلی‌متر', '100 mm Watch Glass'],
+    ['120mm', '۱۲۰ میلی‌متر', '120 mm Watch Glass'],
+    ['150mm', '۱۵۰ میلی‌متر', '150 mm Watch Glass']
+  ].map(([id, label, titleEn]) => ({
+    id,
+    label,
+    titleFa: `شیشهٔ ساعت ${label}`,
+    titleEn,
+    image: 'watch-glass.webp',
+    detail: `قطر ${label} در سری مرجع Borosil 9986 S-Line عرضه شده است؛ جنس سودا-لایم و شعاع انحنا به مدل مربوط است.`
+  }));
+
+  const testTubeVariants = [
+    ['5ml', '۵ میلی‌لیتر', '5 ml Glass Test Tube with Screw Cap', '۱۰۰ میلی‌متر'],
+    ['10ml', '۱۰ میلی‌لیتر', '10 ml Glass Test Tube with Screw Cap', '۱۰۰ میلی‌متر'],
+    ['15ml', '۱۵ میلی‌لیتر', '15 ml Glass Test Tube with Screw Cap', '۱۲۵ میلی‌متر'],
+    ['20ml', '۲۰ میلی‌لیتر', '20 ml Glass Test Tube with Screw Cap', '۱۵۰ میلی‌متر'],
+    ['30ml', '۳۰ میلی‌لیتر', '30 ml Glass Test Tube with Screw Cap', '۱۰۰ میلی‌متر'],
+    ['50ml', '۵۰ میلی‌لیتر', '50 ml Glass Test Tube with Screw Cap', '۱۵۰ میلی‌متر']
+  ].map(([id, label, titleEn, length]) => ({
+    id,
+    label,
+    titleFa: `لولهٔ آزمایش ${label}`,
+    titleEn,
+    image: 'screw-cap-test-tube.webp',
+    detail: `گزینهٔ ${label} با طول تقریبی ${length} در مجموعهٔ Eisco با درپوش Bakelite و لاینر لاستیکی عرضه شده است.`,
+    metadata: { length }
+  }));
+
+  const crystallizingDishVariants = [
+    ['330ml', '۳۳۰ میلی‌لیتر', '330 ml Crystallizing Dish', '۱۰۰ × ۵۰ میلی‌متر'],
+    ['1150ml', '۱۱۵۰ میلی‌لیتر', '1150 ml Crystallizing Dish', '۱۵۰ × ۷۵ میلی‌متر'],
+    ['2500ml', '۲۵۰۰ میلی‌لیتر', '2500 ml Crystallizing Dish', '۱۹۰ × ۱۰۰ میلی‌متر']
+  ].map(([id, label, titleEn, dimensions]) => ({
+    id,
+    label,
+    titleFa: `ظرف تبلور ${label}`,
+    titleEn,
+    image: 'crystallizing-dish.webp',
+    detail: `مدل مرجع Borosil 3140 با ظرفیت تقریبی ${label} و ابعاد ${dimensions} معرفی شده است.`,
+    metadata: { dimensions }
+  }));
+
+  const porcelainCrucibleVariants = [
+    ['10ml', '۱۰ میلی‌لیتر', '10 ml Porcelain Crucible'],
+    ['17ml', '۱۷ میلی‌لیتر', '17 ml Porcelain Crucible'],
+    ['30ml', '۳۰ میلی‌لیتر', '30 ml Porcelain Crucible'],
+    ['50ml', '۵۰ میلی‌لیتر', '50 ml Porcelain Crucible'],
+    ['100ml', '۱۰۰ میلی‌لیتر', '100 ml Porcelain Crucible']
+  ].map(([id, label, titleEn]) => ({
+    id,
+    label,
+    titleFa: `بوتهٔ چینی ${label}`,
+    titleEn,
+    image: 'porcelain-crucible.webp',
+    detail: `گزینهٔ ${label} در مجموعهٔ Eisco با فرم کوتاه و درپوش عرضه شده است؛ حداکثر دما و نرخ گرم‌وسردشدن را با مدل نهایی تطبیق دهید.`
+  }));
+
   const bufferVariants = [
     ['ph4', 'pH ۴', 'pH 4 Buffer Solution', 'buffer-ph4.webp', 'مناسب برای کنترل اندازه‌گیری در محدودهٔ اسیدی.'],
     ['ph7', 'pH ۷', 'pH 7 Buffer Solution', 'buffer-ph7.webp', 'مناسب برای کنترل اندازه‌گیری نزدیک به نقطهٔ خنثی.'],
@@ -77,7 +219,7 @@
       primaryUse: 'نگهداری محلول‌ها و معرف‌های آماده‌شده',
       safety: 'نام ماده، غلظت، تاریخ آماده‌سازی و هشدارهای لازم باید روی برچسب ثبت شود.',
       details: ['سازگاری ماده با شیشه و درپوش را بررسی کنید.', 'بطری را بیش از ظرفیت مفید پر نکنید.', 'مواد ناسازگار را در یک بطری یا سینی مشترک قرار ندهید.'],
-      variants: single('available', 'بطری نگهداری معرف', 'Reagent Bottle', 'reagent-bottles.webp', 'تصویر مرجع شامل بطری‌های شیشه‌ای در حجم‌های مختلف است.')
+      variants: reagentBottleVariants
     },
     {
       slug: 'petri-dishes',
@@ -90,7 +232,7 @@
       primaryUse: 'نگهداری یا مشاهدهٔ نمونه‌های کم‌حجم',
       safety: 'پیش از استفاده، تمیزی و سلامت سطح شیشه بررسی شود.',
       details: ['پوشش را هنگام جابه‌جایی آرام نگه دارید.', 'نمونه‌های ناشناخته را بدون برچسب رها نکنید.', 'پس از استفاده، ظرف را طبق روش پاک‌سازی آزمایشگاه تمیز کنید.'],
-      variants: single('available', 'پتری‌دیش شیشه‌ای', 'Glass Petri Dish', 'petri-dishes.webp', 'نمونهٔ مرجع از شیشهٔ بوروسیلیکات است.')
+      variants: petriDishVariants
     },
     {
       slug: 'porcelain-crucible',
@@ -103,7 +245,7 @@
       primaryUse: 'گرمادهی و عملیات حرارتی نمونه‌های جامد',
       safety: 'پس از گرمادهی، بوته را با ابزار مناسب جابه‌جا و تا رسیدن به دمای ایمن خنک کنید.',
       details: ['بوتهٔ داغ را روی سطح مقاوم به حرارت قرار دهید.', 'از شوک حرارتی و تماس ناگهانی با سطح سرد خودداری کنید.', 'برای وزن‌کشی، اجازه دهید بوته در دسیکاتور خنک شود.'],
-      variants: single('available', 'بوتهٔ چینی متوسط', 'Medium Porcelain Crucible', 'porcelain-crucible.webp', 'برای گرمادهی نمونه‌های جامد در مقیاس آزمایشگاهی.')
+      variants: porcelainCrucibleVariants
     },
     {
       slug: 'glass-funnel-long-stem',
@@ -129,7 +271,7 @@
       primaryUse: 'انتقال اندازه‌گیری‌شدهٔ مایعات',
       safety: 'برای پیپت‌کردن از پوآر یا پیپت‌فیلر استفاده کنید و هرگز با دهان مکش نکنید.',
       details: ['پیش از کار، کالیبراسیون و سلامت نوک را بررسی کنید.', 'پیپت را پس از استفاده در محل مشخص قرار دهید.', 'برای مواد زیستی یا خورنده، روش دفع مناسب را رعایت کنید.'],
-      variants: single('available', 'پیپت سرولوژیک شیشه‌ای', 'Glass Serological Pipette', 'serological-pipettes.webp', 'برای انتقال کنترل‌شدهٔ مایعات در آزمایشگاه.')
+      variants: serologicalPipetteVariants
     },
     {
       slug: 'watch-glass',
@@ -142,7 +284,7 @@
       primaryUse: 'پوشاندن ظروف و تبخیر محدود',
       safety: 'سطح شیشه را پیش از استفاده از آلودگی و ترک بررسی کنید.',
       details: ['برای جابه‌جایی از لبه‌ها استفاده کنید.', 'برای گرمادهی مستقیم، روش آزمایش را بررسی کنید.', 'نمونهٔ باقی‌مانده را پس از کار طبق دستورالعمل دفع کنید.'],
-      variants: single('available', 'شیشهٔ ساعت', 'Watch Glass', 'watch-glass.webp', 'برای پوشاندن ظرف یا کار با حجم کم نمونه.')
+      variants: watchGlassVariants
     },
     {
       slug: 'glass-burette',
@@ -155,7 +297,7 @@
       primaryUse: 'تیتر کردن و افزودن دقیق مایع',
       safety: 'پیش از استفاده، نشتی شیر و خوانش منیسک بررسی شود.',
       details: ['بورت را عمودی و با گیرهٔ مناسب نصب کنید.', 'پیش از شروع، مسیر را با محلول آماده و حباب‌زدایی کنید.', 'محلول باقی‌مانده را در ظرف پسماند مناسب جمع کنید.'],
-      variants: single('available', 'بورت شیشه‌ای مدرج', 'Straight Bore Glass Burette', 'glass-burette.webp', 'برای افزودن کنترل‌شدهٔ مایع در اندازه‌گیری‌های حجمی.')
+      variants: buretteVariants
     },
     {
       slug: 'separating-funnel',
@@ -168,7 +310,7 @@
       primaryUse: 'جداسازی فازهای مایع',
       safety: 'پیش از بازکردن شیر یا درپوش، فشار داخل قیف را طبق روش ایمن آزاد کنید.',
       details: ['پیش از تکان‌دادن، درپوش را محکم اما قابل بازشدن ببندید.', 'قیف را دور از صورت و بدن نگه دارید.', 'هر فاز را در ظرفی با برچسب روشن جمع‌آوری کنید.'],
-      variants: single('available', 'قیف جداکنندهٔ گلابی‌شکل', 'Pear-Shaped Separating Funnel', 'separating-funnel.webp', 'برای جداسازی فازهای مایع غیرقابل اختلاط.')
+      variants: separatingFunnelVariants
     },
     {
       slug: 'buchner-funnel',
@@ -207,7 +349,7 @@
       primaryUse: 'نگهداری و آماده‌سازی نمونه‌های کم‌حجم',
       safety: 'درپوش را بیش از حد سفت نکنید و پیش از گرمادهی، بسته‌بودن کامل را بررسی کنید.',
       details: ['برای گرمادهی در ظرف بسته از آن استفاده نکنید.', 'سطح بیرونی را پیش از قرار دادن در رک خشک کنید.', 'نمونه را با نام و تاریخ مشخص برچسب بزنید.'],
-      variants: single('available', 'لولهٔ آزمایش درپیچ‌دار', 'Glass Test Tube with Screw Cap', 'screw-cap-test-tube.webp', 'برای نگهداری یا آماده‌سازی حجم‌های کم نمونه.')
+      variants: testTubeVariants
     },
     {
       slug: 'crucible-tongs',
@@ -233,7 +375,7 @@
       primaryUse: 'تبخیر کنترل‌شده و تشکیل بلور',
       safety: 'ظرف را روی سطح پایدار قرار دهید و از پرکردن بیش از ظرفیت خودداری کنید.',
       details: ['برای کاهش پاشش، محلول را آرام گرم کنید.', 'ظرف را هنگام جابه‌جایی از دو طرف نگه دارید.', 'بلورها و محلول مادر را در ظرف‌های برچسب‌دار نگهداری کنید.'],
-      variants: single('available', 'ظرف تبلور', 'Crystallizing Dish', 'crystallizing-dish.webp', 'برای تبخیر کنترل‌شده و تشکیل بلور.')
+      variants: crystallizingDishVariants
     },
     {
       slug: 'vacuum-desiccator',
@@ -369,12 +511,14 @@
       specifications: [
         { label: 'جنس', value: 'بسته به مدل: شیشهٔ بوروسیلیکات، شیشهٔ سودا-لایم یا پلیمر.' },
         { label: 'دهانه و درپوش', value: 'دهانهٔ باریک یا عریض و درپوش یا استاپر باید با ماده سازگار انتخاب شود.' },
+        { label: 'حجم‌های مدل مرجع', value: '۵۰، ۱۰۰، ۲۵۰، ۵۰۰، ۱۰۰۰ و ۲۰۰۰ میلی‌لیتر در خانوادهٔ Borosil 1501.' },
         { label: 'نگهداری', value: 'برای مواد حساس به نور، مدل کهربایی یا محافظ نوری مناسب‌تر است.' }
       ]
     },
     'petri-dishes': {
-      source: vendorUrls.sigmaPetri,
+      source: 'https://www.borosilscientific.com/product/3160-petri-dish/',
       sources: [
+        reference('Borosil Scientific: پتری‌دیش بوروسیلیکات 3160', 'https://www.borosilscientific.com/product/3160-petri-dish/'),
         reference('Sigma-Aldrich: پتری‌دیش‌ها', vendorUrls.sigmaPetri),
         reference('Fisher Scientific: پتری‌دیش‌ها', vendorUrls.fisherPetri),
         reference('Borosil Scientific: شیشه‌آلات میکروبیولوژی', vendorUrls.borosilMicrobiology),
@@ -383,18 +527,20 @@
       specifications: [
         { label: 'جنس این تصویر', value: 'شیشه؛ در بازار مدل‌های پلاستیکی یک‌بارمصرف و شیشه‌ای قابل‌استفادهٔ مجدد نیز وجود دارد.' },
         { label: 'کاربرد', value: 'کشت و مشاهدهٔ نمونه، آماده‌سازی محیط و کارهای کنترل کیفی، با انتخاب استریل یا غیراستریل بر اساس مدل.' },
-        { label: 'ویژگی مدل', value: 'قطر، ارتفاع، درپوش و قابلیت استریل‌سازی باید از مشخصات همان مدل خوانده شود.' }
+        { label: 'ابعاد مدل مرجع', value: 'قطرهای ۵۰، ۸۰، ۱۰۰، ۱۵۰ و ۲۰۰ میلی‌متر در خانوادهٔ Borosil 3160؛ ارتفاع و ابعاد درپوش به گزینه وابسته است.' }
       ]
     },
     'porcelain-crucible': {
       source: vendorUrls.fisherCrucibles,
       sources: [
+        reference('Fisher Scientific: بوتهٔ چینی Eisco با درپوش', 'https://www.fishersci.ca/shop/products/porcelain-crucibles-lid-squat-form-5/s15480'),
         reference('Fisher Scientific: بوته‌ها', vendorUrls.fisherCrucibles),
         reference('Sigma-Aldrich: بوتهٔ چینی Coors', vendorUrls.sigmaPorcelain),
         reference('Trafalgar Scientific: گروه ظروف و تجهیزات آزمایشگاهی', 'https://trafalgarscientific.co.uk/')
       ],
       specifications: [
         { label: 'جنس', value: 'چینی لعاب‌دار، معمولاً با درپوش جدا یا همراه، بسته به مدل.' },
+        { label: 'ظرفیت‌های مدل مرجع', value: '۱۰، ۱۷، ۳۰، ۵۰ و ۱۰۰ میلی‌لیتر در گزینه‌های Eisco فرم کوتاه با درپوش.' },
         { label: 'فرم', value: 'فرم بلند و عریض در کاتالوگ‌ها عرضه می‌شود؛ ظرفیت و شکل با مدل تغییر می‌کند.' },
         { label: 'گرمادهی', value: 'حداکثر دما و نرخ گرم‌کردن یا سردکردن را از برگهٔ همان مدل بررسی کنید.' }
       ]
@@ -413,53 +559,62 @@
       ]
     },
     'serological-pipettes': {
-      source: vendorUrls.borosilPipettes,
+      source: 'https://www.borosilscientific.com/product/7081-serological-pipettes/',
       sources: [
+        reference('Borosil Scientific: پیپت سرولوژیک 7081', 'https://www.borosilscientific.com/product/7081-serological-pipettes/'),
+        reference('Borosil Scientific: پیپت سرولوژیک 7080', 'https://www.borosilscientific.com/product/7080-serological-pipettes/'),
         reference('Borosil Scientific: پیپت‌های آزمایشگاهی', vendorUrls.borosilPipettes),
         reference('Sigma-Aldrich: شیشه‌آلات آزمایشگاهی', vendorUrls.sigmaGlassware),
         reference('Trafalgar Scientific: فلاسک‌ها و شیشه‌آلات حجمی', vendorUrls.trafalgarFlasks)
       ],
       specifications: [
         { label: 'نوع', value: 'پیپت سرولوژیک برای انتقال حجمی؛ کلاس A یا B و ظرفیت دقیق به مدل وابسته است.' },
+        { label: 'ظرفیت‌های مدل مرجع', value: '۰٫۱، ۰٫۲، ۱، ۲، ۵، ۱۰ و ۲۵ میلی‌لیتر در سری‌های Borosil 7080 و 7081.' },
         { label: 'روش مکش', value: 'فقط با پوآر یا پیپت‌فیلر استفاده شود؛ مکش با دهان ممنوع است.' },
         { label: 'کنترل کیفیت', value: 'کالیبراسیون، روش استریل‌سازی و سازگاری ماده باید پیش از کار بررسی شود.' }
       ]
     },
     'watch-glass': {
-      source: vendorUrls.trafalgarWatchGlass,
+      source: 'https://www.borosilscientific.com/product/9986-watch-glasses/',
       sources: [
+        reference('Borosil Scientific: شیشهٔ ساعت 9986', 'https://www.borosilscientific.com/product/9986-watch-glasses/'),
         reference('Trafalgar Scientific: شیشهٔ ساعت', vendorUrls.trafalgarWatchGlass),
         reference('Fisher Scientific: ظروف کم‌عمق آزمایشگاهی', vendorUrls.fisherDishes),
         reference('Sigma-Aldrich: شیشه‌آلات آزمایشگاهی', vendorUrls.sigmaGlassware)
       ],
       specifications: [
         { label: 'جنس', value: 'شیشه؛ قطر و ضخامت باید از مدل انتخابی خوانده شود.' },
+        { label: 'قطرهای مدل مرجع', value: '۸۰، ۱۰۰، ۱۲۰ و ۱۵۰ میلی‌متر در سری Borosil 9986 S-Line.' },
         { label: 'کاربرد', value: 'پوشاندن بشر، تبخیر محدود و جابه‌جایی یا نگهداری کوتاه‌مدت نمونه.' },
         { label: 'استفادهٔ حرارتی', value: 'تنها با روش آزمایش و نرخ تغییر دمای سازگار با همان شیشه انجام شود.' }
       ]
     },
     'glass-burette': {
-      source: vendorUrls.borosilBurettes,
+      source: 'https://www.borosilscientific.com/product/2123-burettes/',
       sources: [
+        reference('Borosil Scientific: بورت 2123', 'https://www.borosilscientific.com/product/2123-burettes/'),
         reference('Borosil Scientific: بورت‌ها', vendorUrls.borosilBurettes),
         reference('Trafalgar Scientific: بورت‌ها', vendorUrls.trafalgarBurette),
         reference('Sigma-Aldrich: شیشه‌آلات آزمایشگاهی', vendorUrls.sigmaGlassware)
       ],
       specifications: [
         { label: 'جنس و اجزا', value: 'لولهٔ مدرج شیشه‌ای با شیر؛ جنس شیر و ظرفیت در مدل‌های مختلف تغییر می‌کند.' },
+        { label: 'ظرفیت‌های مدل مرجع', value: '۵، ۱۰، ۲۵، ۵۰ و ۱۰۰ میلی‌لیتر در بورت Borosil 2123.' },
         { label: 'کلاس دقت', value: 'مدل‌های Class A، Class B یا Class AS در کاتالوگ‌ها دیده می‌شوند؛ انتخاب را با روش آزمون هماهنگ کنید.' },
         { label: 'کاربرد', value: 'افزودن کنترل‌شدهٔ محلول در تیتر کردن و اندازه‌گیری حجمی.' }
       ]
     },
     'separating-funnel': {
-      source: vendorUrls.trafalgarFunnels,
+      source: 'https://www.borosilscientific.com/product/6403-separating-funnel-pear-shape/',
       sources: [
+        reference('Borosil Scientific: قیف جداکنندهٔ 6403', 'https://www.borosilscientific.com/product/6403-separating-funnel-pear-shape/'),
         reference('Trafalgar Scientific: قیف‌ها', vendorUrls.trafalgarFunnels),
         reference('Sigma-Aldrich: شیشه‌آلات آزمایشگاهی', vendorUrls.sigmaGlassware),
         reference('Fisher Scientific: شیشه‌آلات تخصصی', vendorUrls.fisherSpecialty)
       ],
       specifications: [
         { label: 'ساختار', value: 'بدنهٔ شیشه‌ای گلابی‌شکل با شیر و درپوش؛ جنس شیر و نوع اتصال باید از مدل تأیید شود.' },
+        { label: 'ظرفیت‌های مدل مرجع', value: '۱۲۵، ۲۵۰، ۵۰۰، ۱۰۰۰، ۲۰۰۰ و ۵۰۰۰ میلی‌لیتر در مدل Borosil 6403.' },
         { label: 'کاربرد', value: 'جداسازی فازهای مایع غیرقابل‌اختلاط.' },
         { label: 'ایمنی فرایند', value: 'در صورت احتمال تشکیل فشار، پیش از بازکردن شیر یا درپوش، روش تخلیهٔ فشار اجرا شود.' }
       ]
@@ -493,12 +648,14 @@
     'screw-cap-test-tube': {
       source: vendorUrls.trafalgarTestTubes,
       sources: [
+        reference('Fisher Scientific: لولهٔ آزمایش شیشه‌ای درپیچ‌دار', 'https://www.fishersci.ca/shop/products/glass-test-tube-screw-cap/s28026'),
         reference('Trafalgar Scientific: لوله‌های آزمایش', vendorUrls.trafalgarTestTubes),
         reference('Borosil Scientific: شیشه‌آلات عمومی', vendorUrls.borosilGeneral),
         reference('Sigma-Aldrich: شیشه‌آلات آزمایشگاهی', vendorUrls.sigmaGlassware)
       ],
       specifications: [
         { label: 'جنس', value: 'بدنهٔ تصویر شیشه‌ای است؛ جنس درپوش و نوع رزوه باید از مدل انتخابی مشخص شود.' },
+        { label: 'ظرفیت‌های مدل مرجع', value: '۵، ۱۰، ۱۵، ۲۰، ۳۰ و ۵۰ میلی‌لیتر در گزینه‌های Eisco با درپوش پیچی.' },
         { label: 'کاربرد', value: 'نگهداری کوتاه‌مدت یا آماده‌سازی حجم کم نمونه.' },
         { label: 'فشار و گرما', value: 'لولهٔ دربسته برای گرمادهی یا فرایند پرفشار مناسب فرض نشود.' }
       ]
@@ -516,14 +673,16 @@
       ]
     },
     'crystallizing-dish': {
-      source: vendorUrls.sigmaGlassware,
+      source: 'https://www.borosilscientific.com/product/3140-crystallizing-dishes/',
       sources: [
+        reference('Borosil Scientific: ظرف تبلور 3140', 'https://www.borosilscientific.com/product/3140-crystallizing-dishes/'),
         reference('Sigma-Aldrich: شیشه‌آلات و ظروف تبلور', vendorUrls.sigmaGlassware),
         reference('Trafalgar Scientific: ظروف و کاسه‌های آزمایشگاهی', vendorUrls.trafalgarDishes),
         reference('Fisher Scientific: ظروف کم‌عمق آزمایشگاهی', vendorUrls.fisherDishes)
       ],
       specifications: [
         { label: 'جنس مرجع', value: 'شیشهٔ بوروسیلیکات در برخی مدل‌ها؛ جنس و وجود لبهٔ تخلیه به مدل بستگی دارد.' },
+        { label: 'ظرفیت‌های مدل مرجع', value: 'ظرف‌های ۳۳۰، ۱۱۵۰ و ۲۵۰۰ میلی‌لیتری با ابعاد متفاوت در خانوادهٔ Borosil 3140.' },
         { label: 'کاربرد', value: 'تبخیر کنترل‌شده و تشکیل بلور از محلول.' },
         { label: 'کنترل فرایند', value: 'سطح وسیع تبخیر، دما و سرعت تبخیر باید با ماهیت محلول هماهنگ شود.' }
       ]
