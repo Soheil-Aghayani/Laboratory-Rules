@@ -1,18 +1,22 @@
-const CACHE_VERSION = 'lab-rules-v18';
+const CACHE_VERSION = 'lab-rules-v20';
 const APP_SHELL = [
   './',
   './index.html',
   './offline.html',
   './manifest.webmanifest',
-  './styles.min.css?v=5.7',
-  './script.min.js?v=5.7',
+  './styles.min.css?v=5.8',
+  './script.min.js?v=5.8',
+  './gallery.min.js?v=1.1',
   './chatbot/chatbot.min.css?v=5.7',
   './chatbot/chatbot.min.js?v=5.7',
   './chatbot/msds/msds-db.min.js?v=5.7',
   './asset/vazirmatn-arabic.woff2',
   './asset/material-symbols-outlined-subset.woff2',
   './asset/outfit-latin.woff2',
-  './Waste%20Lab.webp'
+  './Waste%20Lab.webp',
+  './asset/gallery/lab-courtyard.webp',
+  './asset/gallery/lab-workbench.webp',
+  './asset/gallery/lab-interior.webp'
 ];
 
 self.addEventListener('install', (event) => {

@@ -26,8 +26,9 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="preload" href="./asset/material-symbols-outlined-subset.woff2" as="font" type="font/woff2" crossorigin fetchpriority="low">
-  <link rel="preload" href="./styles.min.css?v=5.7" as="style" crossorigin fetchpriority="high" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="./styles.min.css?v=5.7"></noscript>
+  <link rel="preload" href="./asset/gallery/lab-interior.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="./styles.min.css?v=5.8" as="style" crossorigin fetchpriority="high" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="./styles.min.css?v=5.8"></noscript>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -100,7 +101,8 @@
     .offline-status .material-symbols-outlined{font-size:1.15rem;color:var(--accent-amber);flex:0 0 auto;margin-top:.25rem}
     .offline-status[hidden]{display:none}
   </style>
-  <script defer fetchpriority="low" src="./script.min.js?v=5.7"></script>
+  <script defer fetchpriority="low" src="./script.min.js?v=5.8"></script>
+  <script defer fetchpriority="low" src="./gallery.min.js?v=1.1"></script>
 </head>
 <body>
 
@@ -154,6 +156,28 @@
         <span class="material-symbols-outlined" aria-hidden="true">cloud_off</span>
         <span>اتصال اینترنت قطع است. اطلاعات ذخیره‌شدهٔ پورتال، راهنماها و داده‌های MSDS در دسترس هستند؛ ویکی‌پدیا و سرویس‌های آنلاین ممکن است باز نشوند.</span>
       </div>
+
+      <section class="welcome-panel" aria-labelledby="welcome-title">
+        <div class="welcome-panel-copy">
+          <span class="welcome-kicker">محیط کار آزمایشگاه</span>
+          <h2 id="welcome-title">به آزمایشگاه پسماند خوش آمدید</h2>
+          <p>فضای کار، ایمنی و ابزارهای لازم برای فعالیت دقیق و مسئولانه در یک نگاه.</p>
+        </div>
+        <div class="welcome-photo-grid lab-photo-grid" aria-label="تصاویر محیط آزمایشگاه">
+          <figure class="lab-photo-card lab-photo-card-featured">
+            <img src="./asset/gallery/lab-interior.webp" alt="نمای داخلی آزمایشگاه با میزها و کابینت‌های نگهداری" loading="eager" fetchpriority="high" decoding="async" width="2200" height="1467">
+            <figcaption>فضای آماده‌سازی و نگهداری تجهیزات</figcaption>
+          </figure>
+          <figure class="lab-photo-card">
+            <img src="./asset/gallery/lab-workbench.webp" alt="فعالیت کاربر در کنار میز و تجهیزات آزمایشگاهی" loading="lazy" decoding="async" width="2200" height="1467">
+            <figcaption>کار روزمره در محیط آزمایشگاه</figcaption>
+          </figure>
+          <figure class="lab-photo-card">
+            <img src="./asset/gallery/lab-courtyard.webp" alt="محوطهٔ سبز پیرامون ساختمان آزمایشگاه" loading="lazy" decoding="async" width="2200" height="1467">
+            <figcaption>محوطهٔ پیرامون آزمایشگاه</figcaption>
+          </figure>
+        </div>
+      </section>
     </header>
 
     <!-- Penalty warning -->
@@ -168,6 +192,7 @@
     <nav class="tabs" role="tablist" aria-label="بخش‌های پورتال">
       <button class="tab-btn active" id="tab-btn-general" role="tab" aria-controls="tab-general" aria-selected="true" tabindex="0" data-tab="tab-general">قوانین عمومی و ایمنی</button>
       <button class="tab-btn" id="tab-btn-equipment" role="tab" aria-controls="tab-equipment" aria-selected="false" tabindex="-1" data-tab="tab-equipment">راهنمای کاربری تجهیزات</button>
+      <button class="tab-btn" id="tab-btn-gallery" role="tab" aria-controls="tab-gallery" aria-selected="false" tabindex="-1" data-tab="tab-gallery">گالری آزمایشگاه</button>
       <button class="tab-btn" id="tab-btn-quiz" role="tab" aria-controls="tab-quiz" aria-selected="false" tabindex="-1" data-tab="tab-quiz">آزمون و تعهدنامه ورود</button>
     </nav>
 
@@ -1240,7 +1265,59 @@
       </div>
     </div>
 
-    <!-- TAB 3: Safety Checklist & Quiz -->
+    <!-- TAB 3: Laboratory Gallery -->
+    <div class="tab-content" id="tab-gallery" role="tabpanel" aria-labelledby="tab-btn-gallery" tabindex="0" hidden>
+      <div class="gallery-layout">
+        <section class="gallery-intro-block" aria-labelledby="gallery-title">
+          <div class="gallery-intro-copy">
+            <span class="gallery-kicker">کاتالوگ ابزارهای آزمایشگاه</span>
+            <h2 class="gallery-title" id="gallery-title">اتاق تجهیزات آزمایشگاه</h2>
+            <p>ابزارهای شیشه‌ای، چینی، فلزی و مواد مصرفی را جستجو کنید و جزئیات کاربردی هر مورد را ببینید.</p>
+          </div>
+          <div class="gallery-stat-list" aria-label="خلاصهٔ گالری">
+            <div class="gallery-stat"><strong>۳۰</strong><span>قلم در کاتالوگ</span></div>
+            <div class="gallery-stat"><strong>۵</strong><span>دسته‌بندی ابزار</span></div>
+            <div class="gallery-stat"><strong>۴</strong><span>راهنمای عملیاتی</span></div>
+          </div>
+        </section>
+
+        <section class="equipment-catalog-section" aria-labelledby="equipment-catalog-title">
+          <div class="gallery-section-heading equipment-catalog-heading">
+            <div>
+              <h3 id="equipment-catalog-title">کاتالوگ ابزار و مواد مصرفی</h3>
+              <p>برای دیدن جزئیات، یک مورد را انتخاب کنید. راهنماهای عملیاتی دستگاه‌ها در تب تجهیزات باقی می‌مانند.</p>
+            </div>
+            <a class="gallery-source-link" href="https://www.interlab.co.nz/product-category/consumables/glassware/" target="_blank" rel="noopener noreferrer">مرجع دسته‌بندی شیشه‌آلات در Interlab</a>
+          </div>
+
+          <div class="equipment-catalog-toolbar">
+            <label class="gallery-search-field" for="gallery-equipment-search">
+              <span class="material-symbols-outlined" aria-hidden="true">search</span>
+              <span class="sr-only">جستجو در کاتالوگ تجهیزات</span>
+              <input id="gallery-equipment-search" type="search" autocomplete="off" placeholder="جستجو در نام ابزار یا دسته‌بندی">
+            </label>
+            <div class="equipment-filter-list" role="group" aria-label="فیلتر دسته‌بندی تجهیزات">
+              <button type="button" class="equipment-filter-btn active" data-equipment-filter="all">همه</button>
+              <button type="button" class="equipment-filter-btn" data-equipment-filter="glassware">شیشه‌آلات</button>
+              <button type="button" class="equipment-filter-btn" data-equipment-filter="porcelain">چینی</button>
+              <button type="button" class="equipment-filter-btn" data-equipment-filter="metal">فلزی</button>
+              <button type="button" class="equipment-filter-btn" data-equipment-filter="solutions">محلول و خشک‌کننده</button>
+              <button type="button" class="equipment-filter-btn" data-equipment-filter="accessories">لوازم جانبی</button>
+            </div>
+          </div>
+
+          <p class="gallery-result-count" id="gallery-equipment-count" role="status" aria-live="polite"></p>
+          <div class="equipment-catalog-grid" id="gallery-equipment-grid"></div>
+          <div class="gallery-empty-state" id="gallery-equipment-empty" hidden>
+            <span class="material-symbols-outlined" aria-hidden="true">search_off</span>
+            <strong>موردی پیدا نشد</strong>
+            <span>عبارت جستجو یا دسته‌بندی دیگری را امتحان کنید.</span>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- TAB 4: Safety Checklist & Quiz -->
     <div class="tab-content" id="tab-quiz" role="tabpanel" aria-labelledby="tab-btn-quiz" tabindex="0" hidden>
       <div class="quiz-container">
         
@@ -1395,6 +1472,7 @@
       <nav class="footer-nav" aria-label="دسترسی داخلی پورتال">
         <a href="index.html#tab-general" data-tab-link="tab-general">قوانین عمومی</a>
         <a href="index.html#tab-equipment" data-tab-link="tab-equipment">تجهیزات</a>
+        <a href="index.html#tab-gallery" data-tab-link="tab-gallery">گالری آزمایشگاه</a>
         <a href="index.html#msds-widget-card" data-tab-link="tab-general">MSDS مواد</a>
         <a href="index.html#compatibility-widget-card" data-tab-link="tab-equipment">سازگاری مواد</a>
         <a href="index.html#tab-quiz" data-tab-link="tab-quiz">آزمون ورود</a>

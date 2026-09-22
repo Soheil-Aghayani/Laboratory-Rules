@@ -471,6 +471,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const el = document.getElementById('tab-quiz');
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 100);
+    } else if (hash === 'gallery' || hash === 'tab-gallery') {
+      switchTab('tab-gallery');
+      setTimeout(() => {
+        const el = document.getElementById('tab-gallery');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
     } else if (hash === 'msds-widget-card') {
       switchTab('tab-general');
       setTimeout(() => {
@@ -492,7 +498,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Original texts for buttons
   const originalTabTexts = {
     'tab-general': 'قوانین عمومی و ایمنی',
-    'tab-equipment': 'راهنمای کاربری تجهیزات'
+    'tab-equipment': 'راهنمای کاربری تجهیزات',
+    'tab-gallery': 'گالری آزمایشگاه',
+    'tab-quiz': 'آزمون و تعهدنامه ورود'
   };
 
   const originalEqTexts = {
