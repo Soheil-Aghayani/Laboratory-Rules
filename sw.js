@@ -1,15 +1,15 @@
-const CACHE_VERSION = 'lab-rules-v21';
+const CACHE_VERSION = 'lab-rules-v24';
 const APP_SHELL = [
   './',
   './index.html',
   './offline.html',
   './manifest.webmanifest',
-  './styles.min.css?v=5.8',
+  './styles.min.css?v=5.9',
   './script.min.js?v=5.8',
-  './equipment-data.min.js?v=1.0',
-  './gallery.min.js?v=2.0',
-  './equipment-detail.min.js?v=1.0',
-  './equipment-detail.min.css?v=1.0',
+  './equipment-data.min.js?v=1.1',
+  './gallery.min.js?v=2.1',
+  './equipment-detail.min.js?v=1.1',
+  './equipment-detail.min.css?v=1.1',
   './Equipment/volumetric-flasks.html',
   './Equipment/reagent-bottles.html',
   './Equipment/petri-dishes.html',

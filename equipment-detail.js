@@ -18,12 +18,20 @@
   }
 
   function sourceMarkup(family) {
-    if (!family.source) {
+    const sources = Array.isArray(family.sources) && family.sources.length
+      ? family.sources
+      : family.source
+        ? [{ label: 'مرجع اصلی', url: family.source }]
+        : [];
+
+    if (!sources.length) {
       return '<span>این صفحه بر اساس اطلاعات عمومی کاربرد تجهیزات و دادهٔ کاتالوگ داخلی تنظیم شده است.</span>';
     }
 
-    return `<span>برای مشخصات سازنده و جزئیات تکمیلی، مرجع اطلاعاتی را ببینید.</span>
-      <a class="equipment-detail-source" href="${family.source}" target="_blank" rel="noopener noreferrer">مشاهدهٔ مرجع اطلاعاتی</a>`;
+    return `<span>مشخصات عمومی از منابع سازنده و تأمین‌کننده جمع‌بندی شده‌اند؛ استاندارد، ظرفیت و سازگاری نهایی به مدل انتخابی وابسته است.</span>
+      <div class="equipment-detail-source-list">
+        ${sources.map(source => `<a class="equipment-detail-source" href="${source.url}" target="_blank" rel="noopener noreferrer">${source.label}</a>`).join('')}
+      </div>`;
   }
 
   function renderPage(family, selectedVariant) {
@@ -55,7 +63,7 @@
         <div class="equipment-detail-intro">
           <p class="equipment-detail-summary" id="equipment-detail-intro-title">${family.introduction}</p>
 
-          <div class="equipment-detail-meta" aria-label="خلاصهٔ اطلاعات">
+            <div class="equipment-detail-meta" aria-label="خلاصهٔ اطلاعات">
             <div class="equipment-detail-meta-item">
               <span>کاربرد اصلی</span>
               <strong>${family.primaryUse}</strong>
@@ -63,8 +71,19 @@
             <div class="equipment-detail-meta-item">
               <span>تعداد گزینه‌ها</span>
               <strong>${toPersianDigits(variantCount)} گزینه در این خانواده</strong>
+              </div>
             </div>
-          </div>
+
+          ${family.specifications?.length ? `
+            <div class="equipment-detail-meta equipment-detail-specifications" aria-label="مشخصات مرجع">
+              ${family.specifications.map(specification => `
+                <div class="equipment-detail-meta-item">
+                  <span>${specification.label}</span>
+                  <strong>${specification.value}</strong>
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
 
           <div class="equipment-detail-variant-picker" aria-labelledby="equipment-detail-variant-title">
             <h2 id="equipment-detail-variant-title">انتخاب گزینه</h2>

@@ -331,6 +331,13 @@
   gap: 0.2rem;
 }
 
+.equipment-detail-source-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+}
+
 .equipment-detail-reference-copy span {
   color: var(--text-muted);
   font-size: 0.78rem;
@@ -426,6 +433,10 @@
   .equipment-detail-source {
     justify-content: center;
   }
+
+  .equipment-detail-source-list {
+    display: grid;
+  }
 }
 
 @media (max-width: 420px) {
@@ -461,5 +472,47 @@
   .equipment-detail-hero,
   .equipment-detail-info-grid {
     box-shadow: none;
+  }
+}
+
+/* Keep the detail header balanced in RTL layouts. */
+.equipment-detail-header {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.36fr) minmax(0, 1fr);
+  align-items: center;
+  direction: ltr;
+}
+
+.equipment-detail-header > div {
+  grid-column: 2;
+  min-width: 0;
+  direction: rtl;
+  text-align: right;
+}
+
+.equipment-detail-header > .equipment-detail-category {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+  direction: rtl;
+}
+
+@media (max-width: 760px) {
+  .equipment-detail-header {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    direction: rtl;
+  }
+
+  .equipment-detail-header > div {
+    grid-column: auto;
+    order: 1;
+    text-align: right;
+  }
+
+  .equipment-detail-header > .equipment-detail-category {
+    align-self: flex-start;
+    order: 2;
   }
 }

@@ -25,21 +25,21 @@
 
     return `
       <article class="equipment-catalog-card" data-equipment-category="${family.category}" data-equipment-search="${getSearchText(family)}">
-        <a class="equipment-card-link" href="./Equipment/${family.slug}.html">
+        <a class="equipment-card-link" href="./Equipment/${family.slug}.html" aria-label="مشاهدهٔ صفحهٔ معرفی ${family.titleFa}">
           <div class="equipment-card-image-wrap">
             <img class="equipment-card-image" src="./asset/equipment/${firstVariant.image}" alt="${family.titleFa}" loading="lazy" decoding="async" width="640" height="480">
-            <span class="equipment-card-category">${family.categoryLabel}</span>
           </div>
           <div class="equipment-card-body">
-            <div class="equipment-card-title-row">
-              <h4>${family.titleFa}</h4>
+            <div class="equipment-card-meta">
+              <span class="equipment-card-category-line">${family.categoryLabel}</span>
               <span class="equipment-card-variant-count">${variantLabel}</span>
             </div>
+            <h4 class="equipment-card-title">${family.titleFa}</h4>
             <p class="equipment-card-en" dir="ltr">${family.titleEn}</p>
             <p class="equipment-card-summary">${family.summary}</p>
             <div class="equipment-card-footer">
-              <span>${variantCount > 1 ? 'انتخاب حجم یا نوع' : 'معرفی و جزئیات'}</span>
-              <span class="equipment-card-cta">مشاهدهٔ صفحه</span>
+              <span>${variantCount > 1 ? 'انتخاب حجم یا نوع' : 'معرفی و کاربرد'}</span>
+              <span class="equipment-card-cta">مشاهدهٔ معرفی</span>
             </div>
           </div>
         </a>
