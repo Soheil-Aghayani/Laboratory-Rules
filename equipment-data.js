@@ -171,17 +171,18 @@
   }));
 
   const silicaGelVariants = [
-    ['blue-wet', 'آبی مرطوب', 'Blue Silica Gel, Wet', 'silica-gel-blue-wet.webp', 'نمونهٔ جاذب رطوبت در وضعیت مرطوب.'],
-    ['blue-dry', 'آبی خشک', 'Blue Silica Gel, Dry', 'silica-gel-blue-dry.webp', 'نمونهٔ جاذب رطوبت در وضعیت خشک.'],
-    ['yellow-wet', 'زرد مرطوب', 'Yellow Silica Gel, Wet', 'silica-gel-yellow-wet.webp', 'نمونهٔ جاذب رطوبت در وضعیت مرطوب.'],
-    ['yellow-dry', 'زرد خشک', 'Yellow Silica Gel, Dry', 'silica-gel-yellow-dry.webp', 'نمونهٔ جاذب رطوبت در وضعیت خشک.']
-  ].map(([id, label, titleEn, image, detail]) => ({
+    ['blue-dry', 'آبی خشک', 'Blue Silica Gel, Dry', 'silica-gel-blue-dry.webp', 'نمونهٔ سیلیکاژل آبی در حالت خشک؛ دانه‌ها آمادهٔ جذب رطوبت‌اند.', 'blue', 'dry'],
+    ['blue-wet', 'آبی مرطوب', 'Blue Silica Gel, Wet', 'silica-gel-blue-wet.webp', 'نمونهٔ سیلیکاژل آبی پس از جذب رطوبت؛ تغییر رنگ شاخص به فرمول محصول وابسته است.', 'blue', 'wet'],
+    ['orange-dry', 'نارنجی خشک', 'Orange Silica Gel, Dry', 'silica-gel-yellow-dry.webp', 'نمونهٔ سیلیکاژل نارنجی در حالت خشک؛ دانه‌ها آمادهٔ جذب رطوبت‌اند.', 'orange', 'dry'],
+    ['orange-wet', 'نارنجی مرطوب', 'Orange Silica Gel, Wet', 'silica-gel-yellow-wet.webp', 'نمونهٔ سیلیکاژل نارنجی پس از جذب رطوبت؛ تغییر رنگ شاخص به فرمول محصول وابسته است.', 'orange', 'wet']
+  ].map(([id, label, titleEn, image, detail, color, state]) => ({
     id,
     label,
     titleFa: `سیلیکاژل ${label}`,
     titleEn,
     image,
-    detail
+    detail,
+    metadata: { color, state }
   }));
 
   const longStemFunnelVariants = [
@@ -567,6 +568,25 @@
       primaryUse: 'جذب رطوبت و کمک به نگهداری خشک',
       safety: 'رنگ و وضعیت رطوبت را طبق روش داخلی آزمایشگاه بررسی کنید.',
       details: ['سیلیکاژل را در ظرف دربسته و دور از رطوبت نگهداری کنید.', 'از تماس مستقیم با نمونه‌های حساس خودداری کنید.', 'احیای جاذب فقط با روش و دمای تأییدشده انجام شود.'],
+      variantSummary: '۲ رنگ و ۲ وضعیت قابل‌مقایسه',
+      variantGroups: [
+        {
+          id: 'color',
+          label: 'رنگ سیلیکاژل',
+          options: [
+            { id: 'blue', label: 'آبی' },
+            { id: 'orange', label: 'نارنجی' }
+          ]
+        },
+        {
+          id: 'state',
+          label: 'مقایسهٔ وضعیت',
+          options: [
+            { id: 'dry', label: 'خشک' },
+            { id: 'wet', label: 'مرطوب' }
+          ]
+        }
+      ],
       variants: silicaGelVariants
     }
   ];

@@ -34,14 +34,58 @@
       </div>`;
   }
 
-  function renderPage(family, selectedVariant) {
-    const variantCount = family.variants.length;
-    const variantButtons = family.variants.map(variant => `
-      <button type="button" role="radio" class="equipment-detail-variant-button" data-variant-id="${variant.id}" aria-label="${variant.titleFa}" aria-checked="${variant.id === selectedVariant.id}" tabindex="${variant.id === selectedVariant.id ? '0' : '-1'}">
-        ${variant.label}
-      </button>
-    `).join('');
+  function variantPickerMarkup(family, selectedVariant) {
+    if (!family.variantGroups?.length) {
+      const variantButtons = family.variants.map(variant => `
+        <button type="button" role="radio" class="equipment-detail-variant-button" data-variant-id="${variant.id}" aria-label="${variant.titleFa}" aria-checked="${variant.id === selectedVariant.id}" tabindex="${variant.id === selectedVariant.id ? '0' : '-1'}">
+          ${variant.label}
+        </button>
+      `).join('');
 
+      return `
+        <div class="equipment-detail-variant-picker" aria-labelledby="equipment-detail-variant-title">
+          <h2 id="equipment-detail-variant-title">انتخاب گزینه</h2>
+          <div class="equipment-detail-variant-list" role="radiogroup" aria-label="گزینه‌های ${family.titleFa}">
+            ${variantButtons}
+          </div>
+        </div>
+      `;
+    }
+
+    const groups = family.variantGroups.map((group, groupIndex) => {
+      const selectedOption = selectedVariant.metadata?.[group.id] || group.options[0].id;
+      const titleId = `equipment-detail-variant-group-${groupIndex}`;
+      const options = group.options.map(option => `
+        <button type="button" role="radio" class="equipment-detail-variant-button" data-variant-group="${group.id}" data-option-id="${option.id}" aria-checked="${option.id === selectedOption}" tabindex="${option.id === selectedOption ? '0' : '-1'}">
+          ${option.label}
+        </button>
+      `).join('');
+
+      return `
+        <div class="equipment-detail-variant-group">
+          <h3 class="equipment-detail-variant-group-title" id="${titleId}">${group.label}</h3>
+          <div class="equipment-detail-variant-list" role="radiogroup" aria-labelledby="${titleId}">
+            ${options}
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    return `
+      <div class="equipment-detail-variant-picker equipment-detail-variant-picker-grouped" aria-labelledby="equipment-detail-variant-title">
+        <h2 id="equipment-detail-variant-title">مقایسه و انتخاب</h2>
+        <div class="equipment-detail-variant-groups">
+          ${groups}
+        </div>
+      </div>
+    `;
+  }
+
+  function variantCountMarkup(family) {
+    return family.variantSummary || `${toPersianDigits(family.variants.length)} گزینه در این خانواده`;
+  }
+
+  function renderPage(family, selectedVariant) {
     return `
       <header class="equipment-detail-header">
         <div>
@@ -70,7 +114,7 @@
             </div>
             <div class="equipment-detail-meta-item">
               <span>تعداد گزینه‌ها</span>
-              <strong>${toPersianDigits(variantCount)} گزینه در این خانواده</strong>
+              <strong>${variantCountMarkup(family)}</strong>
               </div>
             </div>
 
@@ -85,12 +129,7 @@
             </div>
           ` : ''}
 
-          <div class="equipment-detail-variant-picker" aria-labelledby="equipment-detail-variant-title">
-            <h2 id="equipment-detail-variant-title">انتخاب گزینه</h2>
-            <div class="equipment-detail-variant-list" role="radiogroup" aria-label="گزینه‌های ${family.titleFa}">
-              ${variantButtons}
-            </div>
-          </div>
+          ${variantPickerMarkup(family, selectedVariant)}
 
           <div class="equipment-detail-selected" aria-live="polite">
             <h2>گزینهٔ انتخاب‌شده</h2>
@@ -138,6 +177,11 @@
       button.setAttribute('aria-checked', String(isSelected));
       button.tabIndex = isSelected ? 0 : -1;
     });
+    root.querySelectorAll('[data-variant-group][data-option-id]').forEach(button => {
+      const isSelected = variant.metadata?.[button.dataset.variantGroup] === button.dataset.optionId;
+      button.setAttribute('aria-checked', String(isSelected));
+      button.tabIndex = isSelected ? 0 : -1;
+    });
 
     try {
       window.history.replaceState(null, '', `${window.location.pathname}#${variant.id}`);
@@ -157,18 +201,25 @@
       return;
     }
 
-    const hashId = window.location.hash.slice(1);
+    const hashId = window.location.hash.slice(1).replace(/^yellow-/, 'orange-');
     const selectedVariant = family.variants.find(variant => variant.id === hashId) || family.variants[0];
     document.title = `${family.titleFa} | آزمایشگاه پسماند`;
     const description = document.querySelector('meta[name="description"]');
     if (description) description.setAttribute('content', family.introduction);
 
     root.innerHTML = renderPage(family, selectedVariant);
+    let activeVariant = selectedVariant;
+    const selectVariant = variant => {
+      if (!variant) return;
+      activeVariant = variant;
+      updateSelectedVariant(root, family, variant);
+    };
+
     const variantButtons = Array.from(root.querySelectorAll('[data-variant-id]'));
     variantButtons.forEach((button, index) => {
       button.addEventListener('click', () => {
         const variant = family.variants.find(item => item.id === button.dataset.variantId);
-        if (variant) updateSelectedVariant(root, family, variant);
+        selectVariant(variant);
       });
       button.addEventListener('keydown', event => {
         const isForward = event.key === 'ArrowLeft' || event.key === 'ArrowDown';
@@ -180,10 +231,36 @@
         const nextIndex = (index + offset + variantButtons.length) % variantButtons.length;
         const nextButton = variantButtons[nextIndex];
         const nextVariant = family.variants.find(item => item.id === nextButton.dataset.variantId);
-        if (nextVariant) {
-          updateSelectedVariant(root, family, nextVariant);
-          nextButton.focus();
-        }
+        selectVariant(nextVariant);
+        nextButton.focus();
+      });
+    });
+
+    const groupedVariantButtons = Array.from(root.querySelectorAll('[data-variant-group][data-option-id]'));
+    groupedVariantButtons.forEach(button => {
+      const groupButtons = groupedVariantButtons.filter(item => item.dataset.variantGroup === button.dataset.variantGroup);
+      const selectGroupedVariant = () => {
+        const selection = {};
+        family.variantGroups.forEach(group => {
+          selection[group.id] = activeVariant.metadata?.[group.id] || group.options[0].id;
+        });
+        selection[button.dataset.variantGroup] = button.dataset.optionId;
+        const variant = family.variants.find(item => family.variantGroups.every(group => item.metadata?.[group.id] === selection[group.id]));
+        selectVariant(variant);
+      };
+
+      button.addEventListener('click', selectGroupedVariant);
+      button.addEventListener('keydown', event => {
+        const isForward = event.key === 'ArrowLeft' || event.key === 'ArrowDown';
+        const isBackward = event.key === 'ArrowRight' || event.key === 'ArrowUp';
+        if (!isForward && !isBackward) return;
+
+        event.preventDefault();
+        const index = groupButtons.indexOf(button);
+        const offset = isForward ? 1 : -1;
+        const nextButton = groupButtons[(index + offset + groupButtons.length) % groupButtons.length];
+        nextButton.click();
+        nextButton.focus();
       });
     });
 

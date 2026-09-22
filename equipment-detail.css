@@ -206,6 +206,27 @@
   padding-top: 0.25rem;
 }
 
+.equipment-detail-variant-groups {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.equipment-detail-variant-group {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.equipment-detail-variant-group-title {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.equipment-detail-variant-group .equipment-detail-variant-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .equipment-detail-variant-picker h2,
 .equipment-detail-selected h2,
 .equipment-detail-info-card h2,
