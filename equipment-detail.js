@@ -73,7 +73,7 @@
 
     return `
       <div class="equipment-detail-variant-picker equipment-detail-variant-picker-grouped" aria-labelledby="equipment-detail-variant-title">
-        <h2 id="equipment-detail-variant-title">مقایسه و انتخاب</h2>
+        <h2 id="equipment-detail-variant-title">${family.variantPickerTitle || 'مقایسه و انتخاب'}</h2>
         <div class="equipment-detail-variant-groups">
           ${groups}
         </div>
@@ -83,6 +83,40 @@
 
   function variantCountMarkup(family) {
     return family.variantSummary || `${toPersianDigits(family.variants.length)} گزینه در این خانواده`;
+  }
+
+  function comparisonVariant(family, selectedVariant, state) {
+    const color = selectedVariant.metadata?.color;
+    return family.variants.find(variant => variant.metadata?.color === color && variant.metadata?.state === state);
+  }
+
+  function detailMediaMarkup(family, selectedVariant) {
+    if (!family.comparison) {
+      return `
+        <div class="equipment-detail-image-frame">
+          <img class="equipment-detail-image" data-detail-image src="${assetPrefix}${selectedVariant.image}" alt="${selectedVariant.titleFa}" width="720" height="540">
+        </div>
+        <p class="equipment-detail-image-caption" data-detail-caption>${selectedVariant.titleFa}</p>
+      `;
+    }
+
+    const dryVariant = comparisonVariant(family, selectedVariant, family.comparison.dryState);
+    const wetVariant = comparisonVariant(family, selectedVariant, family.comparison.wetState);
+    if (!dryVariant || !wetVariant) return '';
+
+    return `
+      <div class="equipment-detail-image-frame equipment-detail-compare-frame" data-compare style="--compare-position:50%">
+        <img class="equipment-detail-compare-image" data-compare-dry-image src="${assetPrefix}${dryVariant.image}" alt="${dryVariant.titleFa}" width="720" height="540">
+        <img class="equipment-detail-compare-image equipment-detail-compare-image-wet" data-compare-wet-image src="${assetPrefix}${wetVariant.image}" alt="${wetVariant.titleFa}" width="720" height="540">
+        <div class="equipment-detail-compare-divider" data-compare-divider aria-hidden="true">
+          <span class="material-symbols-outlined">swap_horizontal_circle</span>
+        </div>
+        <span class="equipment-detail-compare-label equipment-detail-compare-label-wet">${family.comparison.wetLabel}</span>
+        <span class="equipment-detail-compare-label equipment-detail-compare-label-dry">${family.comparison.dryLabel}</span>
+        <input class="equipment-detail-compare-range" data-compare-range type="range" min="0" max="100" value="50" aria-label="جابه‌جایی خط مقایسهٔ حالت خشک و مرطوب">
+      </div>
+      <p class="equipment-detail-image-caption" data-detail-caption>خط را برای مقایسهٔ حالت خشک و مرطوب جابه‌جا کنید.</p>
+    `;
   }
 
   function renderPage(family, selectedVariant) {
@@ -98,10 +132,7 @@
 
       <section class="equipment-detail-hero" aria-labelledby="equipment-detail-intro-title">
         <div class="equipment-detail-media">
-          <div class="equipment-detail-image-frame">
-            <img class="equipment-detail-image" data-detail-image src="${assetPrefix}${selectedVariant.image}" alt="${selectedVariant.titleFa}" width="720" height="540">
-          </div>
-          <p class="equipment-detail-image-caption" data-detail-caption>${selectedVariant.titleFa}</p>
+          ${detailMediaMarkup(family, selectedVariant)}
         </div>
 
         <div class="equipment-detail-intro">
@@ -164,13 +195,16 @@
     const caption = root.querySelector('[data-detail-caption]');
     const title = root.querySelector('[data-detail-title]');
     const copy = root.querySelector('[data-detail-copy]');
-    if (!image || !caption || !title || !copy) return;
+    if (!caption || !title || !copy) return;
 
-    image.src = `${assetPrefix}${variant.image}`;
-    image.alt = variant.titleFa;
+    if (image) {
+      image.src = `${assetPrefix}${variant.image}`;
+      image.alt = variant.titleFa;
+    }
     caption.textContent = variant.titleFa;
     title.textContent = variant.titleFa;
     copy.textContent = variant.detail;
+    updateComparison(root, family, variant);
 
     root.querySelectorAll('[data-variant-id]').forEach(button => {
       const isSelected = button.dataset.variantId === variant.id;
@@ -188,6 +222,33 @@
     } catch (error) {
       // Hash persistence is optional when the page is opened from a local file.
     }
+  }
+
+  function updateComparison(root, family, selectedVariant) {
+    if (!family.comparison) return;
+
+    const dryVariant = comparisonVariant(family, selectedVariant, family.comparison.dryState);
+    const wetVariant = comparisonVariant(family, selectedVariant, family.comparison.wetState);
+    const dryImage = root.querySelector('[data-compare-dry-image]');
+    const wetImage = root.querySelector('[data-compare-wet-image]');
+    const caption = root.querySelector('[data-detail-caption]');
+    if (!dryVariant || !wetVariant || !dryImage || !wetImage) return;
+
+    dryImage.src = `${assetPrefix}${dryVariant.image}`;
+    dryImage.alt = dryVariant.titleFa;
+    wetImage.src = `${assetPrefix}${wetVariant.image}`;
+    wetImage.alt = wetVariant.titleFa;
+    if (caption) caption.textContent = 'خط را برای مقایسهٔ حالت خشک و مرطوب جابه‌جا کنید.';
+  }
+
+  function updateComparisonPosition(root, value) {
+    const compare = root.querySelector('[data-compare]');
+    const range = root.querySelector('[data-compare-range]');
+    if (!compare || !range) return;
+
+    const position = Math.min(100, Math.max(0, Number(value)));
+    compare.style.setProperty('--compare-position', `${position}%`);
+    range.setAttribute('aria-valuetext', `${toPersianDigits(Math.round(position))}٪`);
   }
 
   function initDetailPage() {
@@ -263,6 +324,10 @@
         nextButton.focus();
       });
     });
+
+    const compareRange = root.querySelector('[data-compare-range]');
+    compareRange?.addEventListener('input', () => updateComparisonPosition(root, compareRange.value));
+    updateComparisonPosition(root, compareRange?.value || 50);
 
     const themeButton = document.getElementById('equipment-detail-theme');
     const themeIcon = themeButton?.querySelector('.material-symbols-outlined');

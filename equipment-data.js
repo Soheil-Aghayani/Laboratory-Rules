@@ -568,7 +568,14 @@
       primaryUse: 'جذب رطوبت و کمک به نگهداری خشک',
       safety: 'رنگ و وضعیت رطوبت را طبق روش داخلی آزمایشگاه بررسی کنید.',
       details: ['سیلیکاژل را در ظرف دربسته و دور از رطوبت نگهداری کنید.', 'از تماس مستقیم با نمونه‌های حساس خودداری کنید.', 'احیای جاذب فقط با روش و دمای تأییدشده انجام شود.'],
-      variantSummary: '۲ رنگ و ۲ وضعیت قابل‌مقایسه',
+      variantSummary: '۲ رنگ با مقایسهٔ خشک و مرطوب',
+      variantPickerTitle: 'انتخاب رنگ برای مقایسه',
+      comparison: {
+        dryState: 'dry',
+        dryLabel: 'خشک',
+        wetState: 'wet',
+        wetLabel: 'مرطوب'
+      },
       variantGroups: [
         {
           id: 'color',
@@ -576,14 +583,6 @@
           options: [
             { id: 'blue', label: 'آبی' },
             { id: 'orange', label: 'نارنجی' }
-          ]
-        },
-        {
-          id: 'state',
-          label: 'مقایسهٔ وضعیت',
-          options: [
-            { id: 'dry', label: 'خشک' },
-            { id: 'wet', label: 'مرطوب' }
           ]
         }
       ],
