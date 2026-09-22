@@ -184,14 +184,128 @@
     detail
   }));
 
-  const single = (id, titleFa, titleEn, image, detail) => [{
+  const longStemFunnelVariants = [
+    ['50mm', '۵۰ میلی‌متر', '50 mm Plain Long Narrow Stem Funnel', '۸ میلی‌متر', '۱۹٫۳ سانتی‌متر', '10326A'],
+    ['65mm', '۶۵ میلی‌متر', '65 mm Plain Long Narrow Stem Funnel', '۸ میلی‌متر', '۲۰٫۶ سانتی‌متر', '10326B'],
+    ['75mm', '۷۵ میلی‌متر', '75 mm Plain Long Narrow Stem Funnel', '۸ میلی‌متر', '۲۱٫۴ سانتی‌متر', '10326C'],
+    ['100mm', '۱۰۰ میلی‌متر', '100 mm Plain Long Narrow Stem Funnel', '۹ میلی‌متر', '۲۳٫۶ سانتی‌متر', '10326D']
+  ].map(([id, label, titleEn, stemDiameter, height, model]) => ({
     id,
-    label: 'گزینهٔ موجود',
-    titleFa,
+    label,
+    titleFa: `قیف ساقه‌بلند ${label}`,
     titleEn,
-    image,
-    detail
-  }];
+    image: 'glass-funnel-long-stem.webp',
+    detail: `مدل مرجع Corning PYREX ${model} با ساقهٔ حدود ۱۵ سانتی‌متر، قطر ساقهٔ ${stemDiameter} و ارتفاع تقریبی ${height}.`,
+    metadata: { stemDiameter, height, model }
+  }));
+
+  const buchnerFunnelVariants = [
+    ['87ml', '۸۷ میلی‌لیتر', '87 ml Porcelain Buchner Funnel', 'FB966C', '۵۰ تا ۵۵ میلی‌متر', '۵۶ میلی‌متر'],
+    ['186ml', '۱۸۶ میلی‌لیتر', '186 ml Porcelain Buchner Funnel', 'FB966D', '۷۰ میلی‌متر', '۸۳ میلی‌متر'],
+    ['320ml', '۳۲۰ میلی‌لیتر', '320 ml Porcelain Buchner Funnel', 'FB966F', '۹۰ میلی‌متر', '۱۰۰ میلی‌متر'],
+    ['550ml', '۵۵۰ میلی‌لیتر', '550 ml Porcelain Buchner Funnel', 'FB966G', '۱۱۰ میلی‌متر', '۱۱۴ میلی‌متر'],
+    ['1860ml', '۱۸۶۰ میلی‌لیتر', '1860 ml Porcelain Buchner Funnel', 'FB966K', '۱۸۵ میلی‌متر', '۱۸۶ میلی‌متر']
+  ].map(([id, label, titleEn, model, discDiameter, plateDiameter]) => ({
+    id,
+    label,
+    titleFa: `قیف بوخنر ${label}`,
+    titleEn,
+    image: 'buchner-funnel.webp',
+    detail: `مدل مرجع Fisherbrand ${model} با صفحهٔ سوراخ‌دار ثابت، قطر دیسک ${discDiameter} و قطر صفحهٔ ${plateDiameter}.`,
+    metadata: { model, discDiameter, plateDiameter }
+  }));
+
+  const porcelainMortarPestleVariants = [
+    ['50ml', '۵۰ میلی‌لیتر', '50 ml Porcelain Mortar and Pestle', 'JMD050', '۹۵ میلی‌متر'],
+    ['70ml', '۷۰ میلی‌لیتر', '70 ml Porcelain Mortar and Pestle', 'JMD070', '۱۱۵ میلی‌متر'],
+    ['150ml', '۱۵۰ میلی‌لیتر', '150 ml Porcelain Mortar and Pestle', 'JMD150', '۱۳۵ میلی‌متر'],
+    ['275ml', '۲۷۵ میلی‌لیتر', '275 ml Porcelain Mortar and Pestle', 'JMD275', '۱۶۰ میلی‌متر'],
+    ['400ml', '۴۰۰ میلی‌لیتر', '400 ml Porcelain Mortar and Pestle', 'JMD400', '۱۸۵ میلی‌متر'],
+    ['750ml', '۷۵۰ میلی‌لیتر', '750 ml Porcelain Mortar and Pestle', 'JMD750', '۲۰۰ میلی‌متر'],
+    ['1900ml', '۱۹۰۰ میلی‌لیتر', '1900 ml Porcelain Mortar and Pestle', 'JMD1900', '۲۲۲ میلی‌متر']
+  ].map(([id, label, titleEn, model, pestleLength]) => ({
+    id,
+    label,
+    titleFa: `هاون چینی ${label}`,
+    titleEn,
+    image: 'porcelain-mortar-pestle.webp',
+    detail: `مدل مرجع ${model} با دستهٔ هاون حدود ${pestleLength}؛ سطح آسیاب‌کردن باید پیش از کار تمیز و سالم باشد.`,
+    metadata: { model, pestleLength }
+  }));
+
+  const crucibleTongVariants = [
+    ['9in', '۹ اینچ', '9 in Stainless Steel Crucible Tongs', '15-186', '۲۳ سانتی‌متر'],
+    ['18in', '۱۸ اینچ', '18 in Jumbo Crucible Tongs', '15-207', '۴۶ سانتی‌متر'],
+    ['24in', '۲۴ اینچ', '24 in Stainless Steel Crucible Tongs', '13820020', '۶۱ سانتی‌متر']
+  ].map(([id, label, titleEn, model, length]) => ({
+    id,
+    label,
+    titleFa: `انبر بوته ${label}`,
+    titleEn,
+    image: 'crucible-tongs.webp',
+    detail: `مدل مرجع ${model} با طول تقریبی ${length} برای جابه‌جایی ظروف داغ؛ پایداری فک‌ها و وزن ظرف را پیش از بلندکردن بررسی کنید.`,
+    metadata: { model, length }
+  }));
+
+  const vacuumDesiccatorVariants = [
+    ['100mm', 'قطر ۱۰۰', '100 mm Clear Vacuum Desiccator', '3083041', '۱۵۳ × ۱۷۳ میلی‌متر'],
+    ['150mm', 'قطر ۱۵۰', '150 mm Clear Vacuum Desiccator', '3083042', '۲۱۳ × ۲۰۵ میلی‌متر'],
+    ['200mm', 'قطر ۲۰۰', '200 mm Clear Vacuum Desiccator', '3083043', '۲۷۲ × ۲۷۲ میلی‌متر'],
+    ['250mm', 'قطر ۲۵۰', '250 mm Clear Vacuum Desiccator', '3083044', '۳۳۳ × ۳۲۳ میلی‌متر'],
+    ['300mm', 'قطر ۳۰۰', '300 mm Clear Vacuum Desiccator', '3083045', '۳۹۵ × ۳۴۴ میلی‌متر']
+  ].map(([id, label, titleEn, model, dimensions]) => ({
+    id,
+    label,
+    titleFa: `دسیکاتور خلأ ${label} میلی‌متر`,
+    titleEn,
+    image: 'vacuum-desiccator.webp',
+    detail: `مدل مرجع Borosil 3083 با قطر اسمی ${label.replace('قطر ', '')} میلی‌متر و ابعاد تقریبی فلنج و ارتفاع ${dimensions}.`,
+    metadata: { model, dimensions }
+  }));
+
+  const coiledDistillateVariants = [
+    ['300mm', '۳۰۰ میلی‌متر', '300 mm Graham Coiled Condenser', '2560090', '۴۵۰ میلی‌متر'],
+    ['400mm', '۴۰۰ میلی‌متر', '400 mm Graham Coiled Condenser', '2560092', '۵۵۰ میلی‌متر'],
+    ['500mm', '۵۰۰ میلی‌متر', '500 mm Graham Coiled Condenser', '2560095', '۶۵۰ میلی‌متر']
+  ].map(([id, label, titleEn, model, overallHeight]) => ({
+    id,
+    label,
+    titleFa: `کندانسور مارپیچی ${label}`,
+    titleEn,
+    image: 'coiled-distillate.webp',
+    detail: `مدل مرجع Borosil 2560 با طول ژاکت ${label} و ارتفاع کلی تقریبی ${overallHeight}، با اتصال استاندارد ۲۴/۲۹.`,
+    metadata: { model, overallHeight, joint: '۲۴/۲۹' }
+  }));
+
+  const pipetteStandVariants = [
+    ['6-manual-3-electronic', '۶ دستی یا ۳ الکترونیکی', 'Carousel Stand for 6 Manual or 3 Electronic Pipettes', '21377002'],
+    ['8-single-4-multi', '۸ تک‌کاناله یا ۴ چندکاناله', 'Universal Carousel Stand for 8 Single or 4 Multi-channel Pipettes', '01670456'],
+    ['6-rotary', '۹۴ پیپت', '94-Position Rotary Pipette Stand', '03410507'],
+    ['6-eppendorf', '۶ پیپت', 'Carousel Stand for 6 Manual Pipettes', '3116000015']
+  ].map(([id, label, titleEn, model]) => ({
+    id,
+    label,
+    titleFa: `پایهٔ پیپت ${label}`,
+    titleEn,
+    image: 'pipette-stand.webp',
+    detail: `گزینهٔ مرجع با کد ${model}؛ ظرفیت اعلام‌شده را پیش از خرید با نوع پیپت‌های آزمایشگاه تطبیق دهید.`,
+    metadata: { model }
+  }));
+
+  const allihnCondenserVariants = [
+    ['200mm', '۲۰۰ میلی‌متر', '200 mm Allihn Condenser', '2480087', '۳۵۰ میلی‌متر', '۱۹/۲۶'],
+    ['300mm', '۳۰۰ میلی‌متر', '300 mm Allihn Condenser', '2480090', '۴۵۰ میلی‌متر', '۲۴/۲۹'],
+    ['400mm', '۴۰۰ میلی‌متر', '400 mm Allihn Condenser', '2480092', '۵۵۰ میلی‌متر', '۲۴/۲۹'],
+    ['600mm', '۶۰۰ میلی‌متر', '600 mm Allihn Condenser', '2480096', '۷۵۰ میلی‌متر', '۲۹/۳۲']
+  ].map(([id, label, titleEn, model, overallHeight, joint]) => ({
+    id,
+    label,
+    titleFa: `کندانسور آلیهن ${label}`,
+    titleEn,
+    image: 'allihn-condenser.webp',
+    detail: `مدل مرجع Borosil 2480 با ارتفاع کلی تقریبی ${overallHeight} و اتصال ${joint}.`,
+    metadata: { model, overallHeight, joint }
+  }));
 
   const catalog = [
     {
@@ -258,7 +372,7 @@
       primaryUse: 'انتقال مایع و فیلتراسیون ثقلی',
       safety: 'پیش از کار، سازگاری شیشه و کاغذ یا محیط فیلتراسیون بررسی شود.',
       details: ['قیف را با تکیه‌گاه مناسب ثابت کنید.', 'برای جلوگیری از سرریز، جریان را آهسته و کنترل‌شده نگه دارید.', 'پیش از استفاده، نوک ساقه را از نظر لب‌پریدگی بررسی کنید.'],
-      variants: single('available', 'قیف شیشه‌ای ساقه‌بلند', 'Long Stem Glass Funnel', 'glass-funnel-long-stem.webp', 'برای انتقال و فیلتراسیون سادهٔ مایعات.')
+      variants: longStemFunnelVariants
     },
     {
       slug: 'serological-pipettes',
@@ -323,7 +437,7 @@
       primaryUse: 'فیلتراسیون خلأ',
       safety: 'اتصال، کاغذ صافی و سلامت شیشه یا بالن خلأ را قبل از کار بررسی کنید.',
       details: ['کاغذ صافی را با اندازهٔ مناسب انتخاب و مرطوب کنید.', 'خلأ را به‌آرامی برقرار کنید.', 'ظروف خلأ را از نظر ترک و لب‌پریدگی بررسی کنید.'],
-      variants: single('available', 'قیف بوخنر چینی', 'Porcelain Buchner Funnel', 'buchner-funnel.webp', 'برای فیلتراسیون خلأ در مقیاس آزمایشگاهی.')
+      variants: buchnerFunnelVariants
     },
     {
       slug: 'porcelain-mortar-pestle',
@@ -336,7 +450,7 @@
       primaryUse: 'خردکردن و همگن‌سازی جامدات',
       safety: 'از ضربهٔ شدید و ترکیب موادی که واکنش آن‌ها مشخص نیست خودداری کنید.',
       details: ['در صورت تولید گردوغبار، داخل هود کار کنید.', 'سطح داخلی را پس از هر ماده تمیز کنید.', 'مواد واکنش‌پذیر را بدون بررسی سازگاری با هم آسیاب نکنید.'],
-      variants: single('available', 'هاون و دستهٔ هاون چینی', 'Glazed Porcelain Mortar and Pestle', 'porcelain-mortar-pestle.webp', 'برای خردکردن یا همگن‌سازی نمونه‌های جامد.')
+      variants: porcelainMortarPestleVariants
     },
     {
       slug: 'screw-cap-test-tube',
@@ -362,7 +476,7 @@
       primaryUse: 'جابه‌جایی ظروف داغ',
       safety: 'پیش از جابه‌جایی، ظرفیت و پایداری گرفتن انبر را بررسی کنید.',
       details: ['ظرف را از مرکز و با فشار یکنواخت بگیرید.', 'مسیر انتقال را از قبل خالی کنید.', 'پس از استفاده، ابزار را روی سطح مقاوم به حرارت قرار دهید.'],
-      variants: single('available', 'انبر بوته از فولاد زنگ‌نزن', 'Stainless Steel Crucible Tongs', 'crucible-tongs.webp', 'برای جابه‌جایی ظروف داغ در فاصلهٔ ایمن.')
+      variants: crucibleTongVariants
     },
     {
       slug: 'crystallizing-dish',
@@ -388,7 +502,7 @@
       primaryUse: 'خشک‌کردن و نگهداری کم‌رطوبت',
       safety: 'پیش از ایجاد خلأ، سلامت بدنه، درپوش و گریس آب‌بندی بررسی شود.',
       details: ['خلأ را مرحله‌ای و با تجهیزات مناسب ایجاد کنید.', 'دسیکانت را جدا از نمونه و در سطح مناسب قرار دهید.', 'دسیکاتور ترک‌خورده یا لب‌پریده را استفاده نکنید.'],
-      variants: single('available', 'دسیکاتور خلأ شیشه‌ای', 'Glass Vacuum Desiccator', 'vacuum-desiccator.webp', 'برای خشک‌کردن یا نگهداری نمونه در محیط کم‌رطوبت.')
+      variants: vacuumDesiccatorVariants
     },
     {
       slug: 'coiled-distillate',
@@ -401,7 +515,7 @@
       primaryUse: 'تقطیر و انتقال بخار یا مایع',
       safety: 'اتصالات شیشه‌ای را بدون فشار جانبی و با تجهیزات محافظ جابه‌جا کنید.',
       details: ['پیش از مونتاژ، همهٔ قطعات را از نظر ترک بررسی کنید.', 'اتصال را بدون اعمال نیروی پیچشی ببندید.', 'برای کار گرم، تکیه‌گاه و مسیر تخلیهٔ مناسب فراهم کنید.'],
-      variants: single('available', 'اتصال مارپیچی تقطیر', 'Coiled Distillate Joint', 'coiled-distillate.webp', 'جزئی از مجموعه‌های شیشه‌ای تقطیر و انتقال.')
+      variants: coiledDistillateVariants
     },
     {
       slug: 'pipette-stand',
@@ -414,7 +528,7 @@
       primaryUse: 'نگهداری و سازمان‌دهی پیپت‌ها',
       safety: 'پایه را روی سطح صاف قرار دهید و ظرفیت آن را بیشتر از حد مجاز پر نکنید.',
       details: ['پیپت‌ها را با نوک رو به پایین و بدون تماس با پایه قرار دهید.', 'پایه را دور از لبهٔ میز نگه دارید.', 'در صورت ریختن ماده، پایه را طبق روش آزمایشگاه تمیز کنید.'],
-      variants: single('available', 'پایهٔ چرخشی پیپت', 'Rotary Vertical Pipette Stand', 'pipette-stand.webp', 'برای نگهداری منظم پیپت‌ها در وضعیت عمودی.')
+      variants: pipetteStandVariants
     },
     {
       slug: 'allihn-condenser',
@@ -427,7 +541,7 @@
       primaryUse: 'چگالش بخار در رفلاکس و استخراج',
       safety: 'جهت ورود و خروج آب خنک‌کننده و سلامت شیلنگ‌ها بررسی شود.',
       details: ['آب خنک‌کننده را از پایین وارد و از بالا خارج کنید.', 'شیلنگ‌ها را با بست مناسب ثابت کنید.', 'از گرم‌کردن مجموعه بدون گردش خنک‌کننده خودداری کنید.'],
-      variants: single('available', 'کندانسور آلیهن', 'Allihn Condenser', 'allihn-condenser.webp', 'برای چگالش بخار در مجموعه‌های استخراج یا رفلاکس.')
+      variants: allihnCondenserVariants
     },
     {
       slug: 'buffer-solutions',
@@ -481,7 +595,15 @@
     trafalgarBottles: 'https://trafalgarscientific.co.uk/consumables/bottles/',
     trafalgarTestTubes: 'https://trafalgarscientific.co.uk/consumables/test-tubes/',
     trafalgarWatchGlass: 'https://trafalgarscientific.co.uk/consumables/watch-glass/',
-    trafalgarPetri: 'https://trafalgarscientific.co.uk/consumables/petri-dishes/'
+    trafalgarPetri: 'https://trafalgarscientific.co.uk/consumables/petri-dishes/',
+    fisherLongStemFunnels: 'https://www.fishersci.ca/shop/products/pyrex-funnels-precise-60-angle-bowls-150mm-stems-4/10326B',
+    fisherPorcelainBuchner: 'https://www.fishersci.ca/shop/products/fisherbrand-porcelain-buchner-funnels-fixed-perforated-plates-10/p-4018227',
+    fisherMortars: 'https://www.fishersci.ca/ca/en/browse/90180073/Mortars-and-Pestles',
+    fisherTongs: 'https://www.fishersci.ca/ca/en/browse/90184134/tongs',
+    borosilVacuumDesiccator: 'https://www.borosilscientific.com/product/3083-vacuum-desiccator-set/',
+    borosilGrahamCondenser: 'https://www.borosilscientific.com/product/2560-graham-coiled-condenser/',
+    fisherPipetteStands: 'https://www.fishersci.ca/shop/products/finnpipette-stands/p-4520840',
+    borosilAllihnCondenser: 'https://www.borosilscientific.com/product/2480-allihn-condenser/'
   };
 
   const reference = (label, url) => ({ label, url });
@@ -546,16 +668,16 @@
       ]
     },
     'glass-funnel-long-stem': {
-      source: vendorUrls.trafalgarFunnels,
+      source: vendorUrls.fisherLongStemFunnels,
       sources: [
-        reference('Trafalgar Scientific: قیف‌ها', vendorUrls.trafalgarFunnels),
-        reference('Borosil Scientific: شیشه‌آلات عمومی', vendorUrls.borosilGeneral),
-        reference('Fisher Scientific: شیشه‌آلات تخصصی', vendorUrls.fisherSpecialty)
+        reference('Fisher Scientific: قیف شیشه‌ای ساقه‌بلند Corning PYREX', vendorUrls.fisherLongStemFunnels),
+        reference('Borosil Scientific: قیف‌های شیشه‌ای', 'https://www.borosilscientific.com/product/6140-glass-filter-funnel/'),
+        reference('Trafalgar Scientific: قیف‌ها', vendorUrls.trafalgarFunnels)
       ],
       specifications: [
-        { label: 'جنس مرجع', value: 'شیشه؛ مدل‌های پلیمری نیز وجود دارند و نباید بدون بررسی با این تصویر یکسان فرض شوند.' },
-        { label: 'زاویهٔ کاسه', value: 'قیف‌های مخروطی برای جای‌گیری بهتر کاغذ صافی طراحی می‌شوند؛ اندازه باید از مدل خوانده شود.' },
-        { label: 'کاربرد', value: 'انتقال مایع و فیلتراسیون ثقلی با نگهدارندهٔ مناسب.' }
+        { label: 'جنس مرجع', value: 'شیشهٔ بوروسیلیکات با زاویهٔ حدود ۶۰ درجه و ساقهٔ باریک و بلند.' },
+        { label: 'گزینه‌های مدل مرجع', value: 'دهانه‌های ۵، ۶٫۵، ۷٫۵ و ۱۰ سانتی‌متر؛ ساقهٔ حدود ۱۵ سانتی‌متر.' },
+        { label: 'کاربرد', value: 'انتقال مایع و فیلتراسیون ثقلی با کاغذ صافی و تکیه‌گاه مناسب.' }
       ]
     },
     'serological-pipettes': {
@@ -620,27 +742,28 @@
       ]
     },
     'buchner-funnel': {
-      source: vendorUrls.trafalgarFunnels,
+      source: vendorUrls.fisherPorcelainBuchner,
       sources: [
-        reference('Trafalgar Scientific: قیف‌ها', vendorUrls.trafalgarFunnels),
-        reference('Sigma-Aldrich: شیشه‌آلات آزمایشگاهی', vendorUrls.sigmaGlassware),
-        reference('Fisher Scientific: شیشه‌آلات تخصصی', vendorUrls.fisherSpecialty)
+        reference('Fisher Scientific: قیف بوخنر چینی Fisherbrand', vendorUrls.fisherPorcelainBuchner),
+        reference('Fisher Scientific: کاتالوگ قیف‌های آزمایشگاهی', 'https://www.fishersci.ca/content/dam/fishersci/en_US/documents/programs/education/brochures-and-catalogs/catalogs/united-scientific-2023-laboratory-catalog.pdf'),
+        reference('Trafalgar Scientific: قیف‌ها', vendorUrls.trafalgarFunnels)
       ],
       specifications: [
-        { label: 'جنس این تصویر', value: 'چینی؛ قیف‌های بوخنر شیشه‌ای و مواد دیگر نیز در بازار وجود دارند.' },
-        { label: 'کاربرد', value: 'فیلتراسیون خلأ با کاغذ صافی و بالن یا سامانهٔ خلأ سازگار.' },
+        { label: 'جنس مدل مرجع', value: 'چینی لعاب‌دار با صفحهٔ سوراخ‌دار ثابت؛ لبه بدون لعاب است.' },
+        { label: 'گزینه‌های مدل مرجع', value: 'ظرفیت‌های ۸۷، ۱۸۶، ۳۲۰، ۵۵۰ و ۱۸۶۰ میلی‌لیتر.' },
         { label: 'نقطهٔ کنترل', value: 'آب‌بندی، سلامت ظرف خلأ و سازگاری کاغذ صافی پیش از ایجاد خلأ بررسی شود.' }
       ]
     },
     'porcelain-mortar-pestle': {
-      source: vendorUrls.sigmaPorcelain,
+      source: vendorUrls.fisherMortars,
       sources: [
-        reference('Sigma-Aldrich: ظروف چینی آزمایشگاهی', vendorUrls.sigmaPorcelain),
-        reference('Fisher Scientific: گروه تجهیزات تخصصی آزمایشگاهی', vendorUrls.fisherSpecialty),
-        reference('Trafalgar Scientific: تجهیزات و ظروف آزمایشگاهی', 'https://trafalgarscientific.co.uk/')
+        reference('Fisher Scientific: هاون‌ها و دسته‌ها', vendorUrls.fisherMortars),
+        reference('Fisher Scientific: کاتالوگ هاون چینی', 'https://www.fishersci.ca/content/dam/fishersci/en_US/documents/programs/education/brochures-and-catalogs/catalogs/united-scientific-2023-laboratory-catalog.pdf'),
+        reference('Sigma-Aldrich: ظروف چینی آزمایشگاهی', vendorUrls.sigmaPorcelain)
       ],
       specifications: [
         { label: 'جنس', value: 'چینی لعاب‌دار؛ زبری سطح و سازگاری آن با نمونه باید بررسی شود.' },
+        { label: 'گزینه‌های مدل مرجع', value: 'ظرفیت‌های ۵۰، ۷۰، ۱۵۰، ۲۷۵، ۴۰۰، ۷۵۰ و ۱۹۰۰ میلی‌لیتر.' },
         { label: 'کاربرد', value: 'خردکردن و همگن‌سازی مقدارهای کوچک از جامدات.' },
         { label: 'محدودیت', value: 'برای مواد ناشناخته یا واکنش‌پذیر، آسیاب‌کردن بدون بررسی سازگاری انجام نشود.' }
       ]
@@ -661,13 +784,14 @@
       ]
     },
     'crucible-tongs': {
-      source: vendorUrls.fisherSpecialty,
+      source: vendorUrls.fisherTongs,
       sources: [
-        reference('Fisher Scientific: تجهیزات تخصصی آزمایشگاهی', vendorUrls.fisherSpecialty),
-        reference('Trafalgar Scientific: تجهیزات و ظروف آزمایشگاهی', 'https://trafalgarscientific.co.uk/')
+        reference('Fisher Scientific: انبرها', vendorUrls.fisherTongs),
+        reference('Fisher Scientific: کاتالوگ انبر بوته', 'https://www.fishersci.ca/content/dam/fishersci/en_CA/documents/brochures-and-catalogs/catalogs/TFS_LabEssentials_2016_CANADA.pdf')
       ],
       specifications: [
-        { label: 'جنس', value: 'فولاد زنگ‌نزن در این مدل؛ طول، ظرفیت گرفتن و دمای قابل‌تحمل به ابزار وابسته است.' },
+        { label: 'جنس', value: 'فولاد زنگ‌نزن در مدل‌های مرجع؛ طول و شکل فک به گزینه وابسته است.' },
+        { label: 'گزینه‌های مدل مرجع', value: 'طول‌های ۹، ۱۸ و ۲۴ اینچ برای دسترسی معمولی تا فاصلهٔ بیشتر از کوره.' },
         { label: 'کاربرد', value: 'جابه‌جایی بوته یا ظرف داغ بدون تماس مستقیم دست.' },
         { label: 'کنترل پیش از کار', value: 'پایداری فک‌ها، وزن ظرف و مسیر انتقال پیش از بلندکردن بررسی شود.' }
       ]
@@ -688,52 +812,57 @@
       ]
     },
     'vacuum-desiccator': {
-      source: vendorUrls.trafalgarDesiccators,
+      source: vendorUrls.borosilVacuumDesiccator,
       sources: [
-        reference('Trafalgar Scientific: دسیکاتورها', vendorUrls.trafalgarDesiccators),
-        reference('Sigma-Aldrich: شیشه‌آلات آزمایشگاهی', vendorUrls.sigmaGlassware),
-        reference('Fisher Scientific: شیشه‌آلات تخصصی', vendorUrls.fisherSpecialty)
+        reference('Borosil Scientific: دسیکاتور خلأ 3083', vendorUrls.borosilVacuumDesiccator),
+        reference('Borosil Scientific: راهنمای دسیکاتورها', 'https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/general-laboratory-glassware/desiccators/'),
+        reference('Trafalgar Scientific: دسیکاتورها', vendorUrls.trafalgarDesiccators)
       ],
       specifications: [
-        { label: 'ساختار', value: 'بدنه و درپوش شیشه‌ای با صفحهٔ جداکننده؛ مناسب‌بودن برای خلأ باید از مدل تأیید شود.' },
+        { label: 'ساختار', value: 'بدنه و درپوش شیشه‌ای با صفحهٔ چینی و شیر خلأ؛ مدل 3083 برای استفاده زیر خلأ طراحی شده است.' },
+        { label: 'گزینه‌های مدل مرجع', value: 'قطر اسمی ۱۰۰، ۱۵۰، ۲۰۰، ۲۵۰ و ۳۰۰ میلی‌متر.' },
         { label: 'کاربرد', value: 'خشک‌کردن نمونه یا محافظت از مواد رطوبت‌گیر و حساس به رطوبت.' },
         { label: 'ایمنی', value: 'بدنه، لبهٔ آب‌بندی و اتصال خلأ پیش از استفاده بررسی شود؛ ظرف ترک‌خورده استفاده نشود.' }
       ]
     },
     'coiled-distillate': {
-      source: vendorUrls.fisherSpecialty,
+      source: vendorUrls.borosilGrahamCondenser,
       sources: [
-        reference('Fisher Scientific: شیشه‌آلات تخصصی', vendorUrls.fisherSpecialty),
-        reference('Trafalgar Scientific: فلاسک‌ها و شیشه‌آلات حجمی', vendorUrls.trafalgarFlasks),
+        reference('Borosil Scientific: کندانسور مارپیچی Graham 2560', vendorUrls.borosilGrahamCondenser),
+        reference('Fisher Scientific: کندانسورهای Graham', 'https://www.fishersci.ca/ca/en/browse/90094027/graham-condensers'),
         reference('Sigma-Aldrich: شیشه‌آلات آزمایشگاهی', vendorUrls.sigmaGlassware)
       ],
       specifications: [
-        { label: 'جنس', value: 'شیشهٔ آزمایشگاهی؛ نوع اتصال و ابعاد باید با مجموعهٔ تقطیر یکسان باشد.' },
+        { label: 'جنس', value: 'شیشهٔ آزمایشگاهی با لولهٔ داخلی مارپیچی و اتصال‌های قابل تعویض.' },
+        { label: 'گزینه‌های مدل مرجع', value: 'طول ژاکت‌های ۳۰۰، ۴۰۰ و ۵۰۰ میلی‌متر با اتصال ۲۴/۲۹.' },
         { label: 'کاربرد', value: 'جزئی از سامانه‌های تقطیر و انتقال بخار یا مایع.' },
         { label: 'مونتاژ', value: 'اتصال‌ها بدون فشار جانبی بسته شوند و برای قطعهٔ سنگین تکیه‌گاه فراهم شود.' }
       ]
     },
     'pipette-stand': {
-      source: vendorUrls.trafalgarFlasks,
+      source: vendorUrls.fisherPipetteStands,
       sources: [
-        reference('Trafalgar Scientific: شیشه‌آلات و تجهیزات آزمایشگاهی', vendorUrls.trafalgarFlasks),
-        reference('Fisher Scientific: تجهیزات تخصصی آزمایشگاهی', vendorUrls.fisherSpecialty)
+        reference('Fisher Scientific: پایه‌های چرخشی Finnpipette', vendorUrls.fisherPipetteStands),
+        reference('Fisher Scientific: پایهٔ چرخشی Bel-Art با ۹۴ جایگاه', 'https://www.fishersci.ca/shop/products/bel-art-scienceware-rotary-pipet-stand/03410507'),
+        reference('Fisher Scientific: پایهٔ چرخشی Universal', 'https://www.fishersci.ca/shop/products/universal-carousel-pipette-stand-7/p-200000191')
       ],
       specifications: [
-        { label: 'جنس تصویر', value: 'پلی‌پروپیلن؛ جنس و ظرفیت پایه باید از مدل انتخابی تأیید شود.' },
+        { label: 'جنس و طراحی', value: 'پایه‌های چرخشی از پلیمر یا پلاستیک مهندسی؛ جنس دقیق به مدل وابسته است.' },
+        { label: 'گزینه‌های مرجع', value: 'از پایهٔ ۶ دستی یا ۳ الکترونیکی تا پایهٔ چرخشی ۹۴ پیپت.' },
         { label: 'کاربرد', value: 'نگهداری عمودی و سازمان‌دهی پیپت‌ها روی سطح پایدار.' },
         { label: 'کنترل آلودگی', value: 'نوک پیپت‌ها با سطح پایه تماس نداشته باشند و پایه پس از ریخت‌وپاش تمیز شود.' }
       ]
     },
     'allihn-condenser': {
-      source: vendorUrls.fisherSpecialty,
+      source: vendorUrls.borosilAllihnCondenser,
       sources: [
-        reference('Fisher Scientific: کندانسورها و شیشه‌آلات تخصصی', vendorUrls.fisherSpecialty),
-        reference('Trafalgar Scientific: شیشه‌آلات و فلاسک‌ها', vendorUrls.trafalgarFlasks),
-        reference('Sigma-Aldrich: شیشه‌آلات آزمایشگاهی', vendorUrls.sigmaGlassware)
+        reference('Borosil Scientific: کندانسور آلیهن 2480', vendorUrls.borosilAllihnCondenser),
+        reference('Borosil Scientific: گروه کندانسورها', 'https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/general-laboratory-glassware/chromatography-columns/'),
+        reference('Fisher Scientific: شیشه‌آلات تخصصی', vendorUrls.fisherSpecialty)
       ],
       specifications: [
-        { label: 'جنس', value: 'شیشهٔ آزمایشگاهی؛ طول، اتصال و تعداد حباب‌ها به مدل وابسته است.' },
+        { label: 'جنس', value: 'شیشهٔ آزمایشگاهی با حباب‌های متوالی برای افزایش سطح چگالش.' },
+        { label: 'گزینه‌های مدل مرجع', value: 'طول ژاکت‌های ۲۰۰، ۳۰۰، ۴۰۰ و ۶۰۰ میلی‌متر.' },
         { label: 'کاربرد', value: 'چگالش بخار در رفلاکس یا سامانه‌های استخراج.' },
         { label: 'خنک‌کاری', value: 'آب معمولاً از پایین وارد و از بالای پوشش خارج می‌شود؛ شیلنگ‌ها باید مهار شوند.' }
       ]

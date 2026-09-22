@@ -1,16 +1,16 @@
-const CACHE_VERSION = 'lab-rules-v26';
+const CACHE_VERSION = 'lab-rules-v28';
 const APP_SHELL = [
   './',
   './index.html',
   './offline.html',
   './manifest.webmanifest',
-  './styles.min.css?v=6.0',
+  './styles.min.css?v=6.2',
   './asset/icon-system.min.js?v=1.0',
   './asset/icons.svg',
   './script.min.js?v=5.8',
-  './equipment-data.min.js?v=1.1',
-  './gallery.min.js?v=2.1',
-  './equipment-detail.min.js?v=1.1',
+  './equipment-data.min.js?v=1.2',
+  './gallery.min.js?v=2.2',
+  './equipment-detail.min.js?v=1.2',
   './equipment-detail.min.css?v=1.1',
   './Equipment/volumetric-flasks.html',
   './Equipment/reagent-bottles.html',
@@ -38,9 +38,12 @@ const APP_SHELL = [
   './asset/vazirmatn-arabic.woff2',
   './asset/outfit-latin.woff2',
   './Waste%20Lab.webp',
-  './asset/gallery/lab-courtyard.webp',
-  './asset/gallery/lab-workbench.webp',
-  './asset/gallery/lab-interior.webp'
+  './asset/gallery/lab-courtyard-optimized.webp',
+  './asset/gallery/lab-workbench-optimized.webp',
+  './asset/gallery/lab-interior-optimized.webp',
+  './asset/gallery/lab-courtyard-mobile.webp',
+  './asset/gallery/lab-workbench-mobile.webp',
+  './asset/gallery/lab-interior-mobile.webp'
 ];
 
 self.addEventListener('install', (event) => {

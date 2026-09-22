@@ -25,9 +25,9 @@
   <link rel="icon" type="image/webp" href="Waste%20Lab.webp">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
-  <link rel="preload" href="./asset/gallery/lab-interior.webp" as="image" type="image/webp" fetchpriority="high">
-  <link rel="preload" href="./styles.min.css?v=6.0" as="style" crossorigin fetchpriority="high" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="./styles.min.css?v=6.0"></noscript>
+  <link rel="preload" href="./asset/gallery/lab-interior-optimized.webp" as="image" type="image/webp" imagesrcset="./asset/gallery/lab-interior-mobile.webp 640w, ./asset/gallery/lab-interior-optimized.webp 1000w" imagesizes="(max-width: 768px) 100vw, 600px" fetchpriority="high">
+  <link rel="preload" href="./styles.min.css?v=6.2" as="style" crossorigin fetchpriority="high" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="./styles.min.css?v=6.2"></noscript>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -72,7 +72,7 @@
   </script>
   <style id="critical-css">
     @font-face{font-family:'Vazirmatn';font-style:normal;font-weight:300 800;font-display:swap;src:url('./asset/vazirmatn-arabic.woff2') format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+200C-200E,U+FB50-FDFF,U+FE70-FEFC}
-    .material-symbols-outlined{font-weight:normal;font-style:normal;font-size:24px;line-height:1;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;direction:ltr;flex:0 0 auto}.icon{display:block;width:1em;height:1em;flex:0 0 auto;overflow:visible;color:currentColor}
+    .material-symbols-outlined{font-weight:normal;font-style:normal;font-size:24px;line-height:1;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;direction:ltr;flex:0 0 auto;width:1em;height:1em;overflow:hidden}.material-symbols-outlined:not([data-icon-resolved]){visibility:hidden}.icon{display:block;width:1em;height:1em;flex:0 0 auto;overflow:visible;color:currentColor}
     :root{--bg-primary:#0f172a;--bg-secondary:#1e293b;--bg-tertiary:#334155;--border-color:#334155;--text-primary:#f8fafc;--text-muted:#b6c2d1;--accent-emerald:#10b981;--accent-emerald-strong:#047857;--accent-emerald-glow:rgba(16,185,129,.15);--accent-amber:#f59e0b;--accent-red:#ef4444;--accent-red-strong:#b91c1c;--accent-red-glow:rgba(239,68,68,.2);--card-shadow:0 10px 30px -10px rgba(0,0,0,.7);--font-fa:'Vazirmatn',system-ui,-apple-system,sans-serif}
     [data-theme="light"]{--bg-primary:#f8fafc;--bg-secondary:#fff;--bg-tertiary:#f1f5f9;--border-color:#e2e8f0;--text-primary:#0f172a;--text-muted:#475569;--accent-emerald:#047857;--accent-emerald-strong:#065f46;--accent-emerald-glow:rgba(5,150,105,.1);--accent-amber:#d97706;--accent-red:#b91c1c;--accent-red-strong:#991b1b;--accent-red-glow:rgba(220,38,38,.1);--card-shadow:0 10px 25px -10px rgba(15,23,42,.08)}
     *,*::before,*::after{box-sizing:border-box}
@@ -90,6 +90,13 @@
     @media(max-width:480px){.tab-btn{flex:1 1 100%}.chatbot-fab-loader{bottom:1rem;right:1rem;width:48px;height:48px}.chatbot-fab-loader svg{width:27px;height:27px}}
     @media(max-width:576px){.control-btn{padding:.6rem;border-radius:50%;width:42px;height:42px;justify-content:center}.control-btn span:not(.material-symbols-outlined){display:none}}
   </style>
+  <style id="welcome-critical-css">
+    .welcome-panel{display:grid;grid-template-columns:minmax(250px,.72fr) minmax(0,1.28fr);gap:1rem;align-items:stretch;margin-bottom:0;padding:1rem;border:1px solid var(--border-color);border-radius:18px;background:linear-gradient(135deg,var(--accent-emerald-glow),transparent 58%),var(--bg-secondary);box-shadow:var(--card-shadow)}
+    .welcome-panel-copy{display:flex;flex-direction:column;justify-content:center;padding:1.25rem}.welcome-kicker{margin-bottom:.55rem;color:var(--accent-emerald);font-size:.8rem;font-weight:800}.welcome-panel-copy h2{margin:0;color:var(--text-primary);font-size:clamp(1.55rem,3vw,2.2rem);font-weight:800;letter-spacing:-.03em;line-height:1.35}.welcome-panel-copy p{max-width:30ch;margin:.75rem 0 0;color:var(--text-muted);font-size:.92rem;line-height:1.9}
+    .welcome-photo-grid{display:grid;min-height:320px;grid-template-columns:minmax(0,1.35fr) minmax(170px,.65fr);grid-template-rows:repeat(2,minmax(0,1fr));gap:.8rem}.welcome-photo-grid .lab-photo-card{display:flex;min-width:0;min-height:0;margin:0;flex-direction:column;overflow:hidden;border:1px solid var(--border-color);border-radius:14px;background:var(--bg-tertiary)}.welcome-photo-grid .lab-photo-card-featured{grid-row:1 / -1}.welcome-photo-grid .lab-photo-card img{display:block;flex:1 1 auto;width:100%;height:100%;min-height:0;object-fit:cover}.welcome-photo-grid .lab-photo-card figcaption{flex:0 0 auto;padding:.7rem .85rem;color:var(--text-muted);font-size:.82rem;line-height:1.5}
+    @media(max-width:768px){.welcome-panel{grid-template-columns:minmax(0,1fr);padding:.85rem;border-radius:14px}.welcome-panel-copy{padding:.75rem .6rem .35rem}.welcome-panel-copy h2{font-size:clamp(1.4rem,5vw,1.8rem)}.welcome-panel-copy p{max-width:42ch;font-size:.84rem}.welcome-photo-grid{min-height:0;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:220px 150px}.welcome-photo-grid .lab-photo-card-featured{grid-column:1 / -1;grid-row:auto}}
+    @media(max-width:480px){.welcome-photo-grid{grid-template-columns:minmax(0,1fr);grid-template-rows:210px 145px 145px}.welcome-photo-grid .lab-photo-card-featured{grid-column:auto}}
+  </style>
   <style id="rules-carousel-critical-css">
     .rules-carousel{position:relative;min-width:0}.rules-carousel-controls{display:none}
     @media(max-width:992px){.rules-carousel{overflow:hidden;padding-bottom:3.75rem}.rules-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:0;overflow:visible;margin:0;padding:.85rem 2.75rem .25rem;perspective:1200px;transform-style:preserve-3d;touch-action:pan-y}.rules-grid .rule-card{grid-area:1/1;width:100%;min-width:0;padding:1.15rem 1.25rem}.rules-grid .rule-card-title{font-size:1rem}.rules-grid .rule-item{font-size:.84rem;line-height:1.65}.rules-grid .rule-list{gap:.85rem}.rules-grid .rule-card-header{margin-bottom:.95rem;padding-bottom:.6rem}.rules-grid .rule-card[data-carousel-position=previous]>*,.rules-grid .rule-card[data-carousel-position=next]>*{opacity:0;visibility:hidden}.rules-carousel-controls{display:block;position:absolute;inset:0;pointer-events:none}}
@@ -101,12 +108,14 @@
   </style>
   <script defer fetchpriority="high" src="./asset/icon-system.min.js?v=1.0"></script>
   <script defer fetchpriority="low" src="./script.min.js?v=5.8"></script>
-  <script defer fetchpriority="low" src="./equipment-data.min.js?v=1.1"></script>
-  <script defer fetchpriority="low" src="./gallery.min.js?v=2.1"></script>
+  <script defer fetchpriority="low" src="./equipment-data.min.js?v=1.2"></script>
+  <script defer fetchpriority="low" src="./gallery.min.js?v=2.2"></script>
 </head>
 <body>
 
-  <main class="container">
+  <a class="skip-link" href="#main-content">پرش به محتوای اصلی</a>
+
+  <main class="container" id="main-content">
     
     <!-- Header Area -->
     <header>
@@ -127,7 +136,7 @@
           </div>
           
           <!-- Spill Simulator Trigger Button -->
-          <button class="control-btn" id="drill-modal-btn" title="شبیه‌ساز تعاملی ریزش مواد" aria-haspopup="dialog" aria-controls="drill-modal">
+          <button class="control-btn" id="drill-modal-btn" title="شبیه‌ساز تعاملی ریزش مواد" aria-label="باز کردن شبیه‌ساز تعاملی ریزش و نشت مواد شیمیایی" aria-haspopup="dialog" aria-controls="drill-modal">
             <svg class="spill-simulator-icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
               <title>barrel-leak</title>
               <path fill="currentColor" d="M151 28c-34.4 0-65.6 5.33-87.35 13.49c-10.88 4.08-19.36 8.9-24.62 13.56S32 63.62 32 67s1.77 7.29 7.03 11.95s13.74 9.48 24.62 13.56C85.4 100.7 116.6 106 151 106s65.6-5.3 87.3-13.49c10.9-4.08 19.4-8.9 24.7-13.56c5.2-4.66 7-8.57 7-11.95s-1.8-7.29-7-11.95c-5.3-4.66-13.8-9.48-24.7-13.56C216.6 33.33 185.4 28 151 28m65 28a24 8 0 0 1 24 8a24 8 0 0 1-24 8a24 8 0 0 1-24-8a24 8 0 0 1 24-8M32 96.35V179c0 2 1.23 4.6 6.87 8.2c5.63 3.6 14.88 7.2 26.31 10.1C88.04 203 119.6 206 151 206s63-3 85.8-8.7c11.4-2.9 20.7-6.5 26.3-10.1c5.7-3.6 6.9-6.2 6.9-8.2V96.35c-7 5.05-15.5 9.35-25.3 13.05c-24.6 9.2-57.4 14.6-93.7 14.6s-69.1-5.4-93.67-14.6c-9.84-3.7-18.37-8-25.33-13.05M288 107v244.1l39.8 9.1c-3.4-7.9-5.8-17.1-7.2-27.5c-3.5-26.1-1.5-59.3 6.6-94.7c8-35.4 20.5-66.1 35-88.1c5.8-8.8 11.9-16.1 18.3-21.8zm140.2 77.9c-56 7.6-114.1 108.3-74.4 180.8c.9.5 1.7.8 2.6 1c3.3.8 7.5-.1 13.1-4.2c5.8-4.1 12.4-11.3 18.8-21c12.8-19.4 24.9-48.6 32.5-82.2c6.2-27.3 8.5-53.3 7.4-74.4M32 204v84c0 2 1.23 4.6 6.87 8.2c5.63 3.6 14.88 7.2 26.31 10.1C88.04 312 119.6 315 151 315s63-3 85.8-8.7c11.4-2.9 20.7-6.5 26.3-10.1c5.7-3.6 6.9-6.2 6.9-8.2v-84c-7.9 4.6-17.6 7.9-28.8 10.7C216 221 183.6 224 151 224s-65.04-3-90.18-9.3C49.64 211.9 39.91 208.5 32 204m0 109v58c0 5 2.2 9.3 7.86 14.2c5.66 4.8 14.7 9.5 25.99 13.3C88.42 406 119.8 410 151 410s62.6-4 85.2-11.5c11.2-3.8 20.3-8.5 25.9-13.3c5.7-4.9 7.9-9.2 7.9-14.2v-58c-7.9 4.6-17.6 7.9-28.8 10.7C216 330 183.6 333 151 333s-65.04-3-90.18-9.3C49.64 320.9 39.91 317.5 32 313m378.5 54.9c-.7 0-1.5 0-2.2.1c-19.5 1.5-6.5 45.2-24.3 53.2c-15.3 7-31.5-16.6-48.2-14.5c-27.9 3.5-78.1 15.8-72.3 43.3c8 37.7 76.7 8.1 114.8 14c36 5.6 87.2 50.9 107.4 20.5c25.4-38.2-29.1-117.7-75.2-116.6m-181.9 91.3c-5.1 0-9.4 2.1-12 6.4c-4.7 7.7 6.2 19.1 14.3 23c9.4 4.5 35.6 5.8 31.1-3.6c-7.8-16.4-22.3-26-33.4-25.8"/>
@@ -165,15 +174,15 @@
         </div>
         <div class="welcome-photo-grid lab-photo-grid" aria-label="تصاویر محیط آزمایشگاه">
           <figure class="lab-photo-card lab-photo-card-featured">
-            <img src="./asset/gallery/lab-interior.webp" alt="نمای داخلی آزمایشگاه با میزها و کابینت‌های نگهداری" loading="eager" fetchpriority="high" decoding="async" width="2200" height="1467">
+            <img src="./asset/gallery/lab-interior-optimized.webp" srcset="./asset/gallery/lab-interior-mobile.webp 640w, ./asset/gallery/lab-interior-optimized.webp 1000w" sizes="(max-width: 768px) 100vw, 600px" alt="نمای داخلی آزمایشگاه با میزها و کابینت‌های نگهداری" loading="eager" fetchpriority="high" decoding="async" width="1000" height="750">
             <figcaption>فضای آماده‌سازی و نگهداری تجهیزات</figcaption>
           </figure>
           <figure class="lab-photo-card">
-            <img src="./asset/gallery/lab-workbench.webp" alt="فعالیت کاربر در کنار میز و تجهیزات آزمایشگاهی" loading="lazy" decoding="async" width="2200" height="1467">
+            <img src="./asset/gallery/lab-workbench-optimized.webp" srcset="./asset/gallery/lab-workbench-mobile.webp 640w, ./asset/gallery/lab-workbench-optimized.webp 1000w" sizes="(max-width: 768px) 100vw, 600px" alt="فعالیت کاربر در کنار میز و تجهیزات آزمایشگاهی" loading="lazy" decoding="async" width="1000" height="750">
             <figcaption>کار روزمره در محیط آزمایشگاه</figcaption>
           </figure>
           <figure class="lab-photo-card">
-            <img src="./asset/gallery/lab-courtyard.webp" alt="محوطهٔ سبز پیرامون ساختمان آزمایشگاه" loading="lazy" decoding="async" width="2200" height="1467">
+            <img src="./asset/gallery/lab-courtyard-optimized.webp" srcset="./asset/gallery/lab-courtyard-mobile.webp 640w, ./asset/gallery/lab-courtyard-optimized.webp 1200w" sizes="(max-width: 768px) 100vw, 300px" alt="محوطهٔ سبز پیرامون ساختمان آزمایشگاه" loading="lazy" decoding="async" width="1200" height="647">
             <figcaption>محوطهٔ پیرامون آزمایشگاه</figcaption>
           </figure>
         </div>
@@ -1276,8 +1285,8 @@
             <p>ابزارهای شیشه‌ای، چینی، فلزی و مواد مصرفی را جستجو کنید و جزئیات کاربردی هر مورد را ببینید.</p>
           </div>
           <div class="gallery-stat-list" aria-label="خلاصهٔ گالری">
-            <div class="gallery-stat"><strong>۲۰</strong><span>خانوادهٔ تجهیز</span></div>
-            <div class="gallery-stat"><strong>۳۰</strong><span>گزینهٔ قابل انتخاب</span></div>
+            <div class="gallery-stat"><strong id="gallery-family-count">۲۰</strong><span>خانوادهٔ تجهیز</span></div>
+            <div class="gallery-stat"><strong id="gallery-variant-count">۹۵</strong><span>گزینهٔ قابل انتخاب</span></div>
             <div class="gallery-stat"><strong>۴</strong><span>راهنمای عملیاتی</span></div>
           </div>
         </section>
@@ -1298,21 +1307,26 @@
               <input id="gallery-equipment-search" type="search" autocomplete="off" placeholder="جستجو در نام ابزار یا دسته‌بندی">
             </label>
             <div class="equipment-filter-list" role="group" aria-label="فیلتر دسته‌بندی تجهیزات">
-              <button type="button" class="equipment-filter-btn active" data-equipment-filter="all"><span class="material-symbols-outlined" aria-hidden="true">gallery</span><span>همه</span></button>
-              <button type="button" class="equipment-filter-btn" data-equipment-filter="glassware"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>شیشه‌آلات</span></button>
-              <button type="button" class="equipment-filter-btn" data-equipment-filter="porcelain"><span class="material-symbols-outlined" aria-hidden="true">waterdrop</span><span>چینی</span></button>
-              <button type="button" class="equipment-filter-btn" data-equipment-filter="metal"><span class="material-symbols-outlined" aria-hidden="true">scale</span><span>فلزی</span></button>
-              <button type="button" class="equipment-filter-btn" data-equipment-filter="solutions"><span class="material-symbols-outlined" aria-hidden="true">waterdrop</span><span>محلول و خشک‌کننده</span></button>
-              <button type="button" class="equipment-filter-btn" data-equipment-filter="accessories"><span class="material-symbols-outlined" aria-hidden="true">settings</span><span>لوازم جانبی</span></button>
+              <button type="button" class="equipment-filter-btn active" data-equipment-filter="all" aria-pressed="true"><span class="material-symbols-outlined" aria-hidden="true">gallery</span><span>همه</span></button>
+              <button type="button" class="equipment-filter-btn" data-equipment-filter="glassware" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>شیشه‌آلات</span></button>
+              <button type="button" class="equipment-filter-btn" data-equipment-filter="porcelain" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">waterdrop</span><span>چینی</span></button>
+              <button type="button" class="equipment-filter-btn" data-equipment-filter="metal" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">scale</span><span>فلزی</span></button>
+              <button type="button" class="equipment-filter-btn" data-equipment-filter="solutions" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">waterdrop</span><span>محلول و خشک‌کننده</span></button>
+              <button type="button" class="equipment-filter-btn" data-equipment-filter="accessories" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">settings</span><span>لوازم جانبی</span></button>
             </div>
           </div>
 
           <p class="gallery-result-count" id="gallery-equipment-count" role="status" aria-live="polite"></p>
           <div class="equipment-catalog-grid" id="gallery-equipment-grid"></div>
-          <div class="gallery-empty-state" id="gallery-equipment-empty" hidden>
+          <div class="gallery-empty-state" id="gallery-equipment-empty" role="status" aria-live="polite" aria-atomic="true" hidden>
             <span class="material-symbols-outlined" aria-hidden="true">search_off</span>
             <strong>موردی پیدا نشد</strong>
             <span>عبارت جستجو یا دسته‌بندی دیگری را امتحان کنید.</span>
+          </div>
+          <div class="equipment-catalog-suggestion">
+            <span class="material-symbols-outlined" aria-hidden="true">add_circle</span>
+            <span id="equipment-suggestion-help">موردی در کاتالوگ نیست؟</span>
+            <a class="catalog-suggestion-link" href="https://github.com/Soheil-Aghayani/Solid-Waste-Laboratory/issues/new" target="_blank" rel="noopener noreferrer" aria-describedby="equipment-suggestion-help">پیشنهاد افزودن ماده یا تجهیز</a>
           </div>
         </section>
       </div>

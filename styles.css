@@ -28,6 +28,13 @@
   white-space: nowrap;
   direction: ltr;
   flex: 0 0 auto;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+}
+
+.material-symbols-outlined:not([data-icon-resolved]) {
+  visibility: hidden;
 }
 
 .icon {
@@ -4631,6 +4638,67 @@ footer {
 }
 
 /* Final showroom cascade */
+
+/* Accessible catalog utilities */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  inset-inline-start: 0.75rem;
+  z-index: 2000;
+  padding: 0.55rem 0.85rem;
+  border: 2px solid var(--accent-emerald);
+  border-radius: 10px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-decoration: none;
+  transform: translateY(-180%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+.equipment-catalog-suggestion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin: 1.35rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.equipment-catalog-suggestion > .material-symbols-outlined {
+  color: var(--accent-emerald);
+  font-size: 1rem;
+}
+
+.catalog-suggestion-link {
+  color: var(--accent-emerald-strong);
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent-emerald) 45%, transparent);
+  text-underline-offset: 0.2em;
+}
+
+.catalog-suggestion-link:hover,
+.catalog-suggestion-link:focus-visible {
+  color: var(--text-primary);
+}
+
+@media (max-width: 520px) {
+  .equipment-catalog-suggestion {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding-inline: 0.5rem;
+  }
+}
+
 /* Final icon CTA override */
 .equipment-card-cta::after {
   display: none !important;

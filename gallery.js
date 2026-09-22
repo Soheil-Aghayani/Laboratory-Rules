@@ -3,6 +3,7 @@
 
   const toPersianDigits = value => String(value).replace(/[0-9]/g, digit => '۰۱۲۳۴۵۶۷۸۹'[digit]);
   const normalise = value => String(value || '').toLocaleLowerCase('fa-IR').replace(/[\u200c\s]+/g, ' ').trim();
+  const variantCount = catalog.reduce((total, family) => total + family.variants.length, 0);
 
   function getSearchText(family) {
     return normalise([
@@ -54,9 +55,33 @@
     const empty = document.getElementById('gallery-equipment-empty');
     const filterButtons = Array.from(document.querySelectorAll('[data-equipment-filter]'));
     const mainSearch = document.getElementById('search-input');
+    const familyCount = document.getElementById('gallery-family-count');
+    const galleryVariantCount = document.getElementById('gallery-variant-count');
+    const suggestionLink = document.querySelector('.catalog-suggestion-link');
     if (!grid || !search || !count || !empty) return;
 
     let activeFilter = 'all';
+
+    if (familyCount) familyCount.textContent = toPersianDigits(catalog.length);
+    if (galleryVariantCount) galleryVariantCount.textContent = toPersianDigits(variantCount);
+
+    if (suggestionLink) {
+      const suggestionUrl = new URL(suggestionLink.href, window.location.href);
+      suggestionUrl.searchParams.set('title', 'پیشنهاد افزودن به کاتالوگ');
+      suggestionUrl.searchParams.set('body', [
+        '## پیشنهاد افزودن به کاتالوگ',
+        '',
+        '- نوع پیشنهاد: ماده یا تجهیز',
+        '- نام فارسی:',
+        '- نام انگلیسی یا مدل:',
+        '- منبع یا لینک پیشنهادی:',
+        '',
+        '### توضیحات تکمیلی',
+        '',
+        'لطفاً اطلاعات منبع‌دار، کاربرد و نکات ایمنی موردنظر را بنویسید. پس از بررسی منبع معتبر دربارهٔ افزودن مورد به کاتالوگ تصمیم‌گیری می‌شود.'
+      ].join('\n'));
+      suggestionLink.href = suggestionUrl.toString();
+    }
 
     function render() {
       const query = normalise(search.value);
@@ -69,12 +94,15 @@
       grid.innerHTML = filtered.map(renderEquipmentCard).join('');
       empty.hidden = filtered.length !== 0;
       count.textContent = `نمایش ${toPersianDigits(filtered.length)} خانواده از ${toPersianDigits(catalog.length)} خانواده`;
+      filterButtons.forEach(filterButton => {
+        filterButton.classList.toggle('active', filterButton.dataset.equipmentFilter === activeFilter);
+        filterButton.setAttribute('aria-pressed', String(filterButton.dataset.equipmentFilter === activeFilter));
+      });
     }
 
     filterButtons.forEach(button => {
       button.addEventListener('click', () => {
         activeFilter = button.dataset.equipmentFilter || 'all';
-        filterButtons.forEach(filterButton => filterButton.classList.toggle('active', filterButton === button));
         render();
       });
     });

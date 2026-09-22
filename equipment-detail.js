@@ -37,7 +37,7 @@
   function renderPage(family, selectedVariant) {
     const variantCount = family.variants.length;
     const variantButtons = family.variants.map(variant => `
-      <button type="button" role="radio" class="equipment-detail-variant-button" data-variant-id="${variant.id}" aria-checked="${variant.id === selectedVariant.id}">
+      <button type="button" role="radio" class="equipment-detail-variant-button" data-variant-id="${variant.id}" aria-label="${variant.titleFa}" aria-checked="${variant.id === selectedVariant.id}" tabindex="${variant.id === selectedVariant.id ? '0' : '-1'}">
         ${variant.label}
       </button>
     `).join('');
@@ -134,7 +134,9 @@
     copy.textContent = variant.detail;
 
     root.querySelectorAll('[data-variant-id]').forEach(button => {
-      button.setAttribute('aria-checked', String(button.dataset.variantId === variant.id));
+      const isSelected = button.dataset.variantId === variant.id;
+      button.setAttribute('aria-checked', String(isSelected));
+      button.tabIndex = isSelected ? 0 : -1;
     });
 
     try {
@@ -162,10 +164,26 @@
     if (description) description.setAttribute('content', family.introduction);
 
     root.innerHTML = renderPage(family, selectedVariant);
-    root.querySelectorAll('[data-variant-id]').forEach(button => {
+    const variantButtons = Array.from(root.querySelectorAll('[data-variant-id]'));
+    variantButtons.forEach((button, index) => {
       button.addEventListener('click', () => {
         const variant = family.variants.find(item => item.id === button.dataset.variantId);
         if (variant) updateSelectedVariant(root, family, variant);
+      });
+      button.addEventListener('keydown', event => {
+        const isForward = event.key === 'ArrowLeft' || event.key === 'ArrowDown';
+        const isBackward = event.key === 'ArrowRight' || event.key === 'ArrowUp';
+        if (!isForward && !isBackward) return;
+
+        event.preventDefault();
+        const offset = isForward ? 1 : -1;
+        const nextIndex = (index + offset + variantButtons.length) % variantButtons.length;
+        const nextButton = variantButtons[nextIndex];
+        const nextVariant = family.variants.find(item => item.id === nextButton.dataset.variantId);
+        if (nextVariant) {
+          updateSelectedVariant(root, family, nextVariant);
+          nextButton.focus();
+        }
       });
     });
 
