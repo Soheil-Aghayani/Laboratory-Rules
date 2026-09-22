@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+  <title id="title">تصویر شماتیک بوتهٔ آزمایشگاهی</title>
+  <desc id="desc">طرح سادهٔ یک بوتهٔ آزمایشگاهی برای گزینه‌هایی که تصویر محصول آن‌ها در کاتالوگ محلی موجود نیست.</desc>
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef3f5"/>
+      <stop offset="1" stop-color="#9aa8b8"/>
+    </linearGradient>
+    <linearGradient id="lid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dce5e9"/>
+      <stop offset="1" stop-color="#7d8e9e"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="320" cy="407" rx="164" ry="22" fill="#0f172a" opacity=".12"/>
+  <path d="M205 154h230l-27 211c-3 26-25 43-51 43h-74c-26 0-48-17-51-43z" fill="url(#body)" stroke="#506174" stroke-width="7"/>
+  <ellipse cx="320" cy="154" rx="115" ry="28" fill="#dce5e9" stroke="#506174" stroke-width="7"/>
+  <ellipse cx="320" cy="154" rx="84" ry="15" fill="#607386" opacity=".4"/>
+  <path d="M220 120h200l28 24H192z" fill="url(#lid)" stroke="#506174" stroke-width="7"/>
+  <ellipse cx="320" cy="113" rx="45" ry="13" fill="#b8c5cc" stroke="#506174" stroke-width="7"/>
+  <path d="M267 206h106M257 242h126M248 279h144M242 316h156" stroke="#ffffff" stroke-width="7" opacity=".32" stroke-linecap="round"/>
+</svg>

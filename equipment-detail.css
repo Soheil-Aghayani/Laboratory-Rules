@@ -295,6 +295,43 @@
   padding-top: 0.25rem;
 }
 
+.equipment-detail-variant-sections {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.equipment-detail-variant-section {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--bg-tertiary) 72%, var(--bg-secondary));
+}
+
+.equipment-detail-variant-section-heading {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.equipment-detail-variant-section-title {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.equipment-detail-variant-section-description {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  line-height: 1.7;
+}
+
+.equipment-detail-variant-section .equipment-detail-variant-list {
+  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+}
+
 .equipment-detail-variant-groups {
   display: grid;
   gap: 0.75rem;

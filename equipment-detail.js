@@ -35,6 +35,40 @@
   }
 
   function variantPickerMarkup(family, selectedVariant) {
+    if (family.variantSections?.length) {
+      const variantById = new Map(family.variants.map(variant => [variant.id, variant]));
+      const sections = family.variantSections.map((section, sectionIndex) => {
+        const titleId = `equipment-detail-variant-section-${sectionIndex}`;
+        const variants = section.variantIds.map(id => variantById.get(id)).filter(Boolean);
+        const options = variants.map(variant => `
+          <button type="button" role="radio" class="equipment-detail-variant-button" data-variant-id="${variant.id}" aria-label="${variant.titleFa}" aria-checked="${variant.id === selectedVariant.id}" tabindex="${variant.id === selectedVariant.id ? '0' : '-1'}">
+            ${variant.label}
+          </button>
+        `).join('');
+
+        return `
+          <section class="equipment-detail-variant-section" aria-labelledby="${titleId}">
+            <div class="equipment-detail-variant-section-heading">
+              <h3 class="equipment-detail-variant-section-title" id="${titleId}">${section.label}</h3>
+              <p class="equipment-detail-variant-section-description">${section.description}</p>
+            </div>
+            <div class="equipment-detail-variant-list" role="group" aria-label="گزینه‌های جنس ${section.label}">
+              ${options}
+            </div>
+          </section>
+        `;
+      }).join('');
+
+      return `
+        <div class="equipment-detail-variant-picker equipment-detail-variant-picker-sections" aria-labelledby="equipment-detail-variant-title">
+          <h2 id="equipment-detail-variant-title">${family.variantPickerTitle || 'انتخاب جنس بدنه و ظرفیت'}</h2>
+          <div class="equipment-detail-variant-sections" role="radiogroup" aria-label="جنس و ظرفیت بوته‌ها">
+            ${sections}
+          </div>
+        </div>
+      `;
+    }
+
     if (!family.variantGroups?.length) {
       const variantButtons = family.variants.map(variant => `
         <button type="button" role="radio" class="equipment-detail-variant-button" data-variant-id="${variant.id}" aria-label="${variant.titleFa}" aria-checked="${variant.id === selectedVariant.id}" tabindex="${variant.id === selectedVariant.id ? '0' : '-1'}">
@@ -96,7 +130,7 @@
         <div class="equipment-detail-image-frame">
           <img class="equipment-detail-image" data-detail-image src="${assetPrefix}${selectedVariant.image}" alt="${selectedVariant.titleFa}" width="720" height="540">
         </div>
-        <p class="equipment-detail-image-caption" data-detail-caption>${selectedVariant.titleFa}</p>
+        <p class="equipment-detail-image-caption" data-detail-caption>${selectedVariant.imageCaption || selectedVariant.titleFa}</p>
       `;
     }
 
@@ -201,7 +235,7 @@
       image.src = `${assetPrefix}${variant.image}`;
       image.alt = variant.titleFa;
     }
-    caption.textContent = variant.titleFa;
+    caption.textContent = variant.imageCaption || variant.titleFa;
     title.textContent = variant.titleFa;
     copy.textContent = variant.detail;
     updateComparison(root, family, variant);

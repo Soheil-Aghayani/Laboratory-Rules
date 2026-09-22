@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'lab-rules-v36';
+const CACHE_VERSION = 'lab-rules-v38';
 const APP_SHELL = [
   './',
   './index.html',
@@ -8,10 +8,11 @@ const APP_SHELL = [
   './asset/icon-system.min.js?v=1.0',
   './asset/icons.svg',
   './script.min.js?v=5.9',
-  './equipment-data.min.js?v=1.4',
-  './gallery.min.js?v=2.2',
-  './equipment-detail.min.js?v=1.5',
-  './equipment-detail.min.css?v=1.3',
+  './equipment-data.min.js?v=1.5',
+  './gallery.min.js?v=2.3',
+  './equipment-detail.min.js?v=1.6',
+  './equipment-detail.min.css?v=1.4',
+  './asset/equipment/crucible-generic.svg',
   './Equipment/volumetric-flasks.html',
   './Equipment/reagent-bottles.html',
   './Equipment/petri-dishes.html',

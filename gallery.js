@@ -10,6 +10,7 @@
       family.titleFa,
       family.titleEn,
       family.categoryLabel,
+      ...(family.aliases || []),
       family.summary,
       family.introduction,
       family.primaryUse,

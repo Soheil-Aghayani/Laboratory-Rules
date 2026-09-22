@@ -142,20 +142,116 @@
     metadata: { dimensions }
   }));
 
-  const porcelainCrucibleVariants = [
-    ['10ml', '۱۰ میلی‌لیتر', '10 ml Porcelain Crucible'],
-    ['17ml', '۱۷ میلی‌لیتر', '17 ml Porcelain Crucible'],
-    ['30ml', '۳۰ میلی‌لیتر', '30 ml Porcelain Crucible'],
-    ['50ml', '۵۰ میلی‌لیتر', '50 ml Porcelain Crucible'],
-    ['100ml', '۱۰۰ میلی‌لیتر', '100 ml Porcelain Crucible']
-  ].map(([id, label, titleEn]) => ({
-    id,
-    label,
-    titleFa: `بوتهٔ چینی ${label}`,
-    titleEn,
-    image: 'porcelain-crucible.webp',
-    detail: `گزینهٔ ${label} در مجموعهٔ Eisco با فرم کوتاه و درپوش عرضه شده است؛ حداکثر دما و نرخ گرم‌وسردشدن را با مدل نهایی تطبیق دهید.`
-  }));
+  const crucibleVariants = [
+    {
+      id: 'porcelain-25ml',
+      label: '۲۵ میلی‌لیتر',
+      titleFa: 'بوتهٔ چینی · ۲۵ میلی‌لیتر',
+      titleEn: 'Fisherbrand Porcelain Crucible · 25 mL',
+      image: 'porcelain-crucible.webp',
+      detail: 'بدنهٔ چینی سفید با ظرفیت ۲۵ میلی‌لیتر؛ مدل مرجع FB960R برای کاربردهای آزمایشگاهی و صنعتی معرفی شده است. حداکثر دما و نرخ گرم‌وسردشدن را از دیتاشیت مدل انتخابی بررسی کنید.',
+      metadata: { material: 'porcelain', capacity: '25 mL', catalogNumber: 'FB960R' }
+    },
+    {
+      id: 'quartz-30ml',
+      label: '۳۰ میلی‌لیتر',
+      titleFa: 'بوتهٔ کوارتز · ۳۰ میلی‌لیتر',
+      titleEn: 'Fused-Quartz Crucible · 30 mL',
+      image: 'crucible-generic.svg',
+      imageCaption: 'تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.',
+      detail: 'کوارتز ذوب‌شدهٔ با خلوص بالا، ظرفیت ۳۰ میلی‌لیتر و ضخامت تقریبی ۲ میلی‌متر؛ مدل مرجع 08072D تا ۱۲۵۰ درجهٔ سانتی‌گراد معرفی شده و درپوش آن جداگانه عرضه می‌شود. با HF و اسید فسفریک سازگار فرض نشود.',
+      metadata: { material: 'quartz', capacity: '30 mL', catalogNumber: '08072D', maxTemperature: '1250 °C' }
+    },
+    {
+      id: 'alumina-2ml',
+      label: '۲ میلی‌لیتر · استوانه‌ای',
+      titleFa: 'بوتهٔ آلومینا · ۲ میلی‌لیتر',
+      titleEn: 'Alumina Crucible · 2 mL',
+      image: 'crucible-generic.svg',
+      imageCaption: 'تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.',
+      detail: 'آلومینای ۹۹٫۷٪ و بدون لعاب؛ مدل استوانه‌ای FB960A با ظرفیت ۲ میلی‌لیتر در منبع مرجع تا ۱۷۵۰ درجهٔ سانتی‌گراد و برای مقاومت در برابر حملهٔ شیمیایی و شارها معرفی شده است.',
+      metadata: { material: 'alumina', capacity: '2 mL', catalogNumber: 'FB960A', maxTemperature: '1750 °C' }
+    },
+    {
+      id: 'alumina-250ml',
+      label: '۲۵۰ میلی‌لیتر · فرم بلند',
+      titleFa: 'بوتهٔ آلومینا · ۲۵۰ میلی‌لیتر',
+      titleEn: 'Alumina Crucible · 250 mL High Form',
+      image: 'crucible-generic.svg',
+      imageCaption: 'تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.',
+      detail: 'گزینهٔ فرم بلند آلومینا برای حجم بالاتر؛ مدل FB960M با آلومینای ۹۹٫۷٪ و دمای استفادهٔ اعلام‌شدهٔ تا ۱۷۵۰ درجهٔ سانتی‌گراد عرضه می‌شود.',
+      metadata: { material: 'alumina', capacity: '250 mL', catalogNumber: 'FB960M', maxTemperature: '1750 °C' }
+    },
+    {
+      id: 'nickel-30ml',
+      label: '۳۰ میلی‌لیتر',
+      titleFa: 'بوتهٔ نیکل · ۳۰ میلی‌لیتر',
+      titleEn: 'Fisherbrand Nickel Crucible · 30 mL',
+      image: 'crucible-generic.svg',
+      imageCaption: 'تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.',
+      detail: 'بدنهٔ نیکل خالص ورقی، فرم بلند و ظرفیت ۳۰ میلی‌لیتر؛ مدل 13812127 برای رقیق‌سازی قلیاها و دمای تا ۸۰۰ درجهٔ سانتی‌گراد در منبع مرجع معرفی شده است. جدول مشخصات همان صفحه یک ناسازگاری متنی دربارهٔ جنس دارد، پس دیتاشیت تأمین‌کننده را نهایی بدانید.',
+      metadata: { material: 'nickel', capacity: '30 mL', catalogNumber: '13812127', maxTemperature: '800 °C' }
+    },
+    {
+      id: 'nickel-chromium-13ml',
+      label: '۱۳ میلی‌لیتر',
+      titleFa: 'بوتهٔ نیکل‌کروم · ۱۳ میلی‌لیتر',
+      titleEn: 'Fisherbrand Nickel-Chromium Crucible · 13 mL',
+      image: 'crucible-generic.svg',
+      imageCaption: 'تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.',
+      detail: 'آلیاژ یکنواخت نیکل‌کروم با ظرفیت ۱۳ میلی‌لیتر و فرم بلند؛ مدل 13812120 برای آزمون مواد فرار، ignition، خاکسترکردن و incineration در شرایط بدون اسید آزاد، تا ۱۰۰۰ درجهٔ سانتی‌گراد معرفی شده است.',
+      metadata: { material: 'nickel-chromium', capacity: '13 mL', catalogNumber: '13812120', maxTemperature: '1000 °C' }
+    },
+    {
+      id: 'zirconium-25ml',
+      label: '۲۵ میلی‌لیتر',
+      titleFa: 'بوتهٔ زیرکونیوم · ۲۵ میلی‌لیتر',
+      titleEn: 'Zirconium Crucible · 25 mL',
+      image: 'crucible-generic.svg',
+      imageCaption: 'تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.',
+      detail: 'زیرکونیوم یکپارچه با فرم کوتاه و پایهٔ پهن؛ مدل ۲۵ میلی‌لیتری برای fusion با سدیم پراکسید در بازهٔ ۴۶۰ تا ۹۰۰ درجهٔ سانتی‌گراد معرفی شده است و کد آن 13812122 است.',
+      metadata: { material: 'zirconium', capacity: '25 mL', catalogNumber: '13812122', maxTemperature: '۴۶۰ تا ۹۰۰ °C' }
+    },
+    {
+      id: 'zirconium-35ml',
+      label: '۳۵ میلی‌لیتر',
+      titleFa: 'بوتهٔ زیرکونیوم · ۳۵ میلی‌لیتر',
+      titleEn: 'Zirconium Crucible · 35 mL',
+      image: 'crucible-generic.svg',
+      imageCaption: 'تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.',
+      detail: 'گزینهٔ ۳۵ میلی‌لیتری از خانوادهٔ بوته‌های زیرکونیوم با فرم کوتاه و پایهٔ پهن؛ کد مدل مرجع 13812123 است. بازهٔ دما و سازگاری فرایند را پیش از fusion بررسی کنید.',
+      metadata: { material: 'zirconium', capacity: '35 mL', catalogNumber: '13812123', maxTemperature: '۴۶۰ تا ۹۰۰ °C' }
+    },
+    {
+      id: 'zirconium-45ml',
+      label: '۴۵ میلی‌لیتر',
+      titleFa: 'بوتهٔ زیرکونیوم · ۴۵ میلی‌لیتر',
+      titleEn: 'Zirconium Crucible · 45 mL',
+      image: 'crucible-generic.svg',
+      imageCaption: 'تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.',
+      detail: 'گزینهٔ ۴۵ میلی‌لیتری از خانوادهٔ بوته‌های زیرکونیوم؛ کد مدل مرجع 13812124 است. بوتهٔ زیرکونیوم را فقط با توجه به روش fusion و سازگاری ماده انتخاب کنید.',
+      metadata: { material: 'zirconium', capacity: '45 mL', catalogNumber: '13812124', maxTemperature: '۴۶۰ تا ۹۰۰ °C' }
+    },
+    {
+      id: 'zirconium-55ml',
+      label: '۵۵ میلی‌لیتر',
+      titleFa: 'بوتهٔ زیرکونیوم · ۵۵ میلی‌لیتر',
+      titleEn: 'Zirconium Crucible · 55 mL',
+      image: 'crucible-generic.svg',
+      imageCaption: 'تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.',
+      detail: 'گزینهٔ ۵۵ میلی‌لیتری با کد مدل 13812125؛ زیرکونیوم یکپارچه و فرم کوتاه با پایهٔ پهن برای fusion با سدیم پراکسید، در بازهٔ ۴۶۰ تا ۹۰۰ درجهٔ سانتی‌گراد.',
+      metadata: { material: 'zirconium', capacity: '55 mL', catalogNumber: '13812125', maxTemperature: '۴۶۰ تا ۹۰۰ °C' }
+    }
+  ];
+
+  const crucibleVariantSections = [
+    { id: 'porcelain', label: 'چینی', description: 'برای گرمادهی عمومی و عملیات حرارتی؛ مدل مرجع ۲۵ میلی‌لیتر است.', variantIds: ['porcelain-25ml'] },
+    { id: 'quartz', label: 'کوارتز ذوب‌شده', description: 'برای تغییرات دمایی شدید؛ با HF و اسید فسفریک سازگار فرض نشود.', variantIds: ['quartz-30ml'] },
+    { id: 'alumina', label: 'آلومینا (Al₂O₃)', description: '۹۹٫۷٪، بدون لعاب و مناسب دمای بالاتر؛ ظرفیت‌های مرجع ۲ و ۲۵۰ میلی‌لیتر.', variantIds: ['alumina-2ml', 'alumina-250ml'] },
+    { id: 'nickel', label: 'نیکل', description: 'نیکل خالص برای کاربردهای قلیایی مشخص؛ مدل مرجع ۳۰ میلی‌لیتر است.', variantIds: ['nickel-30ml'] },
+    { id: 'nickel-chromium', label: 'نیکل‌کروم', description: 'آلیاژ یکنواخت برای آزمون‌های ignition و خاکسترکردن در شرایط مناسب.', variantIds: ['nickel-chromium-13ml'] },
+    { id: 'zirconium', label: 'زیرکونیوم', description: 'برای fusion با سدیم پراکسید؛ ظرفیت‌های مرجع ۲۵، ۳۵، ۴۵ و ۵۵ میلی‌لیتر.', variantIds: ['zirconium-25ml', 'zirconium-35ml', 'zirconium-45ml', 'zirconium-55ml'] }
+  ];
 
   const bufferVariants = [
     ['ph4', 'pH ۴', 'pH 4 Buffer Solution', 'buffer-ph4.webp', 'مناسب برای کنترل اندازه‌گیری در محدودهٔ اسیدی.'],
@@ -351,16 +447,26 @@
     },
     {
       slug: 'porcelain-crucible',
-      titleFa: 'بوتهٔ چینی متوسط',
-      titleEn: 'Porcelain Crucible',
-      category: 'porcelain',
-      categoryLabel: 'چینی',
-      summary: 'برای گرمادهی و عملیات حرارتی نمونه‌های جامد.',
-      introduction: 'بوتهٔ چینی برای گرمادهی کنترل‌شده، خشک‌کردن یا عملیات حرارتی نمونه‌های جامد به کار می‌رود. پیش از کار، سازگاری ماده و برنامهٔ حرارتی را بررسی کنید.',
-      primaryUse: 'گرمادهی و عملیات حرارتی نمونه‌های جامد',
-      safety: 'پس از گرمادهی، بوته را با ابزار مناسب جابه‌جا و تا رسیدن به دمای ایمن خنک کنید.',
-      details: ['بوتهٔ داغ را روی سطح مقاوم به حرارت قرار دهید.', 'از شوک حرارتی و تماس ناگهانی با سطح سرد خودداری کنید.', 'برای وزن‌کشی، اجازه دهید بوته در دسیکاتور خنک شود.'],
-      variants: porcelainCrucibleVariants
+      titleFa: 'بوته‌های آزمایشگاهی',
+      titleEn: 'Laboratory Crucibles',
+      category: 'crucibles',
+      categoryLabel: 'بوته‌ها',
+      aliases: ['کروزه', 'crucible', 'crucibles'],
+      summary: 'مقایسهٔ بوته‌ها بر اساس جنس بدنه، ظرفیت، دما و کاربرد.',
+      variantSummary: '۶ جنس بدنه، ۱۰ گزینهٔ مرجع',
+      variantPickerTitle: 'انتخاب جنس بدنه و ظرفیت',
+      introduction: 'بوته یا crucible نام عمومی ظرفی برای گرمادهی، خاکسترکردن و fusion است. تفاوت اصلی گزینه‌ها از جنس بدنه می‌آید: چینی برای کار عمومی، کوارتز برای شوک حرارتی، آلومینا برای دمای بالاتر و فلزها برای کاربردهای شیمیایی مشخص انتخاب می‌شوند.',
+      primaryUse: 'انتخاب ظرف مناسب برای گرمادهی و عملیات حرارتی',
+      safety: 'هیچ ظرفیت یا دمایی را بین جنس‌ها تعمیم ندهید. پیش از گرمادهی، سازگاری ماده، حداکثر دمای مدل، وجود درپوش و روش گرم‌وسردشدن را از دیتاشیت همان مدل بررسی کنید و بوتهٔ داغ را فقط با انبر مناسب جابه‌جا کنید.',
+      details: [
+        'برای کارهای عمومی و خاکسترکردن، بوتهٔ چینی گزینهٔ رایج است؛ شکنندگی و شوک حرارتی آن را در نظر بگیرید.',
+        'کوارتز ذوب‌شده تغییرات دمایی شدید را بهتر تحمل می‌کند، اما با HF و اسید فسفریک سازگار فرض نشود.',
+        'آلومینا برای دماهای بالاتر و محیط‌های شیمیایی سخت‌تر معرفی می‌شود؛ مدل مرجع این صفحه تا ۱۷۵۰ درجهٔ سانتی‌گراد اعلام شده است.',
+        'نیکل، نیکل‌کروم و زیرکونیوم را بر اساس ترکیب ماده و روش آزمون انتخاب کنید، نه فقط بر اساس عدد دما.',
+        'لینک Rubber Crucible Holder در Fisher یک نگهدارندهٔ نئوپرن برای فیلتراسیون خلأ است، نه بوتهٔ پلاستیکی و نه گزینه‌ای برای جنس بدنهٔ بوته.'
+      ],
+      variants: crucibleVariants,
+      variantSections: crucibleVariantSections
     },
     {
       slug: 'glass-funnel-long-stem',
@@ -604,6 +710,13 @@
     fisherReagent: 'https://www.fishersci.ca/ca/en/browse/90094113/reagent-bottles',
     fisherPetri: 'https://www.fishersci.ca/ca/en/browse/90111022/Petri-Dishes',
     fisherCrucibles: 'https://www.fishersci.ca/ca/en/browse/90094173/crucibles',
+    fisherPorcelainCrucible: 'https://www.fishersci.ca/shop/products/porcelain-25ml-crucibles/FB960R',
+    fisherQuartzCrucible: 'https://www.fishersci.ca/shop/products/fused-quartz-crucibles-4/08072D',
+    fisherAluminaCrucible: 'https://www.fishersci.ca/shop/products/alumina-crucibles-5/FB960A',
+    fisherNickelCrucible: 'https://www.fishersci.ca/shop/products/fisherbrand-nickel-crucibles-11/13812127',
+    fisherNickelChromiumCrucible: 'https://www.fishersci.ca/shop/products/fisherbrand-nickel-chromium-crucible/13812120',
+    fisherCrucibleHolder: 'https://www.fishersci.ca/shop/products/rubber-crucible-holder-8/01189173',
+    fisherZirconiumCrucible: 'https://www.fishersci.ca/shop/products/zirconium-crucibles-cover/13812125',
     fisherDishes: 'https://www.fishersci.ca/ca/en/browse/90111005/dishes',
     fisherSpecialty: 'https://www.fishersci.ca/ca/en/browse/90094011/verrerie-de-laboratoire-sp%C3%A9cialis%C3%A9e',
     trafalgarFlasks: 'https://trafalgarscientific.co.uk/glassware-volumetrics/flasks/',
@@ -672,18 +785,24 @@
       ]
     },
     'porcelain-crucible': {
-      source: vendorUrls.fisherCrucibles,
+      source: vendorUrls.fisherPorcelainCrucible,
       sources: [
-        reference('Fisher Scientific: بوتهٔ چینی Eisco با درپوش', 'https://www.fishersci.ca/shop/products/porcelain-crucibles-lid-squat-form-5/s15480'),
+        reference('Fisher Scientific: بوتهٔ چینی ۲۵ میلی‌لیتری', vendorUrls.fisherPorcelainCrucible),
+        reference('Fisher Scientific: بوتهٔ کوارتز ذوب‌شده ۳۰ میلی‌لیتری', vendorUrls.fisherQuartzCrucible),
+        reference('Fisher Scientific: بوتهٔ آلومینا', vendorUrls.fisherAluminaCrucible),
+        reference('Fisher Scientific: بوتهٔ نیکل', vendorUrls.fisherNickelCrucible),
+        reference('Fisher Scientific: بوتهٔ نیکل‌کروم', vendorUrls.fisherNickelChromiumCrucible),
+        reference('Fisher Scientific: نگهدارندهٔ لاستیکی بوته، نه بوتهٔ پلاستیکی', vendorUrls.fisherCrucibleHolder),
+        reference('Fisher Scientific: بوتهٔ زیرکونیوم با درپوش', vendorUrls.fisherZirconiumCrucible),
         reference('Fisher Scientific: بوته‌ها', vendorUrls.fisherCrucibles),
         reference('Sigma-Aldrich: بوتهٔ چینی Coors', vendorUrls.sigmaPorcelain),
         reference('Trafalgar Scientific: گروه ظروف و تجهیزات آزمایشگاهی', 'https://trafalgarscientific.co.uk/')
       ],
       specifications: [
-        { label: 'جنس', value: 'چینی لعاب‌دار، معمولاً با درپوش جدا یا همراه، بسته به مدل.' },
-        { label: 'ظرفیت‌های مدل مرجع', value: '۱۰، ۱۷، ۳۰، ۵۰ و ۱۰۰ میلی‌لیتر در گزینه‌های Eisco فرم کوتاه با درپوش.' },
-        { label: 'فرم', value: 'فرم بلند و عریض در کاتالوگ‌ها عرضه می‌شود؛ ظرفیت و شکل با مدل تغییر می‌کند.' },
-        { label: 'گرمادهی', value: 'حداکثر دما و نرخ گرم‌کردن یا سردکردن را از برگهٔ همان مدل بررسی کنید.' }
+        { label: 'جنس‌های این خانواده', value: 'چینی، کوارتز ذوب‌شده، آلومینا، نیکل، نیکل‌کروم و زیرکونیوم.' },
+        { label: 'مقایسهٔ دمایی مدل‌های مرجع', value: 'کوارتز ۱۲۵۰، آلومینا ۱۷۵۰، نیکل ۸۰۰، نیکل‌کروم ۱۰۰۰ و زیرکونیوم ۴۶۰ تا ۹۰۰ درجهٔ سانتی‌گراد؛ دمای چینی در لینک مدل مشخص شود.' },
+        { label: 'مقایسهٔ کاربردی', value: 'چینی برای کار عمومی، کوارتز برای شوک حرارتی، آلومینا برای دمای بالا، نیکل برای قلیاهای رقیق، نیکل‌کروم برای آزمون‌های خاکستر و زیرکونیوم برای fusion با سدیم پراکسید.' },
+        { label: 'نکتهٔ اصطلاحی', value: 'در این کاتالوگ، crucible با نام اصلی «بوته» آمده است؛ «کروزه» را می‌توان به‌عنوان واژهٔ جستجو دید، اما جنس بدنه تعیین‌کنندهٔ انتخاب است.' }
       ]
     },
     'glass-funnel-long-stem': {
