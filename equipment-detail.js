@@ -297,10 +297,12 @@
       </section>
 
       <section class="equipment-detail-reference crucible-guide-reference" aria-label="مرجع و یادداشت">
-        <div class="equipment-detail-reference-copy">
-          <h2>منابع و ادامهٔ مطالعه</h2>
-          ${sourceMarkup(family)}
-        </div>
+        <details class="equipment-detail-accordion equipment-detail-source-accordion">
+          <summary><span class="material-symbols-outlined" aria-hidden="true">link</span><span>منابع و ادامهٔ مطالعه</span><span class="material-symbols-outlined equipment-detail-accordion-chevron" aria-hidden="true">expand_more</span></summary>
+          <div class="equipment-detail-reference-copy">
+            ${sourceMarkup(family)}
+          </div>
+        </details>
       </section>
     `;
   }
@@ -337,19 +339,6 @@
               </div>
             </div>
 
-          ${family.specifications?.length ? `
-            <div class="equipment-detail-meta equipment-detail-specifications" aria-label="مشخصات مرجع">
-              ${family.specifications.map(specification => `
-                <div class="equipment-detail-meta-item">
-                  <span>${specification.label}</span>
-                  <strong>${specification.value}</strong>
-                </div>
-              `).join('')}
-            </div>
-          ` : ''}
-
-          ${variantPickerMarkup(family, selectedVariant)}
-
           <div class="equipment-detail-selected" aria-live="polite">
             <h2>گزینهٔ انتخاب‌شده</h2>
             <strong class="equipment-detail-selected-title" data-detail-title>${selectedVariant.titleFa}</strong>
@@ -369,11 +358,29 @@
         </article>
       </section>
 
+      ${variantPickerMarkup(family, selectedVariant)}
+
+      ${family.specifications?.length ? `
+        <details class="equipment-detail-accordion equipment-detail-specification-accordion">
+          <summary><span class="material-symbols-outlined" aria-hidden="true">straighten</span><span>مشخصات مرجع و تفاوت مدل‌ها</span><span class="material-symbols-outlined equipment-detail-accordion-chevron" aria-hidden="true">expand_more</span></summary>
+          <div class="equipment-detail-meta equipment-detail-specifications" aria-label="مشخصات مرجع">
+            ${family.specifications.map(specification => `
+              <div class="equipment-detail-meta-item">
+                <span>${specification.label}</span>
+                <strong>${specification.value}</strong>
+              </div>
+            `).join('')}
+          </div>
+        </details>
+      ` : ''}
+
       <section class="equipment-detail-reference" aria-label="مرجع و یادداشت">
-        <div class="equipment-detail-reference-copy">
-          <h2>یادداشت اطلاعاتی</h2>
-          ${sourceMarkup(family)}
-        </div>
+        <details class="equipment-detail-accordion equipment-detail-source-accordion">
+          <summary><span class="material-symbols-outlined" aria-hidden="true">link</span><span>منابع و یادداشت اطلاعاتی</span><span class="material-symbols-outlined equipment-detail-accordion-chevron" aria-hidden="true">expand_more</span></summary>
+          <div class="equipment-detail-reference-copy">
+            ${sourceMarkup(family)}
+          </div>
+        </details>
       </section>
     `;
   }

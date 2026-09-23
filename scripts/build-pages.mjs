@@ -110,6 +110,7 @@ const welcomeStart = source.indexOf('<section class="welcome-panel"', headerTopS
 const headerEnd = source.indexOf('    </header>', welcomeStart);
 if (headerTopStart < 0 || welcomeStart < 0 || headerEnd < 0) throw new Error('Unable to extract shared header');
 const headerTop = source.slice(headerTopStart, welcomeStart).trim();
+const galleryHeaderTop = headerTop.replace(/\s*<!-- Live Search Bar -->[\s\S]*?(?=<div id="offline-status")/, '\n      ');
 const welcomePanel = source.slice(welcomeStart, headerEnd).trim();
 
 const penaltyStart = source.indexOf('    <!-- Penalty warning -->');
@@ -167,6 +168,7 @@ const pageLink = (href, label, iconName, current, extraClass = '') => {
 };
 
 const renderMobileSectionNav = currentPage => {
+  if (currentPage === 'gallery') return '';
   const group = pageGroup(currentPage);
   const sections = group === 'safety'
     ? {
@@ -242,6 +244,10 @@ const renderHead = page => {
   const preload = page === 'home'
     ? '<link rel="preload" href="./asset/gallery/lab-interior-800.webp" as="image" type="image/webp" imagesrcset="./asset/gallery/lab-interior-mobile.webp 640w, ./asset/gallery/lab-interior-800.webp 800w" imagesizes="(max-width: 768px) 100vw, 600px" fetchpriority="high">'
     : '';
+  const pageStyles = page.filename === 'gallery.html'
+    ? '<link rel="stylesheet" href="./catalog-redesign.min.css?v=1.0">'
+    : '';
+  const assetVersion = asset => asset === 'gallery.min.js' ? '3.0' : '2.2';
   return `<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -269,7 +275,7 @@ const renderHead = page => {
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="stylesheet" href="./styles.min.css?v=6.3">
   <link rel="stylesheet" href="./elements.min.css?v=1.4">
-  <link rel="stylesheet" href="./site-pages.min.css?v=1.5">
+  <link rel="stylesheet" href="./site-pages.min.css?v=1.5">${pageStyles ? `\n  ${pageStyles}` : ''}
   <script>
     try {
       const savedTheme = localStorage.getItem('theme');
@@ -281,7 +287,7 @@ const renderHead = page => {
   <script defer src="./asset/icon-system.min.js?v=1.0"></script>
   <script defer src="./script.min.js?v=7.1"></script>
   <script defer src="./site-runtime.min.js?v=1.2"></script>
-  ${page.assets.map(asset => `<script defer src="./${asset}?v=2.2"></script>`).join('\n  ')}
+  ${page.assets.map(asset => `<script defer src="./${asset}?v=${assetVersion(asset)}"></script>`).join('\n  ')}
 </head>`;
 };
 
@@ -306,7 +312,7 @@ const renderMain = (pageKey, page) => {
   <a class="skip-link" href="#main-content">پرش به محتوای اصلی</a>
   <main class="container site-container" id="main-content">
     <header class="site-header">
-      ${headerTop}
+      ${pageKey === 'gallery' ? galleryHeaderTop : headerTop}
       ${renderMobileSectionNav(pageKey)}
       ${pageKey === 'home' ? welcomePanel : ''}
     </header>

@@ -1,54 +1,77 @@
-<div class="gallery-layout">
-        <section class="gallery-intro-block" aria-labelledby="gallery-title">
-          <div class="gallery-intro-copy">
-            <span class="gallery-kicker">کاتالوگ ابزارهای آزمایشگاه</span>
-            <h2 class="gallery-title" id="gallery-title">اتاق تجهیزات آزمایشگاه</h2>
-            <p>ابزارهای شیشه‌ای، چینی، فلزی و مواد مصرفی را جستجو کنید و جزئیات کاربردی هر مورد را ببینید.</p>
-          </div>
-          <div class="gallery-stat-list" aria-label="خلاصهٔ گالری">
-            <div class="gallery-stat"><strong id="gallery-family-count">۲۸</strong><span>خانوادهٔ تجهیز</span></div>
-            <div class="gallery-stat"><strong id="gallery-variant-count">۱۲۲</strong><span>گزینهٔ قابل انتخاب</span></div>
-            <div class="gallery-stat"><strong>۴</strong><span>راهنمای عملیاتی</span></div>
-          </div>
-        </section>
+<div class="catalog-catalog-shell">
+  <header class="catalog-catalog-hero">
+    <div>
+      <span class="catalog-catalog-kicker"><span class="material-symbols-outlined" aria-hidden="true">school</span>معرفی آموزشی تجهیزات</span>
+      <h2 class="catalog-catalog-title">کاتالوگ تجهیزات آزمایشگاه</h2>
+      <p>هر خانواده را بر اساس کاربرد و جنس پیدا کنید؛ سپس تصویر، تفاوت‌ها و گزینه‌های آن را در صفحهٔ معرفی ببینید.</p>
+    </div>
+    <div class="catalog-catalog-note"><span class="material-symbols-outlined" aria-hidden="true">menu_book</span><span>برای آشنایی و انتخاب آگاهانه، نه خرید</span></div>
+  </header>
 
-        <section class="equipment-catalog-section" aria-labelledby="equipment-catalog-title">
-          <div class="gallery-section-heading equipment-catalog-heading">
-            <div>
-              <h3 id="equipment-catalog-title">کاتالوگ ابزار و مواد مصرفی</h3>
-              <p>برای دیدن معرفی و جزئیات، یک خانواده را انتخاب کنید و گزینهٔ مناسب را در صفحهٔ اختصاصی آن ببینید. راهنماهای عملیاتی دستگاه‌ها در تب تجهیزات باقی می‌مانند.</p>
-            </div>
-          </div>
+  <section class="catalog-search-panel" aria-labelledby="catalog-search-title">
+    <div class="catalog-search-heading">
+      <div><span class="catalog-catalog-kicker">شروع جستجو</span><h2 id="catalog-search-title">چه چیزی را می‌خواهی بشناسی؟</h2></div>
+      <span class="material-symbols-outlined" aria-hidden="true">search</span>
+    </div>
+    <label class="catalog-search-field" for="gallery-equipment-search">
+      <span class="material-symbols-outlined" aria-hidden="true">search</span>
+      <span class="sr-only">جستجو در کاتالوگ تجهیزات</span>
+      <input id="gallery-equipment-search" type="search" autocomplete="off" enterkeyhint="search" placeholder="مثلاً بشر، فالکون، بوته یا شیشه‌آلات">
+      <button id="gallery-equipment-search-clear" type="button" class="catalog-search-clear" aria-label="پاک‌کردن جستجو" hidden><span class="material-symbols-outlined" aria-hidden="true">close</span></button>
+    </label>
+    <p class="catalog-search-hint" id="gallery-equipment-search-hint">نام فارسی، نام انگلیسی، کاربرد، جنس بدنه و دسته‌بندی را جستجو کنید.</p>
+  </section>
 
-          <div class="equipment-catalog-toolbar">
-            <label class="gallery-search-field" for="gallery-equipment-search">
-              <span class="material-symbols-outlined" aria-hidden="true">search</span>
-              <span class="sr-only">جستجو در کاتالوگ تجهیزات</span>
-              <input id="gallery-equipment-search" type="search" autocomplete="off" placeholder="جستجو در نام ابزار یا دسته‌بندی">
-            </label>
-            <div class="equipment-filter-list" role="group" aria-label="فیلتر دسته‌بندی تجهیزات">
-              <button type="button" class="equipment-filter-btn active" data-equipment-filter="all" aria-pressed="true"><span class="material-symbols-outlined" aria-hidden="true">gallery</span><span>همه</span></button>
-              <button type="button" class="equipment-filter-btn" data-equipment-filter="glassware" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>شیشه‌آلات</span></button>
-              <button type="button" class="equipment-filter-btn" data-equipment-filter="plasticware" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">science</span><span>پلاستیک‌آلات</span></button>
-              <button type="button" class="equipment-filter-btn" data-equipment-filter="porcelain" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">waterdrop</span><span>چینی</span></button>
-              <button type="button" class="equipment-filter-btn" data-equipment-filter="crucibles" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">science</span><span>بوته‌ها</span></button>
-              <button type="button" class="equipment-filter-btn" data-equipment-filter="metal" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">scale</span><span>فلزی</span></button>
-              <button type="button" class="equipment-filter-btn" data-equipment-filter="solutions" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">waterdrop</span><span>محلول و خشک‌کننده</span></button>
-              <button type="button" class="equipment-filter-btn" data-equipment-filter="accessories" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">settings</span><span>لوازم جانبی</span></button>
-            </div>
-          </div>
+  <div class="catalog-mobile-filter-bar">
+    <div class="catalog-filter-rail" role="group" aria-label="دسته‌های پرکاربرد کاتالوگ">
+      <button type="button" class="equipment-filter-btn active" data-equipment-filter="all" aria-pressed="true"><span class="material-symbols-outlined" aria-hidden="true">apps</span><span>همه</span></button>
+      <button type="button" class="equipment-filter-btn" data-equipment-filter="glassware" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">science</span><span>شیشه‌آلات</span></button>
+      <button type="button" class="equipment-filter-btn" data-equipment-filter="plasticware" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">water_bottle</span><span>پلاستیک‌آلات</span></button>
+      <button type="button" class="equipment-filter-btn" data-equipment-filter="crucibles" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">local_fire_department</span><span>بوته‌ها</span></button>
+      <button type="button" class="equipment-filter-btn" data-equipment-filter="solutions" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">opacity</span><span>مواد مصرفی</span></button>
+    </div>
+    <button type="button" class="catalog-all-categories-button" id="catalog-all-categories" aria-haspopup="dialog" aria-expanded="false" aria-controls="catalog-category-dialog"><span class="material-symbols-outlined" aria-hidden="true">tune</span><span>همهٔ دسته‌ها</span></button>
+  </div>
 
-          <p class="gallery-result-count" id="gallery-equipment-count" role="status" aria-live="polite"></p>
-          <div class="equipment-catalog-grid" id="gallery-equipment-grid"></div>
-          <div class="gallery-empty-state" id="gallery-equipment-empty" role="status" aria-live="polite" aria-atomic="true" hidden>
-            <span class="material-symbols-outlined" aria-hidden="true">search_off</span>
-            <strong>موردی پیدا نشد</strong>
-            <span>عبارت جستجو یا دسته‌بندی دیگری را امتحان کنید.</span>
-          </div>
-          <div class="equipment-catalog-suggestion">
-            <span class="material-symbols-outlined" aria-hidden="true">add_circle</span>
-            <span id="equipment-suggestion-help">موردی در کاتالوگ نیست؟</span>
-            <a class="catalog-suggestion-link" href="https://github.com/Soheil-Aghayani/Solid-Waste-Laboratory/issues/new" target="_blank" rel="noopener noreferrer" aria-describedby="equipment-suggestion-help">پیشنهاد افزودن ماده یا تجهیز</a>
-          </div>
-        </section>
+  <div class="catalog-results-layout">
+    <aside class="catalog-category-sidebar" aria-labelledby="catalog-category-title">
+      <div class="catalog-category-heading"><span class="material-symbols-outlined" aria-hidden="true">category</span><h2 id="catalog-category-title">دسته‌بندی</h2></div>
+      <div class="catalog-category-list" role="group" aria-label="دسته‌بندی تجهیزات">
+        <button type="button" class="catalog-category-button is-active" data-equipment-filter="all" aria-pressed="true"><span>همهٔ تجهیزات</span><span class="catalog-category-count" data-category-count="all"></span></button>
+        <button type="button" class="catalog-category-button" data-equipment-filter="glassware" aria-pressed="false"><span>شیشه‌آلات</span><span class="catalog-category-count" data-category-count="glassware"></span></button>
+        <button type="button" class="catalog-category-button" data-equipment-filter="plasticware" aria-pressed="false"><span>پلاستیک‌آلات</span><span class="catalog-category-count" data-category-count="plasticware"></span></button>
+        <button type="button" class="catalog-category-button" data-equipment-filter="porcelain" aria-pressed="false"><span>چینی و سرامیک</span><span class="catalog-category-count" data-category-count="porcelain"></span></button>
+        <button type="button" class="catalog-category-button" data-equipment-filter="crucibles" aria-pressed="false"><span>بوته‌ها</span><span class="catalog-category-count" data-category-count="crucibles"></span></button>
+        <button type="button" class="catalog-category-button" data-equipment-filter="metal" aria-pressed="false"><span>ظروف فلزی</span><span class="catalog-category-count" data-category-count="metal"></span></button>
+        <button type="button" class="catalog-category-button" data-equipment-filter="solutions" aria-pressed="false"><span>محلول و خشک‌کننده</span><span class="catalog-category-count" data-category-count="solutions"></span></button>
+        <button type="button" class="catalog-category-button" data-equipment-filter="accessories" aria-pressed="false"><span>لوازم جانبی</span><span class="catalog-category-count" data-category-count="accessories"></span></button>
       </div>
+      <a class="catalog-equipment-guide-link" href="./equipment.html"><span class="material-symbols-outlined" aria-hidden="true">build_circle</span><span>راهنمای کاربری تجهیزات</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a>
+    </aside>
+
+    <section class="catalog-results-panel" aria-labelledby="equipment-catalog-title">
+      <div class="catalog-results-header"><div><h2 id="equipment-catalog-title">خانواده‌های تجهیزات</h2><p id="gallery-equipment-count" role="status" aria-live="polite"></p></div><span class="catalog-results-header-icon material-symbols-outlined" aria-hidden="true">view_list</span></div>
+      <div class="equipment-catalog-grid" id="gallery-equipment-grid"></div>
+      <div class="gallery-empty-state" id="gallery-equipment-empty" role="status" aria-live="polite" aria-atomic="true" hidden>
+        <span class="material-symbols-outlined" aria-hidden="true">search_off</span><strong>موردی پیدا نشد</strong><span>عبارت جستجو یا دسته‌بندی دیگری را امتحان کنید.</span>
+        <button type="button" id="gallery-equipment-reset" class="catalog-reset-button"><span class="material-symbols-outlined" aria-hidden="true">restart_alt</span><span>نمایش همهٔ تجهیزات</span></button>
+      </div>
+    </section>
+  </div>
+
+  <div class="equipment-catalog-suggestion"><span class="material-symbols-outlined" aria-hidden="true">add_circle</span><span id="equipment-suggestion-help">موردی در کاتالوگ نیست؟</span><a class="catalog-suggestion-link" href="https://github.com/Soheil-Aghayani/Solid-Waste-Laboratory/issues/new" target="_blank" rel="noopener noreferrer" aria-describedby="equipment-suggestion-help">پیشنهاد افزودن ماده یا تجهیز</a></div>
+</div>
+
+<dialog class="catalog-category-dialog" id="catalog-category-dialog" aria-labelledby="catalog-category-dialog-title">
+  <div class="catalog-dialog-header"><div><span class="catalog-catalog-kicker">فیلتر کاتالوگ</span><h2 id="catalog-category-dialog-title">همهٔ دسته‌ها</h2></div><button type="button" class="catalog-dialog-close" data-catalog-dialog-close aria-label="بستن فهرست دسته‌ها"><span class="material-symbols-outlined" aria-hidden="true">close</span></button></div>
+  <div class="catalog-dialog-list" role="group" aria-label="همهٔ دسته‌های تجهیزات">
+    <button type="button" class="catalog-category-button is-active" data-equipment-filter="all" aria-pressed="true"><span>همهٔ تجهیزات</span><span class="catalog-category-count" data-dialog-category-count="all"></span></button>
+    <button type="button" class="catalog-category-button" data-equipment-filter="glassware" aria-pressed="false"><span>شیشه‌آلات</span><span class="catalog-category-count" data-dialog-category-count="glassware"></span></button>
+    <button type="button" class="catalog-category-button" data-equipment-filter="plasticware" aria-pressed="false"><span>پلاستیک‌آلات</span><span class="catalog-category-count" data-dialog-category-count="plasticware"></span></button>
+    <button type="button" class="catalog-category-button" data-equipment-filter="porcelain" aria-pressed="false"><span>چینی و سرامیک</span><span class="catalog-category-count" data-dialog-category-count="porcelain"></span></button>
+    <button type="button" class="catalog-category-button" data-equipment-filter="crucibles" aria-pressed="false"><span>بوته‌ها</span><span class="catalog-category-count" data-dialog-category-count="crucibles"></span></button>
+    <button type="button" class="catalog-category-button" data-equipment-filter="metal" aria-pressed="false"><span>ظروف فلزی</span><span class="catalog-category-count" data-dialog-category-count="metal"></span></button>
+    <button type="button" class="catalog-category-button" data-equipment-filter="solutions" aria-pressed="false"><span>محلول و خشک‌کننده</span><span class="catalog-category-count" data-dialog-category-count="solutions"></span></button>
+    <button type="button" class="catalog-category-button" data-equipment-filter="accessories" aria-pressed="false"><span>لوازم جانبی</span><span class="catalog-category-count" data-dialog-category-count="accessories"></span></button>
+  </div>
+</dialog>
