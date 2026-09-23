@@ -224,7 +224,7 @@
         <div class="crucible-guide-hero-copy">
           <span class="crucible-guide-kicker">قبل از ظرفیت، جنس را بشناس</span>
           <h2 id="crucible-guide-hero-title">جنس بدنه، انتخاب بوته را مشخص می‌کند</h2>
-          <p>بوته‌ها ظاهر مشابهی دارند، اما برای دما و مواد یکسان ساخته نشده‌اند. این راهنما برای آشنایی دانشجو با تفاوت جنس‌هاست، نه یک جدول خرید.</p>
+          <p>بوته‌ها ظاهر مشابهی دارند، اما برای دما و مواد یکسان ساخته نشده‌اند. این راهنما تفاوت جنس‌ها و انتخاب مناسب برای کاربرد آزمایشگاهی را توضیح می‌دهد.</p>
           <div class="crucible-guide-principles">
             <article>
               <span class="material-symbols-outlined" aria-hidden="true">thermostat</span>

@@ -225,15 +225,14 @@ const renderHomeShortcuts = () => `
     <section class="home-shortcuts" aria-labelledby="home-shortcuts-title">
       <div class="section-heading-row">
         <div><span class="page-kicker">مسیرهای اصلی</span><h2 id="home-shortcuts-title">از کجا شروع کنیم؟</h2></div>
-        <p>هر گروه مسیرهای مرتبط خودش را دارد؛ از عنوان گروه، صفحهٔ موردنیازتان را انتخاب کنید.</p>
       </div>
       <div class="home-shortcut-grid">
         <section class="home-shortcut home-shortcut-safety" aria-labelledby="home-safety-title">
-          <div class="home-shortcut-heading"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span><strong id="home-safety-title">ایمنی و ورود</strong><small>قواعد کار، ورود و دفع پسماند</small></span></div>
+          <div class="home-shortcut-heading"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span><strong id="home-safety-title">ایمنی و ورود</strong></span></div>
           <div class="home-shortcut-links"><a class="home-shortcut-link" href="./rules.html"><span>قوانین عمومی و ایمنی</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a><a class="home-shortcut-link" href="./quiz.html"><span>آزمون و تعهدنامه ورود</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a></div>
         </section>
         <section class="home-shortcut home-shortcut-catalog" aria-labelledby="home-catalog-title">
-          <div class="home-shortcut-heading"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span><span><strong id="home-catalog-title">کاتالوگ آزمایشگاه</strong><small>سه مسیر برای شناخت تجهیزات و مواد</small></span></div>
+          <div class="home-shortcut-heading"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span><span><strong id="home-catalog-title">کاتالوگ آزمایشگاه</strong></span></div>
           <div class="home-shortcut-links"><a class="home-shortcut-link" href="./gallery.html"><span>گالری تجهیزات</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a><a class="home-shortcut-link" href="./equipment.html"><span>راهنمای کاربری تجهیزات</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a><a class="home-shortcut-link" href="./elements.html"><span>عناصر و مواد</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a></div>
         </section>
       </div>
@@ -245,9 +244,9 @@ const renderHead = page => {
     ? '<link rel="preload" href="./asset/gallery/lab-interior-800.webp" as="image" type="image/webp" imagesrcset="./asset/gallery/lab-interior-mobile.webp 640w, ./asset/gallery/lab-interior-800.webp 800w" imagesizes="(max-width: 768px) 100vw, 600px" fetchpriority="high">'
     : '';
   const pageStyles = page.filename === 'gallery.html'
-    ? '<link rel="stylesheet" href="./catalog-redesign.min.css?v=1.0">'
+    ? '<link rel="stylesheet" href="./catalog-redesign.min.css?v=1.4">'
     : '';
-  const assetVersion = asset => asset === 'gallery.min.js' ? '3.0' : '2.2';
+  const assetVersion = asset => asset === 'gallery.min.js' ? '3.1' : '2.2';
   return `<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -275,7 +274,7 @@ const renderHead = page => {
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="stylesheet" href="./styles.min.css?v=6.3">
   <link rel="stylesheet" href="./elements.min.css?v=1.4">
-  <link rel="stylesheet" href="./site-pages.min.css?v=1.5">${pageStyles ? `\n  ${pageStyles}` : ''}
+  <link rel="stylesheet" href="./site-pages.min.css?v=1.7">${pageStyles ? `\n  ${pageStyles}` : ''}
   <script>
     try {
       const savedTheme = localStorage.getItem('theme');

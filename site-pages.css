@@ -505,14 +505,34 @@ body {
   display: inline-flex;
   align-items: center;
   gap: .35rem;
-  min-height: 32px;
-  padding: .25rem .5rem;
+  min-height: 44px;
+  padding: .45rem .65rem;
   border: 1px solid color-mix(in srgb, var(--element-family-color) 55%, var(--border-color));
   border-radius: 999px;
   background: color-mix(in srgb, var(--element-family-color) 13%, var(--bg-secondary));
   color: var(--text-primary);
+  cursor: pointer;
+  font: inherit;
   font-size: .7rem;
   font-weight: 700;
+}
+
+.element-family-legend-item:hover,
+.element-family-legend-item:focus-visible,
+.element-family-legend-item.active,
+.element-family-legend-item.is-active {
+  border-color: var(--element-family-color);
+  background: color-mix(in srgb, var(--element-family-color) 24%, var(--bg-secondary));
+  color: var(--text-primary);
+}
+
+.element-family-legend-item:focus-visible {
+  outline: 2px solid var(--accent-emerald);
+  outline-offset: 2px;
+}
+
+.element-family-legend-item[data-element-family="all"] {
+  --element-family-color: var(--accent-emerald);
 }
 
 .element-family-legend-item::before {
@@ -558,6 +578,30 @@ body {
 
 .element-card-badge .material-symbols-outlined {
   font-size: .85rem;
+}
+
+.element-card-radioactive,
+.element-badge-radioactive {
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+  min-height: 32px;
+  padding: 0;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.radiation-symbol {
+  display: block;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+}
+
+.element-radioactive-status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
 }
 
 .element-card:hover,
@@ -621,6 +665,62 @@ body {
   .site-header {
     margin-bottom: .85rem;
     padding-bottom: 1rem;
+  }
+
+  .site-header .header-top {
+    align-items: stretch;
+    flex-direction: column;
+    gap: .7rem;
+  }
+
+  .site-header .brand-link,
+  .site-header .brand {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .site-header .brand {
+    gap: .65rem;
+  }
+
+  .site-header .brand-icon {
+    flex: 0 0 auto;
+    font-size: 38px;
+  }
+
+  .site-header .brand-text {
+    min-width: 0;
+  }
+
+  .site-header .brand-text h1,
+  .site-header .brand-text p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .site-header .brand-text h1 {
+    font-size: 1.35rem;
+  }
+
+  .site-header .brand-text p {
+    font-size: .76rem;
+  }
+
+  .site-header .controls {
+    width: 100%;
+    min-width: 0;
+    justify-content: stretch;
+  }
+
+  .site-header .status-widget {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .site-header .status-widget #status-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .site-primary-nav {
@@ -1228,5 +1328,35 @@ body {
 
   .element-periodic-table .element-card-name {
     font-size: .58rem;
+  }
+}
+
+/* Final mobile table contract: no legacy 18-column overflow or hidden table. */
+@media (max-width: 992px) {
+  .element-table-scroll {
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  .element-periodic-table {
+    display: grid !important;
+    min-width: 0 !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    grid-template-rows: none !important;
+    grid-auto-rows: minmax(66px, auto);
+    gap: .35rem;
+  }
+
+  .element-periodic-table .element-card {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    min-height: 66px;
+    padding: .3rem .25rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .element-periodic-table {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
 }

@@ -25,8 +25,8 @@
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="stylesheet" href="./styles.min.css?v=6.3">
   <link rel="stylesheet" href="./elements.min.css?v=1.4">
-  <link rel="stylesheet" href="./site-pages.min.css?v=1.5">
-  <link rel="stylesheet" href="./catalog-redesign.min.css?v=1.0">
+  <link rel="stylesheet" href="./site-pages.min.css?v=1.7">
+  <link rel="stylesheet" href="./catalog-redesign.min.css?v=1.4">
   <script>
     try {
       const savedTheme = localStorage.getItem('theme');
@@ -39,7 +39,7 @@
   <script defer src="./script.min.js?v=7.1"></script>
   <script defer src="./site-runtime.min.js?v=1.2"></script>
   <script defer src="./equipment-data.min.js?v=2.2"></script>
-  <script defer src="./gallery.min.js?v=3.0"></script>
+  <script defer src="./gallery.min.js?v=3.1"></script>
 </head>
 <body data-page="gallery">
   <a class="skip-link" href="#main-content">پرش به محتوای اصلی</a>
@@ -88,9 +88,7 @@
     <div>
       <span class="catalog-catalog-kicker"><span class="material-symbols-outlined" aria-hidden="true">school</span>معرفی آموزشی تجهیزات</span>
       <h2 class="catalog-catalog-title">کاتالوگ تجهیزات آزمایشگاه</h2>
-      <p>هر خانواده را بر اساس کاربرد و جنس پیدا کنید؛ سپس تصویر، تفاوت‌ها و گزینه‌های آن را در صفحهٔ معرفی ببینید.</p>
     </div>
-    <div class="catalog-catalog-note"><span class="material-symbols-outlined" aria-hidden="true">menu_book</span><span>برای آشنایی و انتخاب آگاهانه، نه خرید</span></div>
   </header>
 
   <section class="catalog-search-panel" aria-labelledby="catalog-search-title">
@@ -135,7 +133,13 @@
     </aside>
 
     <section class="catalog-results-panel" aria-labelledby="equipment-catalog-title">
-      <div class="catalog-results-header"><div><h2 id="equipment-catalog-title">خانواده‌های تجهیزات</h2><p id="gallery-equipment-count" role="status" aria-live="polite"></p></div><span class="catalog-results-header-icon material-symbols-outlined" aria-hidden="true">view_list</span></div>
+      <div class="catalog-results-header">
+        <div class="catalog-results-heading"><span class="catalog-catalog-kicker">فهرست خانواده‌ها</span><h2 id="equipment-catalog-title">تجهیزات آزمایشگاه</h2><p id="gallery-equipment-count" role="status" aria-live="polite"></p></div>
+        <div class="catalog-results-actions">
+          <label class="catalog-sort-field" for="gallery-equipment-sort"><span class="catalog-sort-label">مرتب‌سازی</span><select id="gallery-equipment-sort" aria-label="مرتب‌سازی خانواده‌های تجهیزات"><option value="recommended">پیشنهادی</option><option value="alpha">الفبایی</option><option value="variants">تعداد گزینه‌ها</option></select><span class="material-symbols-outlined" aria-hidden="true">expand_more</span></label>
+          <span class="catalog-results-header-icon material-symbols-outlined" aria-hidden="true">view_list</span>
+        </div>
+      </div>
       <div class="equipment-catalog-grid" id="gallery-equipment-grid"></div>
       <div class="gallery-empty-state" id="gallery-equipment-empty" role="status" aria-live="polite" aria-atomic="true" hidden>
         <span class="material-symbols-outlined" aria-hidden="true">search_off</span><strong>موردی پیدا نشد</strong><span>عبارت جستجو یا دسته‌بندی دیگری را امتحان کنید.</span>

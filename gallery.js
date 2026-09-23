@@ -10,6 +10,11 @@
     solutions: 'محلول و خشک‌کننده',
     accessories: 'لوازم جانبی'
   };
+  const sortLabels = {
+    recommended: 'پیشنهادی',
+    alpha: 'الفبایی',
+    variants: 'تعداد گزینه‌ها'
+  };
 
   const toPersianDigits = value => String(value).replace(/[0-9]/g, digit => '۰۱۲۳۴۵۶۷۸۹'[digit]);
   const normalise = value => String(value || '').toLocaleLowerCase('fa-IR').replace(/[\u200c\s]+/g, ' ').trim();
@@ -56,7 +61,7 @@
       <article class="equipment-catalog-card" data-equipment-category="${escapeHtml(family.category)}" data-equipment-search="${escapeHtml(getSearchText(family))}">
         <a class="equipment-card-link" href="./Equipment/${encodeURIComponent(family.slug)}.html" aria-label="مشاهدهٔ صفحهٔ معرفی ${title}">
           <div class="equipment-card-image-wrap">
-            <img class="equipment-card-image" src="./asset/equipment/${encodeURIComponent(image)}" alt="${title}" loading="${loading}" decoding="async" width="320" height="220"${fetchPriority}>
+            <img class="equipment-card-image" src="./asset/equipment/${encodeURIComponent(image)}" alt="${title}" loading="${loading}" decoding="async" width="640" height="480"${fetchPriority}>
           </div>
           <div class="equipment-card-body">
             <div class="equipment-card-meta">
@@ -67,7 +72,7 @@
             <p class="equipment-card-en" dir="ltr">${titleEn}</p>
             <p class="equipment-card-summary">${escapeHtml(family.summary || family.introduction || 'معرفی کاربرد و نکات انتخاب در صفحهٔ خانواده.')}</p>
             <div class="equipment-card-footer">
-              <span>${family.variants.length > 1 ? 'مقایسهٔ گزینه‌ها' : 'معرفی و کاربرد'}</span>
+              <span class="equipment-card-footer-note">${family.variants.length > 1 ? 'مقایسهٔ گزینه‌ها' : 'معرفی و کاربرد'}</span>
               <span class="equipment-card-cta"><span>مشاهدهٔ معرفی</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></span>
             </div>
           </div>
@@ -79,13 +84,15 @@
   function readUrlState() {
     const params = new URLSearchParams(window.location.search);
     const category = params.get('category');
+    const sort = params.get('sort');
     return {
       query: params.get('q') || '',
-      category: category && Object.prototype.hasOwnProperty.call(categoryLabels, category) ? category : 'all'
+      category: category && Object.prototype.hasOwnProperty.call(categoryLabels, category) ? category : 'all',
+      sort: sort && Object.prototype.hasOwnProperty.call(sortLabels, sort) ? sort : 'recommended'
     };
   }
 
-  function writeUrlState(query, category, replace = true) {
+  function writeUrlState(query, category, sort, replace = true) {
     try {
       const url = new URL(window.location.href);
       const cleanQuery = query.trim();
@@ -93,9 +100,11 @@
       else url.searchParams.delete('q');
       if (category !== 'all') url.searchParams.set('category', category);
       else url.searchParams.delete('category');
+      if (sort !== 'recommended') url.searchParams.set('sort', sort);
+      else url.searchParams.delete('sort');
       const nextUrl = `${url.pathname}${url.search}${url.hash}`;
-      if (replace) window.history.replaceState({ q: cleanQuery, category }, '', nextUrl);
-      else window.history.pushState({ q: cleanQuery, category }, '', nextUrl);
+      if (replace) window.history.replaceState({ q: cleanQuery, category, sort }, '', nextUrl);
+      else window.history.pushState({ q: cleanQuery, category, sort }, '', nextUrl);
     } catch (error) {
       // URL state is an enhancement for local/offline copies of the catalogue.
     }
@@ -105,6 +114,7 @@
     const grid = document.getElementById('gallery-equipment-grid');
     const search = document.getElementById('gallery-equipment-search');
     const clearSearch = document.getElementById('gallery-equipment-search-clear');
+    const sortSelect = document.getElementById('gallery-equipment-sort');
     const count = document.getElementById('gallery-equipment-count');
     const empty = document.getElementById('gallery-equipment-empty');
     const reset = document.getElementById('gallery-equipment-reset');
@@ -158,9 +168,16 @@
         return matchesCategory && (!query || getSearchText(family).includes(query));
       });
 
+      if (state.sort === 'alpha') {
+        filtered.sort((left, right) => normalise(left.titleFa).localeCompare(normalise(right.titleFa), 'fa'));
+      } else if (state.sort === 'variants') {
+        filtered.sort((left, right) => (right.variants?.length || 0) - (left.variants?.length || 0));
+      }
+
       grid.innerHTML = filtered.map(renderEquipmentCard).join('');
       empty.hidden = filtered.length !== 0;
       clearSearch.hidden = !state.query;
+      if (sortSelect) sortSelect.value = state.sort;
       updateFilterState();
       if (!state.query && state.category === 'all') {
         count.textContent = `${toPersianDigits(filtered.length)} خانوادهٔ تجهیز برای آشنایی`;
@@ -174,7 +191,7 @@
     function selectCategory(category, usePushState = true) {
       if (!Object.prototype.hasOwnProperty.call(categoryLabels, category)) return;
       state.category = category;
-      writeUrlState(state.query, state.category, !usePushState);
+      writeUrlState(state.query, state.category, state.sort, !usePushState);
       render();
       if (dialog?.open) closeDialog();
     }
@@ -182,22 +199,27 @@
     search.value = state.query;
     search.addEventListener('input', () => {
       state.query = search.value;
-      writeUrlState(state.query, state.category, true);
+      writeUrlState(state.query, state.category, state.sort, true);
       render();
     });
     clearSearch?.addEventListener('click', () => {
       state.query = '';
       search.value = '';
-      writeUrlState(state.query, state.category, true);
+      writeUrlState(state.query, state.category, state.sort, true);
       render();
       search.focus();
     });
     reset?.addEventListener('click', () => {
-      state = { query: '', category: 'all' };
+      state = { query: '', category: 'all', sort: 'recommended' };
       search.value = '';
-      writeUrlState('', 'all', true);
+      writeUrlState('', 'all', 'recommended', true);
       render();
       search.focus();
+    });
+    sortSelect?.addEventListener('change', () => {
+      state.sort = Object.prototype.hasOwnProperty.call(sortLabels, sortSelect.value) ? sortSelect.value : 'recommended';
+      writeUrlState(state.query, state.category, state.sort, false);
+      render();
     });
     filterButtons.forEach(button => button.addEventListener('click', () => selectCategory(button.dataset.equipmentFilter || 'all')));
     allCategoriesButton?.addEventListener('click', openDialog);
@@ -209,6 +231,7 @@
     window.addEventListener('popstate', () => {
       state = readUrlState();
       search.value = state.query;
+      if (sortSelect) sortSelect.value = state.sort;
       render();
     });
 

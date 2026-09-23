@@ -33,6 +33,16 @@
     Actinide: 'actinide'
   };
   const getFamilyClass = classification => familyClassMap[classification?.familyEn] || 'element';
+  const radiationIcon = `
+    <svg class="radiation-symbol" xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 64 64" role="img" aria-label="پرتوزا" focusable="false">
+      <title>پرتوزا</title>
+      <circle cx="32" cy="32" r="30" fill="#3e4347"/>
+      <circle cx="32" cy="32" r="27" fill="#ffe62e"/>
+      <g fill="#3e4347">
+        <circle cx="32" cy="32" r="5"/>
+        <path d="M8 28.8L25.1 31c.2-1.9 1.2-3.5 2.7-4.6L17.3 12.6c-5 3.9-8.5 9.6-9.3 16.2m24 10c-.9 0-1.8-.2-2.7-.5l-6.6 15.9c2.9 1.2 6 1.9 9.3 1.9s6.4-.7 9.3-1.9l-6.6-15.9c-.9.3-1.8.5-2.7.5m6.9-7.8L56 28.8c-.8-6.6-4.3-12.3-9.3-16.1L36.2 26.4c1.4 1.1 2.4 2.7 2.7 4.6"/>
+      </g>
+    </svg>`;
   const getElementByNumber = number => catalog.find(element => element.atomicNumber === Number(number));
   const getElementSearchText = element => normalise([
     element.nameFa,
@@ -53,9 +63,6 @@
     return exactFields.includes(query) || (query.length > 1 && getElementSearchText(element).includes(query));
   };
 
-  let activeFilter = 'all';
-  let activeGroup = '';
-  let activePeriod = '';
   let activeFamily = '';
   let activeQuery = '';
   let activeElementNumber = null;
@@ -64,22 +71,12 @@
   let countRoot;
   let emptyRoot;
   let searchInput;
-  let groupFilter;
-  let periodFilter;
-  let familyFilter;
   let relatedTrack;
   let elementsRoot;
 
   function isFilterMatch(element) {
     const classification = element.classification || {};
-    if (activeFilter === 'radioactive' && !classification.radioactive) return false;
-    if (activeFilter === 'gas' && classification.standardState !== 'Gas') return false;
-    if (activeFilter === 'metal' && (!/metal/i.test(classification.familyEn || '') || /metalloid/i.test(classification.familyEn || ''))) return false;
-    if (activeFilter === 'nonmetal' && !/nonmetal/i.test(classification.familyEn || '')) return false;
-    if (activeFilter === 'metalloid' && !/metalloid/i.test(classification.familyEn || '')) return false;
-    if (activeGroup && String(classification.group || '') !== activeGroup) return false;
-    if (activePeriod && String(classification.period || '') !== activePeriod) return false;
-    if (activeFamily && normalise(classification.familyEn || classification.familyFa) !== activeFamily) return false;
+    if (activeFamily && getFamilyClass(classification) !== activeFamily) return false;
     return true;
   }
 
@@ -103,14 +100,13 @@
     const label = `${element.nameFa} (${element.nameEn})، عدد اتمی ${element.atomicNumber}`;
     const familyClass = getFamilyClass(classification);
     const radioactiveBadge = classification.radioactive === true
-      ? `<span class="element-card-badge">${icon('warning')}پرتوزا</span>`
+      ? `<span class="element-card-badge element-card-radioactive" title="پرتوزا" aria-label="پرتوزا">${radiationIcon}</span>`
       : '';
     return `
       <button type="button" class="${className}" data-element-number="${element.atomicNumber}" data-element-family="${familyClass}" aria-label="مشاهدهٔ اطلاعات ${escapeHTML(label)}" style="${compact ? '' : cardPosition(element)}">
         <span class="element-card-number">${toPersianDigits(element.atomicNumber)}</span>
         <strong class="element-card-symbol" dir="ltr">${escapeHTML(element.symbol)}</strong>
         <span class="element-card-name">${escapeHTML(element.nameFa)}</span>
-        <span class="element-card-family">${escapeHTML(classification.familyFa || 'عنصر')}</span>
         ${radioactiveBadge}
       </button>
     `;
@@ -120,48 +116,21 @@
     const filtered = getFilteredElements();
     if (tableRoot) tableRoot.innerHTML = filtered.map(element => renderElementCard(element)).join('');
     if (countRoot) {
-      const hasConstraints = Boolean(activeQuery || activeGroup || activePeriod || activeFamily || activeFilter !== 'all');
+      const hasConstraints = Boolean(activeQuery || activeFamily);
       countRoot.textContent = hasConstraints ? `نتیجهٔ فیلتر: ${toPersianDigits(filtered.length)} مورد` : '';
     }
     if (emptyRoot) emptyRoot.hidden = filtered.length !== 0;
-    document.querySelectorAll('[data-element-filter]').forEach(button => {
-      const isActive = button.dataset.elementFilter === activeFilter;
+    document.querySelectorAll('[data-element-family-filter]').forEach(button => {
+      const value = button.dataset.elementFamilyFilter || '';
+      const isActive = value === 'all' ? !activeFamily : value === activeFamily;
       button.classList.toggle('active', isActive);
+      button.classList.toggle('is-active', isActive);
       button.setAttribute('aria-pressed', String(isActive));
     });
   }
 
   function renderProperty(label, value, unit = '') {
     return `<div class="element-property"><dt>${escapeHTML(label)}</dt><dd>${value === null || value === undefined || value === '' ? '<span class="element-missing">در این رکورد در دسترس نیست</span>' : formatValue(value, unit)}</dd></div>`;
-  }
-
-  function setupFilterOptions() {
-    const addOptions = (select, options) => {
-      if (!select) return;
-      select.innerHTML = '<option value="">همه</option>';
-      options.forEach(option => {
-        const optionNode = document.createElement('option');
-        optionNode.value = option.value;
-        optionNode.textContent = option.label;
-        select.appendChild(optionNode);
-      });
-    };
-    const groups = [...new Set(catalog.map(element => element.classification?.group).filter(Boolean))]
-      .sort((a, b) => a - b)
-      .map(value => ({ value: String(value), label: `گروه ${toPersianDigits(value)}` }));
-    const periods = [...new Set(catalog.map(element => element.classification?.period).filter(Boolean))]
-      .sort((a, b) => a - b)
-      .map(value => ({ value: String(value), label: `دورهٔ ${toPersianDigits(value)}` }));
-    const families = [...new Map(catalog.map(element => {
-      const classification = element.classification || {};
-      const label = classification.familyFa || classification.familyEn;
-      return [normalise(classification.familyEn || label), label];
-    }).filter(([value, label]) => value && label))]
-      .sort(([, a], [, b]) => String(a).localeCompare(String(b), 'fa'))
-      .map(([value, label]) => ({ value, label }));
-    addOptions(groupFilter, groups);
-    addOptions(periodFilter, periods);
-    addOptions(familyFilter, families);
   }
 
   function renderHazards(element) {
@@ -220,7 +189,12 @@
     const radioactivity = element.radioactivity || {};
     const isotopeText = element.isotopes || 'جزئیات ایزوتوپ در منبع محلی این build ثبت نشده است؛ برای نوکلید یا ایزوتوپ مشخص، مرجع همان ماده را بررسی کنید.';
     const sources = (element.sources || []).map(source => `<li><a href="${escapeHTML(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(source.label)}</a><span>${escapeHTML(source.scope || '')}</span></li>`).join('');
-    const radioBadge = classification.radioactive ? `<span class="element-badge element-badge-danger">${icon('warning')}پرتوزا</span>` : '';
+    const radioBadge = classification.radioactive
+      ? `<span class="element-badge element-badge-danger element-badge-radioactive" title="پرتوزا" aria-label="پرتوزا">${radiationIcon}</span>`
+      : '';
+    const radioStatus = radioactivity.status === 'radioactive' || classification.radioactive
+      ? `<span class="element-radioactive-status" title="پرتوزا" aria-label="پرتوزا">${radiationIcon}</span>`
+      : '<span>در این رکورد وضعیت پرتوزایی ثبت نشده است</span>';
     return `
       <section class="element-detail" aria-labelledby="element-detail-title">
         <div class="element-detail-topline">
@@ -279,7 +253,7 @@
           <article class="element-detail-card">
             <div class="element-card-heading">${icon('science')} ایزوتوپ و پرتوزایی</div>
             <p>${escapeHTML(isotopeText)}</p>
-            <div class="element-safety-scope"><strong>وضعیت رکورد:</strong><span>${radioactivity.status === 'radioactive' ? 'پرتوزا' : 'در این رکورد پرتوزا علامت‌گذاری نشده است'}</span></div>
+            <div class="element-safety-scope"><strong>وضعیت رکورد:</strong>${radioStatus}</div>
             ${radioactivity.note ? `<p class="element-detail-note">${escapeHTML(radioactivity.note)}</p>` : ''}
           </article>
           <article class="element-detail-card element-detail-card-wide element-safety-card">
@@ -393,13 +367,10 @@
     countRoot = document.getElementById('element-result-count');
     emptyRoot = document.getElementById('element-empty-state');
     searchInput = document.getElementById('element-search');
-    groupFilter = document.getElementById('element-group-filter');
-    periodFilter = document.getElementById('element-period-filter');
-    familyFilter = document.getElementById('element-family-filter');
-
-    document.querySelectorAll('[data-element-filter]').forEach(button => {
+    document.querySelectorAll('[data-element-family-filter]').forEach(button => {
       button.addEventListener('click', () => {
-        activeFilter = button.dataset.elementFilter || 'all';
+        const requestedFamily = button.dataset.elementFamilyFilter || '';
+        activeFamily = requestedFamily === 'all' || requestedFamily === activeFamily ? '' : requestedFamily;
         renderCatalog();
       });
     });
@@ -407,24 +378,11 @@
       activeQuery = searchInput.value;
       renderCatalog();
     });
-    groupFilter?.addEventListener('change', () => {
-      activeGroup = groupFilter.value;
-      renderCatalog();
-    });
-    periodFilter?.addEventListener('change', () => {
-      activePeriod = periodFilter.value;
-      renderCatalog();
-    });
-    familyFilter?.addEventListener('change', () => {
-      activeFamily = familyFilter.value;
-      renderCatalog();
-    });
     document.addEventListener('click', event => {
       const button = event.target.closest('[data-element-number]');
       if (button && root.contains(button)) openElement(button.dataset.elementNumber);
     });
     setupSearchIntegration();
-    setupFilterOptions();
     renderCatalog();
 
     const initialElement = window.location.hash.match(/^#element-(\d+)$/i);

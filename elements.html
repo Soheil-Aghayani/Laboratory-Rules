@@ -25,7 +25,7 @@
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="stylesheet" href="./styles.min.css?v=6.3">
   <link rel="stylesheet" href="./elements.min.css?v=1.4">
-  <link rel="stylesheet" href="./site-pages.min.css?v=1.5">
+  <link rel="stylesheet" href="./site-pages.min.css?v=1.7">
   <script>
     try {
       const savedTheme = localStorage.getItem('theme');
@@ -114,35 +114,20 @@
               <input id="element-search" type="search" autocomplete="off" placeholder="نام، نماد، CAS یا عدد اتمی...">
             </div>
           </div>
-          <div>
-            <span class="element-search-label">فیلتر آموزشی</span>
-            <div class="element-filter-list" role="group" aria-label="فیلتر عناصر">
-              <button type="button" class="element-filter-btn active" data-element-filter="all" aria-pressed="true">همه</button>
-              <button type="button" class="element-filter-btn" data-element-filter="metal" aria-pressed="false">فلزها</button>
-              <button type="button" class="element-filter-btn" data-element-filter="nonmetal" aria-pressed="false">نافلزها</button>
-              <button type="button" class="element-filter-btn" data-element-filter="metalloid" aria-pressed="false">شبه‌فلزها</button>
-              <button type="button" class="element-filter-btn" data-element-filter="gas" aria-pressed="false">گازها</button>
-              <button type="button" class="element-filter-btn" data-element-filter="radioactive" aria-pressed="false">پرتوزا</button>
-            </div>
-            <div class="element-select-filters" aria-label="فیلترهای جدول تناوبی">
-              <label>گروه<select id="element-group-filter"><option value="">همه</option></select></label>
-              <label>دوره<select id="element-period-filter"><option value="">همه</option></select></label>
-              <label>خانواده<select id="element-family-filter"><option value="">همه</option></select></label>
-            </div>
-          </div>
         </div>
         <p id="element-result-count" class="element-result-count" role="status" aria-live="polite"></p>
-        <div class="element-family-legend" aria-label="راهنمای رنگ خانواده‌های عناصر">
-          <span class="element-family-legend-item" data-element-family="alkali-metal">فلزهای قلیایی</span>
-          <span class="element-family-legend-item" data-element-family="alkaline-earth-metal">قلیایی خاکی</span>
-          <span class="element-family-legend-item" data-element-family="transition-metal">فلزهای واسطه</span>
-          <span class="element-family-legend-item" data-element-family="post-transition-metal">پس‌واسطه</span>
-          <span class="element-family-legend-item" data-element-family="metalloid">شبه‌فلزها</span>
-          <span class="element-family-legend-item" data-element-family="nonmetal">نافلزها</span>
-          <span class="element-family-legend-item" data-element-family="halogen">هالوژن‌ها</span>
-          <span class="element-family-legend-item" data-element-family="noble-gas">گازهای نجیب</span>
-          <span class="element-family-legend-item" data-element-family="lanthanide">لانتانیدها</span>
-          <span class="element-family-legend-item" data-element-family="actinide">اکتینیدها</span>
+        <div class="element-family-legend" role="group" aria-label="فیلتر خانواده‌های عناصر">
+          <button type="button" class="element-family-legend-item is-active" data-element-family="all" data-element-family-filter="all" aria-pressed="true">همهٔ خانواده‌ها</button>
+          <button type="button" class="element-family-legend-item" data-element-family="alkali-metal" data-element-family-filter="alkali-metal" aria-pressed="false">فلزهای قلیایی</button>
+          <button type="button" class="element-family-legend-item" data-element-family="alkaline-earth-metal" data-element-family-filter="alkaline-earth-metal" aria-pressed="false">قلیایی خاکی</button>
+          <button type="button" class="element-family-legend-item" data-element-family="transition-metal" data-element-family-filter="transition-metal" aria-pressed="false">فلزهای واسطه</button>
+          <button type="button" class="element-family-legend-item" data-element-family="post-transition-metal" data-element-family-filter="post-transition-metal" aria-pressed="false">پس‌واسطه</button>
+          <button type="button" class="element-family-legend-item" data-element-family="metalloid" data-element-family-filter="metalloid" aria-pressed="false">شبه‌فلزها</button>
+          <button type="button" class="element-family-legend-item" data-element-family="nonmetal" data-element-family-filter="nonmetal" aria-pressed="false">نافلزها</button>
+          <button type="button" class="element-family-legend-item" data-element-family="halogen" data-element-family-filter="halogen" aria-pressed="false">هالوژن‌ها</button>
+          <button type="button" class="element-family-legend-item" data-element-family="noble-gas" data-element-family-filter="noble-gas" aria-pressed="false">گازهای نجیب</button>
+          <button type="button" class="element-family-legend-item" data-element-family="lanthanide" data-element-family-filter="lanthanide" aria-pressed="false">لانتانیدها</button>
+          <button type="button" class="element-family-legend-item" data-element-family="actinide" data-element-family-filter="actinide" aria-pressed="false">اکتینیدها</button>
         </div>
         <div class="element-table-scroll">
           <div id="element-periodic-table" class="element-periodic-table" aria-label="جدول تناوبی عناصر"></div>

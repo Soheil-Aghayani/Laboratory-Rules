@@ -10389,7 +10389,7 @@ window.chemicalMsdsDb = [
   },
   {
     "id": "element_sodium",
-    "nameFa": "سدیم فلزی",
+    "nameFa": "سدیم",
     "nameEn": "Sodium (Element)",
     "formula": "Na",
     "cas": "7440-23-5",
