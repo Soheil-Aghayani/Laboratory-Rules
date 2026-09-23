@@ -459,7 +459,7 @@
       label: 'فرم کم‌ارتفاع',
       titleFa: 'بشر بوروسیلیکات · فرم کم‌ارتفاع',
       titleEn: 'Low Form Borosilicate Beaker',
-      image: 'beaker-low-form.webp',
+      image: 'beaker-low-form-cutout.webp',
       detail: 'فرم کم‌ارتفاع با دهانهٔ باز و کف پایدار برای مخلوط‌کردن، رقیق‌سازی و گرمادهی عمومی؛ ظرفیت دقیق باید از مدل انتخابی خوانده شود.',
       metadata: { form: 'low form', capacityRange: '50–5000 mL', model: '1000' }
     },
@@ -496,13 +496,13 @@
   ];
 
   const measuringCylinderVariants = [
-    ['5ml', '۵ میلی‌لیتر', '5 mL Glass Measuring Cylinder', 'measuring-cylinder-5ml.webp'],
-    ['10ml', '۱۰ میلی‌لیتر', '10 mL Glass Measuring Cylinder', 'measuring-cylinder-10ml.webp'],
-    ['50ml', '۵۰ میلی‌لیتر', '50 mL Glass Measuring Cylinder', 'measuring-cylinder-50ml.webp'],
-    ['100ml', '۱۰۰ میلی‌لیتر', '100 mL Glass Measuring Cylinder', 'measuring-cylinder-100ml.webp'],
-    ['250ml', '۲۵۰ میلی‌لیتر', '250 mL Glass Measuring Cylinder', 'measuring-cylinder-250ml.webp'],
-    ['500ml', '۵۰۰ میلی‌لیتر', '500 mL Glass Measuring Cylinder', 'measuring-cylinder-500ml.webp'],
-    ['1000ml', '۱۰۰۰ میلی‌لیتر', '1000 mL Glass Measuring Cylinder', 'measuring-cylinder-1000ml.webp']
+    ['5ml', '۵ میلی‌لیتر', '5 mL Glass Measuring Cylinder', 'measuring-cylinder-5ml-cutout.webp'],
+    ['10ml', '۱۰ میلی‌لیتر', '10 mL Glass Measuring Cylinder', 'measuring-cylinder-10ml-cutout.webp'],
+    ['50ml', '۵۰ میلی‌لیتر', '50 mL Glass Measuring Cylinder', 'measuring-cylinder-50ml-cutout.webp'],
+    ['100ml', '۱۰۰ میلی‌لیتر', '100 mL Glass Measuring Cylinder', 'measuring-cylinder-100ml-cutout.webp'],
+    ['250ml', '۲۵۰ میلی‌لیتر', '250 mL Glass Measuring Cylinder', 'measuring-cylinder-250ml-cutout.webp'],
+    ['500ml', '۵۰۰ میلی‌لیتر', '500 mL Glass Measuring Cylinder', 'measuring-cylinder-500ml-cutout.webp'],
+    ['1000ml', '۱۰۰۰ میلی‌لیتر', '1000 mL Glass Measuring Cylinder', 'measuring-cylinder-1000ml-cutout.webp']
   ].map(([id, label, titleEn, image]) => ({
     id,
     label,
@@ -688,7 +688,7 @@
       titleEn: 'Glass Measuring Cylinders',
       category: 'glassware',
       categoryLabel: 'شیشه‌آلات',
-      cardImage: 'measuring-cylinders-multiple-volumes.webp',
+      cardImage: 'measuring-cylinders-multiple-volumes-cutout.webp',
       aliases: ['استوانه مدرج', 'مزور', 'graduated cylinder', 'measuring cylinder'],
       summary: 'برای اندازه‌گیری و انتقال حجم‌های مختلف با خوانش منیسک.',
       introduction: 'استوانهٔ مدرج برای اندازه‌گیری و انتقال حجم مایع با دقتی مناسب برای کار عمومی به کار می‌رود. کلاس دقت، پایه، دهانهٔ تخلیه و وجود گواهی کالیبراسیون بین مدل‌ها تفاوت ایجاد می‌کند.',

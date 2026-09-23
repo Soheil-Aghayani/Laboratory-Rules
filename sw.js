@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'lab-rules-v72';
+const CACHE_VERSION = 'lab-rules-v74';
 const APP_SHELL = [
   './',
   './index.html',
@@ -73,6 +73,15 @@ const APP_SHELL = [
   './asset/equipment/measuring-cylinder-250ml.webp',
   './asset/equipment/measuring-cylinder-500ml.webp',
   './asset/equipment/measuring-cylinder-1000ml.webp',
+  './asset/equipment/beaker-low-form-cutout.webp',
+  './asset/equipment/measuring-cylinders-multiple-volumes-cutout.webp',
+  './asset/equipment/measuring-cylinder-10ml-cutout.webp',
+  './asset/equipment/measuring-cylinder-50ml-cutout.webp',
+  './asset/equipment/measuring-cylinder-100ml-cutout.webp',
+  './asset/equipment/measuring-cylinder-250ml-cutout.webp',
+  './asset/equipment/measuring-cylinder-500ml-cutout.webp',
+  './asset/equipment/measuring-cylinder-5ml-cutout.webp',
+  './asset/equipment/measuring-cylinder-1000ml-cutout.webp',
   './asset/equipment/boiling-flask-round-joint.webp',
   './asset/equipment/boiling-flask-flat-bottom.webp',
   './asset/equipment/boiling-flask-round-bottom.webp',

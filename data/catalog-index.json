@@ -14493,7 +14493,7 @@
         "کلاس A یا B و گواهی کالیبراسیون را از مدل انتخابی بررسی کنید."
       ],
       "variantCount": 7,
-      "image": "measuring-cylinders-multiple-volumes.webp",
+      "image": "measuring-cylinders-multiple-volumes-cutout.webp",
       "sources": [
         {
           "label": "Borosil Scientific: استوانه‌های مدرج",
@@ -16848,7 +16848,7 @@
           "value": "1000"
         }
       ],
-      "image": "beaker-low-form.webp",
+      "image": "beaker-low-form-cutout.webp",
       "imageCaption": null,
       "sources": [
         {
@@ -17088,7 +17088,7 @@
           "value": "model-dependent"
         }
       ],
-      "image": "measuring-cylinder-5ml.webp",
+      "image": "measuring-cylinder-5ml-cutout.webp",
       "imageCaption": null,
       "sources": [
         {
@@ -17146,7 +17146,7 @@
           "value": "model-dependent"
         }
       ],
-      "image": "measuring-cylinder-10ml.webp",
+      "image": "measuring-cylinder-10ml-cutout.webp",
       "imageCaption": null,
       "sources": [
         {
@@ -17204,7 +17204,7 @@
           "value": "model-dependent"
         }
       ],
-      "image": "measuring-cylinder-50ml.webp",
+      "image": "measuring-cylinder-50ml-cutout.webp",
       "imageCaption": null,
       "sources": [
         {
@@ -17262,7 +17262,7 @@
           "value": "model-dependent"
         }
       ],
-      "image": "measuring-cylinder-100ml.webp",
+      "image": "measuring-cylinder-100ml-cutout.webp",
       "imageCaption": null,
       "sources": [
         {
@@ -17320,7 +17320,7 @@
           "value": "model-dependent"
         }
       ],
-      "image": "measuring-cylinder-250ml.webp",
+      "image": "measuring-cylinder-250ml-cutout.webp",
       "imageCaption": null,
       "sources": [
         {
@@ -17378,7 +17378,7 @@
           "value": "model-dependent"
         }
       ],
-      "image": "measuring-cylinder-500ml.webp",
+      "image": "measuring-cylinder-500ml-cutout.webp",
       "imageCaption": null,
       "sources": [
         {
@@ -17436,7 +17436,7 @@
           "value": "model-dependent"
         }
       ],
-      "image": "measuring-cylinder-1000ml.webp",
+      "image": "measuring-cylinder-1000ml-cutout.webp",
       "imageCaption": null,
       "sources": [
         {
