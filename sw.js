@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'lab-rules-v70';
+const CACHE_VERSION = 'lab-rules-v71';
 const APP_SHELL = [
   './',
   './index.html',
@@ -27,9 +27,9 @@ const APP_SHELL = [
   './data/catalog-index.json',
   './equipment-detail.min.js?v=1.8',
   './equipment-detail.min.css?v=1.7',
-  './catalog-redesign.min.css?v=1.4',
+  './catalog-redesign.min.css?v=1.5',
   './catalog-detail-chrome.min.css?v=1.0',
-  './catalog-detail-runtime.min.js?v=1.0',
+  './catalog-detail-runtime.min.js?v=1.1',
   './asset/equipment/crucible-generic.svg',
   './Equipment/volumetric-flasks.html',
   './Equipment/reagent-bottles.html',
@@ -89,6 +89,7 @@ const APP_SHELL = [
   './asset/equipment/nickel-crucible.webp',
   './asset/equipment/nickel-chromium-crucible.webp',
   './asset/equipment/zirconium-crucible.webp',
+  './asset/gallery/catalog-equipment-hero.webp',
   './chatbot/chatbot.min.css?v=5.7',
   './chatbot/chatbot.min.js?v=5.7',
   './chatbot/msds/msds-db.min.js?v=5.7',

@@ -11,22 +11,6 @@
 
   const link = (href, label, icon, current = false) => `<a href="${href}"${current ? ' aria-current="page"' : ''}><span class="material-symbols-outlined" aria-hidden="true">${icon}</span><span>${label}</span></a>`;
 
-  const header = document.createElement('header');
-  header.className = 'catalog-detail-header';
-  header.innerHTML = `
-    <a class="catalog-detail-brand" href="${home}" aria-label="بازگشت به صفحهٔ خانه">
-      <span class="material-symbols-outlined" aria-hidden="true">science</span>
-      <span><strong>آزمایشگاه پسماند</strong><small>کاتالوگ آموزشی تجهیزات</small></span>
-    </a>
-    <nav class="catalog-detail-header-links" aria-label="دسترسی کاتالوگ">
-      ${link(gallery, 'گالری تجهیزات', 'gallery', true)}
-      ${link(equipment, 'راهنمای تجهیزات', 'test-tube')}
-      ${link(elements, 'عناصر و مواد', 'science')}
-    </nav>
-    <a class="catalog-detail-header-back" href="${gallery}"><span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span><span>بازگشت به کاتالوگ</span></a>
-  `;
-  document.body.insertBefore(header, document.body.firstChild);
-
   const desktopDock = document.createElement('nav');
   desktopDock.className = 'catalog-detail-dock catalog-detail-dock-desktop';
   desktopDock.setAttribute('aria-label', 'دسترسی سریع دسکتاپ');
