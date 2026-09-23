@@ -29,7 +29,7 @@
       <article class="equipment-catalog-card" data-equipment-category="${family.category}" data-equipment-search="${getSearchText(family)}">
         <a class="equipment-card-link" href="./Equipment/${family.slug}.html" aria-label="مشاهدهٔ صفحهٔ معرفی ${family.titleFa}">
           <div class="equipment-card-image-wrap">
-            <img class="equipment-card-image" src="./asset/equipment/${firstVariant.image}" alt="${family.titleFa}" loading="lazy" decoding="async" width="640" height="480">
+            <img class="equipment-card-image" src="./asset/equipment/${family.cardImage || firstVariant.image}" alt="${family.titleFa}" loading="lazy" decoding="async" width="640" height="480">
           </div>
           <div class="equipment-card-body">
             <div class="equipment-card-meta">

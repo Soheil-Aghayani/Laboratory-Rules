@@ -11821,7 +11821,7 @@
       "Nobelium (Element)",
       "نوبلیم"
     ],
-    "cas": null,
+    "cas": "10028-14-5",
     "formula": "No",
     "classification": {
       "familyFa": "اکتینید",
@@ -11938,7 +11938,7 @@
       "Lawrencium (Element)",
       "لارنسیم"
     ],
-    "cas": null,
+    "cas": "22537-19-5",
     "formula": "Lr",
     "classification": {
       "familyFa": "اکتینید",
@@ -12406,7 +12406,7 @@
       "Bohrium (Element)",
       "بوریم"
     ],
-    "cas": null,
+    "cas": "54037-14-8",
     "formula": "Bh",
     "classification": {
       "familyFa": "فلز واسطه",
@@ -12523,7 +12523,7 @@
       "Hassium (Element)",
       "هاسیم"
     ],
-    "cas": null,
+    "cas": "54037-57-9",
     "formula": "Hs",
     "classification": {
       "familyFa": "فلز واسطه",
@@ -12640,7 +12640,7 @@
       "Meitnerium (Element)",
       "مایتنریم"
     ],
-    "cas": null,
+    "cas": "54038-01-6",
     "formula": "Mt",
     "classification": {
       "familyFa": "فلز واسطه",
@@ -12757,7 +12757,7 @@
       "Darmstadtium (Element)",
       "دارمشتاتیم"
     ],
-    "cas": null,
+    "cas": "54083-77-1",
     "formula": "Ds",
     "classification": {
       "familyFa": "فلز واسطه",
@@ -12874,7 +12874,7 @@
       "Roentgenium (Element)",
       "رونتگنیم"
     ],
-    "cas": null,
+    "cas": "54386-24-2",
     "formula": "Rg",
     "classification": {
       "familyFa": "فلز واسطه",
@@ -12991,7 +12991,7 @@
       "Copernicium (Element)",
       "کوپرنیکیم"
     ],
-    "cas": null,
+    "cas": "54084-26-3",
     "formula": "Cn",
     "classification": {
       "familyFa": "فلز واسطه",
@@ -13108,7 +13108,7 @@
       "Nihonium (Element)",
       "نیهونیوم"
     ],
-    "cas": null,
+    "cas": "54084-70-7",
     "formula": "Nh",
     "classification": {
       "familyFa": "فلز پس‌واسطه",
@@ -13225,7 +13225,7 @@
       "Flerovium (Element)",
       "فلروویم"
     ],
-    "cas": null,
+    "cas": "54085-16-4",
     "formula": "Fl",
     "classification": {
       "familyFa": "فلز پس‌واسطه",
@@ -13342,7 +13342,7 @@
       "Moscovium (Element)",
       "مسکوویم"
     ],
-    "cas": null,
+    "cas": "54085-64-2",
     "formula": "Mc",
     "classification": {
       "familyFa": "فلز پس‌واسطه",
@@ -13459,7 +13459,7 @@
       "Livermorium (Element)",
       "لیورموریم"
     ],
-    "cas": null,
+    "cas": "54100-71-9",
     "formula": "Lv",
     "classification": {
       "familyFa": "فلز پس‌واسطه",
@@ -13576,7 +13576,7 @@
       "Tennessine (Element)",
       "تنسین"
     ],
-    "cas": null,
+    "cas": "54101-14-3",
     "formula": "Ts",
     "classification": {
       "familyFa": "هالوژن",
@@ -13693,7 +13693,7 @@
       "Oganesson (Element)",
       "اوگانسون"
     ],
-    "cas": null,
+    "cas": "54144-19-3",
     "formula": "Og",
     "classification": {
       "familyFa": "گاز نجیب",

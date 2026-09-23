@@ -1,5 +1,6 @@
 (() => {
   const volumetricFlaskVariants = [
+    ['5ml', '۵ میلی‌لیتر', '5 ml Volumetric Flask', 'volumetric-flask-5ml.webp'],
     ['25ml', '۲۵ میلی‌لیتر', '25 ml Volumetric Flask', 'volumetric-flask-25ml.webp'],
     ['50ml', '۵۰ میلی‌لیتر', '50 ml Volumetric Flask', 'volumetric-flask-50ml.webp'],
     ['100ml', '۱۰۰ میلی‌لیتر', '100 ml Volumetric Flask', 'volumetric-flask-100ml.webp'],
@@ -148,7 +149,7 @@
       label: '۲۵ میلی‌لیتر',
       titleFa: 'بوتهٔ چینی · ۲۵ میلی‌لیتر',
       titleEn: 'Fisherbrand Porcelain Crucible · 25 mL',
-      image: 'porcelain-crucible.webp',
+      image: 'porcelain-crucible-medium.webp',
       detail: 'بدنهٔ چینی سفید با ظرفیت ۲۵ میلی‌لیتر؛ مدل مرجع FB960R برای کاربردهای آزمایشگاهی و صنعتی معرفی شده است. حداکثر دما و نرخ گرم‌وسردشدن را از دیتاشیت مدل انتخابی بررسی کنید.',
       metadata: { material: 'porcelain', capacity: '25 mL', catalogNumber: 'FB960R' }
     },
@@ -157,8 +158,8 @@
       label: '۳۰ میلی‌لیتر',
       titleFa: 'بوتهٔ کوارتز · ۳۰ میلی‌لیتر',
       titleEn: 'Fused-Quartz Crucible · 30 mL',
-      image: 'crucible-generic.svg',
-      imageCaption: 'تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.',
+      image: 'fused-quartz-crucible.webp',
+      imageCaption: 'تصویر ارسالی خانوادهٔ بوتهٔ کوارتز؛ جزئیات مدل با مرجع سازنده تطبیق داده شود.',
       detail: 'کوارتز ذوب‌شدهٔ با خلوص بالا، ظرفیت ۳۰ میلی‌لیتر و ضخامت تقریبی ۲ میلی‌متر؛ مدل مرجع 08072D تا ۱۲۵۰ درجهٔ سانتی‌گراد معرفی شده و درپوش آن جداگانه عرضه می‌شود. با HF و اسید فسفریک سازگار فرض نشود.',
       metadata: { material: 'quartz', capacity: '30 mL', catalogNumber: '08072D', maxTemperature: '1250 °C' }
     },
@@ -167,8 +168,8 @@
       label: '۲ میلی‌لیتر · استوانه‌ای',
       titleFa: 'بوتهٔ آلومینا · ۲ میلی‌لیتر',
       titleEn: 'Alumina Crucible · 2 mL',
-      image: 'crucible-generic.svg',
-      imageCaption: 'تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.',
+      image: 'alumina-crucible.webp',
+      imageCaption: 'تصویر ارسالی خانوادهٔ بوتهٔ آلومینا؛ جزئیات مدل با مرجع سازنده تطبیق داده شود.',
       detail: 'آلومینای ۹۹٫۷٪ و بدون لعاب؛ مدل استوانه‌ای FB960A با ظرفیت ۲ میلی‌لیتر در منبع مرجع تا ۱۷۵۰ درجهٔ سانتی‌گراد و برای مقاومت در برابر حملهٔ شیمیایی و شارها معرفی شده است.',
       metadata: { material: 'alumina', capacity: '2 mL', catalogNumber: 'FB960A', maxTemperature: '1750 °C' }
     },
@@ -177,8 +178,8 @@
       label: '۲۵۰ میلی‌لیتر · فرم بلند',
       titleFa: 'بوتهٔ آلومینا · ۲۵۰ میلی‌لیتر',
       titleEn: 'Alumina Crucible · 250 mL High Form',
-      image: 'crucible-generic.svg',
-      imageCaption: 'تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.',
+      image: 'alumina-crucible.webp',
+      imageCaption: 'تصویر ارسالی خانوادهٔ بوتهٔ آلومینا؛ جزئیات مدل با مرجع سازنده تطبیق داده شود.',
       detail: 'گزینهٔ فرم بلند آلومینا برای حجم بالاتر؛ مدل FB960M با آلومینای ۹۹٫۷٪ و دمای استفادهٔ اعلام‌شدهٔ تا ۱۷۵۰ درجهٔ سانتی‌گراد عرضه می‌شود.',
       metadata: { material: 'alumina', capacity: '250 mL', catalogNumber: 'FB960M', maxTemperature: '1750 °C' }
     },
@@ -187,8 +188,8 @@
       label: '۳۰ میلی‌لیتر',
       titleFa: 'بوتهٔ نیکل · ۳۰ میلی‌لیتر',
       titleEn: 'Fisherbrand Nickel Crucible · 30 mL',
-      image: 'crucible-generic.svg',
-      imageCaption: 'تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.',
+      image: 'nickel-crucible.webp',
+      imageCaption: 'تصویر ارسالی خانوادهٔ بوتهٔ نیکل؛ جزئیات مدل با مرجع سازنده تطبیق داده شود.',
       detail: 'بدنهٔ نیکل خالص ورقی، فرم بلند و ظرفیت ۳۰ میلی‌لیتر؛ مدل 13812127 برای رقیق‌سازی قلیاها و دمای تا ۸۰۰ درجهٔ سانتی‌گراد در منبع مرجع معرفی شده است. جدول مشخصات همان صفحه یک ناسازگاری متنی دربارهٔ جنس دارد، پس دیتاشیت تأمین‌کننده را نهایی بدانید.',
       metadata: { material: 'nickel', capacity: '30 mL', catalogNumber: '13812127', maxTemperature: '800 °C' }
     },
@@ -197,8 +198,8 @@
       label: '۱۳ میلی‌لیتر',
       titleFa: 'بوتهٔ نیکل‌کروم · ۱۳ میلی‌لیتر',
       titleEn: 'Fisherbrand Nickel-Chromium Crucible · 13 mL',
-      image: 'crucible-generic.svg',
-      imageCaption: 'تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.',
+      image: 'nickel-chromium-crucible.webp',
+      imageCaption: 'تصویر ارسالی خانوادهٔ بوتهٔ نیکل‌کروم؛ جزئیات مدل با مرجع سازنده تطبیق داده شود.',
       detail: 'آلیاژ یکنواخت نیکل‌کروم با ظرفیت ۱۳ میلی‌لیتر و فرم بلند؛ مدل 13812120 برای آزمون مواد فرار، ignition، خاکسترکردن و incineration در شرایط بدون اسید آزاد، تا ۱۰۰۰ درجهٔ سانتی‌گراد معرفی شده است.',
       metadata: { material: 'nickel-chromium', capacity: '13 mL', catalogNumber: '13812120', maxTemperature: '1000 °C' }
     },
@@ -207,8 +208,8 @@
       label: '۲۵ میلی‌لیتر',
       titleFa: 'بوتهٔ زیرکونیوم · ۲۵ میلی‌لیتر',
       titleEn: 'Zirconium Crucible · 25 mL',
-      image: 'crucible-generic.svg',
-      imageCaption: 'تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.',
+      image: 'zirconium-crucible.webp',
+      imageCaption: 'تصویر ارسالی خانوادهٔ بوتهٔ زیرکونیوم؛ جزئیات مدل با مرجع سازنده تطبیق داده شود.',
       detail: 'زیرکونیوم یکپارچه با فرم کوتاه و پایهٔ پهن؛ مدل ۲۵ میلی‌لیتری برای fusion با سدیم پراکسید در بازهٔ ۴۶۰ تا ۹۰۰ درجهٔ سانتی‌گراد معرفی شده است و کد آن 13812122 است.',
       metadata: { material: 'zirconium', capacity: '25 mL', catalogNumber: '13812122', maxTemperature: '۴۶۰ تا ۹۰۰ °C' }
     },
@@ -217,8 +218,8 @@
       label: '۳۵ میلی‌لیتر',
       titleFa: 'بوتهٔ زیرکونیوم · ۳۵ میلی‌لیتر',
       titleEn: 'Zirconium Crucible · 35 mL',
-      image: 'crucible-generic.svg',
-      imageCaption: 'تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.',
+      image: 'zirconium-crucible.webp',
+      imageCaption: 'تصویر ارسالی خانوادهٔ بوتهٔ زیرکونیوم؛ جزئیات مدل با مرجع سازنده تطبیق داده شود.',
       detail: 'گزینهٔ ۳۵ میلی‌لیتری از خانوادهٔ بوته‌های زیرکونیوم با فرم کوتاه و پایهٔ پهن؛ کد مدل مرجع 13812123 است. بازهٔ دما و سازگاری فرایند را پیش از fusion بررسی کنید.',
       metadata: { material: 'zirconium', capacity: '35 mL', catalogNumber: '13812123', maxTemperature: '۴۶۰ تا ۹۰۰ °C' }
     },
@@ -227,8 +228,8 @@
       label: '۴۵ میلی‌لیتر',
       titleFa: 'بوتهٔ زیرکونیوم · ۴۵ میلی‌لیتر',
       titleEn: 'Zirconium Crucible · 45 mL',
-      image: 'crucible-generic.svg',
-      imageCaption: 'تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.',
+      image: 'zirconium-crucible.webp',
+      imageCaption: 'تصویر ارسالی خانوادهٔ بوتهٔ زیرکونیوم؛ جزئیات مدل با مرجع سازنده تطبیق داده شود.',
       detail: 'گزینهٔ ۴۵ میلی‌لیتری از خانوادهٔ بوته‌های زیرکونیوم؛ کد مدل مرجع 13812124 است. بوتهٔ زیرکونیوم را فقط با توجه به روش fusion و سازگاری ماده انتخاب کنید.',
       metadata: { material: 'zirconium', capacity: '45 mL', catalogNumber: '13812124', maxTemperature: '۴۶۰ تا ۹۰۰ °C' }
     },
@@ -237,8 +238,8 @@
       label: '۵۵ میلی‌لیتر',
       titleFa: 'بوتهٔ زیرکونیوم · ۵۵ میلی‌لیتر',
       titleEn: 'Zirconium Crucible · 55 mL',
-      image: 'crucible-generic.svg',
-      imageCaption: 'تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.',
+      image: 'zirconium-crucible.webp',
+      imageCaption: 'تصویر ارسالی خانوادهٔ بوتهٔ زیرکونیوم؛ جزئیات مدل با مرجع سازنده تطبیق داده شود.',
       detail: 'گزینهٔ ۵۵ میلی‌لیتری با کد مدل 13812125؛ زیرکونیوم یکپارچه و فرم کوتاه با پایهٔ پهن برای fusion با سدیم پراکسید، در بازهٔ ۴۶۰ تا ۹۰۰ درجهٔ سانتی‌گراد.',
       metadata: { material: 'zirconium', capacity: '55 mL', catalogNumber: '13812125', maxTemperature: '۴۶۰ تا ۹۰۰ °C' }
     }
@@ -452,6 +453,165 @@
     metadata: { model, overallHeight, joint }
   }));
 
+  const beakerVariants = [
+    {
+      id: 'low-form',
+      label: 'فرم کم‌ارتفاع',
+      titleFa: 'بشر بوروسیلیکات · فرم کم‌ارتفاع',
+      titleEn: 'Low Form Borosilicate Beaker',
+      image: 'beaker-low-form.webp',
+      detail: 'فرم کم‌ارتفاع با دهانهٔ باز و کف پایدار برای مخلوط‌کردن، رقیق‌سازی و گرمادهی عمومی؛ ظرفیت دقیق باید از مدل انتخابی خوانده شود.',
+      metadata: { form: 'low form', capacityRange: '50–5000 mL', model: '1000' }
+    },
+    {
+      id: 'multiple-volumes',
+      label: 'چندحجمی',
+      titleFa: 'بشر بوروسیلیکات · چندحجمی',
+      titleEn: 'Borosilicate Beakers · Multiple Volumes',
+      image: 'beakers-multiple-volumes.webp',
+      detail: 'خانواده‌ای از بشرهای بوروسیلیکات در حجم‌های مختلف برای مخلوط‌کردن، انتقال و گرمادهی. تصویر، خانواده را نشان می‌دهد و جایگزین بررسی حجم مدل نهایی نیست.',
+      metadata: { form: 'low or tall form', capacityRange: '50–5000 mL', models: '1000, 1040, 1060, 1080' }
+    }
+  ];
+
+  const conicalCentrifugeTubeVariants = [
+    {
+      id: '15ml',
+      label: '۱۵ میلی‌لیتر',
+      titleFa: 'لولهٔ سانتریفیوژ مخروطی · ۱۵ میلی‌لیتر',
+      titleEn: '15 mL Conical Polypropylene Centrifuge Tube',
+      image: 'conical-centrifuge-tube-15ml.webp',
+      detail: 'لولهٔ مخروطی پلی‌پروپیلن با درجه‌بندی و ناحیهٔ نوشتن؛ نمونهٔ مرجع Fisher/Falcon برای رسوب‌دادن و جداسازی نمونه در سانتریفیوژ معرفی شده است.',
+      metadata: { capacity: '15 mL', material: 'polypropylene', shape: 'conical', graduation: '0.5 mL subdivisions in a reference model' }
+    },
+    {
+      id: '50ml',
+      label: '۵۰ میلی‌لیتر',
+      titleFa: 'لولهٔ سانتریفیوژ مخروطی · ۵۰ میلی‌لیتر',
+      titleEn: '50 mL Conical Polypropylene Centrifuge Tube',
+      image: 'conical-centrifuge-tube-50ml.webp',
+      detail: 'لولهٔ مخروطی پلی‌پروپیلن با فضای برچسب‌گذاری و درجه‌بندی درشت‌تر؛ برای جمع‌آوری رسوب و آماده‌سازی نمونه، مشخصات روتور و حداکثر RCF مدل را جداگانه بررسی کنید.',
+      metadata: { capacity: '50 mL', material: 'polypropylene', shape: 'conical', graduation: '5 mL increments in a reference model' }
+    }
+  ];
+
+  const measuringCylinderVariants = [
+    ['5ml', '۵ میلی‌لیتر', '5 mL Glass Measuring Cylinder', 'measuring-cylinder-5ml.webp'],
+    ['10ml', '۱۰ میلی‌لیتر', '10 mL Glass Measuring Cylinder', 'measuring-cylinder-10ml.webp'],
+    ['50ml', '۵۰ میلی‌لیتر', '50 mL Glass Measuring Cylinder', 'measuring-cylinder-50ml.webp'],
+    ['100ml', '۱۰۰ میلی‌لیتر', '100 mL Glass Measuring Cylinder', 'measuring-cylinder-100ml.webp'],
+    ['250ml', '۲۵۰ میلی‌لیتر', '250 mL Glass Measuring Cylinder', 'measuring-cylinder-250ml.webp'],
+    ['500ml', '۵۰۰ میلی‌لیتر', '500 mL Glass Measuring Cylinder', 'measuring-cylinder-500ml.webp'],
+    ['1000ml', '۱۰۰۰ میلی‌لیتر', '1000 mL Glass Measuring Cylinder', 'measuring-cylinder-1000ml.webp']
+  ].map(([id, label, titleEn, image]) => ({
+    id,
+    label,
+    titleFa: `استوانهٔ مدرج شیشه‌ای ${label}`,
+    titleEn,
+    image,
+    detail: `استوانهٔ مدرج شیشه‌ای با ظرفیت ${label} برای اندازه‌گیری و انتقال تقریبی مایع؛ برای اندازه‌گیری تحلیلی دقیق، کلاس دقت و گواهی کالیبراسیون مدل را بررسی کنید.`,
+    metadata: { capacity: label, material: 'borosilicate glass', accuracyClass: 'model-dependent' }
+  }));
+
+  const boilingFlaskVariants = [
+    {
+      id: 'round-bottom-joint',
+      label: 'کف‌گرد با اتصال قابل‌تعویض',
+      titleFa: 'بالن جوششی کف‌گرد با اتصال قابل‌تعویض',
+      titleEn: 'Round-Bottom Boiling Flask with Interchangeable Joint',
+      image: 'boiling-flask-round-joint.webp',
+      detail: 'بالن کف‌گرد برای گرمادهی یکنواخت در مجموعه‌های تقطیر یا رفلاکس؛ اندازهٔ اتصال و گیرهٔ نگهدارنده باید با قطعات سامانه هماهنگ باشد.',
+      metadata: { form: 'round bottom', joint: 'interchangeable', capacity: 'model-dependent' }
+    },
+    {
+      id: 'flat-bottom',
+      label: 'کف‌تخت',
+      titleFa: 'بالن جوششی کف‌تخت',
+      titleEn: 'Flat-Bottom Boiling Flask',
+      image: 'boiling-flask-flat-bottom.webp',
+      detail: 'کف تخت امکان ایستادن روی سطح مناسب را فراهم می‌کند؛ برای گرمادهی، تکیه‌گاه، یکنواختی حرارت و محدودیت‌های شیشهٔ مدل را رعایت کنید.',
+      metadata: { form: 'flat bottom', joint: 'model-dependent', capacity: 'model-dependent' }
+    },
+    {
+      id: 'round-bottom',
+      label: 'کف‌گرد',
+      titleFa: 'بالن جوششی کف‌گرد',
+      titleEn: 'Round-Bottom Boiling Flask',
+      image: 'boiling-flask-round-bottom.webp',
+      detail: 'بالن کف‌گرد برای گرمادهی و واکنش در مجموعه‌های شیشه‌ای استفاده می‌شود؛ به‌تنهایی روی میز پایدار نیست و به گیره یا حمام مناسب نیاز دارد.',
+      metadata: { form: 'round bottom', joint: 'model-dependent', capacity: 'model-dependent' }
+    }
+  ];
+
+  const erlenmeyerFlaskVariants = [
+    {
+      id: 'narrow-mouth',
+      label: 'دهانه باریک',
+      titleFa: 'بالن ارلن · دهانه‌باریک',
+      titleEn: 'Narrow-Mouth Erlenmeyer Flask',
+      image: 'erlenmeyer-flask-narrow-mouth.webp',
+      detail: 'فرم مخروطی با دهانهٔ باریک برای مخلوط‌کردن، گرمادهی و کاهش پاشش؛ هنگام گرمادهی درپوش یا استاپر بسته استفاده نشود.',
+      metadata: { form: 'narrow mouth', capacity: 'model-dependent' }
+    },
+    {
+      id: 'wide-mouth',
+      label: 'دهانه عریض',
+      titleFa: 'بالن ارلن · دهانه‌عریض',
+      titleEn: 'Wide-Mouth Erlenmeyer Flask',
+      image: 'erlenmeyer-flask-wide-mouth.webp',
+      detail: 'دهانهٔ عریض دسترسی و انتقال جامد یا مایع را ساده‌تر می‌کند؛ برای کاهش خطر سرریز، سرعت چرخاندن و حجم پرشدن را کنترل کنید.',
+      metadata: { form: 'wide mouth', capacity: 'model-dependent' }
+    },
+    {
+      id: 'interchangeable-joint',
+      label: 'اتصال قابل‌تعویض',
+      titleFa: 'بالن ارلن با اتصال قابل‌تعویض',
+      titleEn: 'Erlenmeyer Flask with Interchangeable Joint',
+      image: 'erlenmeyer-flask-joint.webp',
+      detail: 'برای اتصال به اجزای شیشه‌ای هم‌اندازه و سازگار؛ اندازهٔ joint، استاپر و روش گرمادهی را از مدل مشخص بررسی کنید.',
+      metadata: { form: 'conical', joint: 'interchangeable', capacity: '25–2000 mL in reference ranges' }
+    },
+    {
+      id: 'screw-cap',
+      label: 'درپیچ‌دار',
+      titleFa: 'بالن ارلن درپیچ‌دار',
+      titleEn: 'Erlenmeyer Flask with Screw Cap',
+      image: 'erlenmeyer-flask-screw-cap.webp',
+      detail: 'برای نگهداری یا کشت‌های تکانشی با درپوش مناسب؛ سازگاری درپوش با فشار، دما، استریل‌سازی و ماده باید مشخص باشد.',
+      metadata: { form: 'conical', closure: 'screw cap', capacity: 'model-dependent' }
+    }
+  ];
+
+  const filterFlaskVariants = [{
+    id: 'glass-tubulation',
+    label: 'با لولهٔ جانبی شیشه‌ای',
+    titleFa: 'بالن خلأ با لولهٔ جانبی',
+    titleEn: 'Filter Flask with Glass Tubulation',
+    image: 'filter-flask.webp',
+    detail: 'بالن خلأ با لولهٔ جانبی برای فیلتراسیون خلأ و اتصال به قیف بوخنر؛ حجم، ضخامت و سازگاری سامانهٔ خلأ باید از مدل انتخابی بررسی شود.',
+    metadata: { form: 'filter flask', sidearm: 'glass tubulation', model: '5340' }
+  }];
+
+  const washBottleVariants = [{
+    id: 'squeeze',
+    label: 'فشارشی',
+    titleFa: 'بطری شست‌وشو',
+    titleEn: 'Laboratory Wash Bottle',
+    image: 'wash-bottle.webp',
+    detail: 'بطری فشارشی برای آبکشی شیشه‌آلات یا رساندن مقدار کنترل‌شدهٔ مایع؛ مادهٔ بدنه، نازل و برچسب محتویات باید با کاربرد هماهنگ باشد.',
+    metadata: { form: 'squeeze bottle', material: 'model-dependent', capacity: 'model-dependent' }
+  }];
+
+  const vialVariants = [{
+    id: 'general',
+    label: 'ویال نمونه',
+    titleFa: 'ویال آزمایشگاهی',
+    titleEn: 'Laboratory Vial',
+    image: 'vial.webp',
+    detail: 'ویال برای نگهداری یا جابه‌جایی حجم‌های کم نمونه به کار می‌رود؛ جنس، درپوش، حجم و مقاومت شیمیایی آن باید از مدل مشخص انتخاب شود.',
+    metadata: { form: 'sample vial', closure: 'model-dependent', capacity: 'model-dependent' }
+  }];
+
   const catalog = [
     {
       slug: 'volumetric-flasks',
@@ -459,6 +619,7 @@
       titleEn: 'Volumetric Flasks',
       category: 'glassware',
       categoryLabel: 'شیشه‌آلات',
+      cardImage: 'volumetric-flasks-multiple-volumes.webp',
       summary: 'برای تهیهٔ محلول با حجم نهایی مشخص، در اندازه‌های مختلف.',
       introduction: 'بالن حجمی برای رساندن حجم محلول به مقدار مشخص استفاده می‌شود. شکل و خط نشانهٔ آن برای تنظیم حجم نهایی طراحی شده است.',
       primaryUse: 'تهیهٔ محلول‌های استاندارد و رقیق‌سازی دقیق',
@@ -491,6 +652,120 @@
       safety: 'پیش از استفاده، تمیزی و سلامت سطح شیشه بررسی شود.',
       details: ['پوشش را هنگام جابه‌جایی آرام نگه دارید.', 'نمونه‌های ناشناخته را بدون برچسب رها نکنید.', 'پس از استفاده، ظرف را طبق روش پاک‌سازی آزمایشگاه تمیز کنید.'],
       variants: petriDishVariants
+    },
+    {
+      slug: 'beakers',
+      titleFa: 'بشرهای آزمایشگاهی',
+      titleEn: 'Laboratory Beakers',
+      category: 'glassware',
+      categoryLabel: 'شیشه‌آلات',
+      cardImage: 'beakers-multiple-volumes.webp',
+      aliases: ['بشر', 'beaker', 'beakers', 'بشر بوروسیلیکات'],
+      summary: 'ظرف عمومی برای مخلوط‌کردن، رقیق‌سازی، انتقال و گرمادهی کنترل‌شده.',
+      introduction: 'بشر ظرفی با دهانهٔ باز و کف پایدار است و برای کارهای عمومی آزمایشگاهی استفاده می‌شود. برخلاف بالن حجمی، درجه‌بندی بشر برای اندازه‌گیری دقیق نهایی طراحی نشده است. فرم کم‌ارتفاع، فرم بلند و فرم مخروطی هرکدام کاربرد متفاوتی دارند.',
+      primaryUse: 'مخلوط‌کردن، رقیق‌سازی و گرمادهی عمومی',
+      safety: 'درجه‌بندی بشر تقریبی است؛ برای حجم نهایی دقیق از شیشه‌آلات حجمی کالیبره استفاده کنید و تغییر دما را مرحله‌ای انجام دهید.',
+      details: ['فرم کم‌ارتفاع برای مخلوط‌کردن و رقیق‌سازی عمومی مناسب است.', 'برای گرمادهی، سلامت شیشه و سازگاری بوروسیلیکات با روش را بررسی کنید.', 'بشر را بیش از حد پر نکنید و برای ریختن مایع از لبهٔ تخلیه استفاده کنید.'],
+      variants: beakerVariants
+    },
+    {
+      slug: 'conical-centrifuge-tubes',
+      titleFa: 'لوله‌های سانتریفیوژ مخروطی (فالکون)',
+      titleEn: 'Conical Polypropylene Centrifuge Tubes',
+      category: 'plasticware',
+      categoryLabel: 'پلاستیک‌آلات',
+      aliases: ['فالکون', 'لوله فالکون', 'Falcon tubes', 'centrifuge tubes', 'conical tubes'],
+      summary: 'لوله‌های پلی‌پروپیلن مخروطی برای رسوب‌دادن، جداسازی و نگهداری نمونه.',
+      introduction: 'لولهٔ مخروطی سانتریفیوژ که در گفتار آزمایشگاهی گاهی «فالکون» نامیده می‌شود، یک نام عمومی برای این شکل از لوله است و الزاماً به یک برند خاص اشاره نمی‌کند. بدنهٔ پلی‌پروپیلن، درجه‌بندی، ناحیهٔ نوشتن و نوع درپوش را باید با نیاز آزمایش و مشخصات روتور تطبیق داد.',
+      primaryUse: 'سانتریفیوژ، جمع‌آوری رسوب و آماده‌سازی نمونه',
+      safety: 'برای هر مدل، حداکثر RCF، دمای کار، استریل‌بودن و سازگاری شیمیایی را از دیتاشیت همان محصول بررسی کنید و لوله‌ها را متوازن در روتور قرار دهید.',
+      details: ['لوله‌ها را با حجم و جرم متوازن در روتور قرار دهید.', 'درپوش را کامل ببندید اما از فشار اضافی روی رزوه خودداری کنید.', 'پسماند آلوده را طبق جنس پلیمر و آلودگی نمونه تفکیک کنید.'],
+      variants: conicalCentrifugeTubeVariants
+    },
+    {
+      slug: 'measuring-cylinders',
+      titleFa: 'استوانه‌های مدرج شیشه‌ای',
+      titleEn: 'Glass Measuring Cylinders',
+      category: 'glassware',
+      categoryLabel: 'شیشه‌آلات',
+      cardImage: 'measuring-cylinders-multiple-volumes.webp',
+      aliases: ['استوانه مدرج', 'مزور', 'graduated cylinder', 'measuring cylinder'],
+      summary: 'برای اندازه‌گیری و انتقال حجم‌های مختلف با خوانش منیسک.',
+      introduction: 'استوانهٔ مدرج برای اندازه‌گیری و انتقال حجم مایع با دقتی مناسب برای کار عمومی به کار می‌رود. کلاس دقت، پایه، دهانهٔ تخلیه و وجود گواهی کالیبراسیون بین مدل‌ها تفاوت ایجاد می‌کند.',
+      primaryUse: 'اندازه‌گیری و انتقال حجمی عمومی',
+      safety: 'برای تهیهٔ محلول استاندارد یا اندازه‌گیری تحلیلی نهایی، محدودیت دقت استوانه را در نظر بگیرید و در صورت نیاز از بالن حجمی یا پیپت استفاده کنید.',
+      details: ['منیسک را در ارتفاع چشم و در دمای مرجع بخوانید.', 'پایهٔ شش‌ضلعی را روی سطح صاف قرار دهید.', 'کلاس A یا B و گواهی کالیبراسیون را از مدل انتخابی بررسی کنید.'],
+      variants: measuringCylinderVariants
+    },
+    {
+      slug: 'boiling-flasks',
+      titleFa: 'بالن‌های جوششی',
+      titleEn: 'Boiling Flasks',
+      category: 'glassware',
+      categoryLabel: 'شیشه‌آلات',
+      aliases: ['بالن جوش', 'round bottom flask', 'boiling flask'],
+      summary: 'بالن‌هایی برای گرمادهی، جوشاندن و آرایش‌های تقطیر یا رفلاکس.',
+      introduction: 'بالن جوششی برای گرمادهی مایع در مجموعه‌های واکنش، تقطیر یا رفلاکس طراحی می‌شود. تفاوت کف‌گرد و کف‌تخت روی شیوهٔ نگهداری و انتقال گرما اثر دارد و اتصال‌ها باید با اجزای سامانه هم‌اندازه باشند.',
+      primaryUse: 'گرمادهی، جوشاندن، تقطیر و رفلاکس',
+      safety: 'بالن کف‌گرد بدون گیره پایدار نیست؛ پیش از گرمادهی، سلامت شیشه، مسیر تخلیه و پشتیبانی مکانیکی را بررسی کنید.',
+      details: ['برای اتصال‌های قابل‌تعویض، اندازهٔ joint و گریس یا آب‌بندی مناسب را بررسی کنید.', 'از شوک حرارتی و گرم‌کردن شیشهٔ ترک‌خورده جلوگیری کنید.', 'در مجموعهٔ تقطیر، مسیر خروج بخار و خنک‌کاری را پیش از کار کنترل کنید.'],
+      variants: boilingFlaskVariants
+    },
+    {
+      slug: 'erlenmeyer-flasks',
+      titleFa: 'بالن‌های ارلن',
+      titleEn: 'Erlenmeyer Flasks',
+      category: 'glassware',
+      categoryLabel: 'شیشه‌آلات',
+      aliases: ['ارلن', 'بالن مخروطی', 'conical flask', 'Erlenmeyer'],
+      summary: 'بالن مخروطی برای مخلوط‌کردن، گرمادهی، کشت و نگهداری نمونه.',
+      introduction: 'بالن ارلن یا بالن مخروطی، کف پهن و گردن باریک دارد و امکان چرخاندن محتویات با خطر کمتر پاشش را فراهم می‌کند. دهانه، اتصال و درپوش تعیین می‌کنند که یک مدل برای انتقال، گرمادهی یا نگهداری مناسب‌تر باشد.',
+      primaryUse: 'مخلوط‌کردن، گرمادهی و آماده‌سازی محلول یا کشت',
+      safety: 'درپوش بسته را هنگام گرمادهی استفاده نکنید مگر روش و تجهیز برای آن طراحی شده باشد؛ ظرفیت مفید و سازگاری شیشه را رعایت کنید.',
+      details: ['فرم دهانه را بر اساس انتقال جامد، تبخیر و احتمال پاشش انتخاب کنید.', 'برای شیکر یا کشت، نوع درپوش و تهویه را با روش آزمایش تطبیق دهید.', 'برای اتصال شیشه‌ای، joint و استاپر هم‌اندازه استفاده کنید.'],
+      variants: erlenmeyerFlaskVariants
+    },
+    {
+      slug: 'filter-flasks',
+      titleFa: 'بالن‌های خلأ و فیلتراسیون',
+      titleEn: 'Filter Flasks',
+      category: 'glassware',
+      categoryLabel: 'شیشه‌آلات',
+      aliases: ['بالن بوخنر', 'بالن فیلتراسیون', 'vacuum flask', 'filter flask'],
+      summary: 'بالن جانبی برای فیلتراسیون خلأ و اتصال به قیف بوخنر.',
+      introduction: 'بالن فیلتراسیون با لولهٔ جانبی به منبع خلأ متصل می‌شود و همراه قیف بوخنر برای جداسازی جامد و مایع به کار می‌رود. شکل بدنه برای تحمل بهتر فشار طراحی شده است، اما جایگزین بررسی سلامت هر قطعه نیست.',
+      primaryUse: 'فیلتراسیون خلأ',
+      safety: 'فقط از بالن سالم و مناسب خلأ استفاده کنید؛ شلنگ، آب‌بندی و مسیر تخلیه را قبل از ایجاد خلأ بررسی کنید.',
+      details: ['قیف و درپوش را با آب‌بندی مناسب روی دهانه قرار دهید.', 'خلأ را مرحله‌ای برقرار و پیش از بازکردن مجموعه قطع کنید.', 'بالن ترک‌خورده یا لب‌پریده را در سامانهٔ خلأ به کار نبرید.'],
+      variants: filterFlaskVariants
+    },
+    {
+      slug: 'wash-bottles',
+      titleFa: 'بطری‌های شست‌وشو',
+      titleEn: 'Laboratory Wash Bottles',
+      category: 'plasticware',
+      categoryLabel: 'پلاستیک‌آلات',
+      aliases: ['بطری شستشو', 'wash bottle', 'squeeze bottle'],
+      summary: 'برای آبکشی شیشه‌آلات و رساندن کنترل‌شدهٔ مایع شست‌وشو.',
+      introduction: 'بطری شست‌وشو با فشار دست، مایع را از نازل باریک خارج می‌کند و برای آبکشی شیشه‌آلات یا افزودن مقدار کم حلال مناسب است. برچسب محتویات و جنس پلیمر باید همیشه روشن باشد.',
+      primaryUse: 'آبکشی و انتقال کنترل‌شدهٔ مایع',
+      safety: 'هر بطری را فقط با مایع سازگار با بدنه، نازل و درپوش پر کنید و هرگز بطری بدون برچسب را در کنار محلول‌های دیگر نگذارید.',
+      details: ['نام ماده و تاریخ پرکردن را روی بطری ثبت کنید.', 'نازل را به سمت بدن یا همکاران نگیرید.', 'بطری آلوده یا تغییرشکل‌داده‌شده را از چرخهٔ کار خارج کنید.'],
+      variants: washBottleVariants
+    },
+    {
+      slug: 'vials',
+      titleFa: 'ویال‌های آزمایشگاهی',
+      titleEn: 'Laboratory Vials',
+      category: 'glassware',
+      categoryLabel: 'شیشه‌آلات',
+      aliases: ['ویال', 'sample vial', 'laboratory vial'],
+      summary: 'ظرف کوچک برای نگهداری، انتقال یا آماده‌سازی نمونه‌ها.',
+      introduction: 'ویال برای نمونه‌های کم‌حجم و نگهداری کوتاه‌مدت یا انتقال کنترل‌شده استفاده می‌شود. جنس بدنه، نوع درپوش و حجم مفید به مدل وابسته است و باید با ماده و روش آزمون تطبیق داده شود.',
+      primaryUse: 'نگهداری و انتقال نمونه‌های کم‌حجم',
+      safety: 'درپوش را متناسب با ماده و فشار احتمالی انتخاب کنید و نمونه را با نام، تاریخ و وضعیت آن برچسب بزنید.',
+      details: ['پیش از استفاده، ترک، لب‌پریدگی و سلامت درپوش را بررسی کنید.', 'ویال شیشه‌ای را از تغییر ناگهانی دما محافظت کنید.', 'ویال مصرف‌شده را بر اساس آلودگی و جنس بدنه دفع کنید.'],
+      variants: vialVariants
     },
     {
       slug: 'porcelain-crucible',
@@ -783,7 +1058,14 @@
     borosilVacuumDesiccator: 'https://www.borosilscientific.com/product/3083-vacuum-desiccator-set/',
     borosilGrahamCondenser: 'https://www.borosilscientific.com/product/2560-graham-coiled-condenser/',
     fisherPipetteStands: 'https://www.fishersci.ca/shop/products/finnpipette-stands/p-4520840',
-    borosilAllihnCondenser: 'https://www.borosilscientific.com/product/2480-allihn-condenser/'
+    borosilAllihnCondenser: 'https://www.borosilscientific.com/product/2480-allihn-condenser/',
+    borosilBeakers: 'https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/general-laboratory-glassware/beakers/',
+    borosilMeasuringCylinders: 'https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/volumetric-glassware/cylinders/',
+    borosilFlasks: 'https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/general-laboratory-glassware/flask/',
+    borosilErlenmeyer: 'https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/glassware-for-microbiology/erlenmeyer-culture-flask/',
+    borosilFilterFlask: 'https://www.borosilscientific.com/product/5340-filter-flask/',
+    fisherFalcon15ml: 'https://www.fishersci.ca/shop/products/falcon-15ml-conical-centrifuge-tubes-5/p-193301',
+    fisherFalcon50ml: 'https://www.fishersci.ca/shop/products/falcon-50ml-conical-centrifuge-tubes-2/p-193321'
   };
 
   const reference = (label, url) => ({ label, url });
@@ -830,6 +1112,122 @@
         { label: 'جنس این تصویر', value: 'شیشه؛ در بازار مدل‌های پلاستیکی یک‌بارمصرف و شیشه‌ای قابل‌استفادهٔ مجدد نیز وجود دارد.' },
         { label: 'کاربرد', value: 'کشت و مشاهدهٔ نمونه، آماده‌سازی محیط و کارهای کنترل کیفی، با انتخاب استریل یا غیراستریل بر اساس مدل.' },
         { label: 'ابعاد مدل مرجع', value: 'قطرهای ۵۰، ۸۰، ۱۰۰، ۱۵۰ و ۲۰۰ میلی‌متر در خانوادهٔ Borosil 3160؛ ارتفاع و ابعاد درپوش به گزینه وابسته است.' }
+      ]
+    },
+    'beakers': {
+      source: vendorUrls.borosilBeakers,
+      sources: [
+        reference('Borosil Scientific: بشرهای آزمایشگاهی', vendorUrls.borosilBeakers),
+        reference('Borosil Scientific: بشر فرم کم‌ارتفاع 1000', 'https://www.borosilscientific.com/product/1000-low-form-beaker/'),
+        reference('Fisher Scientific: شیشه‌آلات تخصصی', vendorUrls.fisherSpecialty),
+        reference('Sigma-Aldrich: شیشه‌آلات آزمایشگاهی', vendorUrls.sigmaGlassware),
+        reference('Trafalgar Scientific: فلاسک‌ها و شیشه‌آلات', vendorUrls.trafalgarFlasks)
+      ],
+      specifications: [
+        { label: 'جنس مرجع', value: 'شیشهٔ بوروسیلیکات ۳٫۳ با انبساط کم؛ جنس و مقاومت حرارتی دقیق به مدل وابسته است.' },
+        { label: 'فرم‌ها', value: 'فرم کم‌ارتفاع، فرم بلند و فرم مخروطی؛ با دهانهٔ تخلیه یا بدون آن.' },
+        { label: 'بازهٔ ظرفیت مرجع', value: '۵۰ تا ۵۰۰۰ میلی‌لیتر در خانوادهٔ Borosil؛ حجم نهایی هر مدل از جدول همان مدل خوانده شود.' },
+        { label: 'نکتهٔ اندازه‌گیری', value: 'درجه‌بندی بشر تقریبی است و برای تهیهٔ حجم دقیق جایگزین بالن حجمی یا پیپت نیست.' }
+      ]
+    },
+    'conical-centrifuge-tubes': {
+      source: vendorUrls.fisherFalcon15ml,
+      sources: [
+        reference('Fisher Scientific: Falcon 15 میلی‌لیتر', vendorUrls.fisherFalcon15ml),
+        reference('Fisher Scientific: Falcon 50 میلی‌لیتر', vendorUrls.fisherFalcon50ml),
+        reference('Fisher Scientific: لوله‌های سانتریفیوژ', 'https://www.fishersci.ca/ca/en/browse/90168074/Centrifuge-Tubes?page=1')
+      ],
+      specifications: [
+        { label: 'حجم‌های این خانواده', value: '۱۵ و ۵۰ میلی‌لیتر؛ هر حجم درپوش، بسته‌بندی و مدل‌های مختلف دارد.' },
+        { label: 'جنس و شکل', value: 'پلی‌پروپیلن شفاف یا نیمه‌شفاف با کف مخروطی؛ مدل و برند دقیق باید از مرجع خوانده شود.' },
+        { label: 'درجه‌بندی مرجع', value: 'در نمونه‌های Fisher، برای ۱۵ میلی‌لیتر تقسیمات ۰٫۵ میلی‌لیتری و برای ۵۰ میلی‌لیتر تقسیمات ۵ میلی‌لیتری دیده می‌شود.' },
+        { label: 'سانتریفیوژ', value: 'حداکثر RCF و محدودهٔ دما به مدل و روتور وابسته است؛ مقدار یک مدل را به همهٔ لوله‌ها تعمیم ندهید.' }
+      ]
+    },
+    'measuring-cylinders': {
+      source: vendorUrls.borosilMeasuringCylinders,
+      sources: [
+        reference('Borosil Scientific: استوانه‌های مدرج', vendorUrls.borosilMeasuringCylinders),
+        reference('Borosil Scientific: استوانهٔ مدل 3021', 'https://www.borosilscientific.com/product/3021-cylinders/'),
+        reference('Sigma-Aldrich: شیشه‌آلات آزمایشگاهی', vendorUrls.sigmaGlassware),
+        reference('Fisher Scientific: شیشه‌آلات تخصصی', vendorUrls.fisherSpecialty)
+      ],
+      specifications: [
+        { label: 'ظرفیت‌های تصویر و خانواده', value: '۵، ۱۰، ۵۰، ۱۰۰، ۲۵۰، ۵۰۰ و ۱۰۰۰ میلی‌لیتر.' },
+        { label: 'جنس مرجع', value: 'شیشهٔ بوروسیلیکات با پایهٔ پایدار؛ نوع پایه و دهانهٔ تخلیه به مدل وابسته است.' },
+        { label: 'کلاس دقت', value: 'مدل‌های Class A و Class B وجود دارند؛ برای کار حساس، گواهی کالیبراسیون همان مدل را بررسی کنید.' },
+        { label: 'کاربرد', value: 'اندازه‌گیری و انتقال عمومی مایع؛ برای حجم نهایی دقیق از شیشه‌آلات حجمی مناسب استفاده شود.' }
+      ]
+    },
+    'boiling-flasks': {
+      source: vendorUrls.borosilFlasks,
+      sources: [
+        reference('Borosil Scientific: فلاسک‌های آزمایشگاهی', vendorUrls.borosilFlasks),
+        reference('Borosil Scientific: شیشه‌آلات آزمایشگاهی', vendorUrls.borosilGeneral),
+        reference('Sigma-Aldrich: شیشه‌آلات آزمایشگاهی', vendorUrls.sigmaGlassware),
+        reference('Trafalgar Scientific: فلاسک‌ها', vendorUrls.trafalgarFlasks)
+      ],
+      specifications: [
+        { label: 'فرم‌های این خانواده', value: 'کف‌گرد، کف‌تخت و کف‌گرد با اتصال قابل‌تعویض.' },
+        { label: 'جنس مرجع', value: 'شیشهٔ آزمایشگاهی بوروسیلیکات؛ استاندارد و ابعاد دقیق به مدل وابسته است.' },
+        { label: 'کاربرد', value: 'گرمادهی، جوشاندن، تقطیر و رفلاکس در یک مجموعهٔ مهارشده.' },
+        { label: 'نکتهٔ مونتاژ', value: 'بالن کف‌گرد باید با گیره و تکیه‌گاه مناسب مهار شود و اتصالات هم‌اندازه باشند.' }
+      ]
+    },
+    'erlenmeyer-flasks': {
+      source: vendorUrls.borosilErlenmeyer,
+      sources: [
+        reference('Borosil Scientific: فلاسک ارلن کشت', vendorUrls.borosilErlenmeyer),
+        reference('Borosil Scientific: فلاسک ارلن با اتصال 5020', 'https://www.borosilscientific.com/product/5020-erlenmeyer-conical-flask/'),
+        reference('Sigma-Aldrich: شیشه‌آلات آزمایشگاهی', vendorUrls.sigmaGlassware),
+        reference('Trafalgar Scientific: فلاسک‌ها', vendorUrls.trafalgarFlasks)
+      ],
+      specifications: [
+        { label: 'نام‌های رایج', value: 'بالن ارلن و بالن مخروطی به یک فرم اصلی اشاره می‌کنند؛ تفاوت در دهانه، اتصال و درپوش است.' },
+        { label: 'فرم‌های این خانواده', value: 'دهانه‌باریک، دهانه‌عریض، اتصال قابل‌تعویض و درپیچ‌دار.' },
+        { label: 'بازهٔ مرجع', value: 'در خانواده‌های Borosil، ظرفیت‌ها از حدود ۲۵ میلی‌لیتر تا ۵ لیتر دیده می‌شوند؛ مدل نهایی را جداگانه بررسی کنید.' },
+        { label: 'کاربرد', value: 'مخلوط‌کردن با چرخاندن، گرمادهی، آماده‌سازی محلول و برخی کاربردهای کشت.' }
+      ]
+    },
+    'filter-flasks': {
+      source: vendorUrls.borosilFilterFlask,
+      sources: [
+        reference('Borosil Scientific: بالن فیلتراسیون 5340', vendorUrls.borosilFilterFlask),
+        reference('Borosil Scientific: فلاسک‌های آزمایشگاهی', vendorUrls.borosilFlasks),
+        reference('Fisher Scientific: شیشه‌آلات تخصصی', vendorUrls.fisherSpecialty)
+      ],
+      specifications: [
+        { label: 'ساختار', value: 'بدنهٔ مخروطی با لولهٔ جانبی برای اتصال به منبع خلأ و قیف بوخنر.' },
+        { label: 'ظرفیت‌های مدل مرجع', value: 'از ۵۰ تا ۵۰۰۰ میلی‌لیتر در جدول مدل 5340؛ ابعاد و تعداد بسته به ظرفیت تغییر می‌کند.' },
+        { label: 'کاربرد', value: 'فیلتراسیون خلأ و جداسازی جامد از مایع.' },
+        { label: 'کنترل ایمنی', value: 'بدنه، اتصال جانبی، شلنگ و درپوش پیش از ایجاد خلأ باید سالم و سازگار باشند.' }
+      ]
+    },
+    'wash-bottles': {
+      source: vendorUrls.borosilBottles,
+      sources: [
+        reference('Borosil Scientific: بطری‌های شست‌وشو و بطری‌های آزمایشگاهی', vendorUrls.borosilBottles),
+        reference('Sigma-Aldrich: ظروف نگهداری و انتقال', vendorUrls.sigmaGlassware),
+        reference('Trafalgar Scientific: بطری‌های آزمایشگاهی', vendorUrls.trafalgarBottles)
+      ],
+      specifications: [
+        { label: 'ساختار', value: 'بطری فشارشی با نازل خروجی؛ جنس LDPE، شیشه یا پلیمر دیگر باید از مدل مشخص شود.' },
+        { label: 'کاربرد', value: 'آبکشی شیشه‌آلات، رقیق‌سازی محدود و رساندن مایع به محل کار.' },
+        { label: 'کنترل محتویات', value: 'برچسب ماده، غلظت و تاریخ پرکردن روی هر بطری الزامی است.' },
+        { label: 'محدودیت', value: 'بطری فشارشی برای نگهداری مادهٔ ناشناخته یا ماده‌ای که با بدنه و نازل ناسازگار است مناسب نیست.' }
+      ]
+    },
+    'vials': {
+      source: vendorUrls.borosilGeneral,
+      sources: [
+        reference('Borosil Scientific: شیشه‌آلات عمومی آزمایشگاهی', vendorUrls.borosilGeneral),
+        reference('Sigma-Aldrich: ظروف نگهداری و نمونه', vendorUrls.sigmaGlassware),
+        reference('Fisher Scientific: شیشه‌آلات تخصصی', vendorUrls.fisherSpecialty)
+      ],
+      specifications: [
+        { label: 'کاربرد', value: 'نگهداری، انتقال و آماده‌سازی نمونه‌های کم‌حجم.' },
+        { label: 'گزینه‌های قابل بررسی', value: 'جنس بدنه، نوع درپوش، حجم مفید، مقاومت شیمیایی و امکان استریل‌سازی.' },
+        { label: 'اطمینان از مدل', value: 'تصویر این صفحه معرفی عمومی ویال است؛ ابعاد و مشخصات دقیق باید از مدل انتخابی خوانده شود.' }
       ]
     },
     'porcelain-crucible': {

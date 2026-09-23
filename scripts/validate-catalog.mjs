@@ -47,8 +47,8 @@ async function main() {
   const invalidSourceUrls = elements.flatMap(element => (element.sources || [])
     .filter(source => !/^https?:\/\//i.test(source.url || ''))
     .map(source => ({ element: element.id, url: source.url || null })));
-  const missingEquipmentImages = variants
-    .map(variant => variant.image)
+  const equipmentImages = equipment.flatMap(family => [family.cardImage, ...(family.variants || []).map(variant => variant.image)]);
+  const missingEquipmentImages = equipmentImages
     .filter(Boolean)
     .filter((image, index, list) => list.indexOf(image) === index)
     .filter(image => !existsSync(path.join(root, 'asset', 'equipment', image)));

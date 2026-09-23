@@ -340,6 +340,7 @@ async function main() {
     specifications: family.specifications || [],
     details: family.details || [],
     variantCount: family.variants.length,
+    image: family.cardImage || family.variants[0]?.image || null,
     sources: getEquipmentSources(family),
     verifiedAt,
     confidence: 'vendor-reference; educational summary; verify exact model before use'

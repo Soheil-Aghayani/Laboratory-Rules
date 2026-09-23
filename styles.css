@@ -2046,6 +2046,21 @@ header {
   }
 }
 
+/* Keep the catalog taxonomy on one deliberate horizontal rail as the catalog grows. */
+.equipment-filter-list {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+  padding-block: 0.15rem 0.35rem;
+}
+
+.equipment-filter-btn {
+  flex: 0 0 auto;
+}
+
 */
 /* Equipment showroom refinement duplicate block begin
 .gallery-intro-block {

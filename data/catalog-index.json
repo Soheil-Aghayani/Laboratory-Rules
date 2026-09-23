@@ -3542,7 +3542,7 @@
       "id": "element_nobelium",
       "nameFa": "نوبلیم",
       "nameEn": "Nobelium",
-      "cas": null,
+      "cas": "10028-14-5",
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -3577,7 +3577,7 @@
       "id": "element_lawrencium",
       "nameFa": "لارنسیم",
       "nameEn": "Lawrencium",
-      "cas": null,
+      "cas": "22537-19-5",
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -3717,7 +3717,7 @@
       "id": "element_bohrium",
       "nameFa": "بوریم",
       "nameEn": "Bohrium",
-      "cas": null,
+      "cas": "54037-14-8",
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -3752,7 +3752,7 @@
       "id": "element_hassium",
       "nameFa": "هاسیم",
       "nameEn": "Hassium",
-      "cas": null,
+      "cas": "54037-57-9",
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -3787,7 +3787,7 @@
       "id": "element_meitnerium",
       "nameFa": "مایتنریم",
       "nameEn": "Meitnerium",
-      "cas": null,
+      "cas": "54038-01-6",
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -3822,7 +3822,7 @@
       "id": "element_darmstadtium",
       "nameFa": "دارمشتاتیم",
       "nameEn": "Darmstadtium",
-      "cas": null,
+      "cas": "54083-77-1",
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -3857,7 +3857,7 @@
       "id": "element_roentgenium",
       "nameFa": "رونتگنیم",
       "nameEn": "Roentgenium",
-      "cas": null,
+      "cas": "54386-24-2",
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -3892,7 +3892,7 @@
       "id": "element_copernicium",
       "nameFa": "کوپرنیکیم",
       "nameEn": "Copernicium",
-      "cas": null,
+      "cas": "54084-26-3",
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -3927,7 +3927,7 @@
       "id": "element_nihonium",
       "nameFa": "نیهونیوم",
       "nameEn": "Nihonium",
-      "cas": null,
+      "cas": "54084-70-7",
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -3962,7 +3962,7 @@
       "id": "element_flerovium",
       "nameFa": "فلروویم",
       "nameEn": "Flerovium",
-      "cas": null,
+      "cas": "54085-16-4",
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -3997,7 +3997,7 @@
       "id": "element_moscovium",
       "nameFa": "مسکوویم",
       "nameEn": "Moscovium",
-      "cas": null,
+      "cas": "54085-64-2",
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -4032,7 +4032,7 @@
       "id": "element_livermorium",
       "nameFa": "لیورموریم",
       "nameEn": "Livermorium",
-      "cas": null,
+      "cas": "54100-71-9",
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -4067,7 +4067,7 @@
       "id": "element_tennessine",
       "nameFa": "تنسین",
       "nameEn": "Tennessine",
-      "cas": null,
+      "cas": "54101-14-3",
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -4102,7 +4102,7 @@
       "id": "element_oganesson",
       "nameFa": "اوگانسون",
       "nameEn": "Oganesson",
-      "cas": null,
+      "cas": "54144-19-3",
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -14159,7 +14159,8 @@
         "برای خواندن حجم، منیسک را هم‌سطح چشم قرار دهید.",
         "برای هر کار، حجم مناسب را بر اساس مقدار نهایی محلول انتخاب کنید."
       ],
-      "variantCount": 6,
+      "variantCount": 7,
+      "image": "volumetric-flasks-multiple-volumes.webp",
       "sources": [
         {
           "label": "Borosil Scientific: بالن حجمی",
@@ -14223,6 +14224,7 @@
         "مواد ناسازگار را در یک بطری یا سینی مشترک قرار ندهید."
       ],
       "variantCount": 6,
+      "image": "reagent-bottles.webp",
       "sources": [
         {
           "label": "Borosil Scientific: بطری‌ها و درپوش‌ها",
@@ -14282,6 +14284,7 @@
         "پس از استفاده، ظرف را طبق روش پاک‌سازی آزمایشگاه تمیز کنید."
       ],
       "variantCount": 5,
+      "image": "petri-dishes.webp",
       "sources": [
         {
           "label": "Borosil Scientific: پتری‌دیش بوروسیلیکات 3160",
@@ -14302,6 +14305,532 @@
         {
           "label": "Trafalgar Scientific: پتری‌دیش‌ها",
           "url": "https://trafalgarscientific.co.uk/consumables/petri-dishes/"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; educational summary; verify exact model before use"
+    },
+    {
+      "recordType": "equipment-family",
+      "id": "beakers",
+      "nameFa": "بشرهای آزمایشگاهی",
+      "nameEn": "Laboratory Beakers",
+      "aliases": [
+        "بشر",
+        "beaker",
+        "beakers",
+        "بشر بوروسیلیکات",
+        "بشرهای آزمایشگاهی",
+        "Laboratory Beakers"
+      ],
+      "category": "glassware",
+      "categoryLabel": "شیشه‌آلات",
+      "summary": "ظرف عمومی برای مخلوط‌کردن، رقیق‌سازی، انتقال و گرمادهی کنترل‌شده.",
+      "introduction": "بشر ظرفی با دهانهٔ باز و کف پایدار است و برای کارهای عمومی آزمایشگاهی استفاده می‌شود. برخلاف بالن حجمی، درجه‌بندی بشر برای اندازه‌گیری دقیق نهایی طراحی نشده است. فرم کم‌ارتفاع، فرم بلند و فرم مخروطی هرکدام کاربرد متفاوتی دارند.",
+      "primaryUse": "مخلوط‌کردن، رقیق‌سازی و گرمادهی عمومی",
+      "hazards": "درجه‌بندی بشر تقریبی است؛ برای حجم نهایی دقیق از شیشه‌آلات حجمی کالیبره استفاده کنید و تغییر دما را مرحله‌ای انجام دهید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "جنس مرجع",
+          "value": "شیشهٔ بوروسیلیکات ۳٫۳ با انبساط کم؛ جنس و مقاومت حرارتی دقیق به مدل وابسته است."
+        },
+        {
+          "label": "فرم‌ها",
+          "value": "فرم کم‌ارتفاع، فرم بلند و فرم مخروطی؛ با دهانهٔ تخلیه یا بدون آن."
+        },
+        {
+          "label": "بازهٔ ظرفیت مرجع",
+          "value": "۵۰ تا ۵۰۰۰ میلی‌لیتر در خانوادهٔ Borosil؛ حجم نهایی هر مدل از جدول همان مدل خوانده شود."
+        },
+        {
+          "label": "نکتهٔ اندازه‌گیری",
+          "value": "درجه‌بندی بشر تقریبی است و برای تهیهٔ حجم دقیق جایگزین بالن حجمی یا پیپت نیست."
+        }
+      ],
+      "details": [
+        "فرم کم‌ارتفاع برای مخلوط‌کردن و رقیق‌سازی عمومی مناسب است.",
+        "برای گرمادهی، سلامت شیشه و سازگاری بوروسیلیکات با روش را بررسی کنید.",
+        "بشر را بیش از حد پر نکنید و برای ریختن مایع از لبهٔ تخلیه استفاده کنید."
+      ],
+      "variantCount": 2,
+      "image": "beakers-multiple-volumes.webp",
+      "sources": [
+        {
+          "label": "Borosil Scientific: بشرهای آزمایشگاهی",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/general-laboratory-glassware/beakers/"
+        },
+        {
+          "label": "Borosil Scientific: بشر فرم کم‌ارتفاع 1000",
+          "url": "https://www.borosilscientific.com/product/1000-low-form-beaker/"
+        },
+        {
+          "label": "Fisher Scientific: شیشه‌آلات تخصصی",
+          "url": "https://www.fishersci.ca/ca/en/browse/90094011/verrerie-de-laboratoire-sp%C3%A9cialis%C3%A9e"
+        },
+        {
+          "label": "Sigma-Aldrich: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Trafalgar Scientific: فلاسک‌ها و شیشه‌آلات",
+          "url": "https://trafalgarscientific.co.uk/glassware-volumetrics/flasks/"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; educational summary; verify exact model before use"
+    },
+    {
+      "recordType": "equipment-family",
+      "id": "conical-centrifuge-tubes",
+      "nameFa": "لوله‌های سانتریفیوژ مخروطی (فالکون)",
+      "nameEn": "Conical Polypropylene Centrifuge Tubes",
+      "aliases": [
+        "فالکون",
+        "لوله فالکون",
+        "Falcon tubes",
+        "centrifuge tubes",
+        "conical tubes",
+        "لوله‌های سانتریفیوژ مخروطی (فالکون)",
+        "Conical Polypropylene Centrifuge Tubes"
+      ],
+      "category": "plasticware",
+      "categoryLabel": "پلاستیک‌آلات",
+      "summary": "لوله‌های پلی‌پروپیلن مخروطی برای رسوب‌دادن، جداسازی و نگهداری نمونه.",
+      "introduction": "لولهٔ مخروطی سانتریفیوژ که در گفتار آزمایشگاهی گاهی «فالکون» نامیده می‌شود، یک نام عمومی برای این شکل از لوله است و الزاماً به یک برند خاص اشاره نمی‌کند. بدنهٔ پلی‌پروپیلن، درجه‌بندی، ناحیهٔ نوشتن و نوع درپوش را باید با نیاز آزمایش و مشخصات روتور تطبیق داد.",
+      "primaryUse": "سانتریفیوژ، جمع‌آوری رسوب و آماده‌سازی نمونه",
+      "hazards": "برای هر مدل، حداکثر RCF، دمای کار، استریل‌بودن و سازگاری شیمیایی را از دیتاشیت همان محصول بررسی کنید و لوله‌ها را متوازن در روتور قرار دهید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "حجم‌های این خانواده",
+          "value": "۱۵ و ۵۰ میلی‌لیتر؛ هر حجم درپوش، بسته‌بندی و مدل‌های مختلف دارد."
+        },
+        {
+          "label": "جنس و شکل",
+          "value": "پلی‌پروپیلن شفاف یا نیمه‌شفاف با کف مخروطی؛ مدل و برند دقیق باید از مرجع خوانده شود."
+        },
+        {
+          "label": "درجه‌بندی مرجع",
+          "value": "در نمونه‌های Fisher، برای ۱۵ میلی‌لیتر تقسیمات ۰٫۵ میلی‌لیتری و برای ۵۰ میلی‌لیتر تقسیمات ۵ میلی‌لیتری دیده می‌شود."
+        },
+        {
+          "label": "سانتریفیوژ",
+          "value": "حداکثر RCF و محدودهٔ دما به مدل و روتور وابسته است؛ مقدار یک مدل را به همهٔ لوله‌ها تعمیم ندهید."
+        }
+      ],
+      "details": [
+        "لوله‌ها را با حجم و جرم متوازن در روتور قرار دهید.",
+        "درپوش را کامل ببندید اما از فشار اضافی روی رزوه خودداری کنید.",
+        "پسماند آلوده را طبق جنس پلیمر و آلودگی نمونه تفکیک کنید."
+      ],
+      "variantCount": 2,
+      "image": "conical-centrifuge-tube-15ml.webp",
+      "sources": [
+        {
+          "label": "Fisher Scientific: Falcon 15 میلی‌لیتر",
+          "url": "https://www.fishersci.ca/shop/products/falcon-15ml-conical-centrifuge-tubes-5/p-193301"
+        },
+        {
+          "label": "Fisher Scientific: Falcon 50 میلی‌لیتر",
+          "url": "https://www.fishersci.ca/shop/products/falcon-50ml-conical-centrifuge-tubes-2/p-193321"
+        },
+        {
+          "label": "Fisher Scientific: لوله‌های سانتریفیوژ",
+          "url": "https://www.fishersci.ca/ca/en/browse/90168074/Centrifuge-Tubes?page=1"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; educational summary; verify exact model before use"
+    },
+    {
+      "recordType": "equipment-family",
+      "id": "measuring-cylinders",
+      "nameFa": "استوانه‌های مدرج شیشه‌ای",
+      "nameEn": "Glass Measuring Cylinders",
+      "aliases": [
+        "استوانه مدرج",
+        "مزور",
+        "graduated cylinder",
+        "measuring cylinder",
+        "استوانه‌های مدرج شیشه‌ای",
+        "Glass Measuring Cylinders"
+      ],
+      "category": "glassware",
+      "categoryLabel": "شیشه‌آلات",
+      "summary": "برای اندازه‌گیری و انتقال حجم‌های مختلف با خوانش منیسک.",
+      "introduction": "استوانهٔ مدرج برای اندازه‌گیری و انتقال حجم مایع با دقتی مناسب برای کار عمومی به کار می‌رود. کلاس دقت، پایه، دهانهٔ تخلیه و وجود گواهی کالیبراسیون بین مدل‌ها تفاوت ایجاد می‌کند.",
+      "primaryUse": "اندازه‌گیری و انتقال حجمی عمومی",
+      "hazards": "برای تهیهٔ محلول استاندارد یا اندازه‌گیری تحلیلی نهایی، محدودیت دقت استوانه را در نظر بگیرید و در صورت نیاز از بالن حجمی یا پیپت استفاده کنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "ظرفیت‌های تصویر و خانواده",
+          "value": "۵، ۱۰، ۵۰، ۱۰۰، ۲۵۰، ۵۰۰ و ۱۰۰۰ میلی‌لیتر."
+        },
+        {
+          "label": "جنس مرجع",
+          "value": "شیشهٔ بوروسیلیکات با پایهٔ پایدار؛ نوع پایه و دهانهٔ تخلیه به مدل وابسته است."
+        },
+        {
+          "label": "کلاس دقت",
+          "value": "مدل‌های Class A و Class B وجود دارند؛ برای کار حساس، گواهی کالیبراسیون همان مدل را بررسی کنید."
+        },
+        {
+          "label": "کاربرد",
+          "value": "اندازه‌گیری و انتقال عمومی مایع؛ برای حجم نهایی دقیق از شیشه‌آلات حجمی مناسب استفاده شود."
+        }
+      ],
+      "details": [
+        "منیسک را در ارتفاع چشم و در دمای مرجع بخوانید.",
+        "پایهٔ شش‌ضلعی را روی سطح صاف قرار دهید.",
+        "کلاس A یا B و گواهی کالیبراسیون را از مدل انتخابی بررسی کنید."
+      ],
+      "variantCount": 7,
+      "image": "measuring-cylinders-multiple-volumes.webp",
+      "sources": [
+        {
+          "label": "Borosil Scientific: استوانه‌های مدرج",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/volumetric-glassware/cylinders/"
+        },
+        {
+          "label": "Borosil Scientific: استوانهٔ مدل 3021",
+          "url": "https://www.borosilscientific.com/product/3021-cylinders/"
+        },
+        {
+          "label": "Sigma-Aldrich: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Fisher Scientific: شیشه‌آلات تخصصی",
+          "url": "https://www.fishersci.ca/ca/en/browse/90094011/verrerie-de-laboratoire-sp%C3%A9cialis%C3%A9e"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; educational summary; verify exact model before use"
+    },
+    {
+      "recordType": "equipment-family",
+      "id": "boiling-flasks",
+      "nameFa": "بالن‌های جوششی",
+      "nameEn": "Boiling Flasks",
+      "aliases": [
+        "بالن جوش",
+        "round bottom flask",
+        "boiling flask",
+        "بالن‌های جوششی",
+        "Boiling Flasks"
+      ],
+      "category": "glassware",
+      "categoryLabel": "شیشه‌آلات",
+      "summary": "بالن‌هایی برای گرمادهی، جوشاندن و آرایش‌های تقطیر یا رفلاکس.",
+      "introduction": "بالن جوششی برای گرمادهی مایع در مجموعه‌های واکنش، تقطیر یا رفلاکس طراحی می‌شود. تفاوت کف‌گرد و کف‌تخت روی شیوهٔ نگهداری و انتقال گرما اثر دارد و اتصال‌ها باید با اجزای سامانه هم‌اندازه باشند.",
+      "primaryUse": "گرمادهی، جوشاندن، تقطیر و رفلاکس",
+      "hazards": "بالن کف‌گرد بدون گیره پایدار نیست؛ پیش از گرمادهی، سلامت شیشه، مسیر تخلیه و پشتیبانی مکانیکی را بررسی کنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "فرم‌های این خانواده",
+          "value": "کف‌گرد، کف‌تخت و کف‌گرد با اتصال قابل‌تعویض."
+        },
+        {
+          "label": "جنس مرجع",
+          "value": "شیشهٔ آزمایشگاهی بوروسیلیکات؛ استاندارد و ابعاد دقیق به مدل وابسته است."
+        },
+        {
+          "label": "کاربرد",
+          "value": "گرمادهی، جوشاندن، تقطیر و رفلاکس در یک مجموعهٔ مهارشده."
+        },
+        {
+          "label": "نکتهٔ مونتاژ",
+          "value": "بالن کف‌گرد باید با گیره و تکیه‌گاه مناسب مهار شود و اتصالات هم‌اندازه باشند."
+        }
+      ],
+      "details": [
+        "برای اتصال‌های قابل‌تعویض، اندازهٔ joint و گریس یا آب‌بندی مناسب را بررسی کنید.",
+        "از شوک حرارتی و گرم‌کردن شیشهٔ ترک‌خورده جلوگیری کنید.",
+        "در مجموعهٔ تقطیر، مسیر خروج بخار و خنک‌کاری را پیش از کار کنترل کنید."
+      ],
+      "variantCount": 3,
+      "image": "boiling-flask-round-joint.webp",
+      "sources": [
+        {
+          "label": "Borosil Scientific: فلاسک‌های آزمایشگاهی",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/general-laboratory-glassware/flask/"
+        },
+        {
+          "label": "Borosil Scientific: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/general-laboratory-glassware/"
+        },
+        {
+          "label": "Sigma-Aldrich: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Trafalgar Scientific: فلاسک‌ها",
+          "url": "https://trafalgarscientific.co.uk/glassware-volumetrics/flasks/"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; educational summary; verify exact model before use"
+    },
+    {
+      "recordType": "equipment-family",
+      "id": "erlenmeyer-flasks",
+      "nameFa": "بالن‌های ارلن",
+      "nameEn": "Erlenmeyer Flasks",
+      "aliases": [
+        "ارلن",
+        "بالن مخروطی",
+        "conical flask",
+        "Erlenmeyer",
+        "بالن‌های ارلن",
+        "Erlenmeyer Flasks"
+      ],
+      "category": "glassware",
+      "categoryLabel": "شیشه‌آلات",
+      "summary": "بالن مخروطی برای مخلوط‌کردن، گرمادهی، کشت و نگهداری نمونه.",
+      "introduction": "بالن ارلن یا بالن مخروطی، کف پهن و گردن باریک دارد و امکان چرخاندن محتویات با خطر کمتر پاشش را فراهم می‌کند. دهانه، اتصال و درپوش تعیین می‌کنند که یک مدل برای انتقال، گرمادهی یا نگهداری مناسب‌تر باشد.",
+      "primaryUse": "مخلوط‌کردن، گرمادهی و آماده‌سازی محلول یا کشت",
+      "hazards": "درپوش بسته را هنگام گرمادهی استفاده نکنید مگر روش و تجهیز برای آن طراحی شده باشد؛ ظرفیت مفید و سازگاری شیشه را رعایت کنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "نام‌های رایج",
+          "value": "بالن ارلن و بالن مخروطی به یک فرم اصلی اشاره می‌کنند؛ تفاوت در دهانه، اتصال و درپوش است."
+        },
+        {
+          "label": "فرم‌های این خانواده",
+          "value": "دهانه‌باریک، دهانه‌عریض، اتصال قابل‌تعویض و درپیچ‌دار."
+        },
+        {
+          "label": "بازهٔ مرجع",
+          "value": "در خانواده‌های Borosil، ظرفیت‌ها از حدود ۲۵ میلی‌لیتر تا ۵ لیتر دیده می‌شوند؛ مدل نهایی را جداگانه بررسی کنید."
+        },
+        {
+          "label": "کاربرد",
+          "value": "مخلوط‌کردن با چرخاندن، گرمادهی، آماده‌سازی محلول و برخی کاربردهای کشت."
+        }
+      ],
+      "details": [
+        "فرم دهانه را بر اساس انتقال جامد، تبخیر و احتمال پاشش انتخاب کنید.",
+        "برای شیکر یا کشت، نوع درپوش و تهویه را با روش آزمایش تطبیق دهید.",
+        "برای اتصال شیشه‌ای، joint و استاپر هم‌اندازه استفاده کنید."
+      ],
+      "variantCount": 4,
+      "image": "erlenmeyer-flask-narrow-mouth.webp",
+      "sources": [
+        {
+          "label": "Borosil Scientific: فلاسک ارلن کشت",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/glassware-for-microbiology/erlenmeyer-culture-flask/"
+        },
+        {
+          "label": "Borosil Scientific: فلاسک ارلن با اتصال 5020",
+          "url": "https://www.borosilscientific.com/product/5020-erlenmeyer-conical-flask/"
+        },
+        {
+          "label": "Sigma-Aldrich: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Trafalgar Scientific: فلاسک‌ها",
+          "url": "https://trafalgarscientific.co.uk/glassware-volumetrics/flasks/"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; educational summary; verify exact model before use"
+    },
+    {
+      "recordType": "equipment-family",
+      "id": "filter-flasks",
+      "nameFa": "بالن‌های خلأ و فیلتراسیون",
+      "nameEn": "Filter Flasks",
+      "aliases": [
+        "بالن بوخنر",
+        "بالن فیلتراسیون",
+        "vacuum flask",
+        "filter flask",
+        "بالن‌های خلأ و فیلتراسیون",
+        "Filter Flasks"
+      ],
+      "category": "glassware",
+      "categoryLabel": "شیشه‌آلات",
+      "summary": "بالن جانبی برای فیلتراسیون خلأ و اتصال به قیف بوخنر.",
+      "introduction": "بالن فیلتراسیون با لولهٔ جانبی به منبع خلأ متصل می‌شود و همراه قیف بوخنر برای جداسازی جامد و مایع به کار می‌رود. شکل بدنه برای تحمل بهتر فشار طراحی شده است، اما جایگزین بررسی سلامت هر قطعه نیست.",
+      "primaryUse": "فیلتراسیون خلأ",
+      "hazards": "فقط از بالن سالم و مناسب خلأ استفاده کنید؛ شلنگ، آب‌بندی و مسیر تخلیه را قبل از ایجاد خلأ بررسی کنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "ساختار",
+          "value": "بدنهٔ مخروطی با لولهٔ جانبی برای اتصال به منبع خلأ و قیف بوخنر."
+        },
+        {
+          "label": "ظرفیت‌های مدل مرجع",
+          "value": "از ۵۰ تا ۵۰۰۰ میلی‌لیتر در جدول مدل 5340؛ ابعاد و تعداد بسته به ظرفیت تغییر می‌کند."
+        },
+        {
+          "label": "کاربرد",
+          "value": "فیلتراسیون خلأ و جداسازی جامد از مایع."
+        },
+        {
+          "label": "کنترل ایمنی",
+          "value": "بدنه، اتصال جانبی، شلنگ و درپوش پیش از ایجاد خلأ باید سالم و سازگار باشند."
+        }
+      ],
+      "details": [
+        "قیف و درپوش را با آب‌بندی مناسب روی دهانه قرار دهید.",
+        "خلأ را مرحله‌ای برقرار و پیش از بازکردن مجموعه قطع کنید.",
+        "بالن ترک‌خورده یا لب‌پریده را در سامانهٔ خلأ به کار نبرید."
+      ],
+      "variantCount": 1,
+      "image": "filter-flask.webp",
+      "sources": [
+        {
+          "label": "Borosil Scientific: بالن فیلتراسیون 5340",
+          "url": "https://www.borosilscientific.com/product/5340-filter-flask/"
+        },
+        {
+          "label": "Borosil Scientific: فلاسک‌های آزمایشگاهی",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/general-laboratory-glassware/flask/"
+        },
+        {
+          "label": "Fisher Scientific: شیشه‌آلات تخصصی",
+          "url": "https://www.fishersci.ca/ca/en/browse/90094011/verrerie-de-laboratoire-sp%C3%A9cialis%C3%A9e"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; educational summary; verify exact model before use"
+    },
+    {
+      "recordType": "equipment-family",
+      "id": "wash-bottles",
+      "nameFa": "بطری‌های شست‌وشو",
+      "nameEn": "Laboratory Wash Bottles",
+      "aliases": [
+        "بطری شستشو",
+        "wash bottle",
+        "squeeze bottle",
+        "بطری‌های شست‌وشو",
+        "Laboratory Wash Bottles"
+      ],
+      "category": "plasticware",
+      "categoryLabel": "پلاستیک‌آلات",
+      "summary": "برای آبکشی شیشه‌آلات و رساندن کنترل‌شدهٔ مایع شست‌وشو.",
+      "introduction": "بطری شست‌وشو با فشار دست، مایع را از نازل باریک خارج می‌کند و برای آبکشی شیشه‌آلات یا افزودن مقدار کم حلال مناسب است. برچسب محتویات و جنس پلیمر باید همیشه روشن باشد.",
+      "primaryUse": "آبکشی و انتقال کنترل‌شدهٔ مایع",
+      "hazards": "هر بطری را فقط با مایع سازگار با بدنه، نازل و درپوش پر کنید و هرگز بطری بدون برچسب را در کنار محلول‌های دیگر نگذارید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "ساختار",
+          "value": "بطری فشارشی با نازل خروجی؛ جنس LDPE، شیشه یا پلیمر دیگر باید از مدل مشخص شود."
+        },
+        {
+          "label": "کاربرد",
+          "value": "آبکشی شیشه‌آلات، رقیق‌سازی محدود و رساندن مایع به محل کار."
+        },
+        {
+          "label": "کنترل محتویات",
+          "value": "برچسب ماده، غلظت و تاریخ پرکردن روی هر بطری الزامی است."
+        },
+        {
+          "label": "محدودیت",
+          "value": "بطری فشارشی برای نگهداری مادهٔ ناشناخته یا ماده‌ای که با بدنه و نازل ناسازگار است مناسب نیست."
+        }
+      ],
+      "details": [
+        "نام ماده و تاریخ پرکردن را روی بطری ثبت کنید.",
+        "نازل را به سمت بدن یا همکاران نگیرید.",
+        "بطری آلوده یا تغییرشکل‌داده‌شده را از چرخهٔ کار خارج کنید."
+      ],
+      "variantCount": 1,
+      "image": "wash-bottle.webp",
+      "sources": [
+        {
+          "label": "Borosil Scientific: بطری‌های شست‌وشو و بطری‌های آزمایشگاهی",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/laboratory-bottles-and-caps/laboratory-bottles/"
+        },
+        {
+          "label": "Sigma-Aldrich: ظروف نگهداری و انتقال",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Trafalgar Scientific: بطری‌های آزمایشگاهی",
+          "url": "https://trafalgarscientific.co.uk/consumables/bottles/"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; educational summary; verify exact model before use"
+    },
+    {
+      "recordType": "equipment-family",
+      "id": "vials",
+      "nameFa": "ویال‌های آزمایشگاهی",
+      "nameEn": "Laboratory Vials",
+      "aliases": [
+        "ویال",
+        "sample vial",
+        "laboratory vial",
+        "ویال‌های آزمایشگاهی",
+        "Laboratory Vials"
+      ],
+      "category": "glassware",
+      "categoryLabel": "شیشه‌آلات",
+      "summary": "ظرف کوچک برای نگهداری، انتقال یا آماده‌سازی نمونه‌ها.",
+      "introduction": "ویال برای نمونه‌های کم‌حجم و نگهداری کوتاه‌مدت یا انتقال کنترل‌شده استفاده می‌شود. جنس بدنه، نوع درپوش و حجم مفید به مدل وابسته است و باید با ماده و روش آزمون تطبیق داده شود.",
+      "primaryUse": "نگهداری و انتقال نمونه‌های کم‌حجم",
+      "hazards": "درپوش را متناسب با ماده و فشار احتمالی انتخاب کنید و نمونه را با نام، تاریخ و وضعیت آن برچسب بزنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "کاربرد",
+          "value": "نگهداری، انتقال و آماده‌سازی نمونه‌های کم‌حجم."
+        },
+        {
+          "label": "گزینه‌های قابل بررسی",
+          "value": "جنس بدنه، نوع درپوش، حجم مفید، مقاومت شیمیایی و امکان استریل‌سازی."
+        },
+        {
+          "label": "اطمینان از مدل",
+          "value": "تصویر این صفحه معرفی عمومی ویال است؛ ابعاد و مشخصات دقیق باید از مدل انتخابی خوانده شود."
+        }
+      ],
+      "details": [
+        "پیش از استفاده، ترک، لب‌پریدگی و سلامت درپوش را بررسی کنید.",
+        "ویال شیشه‌ای را از تغییر ناگهانی دما محافظت کنید.",
+        "ویال مصرف‌شده را بر اساس آلودگی و جنس بدنه دفع کنید."
+      ],
+      "variantCount": 1,
+      "image": "vial.webp",
+      "sources": [
+        {
+          "label": "Borosil Scientific: شیشه‌آلات عمومی آزمایشگاهی",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/general-laboratory-glassware/"
+        },
+        {
+          "label": "Sigma-Aldrich: ظروف نگهداری و نمونه",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Fisher Scientific: شیشه‌آلات تخصصی",
+          "url": "https://www.fishersci.ca/ca/en/browse/90094011/verrerie-de-laboratoire-sp%C3%A9cialis%C3%A9e"
         }
       ],
       "verifiedAt": "2026-09-23",
@@ -14354,6 +14883,7 @@
         "لینک Rubber Crucible Holder در Fisher یک نگهدارندهٔ نئوپرن برای فیلتراسیون خلأ است، نه بوتهٔ پلاستیکی و نه گزینه‌ای برای جنس بدنهٔ بوته."
       ],
       "variantCount": 10,
+      "image": "porcelain-crucible-medium.webp",
       "sources": [
         {
           "label": "Fisher Scientific: بوتهٔ چینی ۲۵ میلی‌لیتری",
@@ -14437,6 +14967,7 @@
         "پیش از استفاده، نوک ساقه را از نظر لب‌پریدگی بررسی کنید."
       ],
       "variantCount": 4,
+      "image": "glass-funnel-long-stem.webp",
       "sources": [
         {
           "label": "Fisher Scientific: قیف شیشه‌ای ساقه‌بلند Corning PYREX",
@@ -14496,6 +15027,7 @@
         "برای مواد زیستی یا خورنده، روش دفع مناسب را رعایت کنید."
       ],
       "variantCount": 7,
+      "image": "serological-pipettes.webp",
       "sources": [
         {
           "label": "Borosil Scientific: پیپت سرولوژیک 7081",
@@ -14563,6 +15095,7 @@
         "نمونهٔ باقی‌مانده را پس از کار طبق دستورالعمل دفع کنید."
       ],
       "variantCount": 4,
+      "image": "watch-glass.webp",
       "sources": [
         {
           "label": "Borosil Scientific: شیشهٔ ساعت 9986",
@@ -14626,6 +15159,7 @@
         "محلول باقی‌مانده را در ظرف پسماند مناسب جمع کنید."
       ],
       "variantCount": 5,
+      "image": "glass-burette.webp",
       "sources": [
         {
           "label": "Borosil Scientific: بورت 2123",
@@ -14689,6 +15223,7 @@
         "هر فاز را در ظرفی با برچسب روشن جمع‌آوری کنید."
       ],
       "variantCount": 6,
+      "image": "separating-funnel.webp",
       "sources": [
         {
           "label": "Borosil Scientific: قیف جداکنندهٔ 6403",
@@ -14748,6 +15283,7 @@
         "ظروف خلأ را از نظر ترک و لب‌پریدگی بررسی کنید."
       ],
       "variantCount": 5,
+      "image": "buchner-funnel.webp",
       "sources": [
         {
           "label": "Fisher Scientific: قیف بوخنر چینی Fisherbrand",
@@ -14807,6 +15343,7 @@
         "مواد واکنش‌پذیر را بدون بررسی سازگاری با هم آسیاب نکنید."
       ],
       "variantCount": 7,
+      "image": "porcelain-mortar-pestle.webp",
       "sources": [
         {
           "label": "Fisher Scientific: هاون‌ها و دسته‌ها",
@@ -14866,6 +15403,7 @@
         "نمونه را با نام و تاریخ مشخص برچسب بزنید."
       ],
       "variantCount": 6,
+      "image": "screw-cap-test-tube.webp",
       "sources": [
         {
           "label": "Fisher Scientific: لولهٔ آزمایش شیشه‌ای درپیچ‌دار",
@@ -14929,6 +15467,7 @@
         "پس از استفاده، ابزار را روی سطح مقاوم به حرارت قرار دهید."
       ],
       "variantCount": 3,
+      "image": "crucible-tongs.webp",
       "sources": [
         {
           "label": "Fisher Scientific: انبرها",
@@ -14984,6 +15523,7 @@
         "بلورها و محلول مادر را در ظرف‌های برچسب‌دار نگهداری کنید."
       ],
       "variantCount": 3,
+      "image": "crystallizing-dish.webp",
       "sources": [
         {
           "label": "Borosil Scientific: ظرف تبلور 3140",
@@ -15047,6 +15587,7 @@
         "دسیکاتور ترک‌خورده یا لب‌پریده را استفاده نکنید."
       ],
       "variantCount": 5,
+      "image": "vacuum-desiccator.webp",
       "sources": [
         {
           "label": "Borosil Scientific: دسیکاتور خلأ 3083",
@@ -15106,6 +15647,7 @@
         "برای کار گرم، تکیه‌گاه و مسیر تخلیهٔ مناسب فراهم کنید."
       ],
       "variantCount": 3,
+      "image": "coiled-distillate.webp",
       "sources": [
         {
           "label": "Borosil Scientific: کندانسور مارپیچی Graham 2560",
@@ -15165,6 +15707,7 @@
         "در صورت ریختن ماده، پایه را طبق روش آزمایشگاه تمیز کنید."
       ],
       "variantCount": 4,
+      "image": "pipette-stand.webp",
       "sources": [
         {
           "label": "Fisher Scientific: پایه‌های چرخشی Finnpipette",
@@ -15224,6 +15767,7 @@
         "از گرم‌کردن مجموعه بدون گردش خنک‌کننده خودداری کنید."
       ],
       "variantCount": 4,
+      "image": "allihn-condenser.webp",
       "sources": [
         {
           "label": "Borosil Scientific: کندانسور آلیهن 2480",
@@ -15279,6 +15823,7 @@
         "بطری را پس از استفاده فوراً ببندید."
       ],
       "variantCount": 3,
+      "image": "buffer-ph4.webp",
       "sources": [
         {
           "label": "Fisher Scientific: کیت بافر pH",
@@ -15334,6 +15879,7 @@
         "احیای جاذب فقط با روش و دمای تأییدشده انجام شود."
       ],
       "variantCount": 4,
+      "image": "silica-gel-blue-dry.webp",
       "sources": [
         {
           "label": "Fisher Scientific: خشک‌کننده‌های آزمایشگاهی",
@@ -15354,6 +15900,52 @@
       ],
       "verifiedAt": "2026-09-23",
       "confidence": "vendor-reference; educational summary; verify exact model before use"
+    },
+    {
+      "recordType": "equipment-variant",
+      "id": "volumetric-flasks:5ml",
+      "familyId": "volumetric-flasks",
+      "nameFa": "بالن حجمی ۵ میلی‌لیتر",
+      "nameEn": "5 ml Volumetric Flask",
+      "aliases": [
+        "۵ میلی‌لیتر",
+        "بالن حجمی ۵ میلی‌لیتر",
+        "5 ml Volumetric Flask"
+      ],
+      "summary": "برای تهیهٔ محلول با حجم نهایی ۵ میلی‌لیتر.",
+      "primaryUse": "تهیهٔ محلول‌های استاندارد و رقیق‌سازی دقیق",
+      "hazards": "پیش از استفاده سلامت شیشه و درپوش را بررسی کنید و از گرمادهی مستقیم خودداری کنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "۵ میلی‌لیتر"
+        }
+      ],
+      "image": "volumetric-flask-5ml.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Borosil Scientific: بالن حجمی",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/volumetric-glassware/volumetric-flask/"
+        },
+        {
+          "label": "Fisher Scientific: بالن‌های حجمی",
+          "url": "https://www.fishersci.ca/ca/en/browse/90111072/Volumetric-Flasks?page=1"
+        },
+        {
+          "label": "Sigma-Aldrich: بالن و شیشه‌آلات حجمی",
+          "url": "https://www.sigmaaldrich.com/US/en/search/volumetric-glassware-flask?focus=products&page=1&perpage=30&sort=relevance&term=volumetric+glassware+flask&type=product"
+        },
+        {
+          "label": "Trafalgar Scientific: فلاسک‌ها",
+          "url": "https://trafalgarscientific.co.uk/glassware-volumetrics/flasks/"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
     },
     {
       "recordType": "equipment-variant",
@@ -16223,6 +16815,1212 @@
     },
     {
       "recordType": "equipment-variant",
+      "id": "beakers:low-form",
+      "familyId": "beakers",
+      "nameFa": "بشر بوروسیلیکات · فرم کم‌ارتفاع",
+      "nameEn": "Low Form Borosilicate Beaker",
+      "aliases": [
+        "فرم کم‌ارتفاع",
+        "بشر بوروسیلیکات · فرم کم‌ارتفاع",
+        "Low Form Borosilicate Beaker"
+      ],
+      "summary": "فرم کم‌ارتفاع با دهانهٔ باز و کف پایدار برای مخلوط‌کردن، رقیق‌سازی و گرمادهی عمومی؛ ظرفیت دقیق باید از مدل انتخابی خوانده شود.",
+      "primaryUse": "مخلوط‌کردن، رقیق‌سازی و گرمادهی عمومی",
+      "hazards": "درجه‌بندی بشر تقریبی است؛ برای حجم نهایی دقیق از شیشه‌آلات حجمی کالیبره استفاده کنید و تغییر دما را مرحله‌ای انجام دهید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "فرم کم‌ارتفاع"
+        },
+        {
+          "label": "form",
+          "value": "low form"
+        },
+        {
+          "label": "capacityRange",
+          "value": "50–5000 mL"
+        },
+        {
+          "label": "model",
+          "value": "1000"
+        }
+      ],
+      "image": "beaker-low-form.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Borosil Scientific: بشرهای آزمایشگاهی",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/general-laboratory-glassware/beakers/"
+        },
+        {
+          "label": "Borosil Scientific: بشر فرم کم‌ارتفاع 1000",
+          "url": "https://www.borosilscientific.com/product/1000-low-form-beaker/"
+        },
+        {
+          "label": "Fisher Scientific: شیشه‌آلات تخصصی",
+          "url": "https://www.fishersci.ca/ca/en/browse/90094011/verrerie-de-laboratoire-sp%C3%A9cialis%C3%A9e"
+        },
+        {
+          "label": "Sigma-Aldrich: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Trafalgar Scientific: فلاسک‌ها و شیشه‌آلات",
+          "url": "https://trafalgarscientific.co.uk/glassware-volumetrics/flasks/"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
+    },
+    {
+      "recordType": "equipment-variant",
+      "id": "beakers:multiple-volumes",
+      "familyId": "beakers",
+      "nameFa": "بشر بوروسیلیکات · چندحجمی",
+      "nameEn": "Borosilicate Beakers · Multiple Volumes",
+      "aliases": [
+        "چندحجمی",
+        "بشر بوروسیلیکات · چندحجمی",
+        "Borosilicate Beakers · Multiple Volumes"
+      ],
+      "summary": "خانواده‌ای از بشرهای بوروسیلیکات در حجم‌های مختلف برای مخلوط‌کردن، انتقال و گرمادهی. تصویر، خانواده را نشان می‌دهد و جایگزین بررسی حجم مدل نهایی نیست.",
+      "primaryUse": "مخلوط‌کردن، رقیق‌سازی و گرمادهی عمومی",
+      "hazards": "درجه‌بندی بشر تقریبی است؛ برای حجم نهایی دقیق از شیشه‌آلات حجمی کالیبره استفاده کنید و تغییر دما را مرحله‌ای انجام دهید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "چندحجمی"
+        },
+        {
+          "label": "form",
+          "value": "low or tall form"
+        },
+        {
+          "label": "capacityRange",
+          "value": "50–5000 mL"
+        },
+        {
+          "label": "models",
+          "value": "1000, 1040, 1060, 1080"
+        }
+      ],
+      "image": "beakers-multiple-volumes.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Borosil Scientific: بشرهای آزمایشگاهی",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/general-laboratory-glassware/beakers/"
+        },
+        {
+          "label": "Borosil Scientific: بشر فرم کم‌ارتفاع 1000",
+          "url": "https://www.borosilscientific.com/product/1000-low-form-beaker/"
+        },
+        {
+          "label": "Fisher Scientific: شیشه‌آلات تخصصی",
+          "url": "https://www.fishersci.ca/ca/en/browse/90094011/verrerie-de-laboratoire-sp%C3%A9cialis%C3%A9e"
+        },
+        {
+          "label": "Sigma-Aldrich: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Trafalgar Scientific: فلاسک‌ها و شیشه‌آلات",
+          "url": "https://trafalgarscientific.co.uk/glassware-volumetrics/flasks/"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
+    },
+    {
+      "recordType": "equipment-variant",
+      "id": "conical-centrifuge-tubes:15ml",
+      "familyId": "conical-centrifuge-tubes",
+      "nameFa": "لولهٔ سانتریفیوژ مخروطی · ۱۵ میلی‌لیتر",
+      "nameEn": "15 mL Conical Polypropylene Centrifuge Tube",
+      "aliases": [
+        "۱۵ میلی‌لیتر",
+        "لولهٔ سانتریفیوژ مخروطی · ۱۵ میلی‌لیتر",
+        "15 mL Conical Polypropylene Centrifuge Tube"
+      ],
+      "summary": "لولهٔ مخروطی پلی‌پروپیلن با درجه‌بندی و ناحیهٔ نوشتن؛ نمونهٔ مرجع Fisher/Falcon برای رسوب‌دادن و جداسازی نمونه در سانتریفیوژ معرفی شده است.",
+      "primaryUse": "سانتریفیوژ، جمع‌آوری رسوب و آماده‌سازی نمونه",
+      "hazards": "برای هر مدل، حداکثر RCF، دمای کار، استریل‌بودن و سازگاری شیمیایی را از دیتاشیت همان محصول بررسی کنید و لوله‌ها را متوازن در روتور قرار دهید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "۱۵ میلی‌لیتر"
+        },
+        {
+          "label": "capacity",
+          "value": "15 mL"
+        },
+        {
+          "label": "material",
+          "value": "polypropylene"
+        },
+        {
+          "label": "shape",
+          "value": "conical"
+        },
+        {
+          "label": "graduation",
+          "value": "0.5 mL subdivisions in a reference model"
+        }
+      ],
+      "image": "conical-centrifuge-tube-15ml.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Fisher Scientific: Falcon 15 میلی‌لیتر",
+          "url": "https://www.fishersci.ca/shop/products/falcon-15ml-conical-centrifuge-tubes-5/p-193301"
+        },
+        {
+          "label": "Fisher Scientific: Falcon 50 میلی‌لیتر",
+          "url": "https://www.fishersci.ca/shop/products/falcon-50ml-conical-centrifuge-tubes-2/p-193321"
+        },
+        {
+          "label": "Fisher Scientific: لوله‌های سانتریفیوژ",
+          "url": "https://www.fishersci.ca/ca/en/browse/90168074/Centrifuge-Tubes?page=1"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
+    },
+    {
+      "recordType": "equipment-variant",
+      "id": "conical-centrifuge-tubes:50ml",
+      "familyId": "conical-centrifuge-tubes",
+      "nameFa": "لولهٔ سانتریفیوژ مخروطی · ۵۰ میلی‌لیتر",
+      "nameEn": "50 mL Conical Polypropylene Centrifuge Tube",
+      "aliases": [
+        "۵۰ میلی‌لیتر",
+        "لولهٔ سانتریفیوژ مخروطی · ۵۰ میلی‌لیتر",
+        "50 mL Conical Polypropylene Centrifuge Tube"
+      ],
+      "summary": "لولهٔ مخروطی پلی‌پروپیلن با فضای برچسب‌گذاری و درجه‌بندی درشت‌تر؛ برای جمع‌آوری رسوب و آماده‌سازی نمونه، مشخصات روتور و حداکثر RCF مدل را جداگانه بررسی کنید.",
+      "primaryUse": "سانتریفیوژ، جمع‌آوری رسوب و آماده‌سازی نمونه",
+      "hazards": "برای هر مدل، حداکثر RCF، دمای کار، استریل‌بودن و سازگاری شیمیایی را از دیتاشیت همان محصول بررسی کنید و لوله‌ها را متوازن در روتور قرار دهید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "۵۰ میلی‌لیتر"
+        },
+        {
+          "label": "capacity",
+          "value": "50 mL"
+        },
+        {
+          "label": "material",
+          "value": "polypropylene"
+        },
+        {
+          "label": "shape",
+          "value": "conical"
+        },
+        {
+          "label": "graduation",
+          "value": "5 mL increments in a reference model"
+        }
+      ],
+      "image": "conical-centrifuge-tube-50ml.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Fisher Scientific: Falcon 15 میلی‌لیتر",
+          "url": "https://www.fishersci.ca/shop/products/falcon-15ml-conical-centrifuge-tubes-5/p-193301"
+        },
+        {
+          "label": "Fisher Scientific: Falcon 50 میلی‌لیتر",
+          "url": "https://www.fishersci.ca/shop/products/falcon-50ml-conical-centrifuge-tubes-2/p-193321"
+        },
+        {
+          "label": "Fisher Scientific: لوله‌های سانتریفیوژ",
+          "url": "https://www.fishersci.ca/ca/en/browse/90168074/Centrifuge-Tubes?page=1"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
+    },
+    {
+      "recordType": "equipment-variant",
+      "id": "measuring-cylinders:5ml",
+      "familyId": "measuring-cylinders",
+      "nameFa": "استوانهٔ مدرج شیشه‌ای ۵ میلی‌لیتر",
+      "nameEn": "5 mL Glass Measuring Cylinder",
+      "aliases": [
+        "۵ میلی‌لیتر",
+        "استوانهٔ مدرج شیشه‌ای ۵ میلی‌لیتر",
+        "5 mL Glass Measuring Cylinder"
+      ],
+      "summary": "استوانهٔ مدرج شیشه‌ای با ظرفیت ۵ میلی‌لیتر برای اندازه‌گیری و انتقال تقریبی مایع؛ برای اندازه‌گیری تحلیلی دقیق، کلاس دقت و گواهی کالیبراسیون مدل را بررسی کنید.",
+      "primaryUse": "اندازه‌گیری و انتقال حجمی عمومی",
+      "hazards": "برای تهیهٔ محلول استاندارد یا اندازه‌گیری تحلیلی نهایی، محدودیت دقت استوانه را در نظر بگیرید و در صورت نیاز از بالن حجمی یا پیپت استفاده کنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "۵ میلی‌لیتر"
+        },
+        {
+          "label": "capacity",
+          "value": "۵ میلی‌لیتر"
+        },
+        {
+          "label": "material",
+          "value": "borosilicate glass"
+        },
+        {
+          "label": "accuracyClass",
+          "value": "model-dependent"
+        }
+      ],
+      "image": "measuring-cylinder-5ml.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Borosil Scientific: استوانه‌های مدرج",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/volumetric-glassware/cylinders/"
+        },
+        {
+          "label": "Borosil Scientific: استوانهٔ مدل 3021",
+          "url": "https://www.borosilscientific.com/product/3021-cylinders/"
+        },
+        {
+          "label": "Sigma-Aldrich: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Fisher Scientific: شیشه‌آلات تخصصی",
+          "url": "https://www.fishersci.ca/ca/en/browse/90094011/verrerie-de-laboratoire-sp%C3%A9cialis%C3%A9e"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
+    },
+    {
+      "recordType": "equipment-variant",
+      "id": "measuring-cylinders:10ml",
+      "familyId": "measuring-cylinders",
+      "nameFa": "استوانهٔ مدرج شیشه‌ای ۱۰ میلی‌لیتر",
+      "nameEn": "10 mL Glass Measuring Cylinder",
+      "aliases": [
+        "۱۰ میلی‌لیتر",
+        "استوانهٔ مدرج شیشه‌ای ۱۰ میلی‌لیتر",
+        "10 mL Glass Measuring Cylinder"
+      ],
+      "summary": "استوانهٔ مدرج شیشه‌ای با ظرفیت ۱۰ میلی‌لیتر برای اندازه‌گیری و انتقال تقریبی مایع؛ برای اندازه‌گیری تحلیلی دقیق، کلاس دقت و گواهی کالیبراسیون مدل را بررسی کنید.",
+      "primaryUse": "اندازه‌گیری و انتقال حجمی عمومی",
+      "hazards": "برای تهیهٔ محلول استاندارد یا اندازه‌گیری تحلیلی نهایی، محدودیت دقت استوانه را در نظر بگیرید و در صورت نیاز از بالن حجمی یا پیپت استفاده کنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "۱۰ میلی‌لیتر"
+        },
+        {
+          "label": "capacity",
+          "value": "۱۰ میلی‌لیتر"
+        },
+        {
+          "label": "material",
+          "value": "borosilicate glass"
+        },
+        {
+          "label": "accuracyClass",
+          "value": "model-dependent"
+        }
+      ],
+      "image": "measuring-cylinder-10ml.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Borosil Scientific: استوانه‌های مدرج",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/volumetric-glassware/cylinders/"
+        },
+        {
+          "label": "Borosil Scientific: استوانهٔ مدل 3021",
+          "url": "https://www.borosilscientific.com/product/3021-cylinders/"
+        },
+        {
+          "label": "Sigma-Aldrich: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Fisher Scientific: شیشه‌آلات تخصصی",
+          "url": "https://www.fishersci.ca/ca/en/browse/90094011/verrerie-de-laboratoire-sp%C3%A9cialis%C3%A9e"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
+    },
+    {
+      "recordType": "equipment-variant",
+      "id": "measuring-cylinders:50ml",
+      "familyId": "measuring-cylinders",
+      "nameFa": "استوانهٔ مدرج شیشه‌ای ۵۰ میلی‌لیتر",
+      "nameEn": "50 mL Glass Measuring Cylinder",
+      "aliases": [
+        "۵۰ میلی‌لیتر",
+        "استوانهٔ مدرج شیشه‌ای ۵۰ میلی‌لیتر",
+        "50 mL Glass Measuring Cylinder"
+      ],
+      "summary": "استوانهٔ مدرج شیشه‌ای با ظرفیت ۵۰ میلی‌لیتر برای اندازه‌گیری و انتقال تقریبی مایع؛ برای اندازه‌گیری تحلیلی دقیق، کلاس دقت و گواهی کالیبراسیون مدل را بررسی کنید.",
+      "primaryUse": "اندازه‌گیری و انتقال حجمی عمومی",
+      "hazards": "برای تهیهٔ محلول استاندارد یا اندازه‌گیری تحلیلی نهایی، محدودیت دقت استوانه را در نظر بگیرید و در صورت نیاز از بالن حجمی یا پیپت استفاده کنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "۵۰ میلی‌لیتر"
+        },
+        {
+          "label": "capacity",
+          "value": "۵۰ میلی‌لیتر"
+        },
+        {
+          "label": "material",
+          "value": "borosilicate glass"
+        },
+        {
+          "label": "accuracyClass",
+          "value": "model-dependent"
+        }
+      ],
+      "image": "measuring-cylinder-50ml.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Borosil Scientific: استوانه‌های مدرج",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/volumetric-glassware/cylinders/"
+        },
+        {
+          "label": "Borosil Scientific: استوانهٔ مدل 3021",
+          "url": "https://www.borosilscientific.com/product/3021-cylinders/"
+        },
+        {
+          "label": "Sigma-Aldrich: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Fisher Scientific: شیشه‌آلات تخصصی",
+          "url": "https://www.fishersci.ca/ca/en/browse/90094011/verrerie-de-laboratoire-sp%C3%A9cialis%C3%A9e"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
+    },
+    {
+      "recordType": "equipment-variant",
+      "id": "measuring-cylinders:100ml",
+      "familyId": "measuring-cylinders",
+      "nameFa": "استوانهٔ مدرج شیشه‌ای ۱۰۰ میلی‌لیتر",
+      "nameEn": "100 mL Glass Measuring Cylinder",
+      "aliases": [
+        "۱۰۰ میلی‌لیتر",
+        "استوانهٔ مدرج شیشه‌ای ۱۰۰ میلی‌لیتر",
+        "100 mL Glass Measuring Cylinder"
+      ],
+      "summary": "استوانهٔ مدرج شیشه‌ای با ظرفیت ۱۰۰ میلی‌لیتر برای اندازه‌گیری و انتقال تقریبی مایع؛ برای اندازه‌گیری تحلیلی دقیق، کلاس دقت و گواهی کالیبراسیون مدل را بررسی کنید.",
+      "primaryUse": "اندازه‌گیری و انتقال حجمی عمومی",
+      "hazards": "برای تهیهٔ محلول استاندارد یا اندازه‌گیری تحلیلی نهایی، محدودیت دقت استوانه را در نظر بگیرید و در صورت نیاز از بالن حجمی یا پیپت استفاده کنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "۱۰۰ میلی‌لیتر"
+        },
+        {
+          "label": "capacity",
+          "value": "۱۰۰ میلی‌لیتر"
+        },
+        {
+          "label": "material",
+          "value": "borosilicate glass"
+        },
+        {
+          "label": "accuracyClass",
+          "value": "model-dependent"
+        }
+      ],
+      "image": "measuring-cylinder-100ml.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Borosil Scientific: استوانه‌های مدرج",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/volumetric-glassware/cylinders/"
+        },
+        {
+          "label": "Borosil Scientific: استوانهٔ مدل 3021",
+          "url": "https://www.borosilscientific.com/product/3021-cylinders/"
+        },
+        {
+          "label": "Sigma-Aldrich: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Fisher Scientific: شیشه‌آلات تخصصی",
+          "url": "https://www.fishersci.ca/ca/en/browse/90094011/verrerie-de-laboratoire-sp%C3%A9cialis%C3%A9e"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
+    },
+    {
+      "recordType": "equipment-variant",
+      "id": "measuring-cylinders:250ml",
+      "familyId": "measuring-cylinders",
+      "nameFa": "استوانهٔ مدرج شیشه‌ای ۲۵۰ میلی‌لیتر",
+      "nameEn": "250 mL Glass Measuring Cylinder",
+      "aliases": [
+        "۲۵۰ میلی‌لیتر",
+        "استوانهٔ مدرج شیشه‌ای ۲۵۰ میلی‌لیتر",
+        "250 mL Glass Measuring Cylinder"
+      ],
+      "summary": "استوانهٔ مدرج شیشه‌ای با ظرفیت ۲۵۰ میلی‌لیتر برای اندازه‌گیری و انتقال تقریبی مایع؛ برای اندازه‌گیری تحلیلی دقیق، کلاس دقت و گواهی کالیبراسیون مدل را بررسی کنید.",
+      "primaryUse": "اندازه‌گیری و انتقال حجمی عمومی",
+      "hazards": "برای تهیهٔ محلول استاندارد یا اندازه‌گیری تحلیلی نهایی، محدودیت دقت استوانه را در نظر بگیرید و در صورت نیاز از بالن حجمی یا پیپت استفاده کنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "۲۵۰ میلی‌لیتر"
+        },
+        {
+          "label": "capacity",
+          "value": "۲۵۰ میلی‌لیتر"
+        },
+        {
+          "label": "material",
+          "value": "borosilicate glass"
+        },
+        {
+          "label": "accuracyClass",
+          "value": "model-dependent"
+        }
+      ],
+      "image": "measuring-cylinder-250ml.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Borosil Scientific: استوانه‌های مدرج",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/volumetric-glassware/cylinders/"
+        },
+        {
+          "label": "Borosil Scientific: استوانهٔ مدل 3021",
+          "url": "https://www.borosilscientific.com/product/3021-cylinders/"
+        },
+        {
+          "label": "Sigma-Aldrich: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Fisher Scientific: شیشه‌آلات تخصصی",
+          "url": "https://www.fishersci.ca/ca/en/browse/90094011/verrerie-de-laboratoire-sp%C3%A9cialis%C3%A9e"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
+    },
+    {
+      "recordType": "equipment-variant",
+      "id": "measuring-cylinders:500ml",
+      "familyId": "measuring-cylinders",
+      "nameFa": "استوانهٔ مدرج شیشه‌ای ۵۰۰ میلی‌لیتر",
+      "nameEn": "500 mL Glass Measuring Cylinder",
+      "aliases": [
+        "۵۰۰ میلی‌لیتر",
+        "استوانهٔ مدرج شیشه‌ای ۵۰۰ میلی‌لیتر",
+        "500 mL Glass Measuring Cylinder"
+      ],
+      "summary": "استوانهٔ مدرج شیشه‌ای با ظرفیت ۵۰۰ میلی‌لیتر برای اندازه‌گیری و انتقال تقریبی مایع؛ برای اندازه‌گیری تحلیلی دقیق، کلاس دقت و گواهی کالیبراسیون مدل را بررسی کنید.",
+      "primaryUse": "اندازه‌گیری و انتقال حجمی عمومی",
+      "hazards": "برای تهیهٔ محلول استاندارد یا اندازه‌گیری تحلیلی نهایی، محدودیت دقت استوانه را در نظر بگیرید و در صورت نیاز از بالن حجمی یا پیپت استفاده کنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "۵۰۰ میلی‌لیتر"
+        },
+        {
+          "label": "capacity",
+          "value": "۵۰۰ میلی‌لیتر"
+        },
+        {
+          "label": "material",
+          "value": "borosilicate glass"
+        },
+        {
+          "label": "accuracyClass",
+          "value": "model-dependent"
+        }
+      ],
+      "image": "measuring-cylinder-500ml.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Borosil Scientific: استوانه‌های مدرج",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/volumetric-glassware/cylinders/"
+        },
+        {
+          "label": "Borosil Scientific: استوانهٔ مدل 3021",
+          "url": "https://www.borosilscientific.com/product/3021-cylinders/"
+        },
+        {
+          "label": "Sigma-Aldrich: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Fisher Scientific: شیشه‌آلات تخصصی",
+          "url": "https://www.fishersci.ca/ca/en/browse/90094011/verrerie-de-laboratoire-sp%C3%A9cialis%C3%A9e"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
+    },
+    {
+      "recordType": "equipment-variant",
+      "id": "measuring-cylinders:1000ml",
+      "familyId": "measuring-cylinders",
+      "nameFa": "استوانهٔ مدرج شیشه‌ای ۱۰۰۰ میلی‌لیتر",
+      "nameEn": "1000 mL Glass Measuring Cylinder",
+      "aliases": [
+        "۱۰۰۰ میلی‌لیتر",
+        "استوانهٔ مدرج شیشه‌ای ۱۰۰۰ میلی‌لیتر",
+        "1000 mL Glass Measuring Cylinder"
+      ],
+      "summary": "استوانهٔ مدرج شیشه‌ای با ظرفیت ۱۰۰۰ میلی‌لیتر برای اندازه‌گیری و انتقال تقریبی مایع؛ برای اندازه‌گیری تحلیلی دقیق، کلاس دقت و گواهی کالیبراسیون مدل را بررسی کنید.",
+      "primaryUse": "اندازه‌گیری و انتقال حجمی عمومی",
+      "hazards": "برای تهیهٔ محلول استاندارد یا اندازه‌گیری تحلیلی نهایی، محدودیت دقت استوانه را در نظر بگیرید و در صورت نیاز از بالن حجمی یا پیپت استفاده کنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "۱۰۰۰ میلی‌لیتر"
+        },
+        {
+          "label": "capacity",
+          "value": "۱۰۰۰ میلی‌لیتر"
+        },
+        {
+          "label": "material",
+          "value": "borosilicate glass"
+        },
+        {
+          "label": "accuracyClass",
+          "value": "model-dependent"
+        }
+      ],
+      "image": "measuring-cylinder-1000ml.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Borosil Scientific: استوانه‌های مدرج",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/volumetric-glassware/cylinders/"
+        },
+        {
+          "label": "Borosil Scientific: استوانهٔ مدل 3021",
+          "url": "https://www.borosilscientific.com/product/3021-cylinders/"
+        },
+        {
+          "label": "Sigma-Aldrich: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Fisher Scientific: شیشه‌آلات تخصصی",
+          "url": "https://www.fishersci.ca/ca/en/browse/90094011/verrerie-de-laboratoire-sp%C3%A9cialis%C3%A9e"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
+    },
+    {
+      "recordType": "equipment-variant",
+      "id": "boiling-flasks:round-bottom-joint",
+      "familyId": "boiling-flasks",
+      "nameFa": "بالن جوششی کف‌گرد با اتصال قابل‌تعویض",
+      "nameEn": "Round-Bottom Boiling Flask with Interchangeable Joint",
+      "aliases": [
+        "کف‌گرد با اتصال قابل‌تعویض",
+        "بالن جوششی کف‌گرد با اتصال قابل‌تعویض",
+        "Round-Bottom Boiling Flask with Interchangeable Joint"
+      ],
+      "summary": "بالن کف‌گرد برای گرمادهی یکنواخت در مجموعه‌های تقطیر یا رفلاکس؛ اندازهٔ اتصال و گیرهٔ نگهدارنده باید با قطعات سامانه هماهنگ باشد.",
+      "primaryUse": "گرمادهی، جوشاندن، تقطیر و رفلاکس",
+      "hazards": "بالن کف‌گرد بدون گیره پایدار نیست؛ پیش از گرمادهی، سلامت شیشه، مسیر تخلیه و پشتیبانی مکانیکی را بررسی کنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "کف‌گرد با اتصال قابل‌تعویض"
+        },
+        {
+          "label": "form",
+          "value": "round bottom"
+        },
+        {
+          "label": "joint",
+          "value": "interchangeable"
+        },
+        {
+          "label": "capacity",
+          "value": "model-dependent"
+        }
+      ],
+      "image": "boiling-flask-round-joint.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Borosil Scientific: فلاسک‌های آزمایشگاهی",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/general-laboratory-glassware/flask/"
+        },
+        {
+          "label": "Borosil Scientific: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/general-laboratory-glassware/"
+        },
+        {
+          "label": "Sigma-Aldrich: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Trafalgar Scientific: فلاسک‌ها",
+          "url": "https://trafalgarscientific.co.uk/glassware-volumetrics/flasks/"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
+    },
+    {
+      "recordType": "equipment-variant",
+      "id": "boiling-flasks:flat-bottom",
+      "familyId": "boiling-flasks",
+      "nameFa": "بالن جوششی کف‌تخت",
+      "nameEn": "Flat-Bottom Boiling Flask",
+      "aliases": [
+        "کف‌تخت",
+        "بالن جوششی کف‌تخت",
+        "Flat-Bottom Boiling Flask"
+      ],
+      "summary": "کف تخت امکان ایستادن روی سطح مناسب را فراهم می‌کند؛ برای گرمادهی، تکیه‌گاه، یکنواختی حرارت و محدودیت‌های شیشهٔ مدل را رعایت کنید.",
+      "primaryUse": "گرمادهی، جوشاندن، تقطیر و رفلاکس",
+      "hazards": "بالن کف‌گرد بدون گیره پایدار نیست؛ پیش از گرمادهی، سلامت شیشه، مسیر تخلیه و پشتیبانی مکانیکی را بررسی کنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "کف‌تخت"
+        },
+        {
+          "label": "form",
+          "value": "flat bottom"
+        },
+        {
+          "label": "joint",
+          "value": "model-dependent"
+        },
+        {
+          "label": "capacity",
+          "value": "model-dependent"
+        }
+      ],
+      "image": "boiling-flask-flat-bottom.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Borosil Scientific: فلاسک‌های آزمایشگاهی",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/general-laboratory-glassware/flask/"
+        },
+        {
+          "label": "Borosil Scientific: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/general-laboratory-glassware/"
+        },
+        {
+          "label": "Sigma-Aldrich: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Trafalgar Scientific: فلاسک‌ها",
+          "url": "https://trafalgarscientific.co.uk/glassware-volumetrics/flasks/"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
+    },
+    {
+      "recordType": "equipment-variant",
+      "id": "boiling-flasks:round-bottom",
+      "familyId": "boiling-flasks",
+      "nameFa": "بالن جوششی کف‌گرد",
+      "nameEn": "Round-Bottom Boiling Flask",
+      "aliases": [
+        "کف‌گرد",
+        "بالن جوششی کف‌گرد",
+        "Round-Bottom Boiling Flask"
+      ],
+      "summary": "بالن کف‌گرد برای گرمادهی و واکنش در مجموعه‌های شیشه‌ای استفاده می‌شود؛ به‌تنهایی روی میز پایدار نیست و به گیره یا حمام مناسب نیاز دارد.",
+      "primaryUse": "گرمادهی، جوشاندن، تقطیر و رفلاکس",
+      "hazards": "بالن کف‌گرد بدون گیره پایدار نیست؛ پیش از گرمادهی، سلامت شیشه، مسیر تخلیه و پشتیبانی مکانیکی را بررسی کنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "کف‌گرد"
+        },
+        {
+          "label": "form",
+          "value": "round bottom"
+        },
+        {
+          "label": "joint",
+          "value": "model-dependent"
+        },
+        {
+          "label": "capacity",
+          "value": "model-dependent"
+        }
+      ],
+      "image": "boiling-flask-round-bottom.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Borosil Scientific: فلاسک‌های آزمایشگاهی",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/general-laboratory-glassware/flask/"
+        },
+        {
+          "label": "Borosil Scientific: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/general-laboratory-glassware/"
+        },
+        {
+          "label": "Sigma-Aldrich: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Trafalgar Scientific: فلاسک‌ها",
+          "url": "https://trafalgarscientific.co.uk/glassware-volumetrics/flasks/"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
+    },
+    {
+      "recordType": "equipment-variant",
+      "id": "erlenmeyer-flasks:narrow-mouth",
+      "familyId": "erlenmeyer-flasks",
+      "nameFa": "بالن ارلن · دهانه‌باریک",
+      "nameEn": "Narrow-Mouth Erlenmeyer Flask",
+      "aliases": [
+        "دهانه باریک",
+        "بالن ارلن · دهانه‌باریک",
+        "Narrow-Mouth Erlenmeyer Flask"
+      ],
+      "summary": "فرم مخروطی با دهانهٔ باریک برای مخلوط‌کردن، گرمادهی و کاهش پاشش؛ هنگام گرمادهی درپوش یا استاپر بسته استفاده نشود.",
+      "primaryUse": "مخلوط‌کردن، گرمادهی و آماده‌سازی محلول یا کشت",
+      "hazards": "درپوش بسته را هنگام گرمادهی استفاده نکنید مگر روش و تجهیز برای آن طراحی شده باشد؛ ظرفیت مفید و سازگاری شیشه را رعایت کنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "دهانه باریک"
+        },
+        {
+          "label": "form",
+          "value": "narrow mouth"
+        },
+        {
+          "label": "capacity",
+          "value": "model-dependent"
+        }
+      ],
+      "image": "erlenmeyer-flask-narrow-mouth.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Borosil Scientific: فلاسک ارلن کشت",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/glassware-for-microbiology/erlenmeyer-culture-flask/"
+        },
+        {
+          "label": "Borosil Scientific: فلاسک ارلن با اتصال 5020",
+          "url": "https://www.borosilscientific.com/product/5020-erlenmeyer-conical-flask/"
+        },
+        {
+          "label": "Sigma-Aldrich: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Trafalgar Scientific: فلاسک‌ها",
+          "url": "https://trafalgarscientific.co.uk/glassware-volumetrics/flasks/"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
+    },
+    {
+      "recordType": "equipment-variant",
+      "id": "erlenmeyer-flasks:wide-mouth",
+      "familyId": "erlenmeyer-flasks",
+      "nameFa": "بالن ارلن · دهانه‌عریض",
+      "nameEn": "Wide-Mouth Erlenmeyer Flask",
+      "aliases": [
+        "دهانه عریض",
+        "بالن ارلن · دهانه‌عریض",
+        "Wide-Mouth Erlenmeyer Flask"
+      ],
+      "summary": "دهانهٔ عریض دسترسی و انتقال جامد یا مایع را ساده‌تر می‌کند؛ برای کاهش خطر سرریز، سرعت چرخاندن و حجم پرشدن را کنترل کنید.",
+      "primaryUse": "مخلوط‌کردن، گرمادهی و آماده‌سازی محلول یا کشت",
+      "hazards": "درپوش بسته را هنگام گرمادهی استفاده نکنید مگر روش و تجهیز برای آن طراحی شده باشد؛ ظرفیت مفید و سازگاری شیشه را رعایت کنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "دهانه عریض"
+        },
+        {
+          "label": "form",
+          "value": "wide mouth"
+        },
+        {
+          "label": "capacity",
+          "value": "model-dependent"
+        }
+      ],
+      "image": "erlenmeyer-flask-wide-mouth.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Borosil Scientific: فلاسک ارلن کشت",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/glassware-for-microbiology/erlenmeyer-culture-flask/"
+        },
+        {
+          "label": "Borosil Scientific: فلاسک ارلن با اتصال 5020",
+          "url": "https://www.borosilscientific.com/product/5020-erlenmeyer-conical-flask/"
+        },
+        {
+          "label": "Sigma-Aldrich: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Trafalgar Scientific: فلاسک‌ها",
+          "url": "https://trafalgarscientific.co.uk/glassware-volumetrics/flasks/"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
+    },
+    {
+      "recordType": "equipment-variant",
+      "id": "erlenmeyer-flasks:interchangeable-joint",
+      "familyId": "erlenmeyer-flasks",
+      "nameFa": "بالن ارلن با اتصال قابل‌تعویض",
+      "nameEn": "Erlenmeyer Flask with Interchangeable Joint",
+      "aliases": [
+        "اتصال قابل‌تعویض",
+        "بالن ارلن با اتصال قابل‌تعویض",
+        "Erlenmeyer Flask with Interchangeable Joint"
+      ],
+      "summary": "برای اتصال به اجزای شیشه‌ای هم‌اندازه و سازگار؛ اندازهٔ joint، استاپر و روش گرمادهی را از مدل مشخص بررسی کنید.",
+      "primaryUse": "مخلوط‌کردن، گرمادهی و آماده‌سازی محلول یا کشت",
+      "hazards": "درپوش بسته را هنگام گرمادهی استفاده نکنید مگر روش و تجهیز برای آن طراحی شده باشد؛ ظرفیت مفید و سازگاری شیشه را رعایت کنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "اتصال قابل‌تعویض"
+        },
+        {
+          "label": "form",
+          "value": "conical"
+        },
+        {
+          "label": "joint",
+          "value": "interchangeable"
+        },
+        {
+          "label": "capacity",
+          "value": "25–2000 mL in reference ranges"
+        }
+      ],
+      "image": "erlenmeyer-flask-joint.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Borosil Scientific: فلاسک ارلن کشت",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/glassware-for-microbiology/erlenmeyer-culture-flask/"
+        },
+        {
+          "label": "Borosil Scientific: فلاسک ارلن با اتصال 5020",
+          "url": "https://www.borosilscientific.com/product/5020-erlenmeyer-conical-flask/"
+        },
+        {
+          "label": "Sigma-Aldrich: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Trafalgar Scientific: فلاسک‌ها",
+          "url": "https://trafalgarscientific.co.uk/glassware-volumetrics/flasks/"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
+    },
+    {
+      "recordType": "equipment-variant",
+      "id": "erlenmeyer-flasks:screw-cap",
+      "familyId": "erlenmeyer-flasks",
+      "nameFa": "بالن ارلن درپیچ‌دار",
+      "nameEn": "Erlenmeyer Flask with Screw Cap",
+      "aliases": [
+        "درپیچ‌دار",
+        "بالن ارلن درپیچ‌دار",
+        "Erlenmeyer Flask with Screw Cap"
+      ],
+      "summary": "برای نگهداری یا کشت‌های تکانشی با درپوش مناسب؛ سازگاری درپوش با فشار، دما، استریل‌سازی و ماده باید مشخص باشد.",
+      "primaryUse": "مخلوط‌کردن، گرمادهی و آماده‌سازی محلول یا کشت",
+      "hazards": "درپوش بسته را هنگام گرمادهی استفاده نکنید مگر روش و تجهیز برای آن طراحی شده باشد؛ ظرفیت مفید و سازگاری شیشه را رعایت کنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "درپیچ‌دار"
+        },
+        {
+          "label": "form",
+          "value": "conical"
+        },
+        {
+          "label": "closure",
+          "value": "screw cap"
+        },
+        {
+          "label": "capacity",
+          "value": "model-dependent"
+        }
+      ],
+      "image": "erlenmeyer-flask-screw-cap.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Borosil Scientific: فلاسک ارلن کشت",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/glassware-for-microbiology/erlenmeyer-culture-flask/"
+        },
+        {
+          "label": "Borosil Scientific: فلاسک ارلن با اتصال 5020",
+          "url": "https://www.borosilscientific.com/product/5020-erlenmeyer-conical-flask/"
+        },
+        {
+          "label": "Sigma-Aldrich: شیشه‌آلات آزمایشگاهی",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Trafalgar Scientific: فلاسک‌ها",
+          "url": "https://trafalgarscientific.co.uk/glassware-volumetrics/flasks/"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
+    },
+    {
+      "recordType": "equipment-variant",
+      "id": "filter-flasks:glass-tubulation",
+      "familyId": "filter-flasks",
+      "nameFa": "بالن خلأ با لولهٔ جانبی",
+      "nameEn": "Filter Flask with Glass Tubulation",
+      "aliases": [
+        "با لولهٔ جانبی شیشه‌ای",
+        "بالن خلأ با لولهٔ جانبی",
+        "Filter Flask with Glass Tubulation"
+      ],
+      "summary": "بالن خلأ با لولهٔ جانبی برای فیلتراسیون خلأ و اتصال به قیف بوخنر؛ حجم، ضخامت و سازگاری سامانهٔ خلأ باید از مدل انتخابی بررسی شود.",
+      "primaryUse": "فیلتراسیون خلأ",
+      "hazards": "فقط از بالن سالم و مناسب خلأ استفاده کنید؛ شلنگ، آب‌بندی و مسیر تخلیه را قبل از ایجاد خلأ بررسی کنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "با لولهٔ جانبی شیشه‌ای"
+        },
+        {
+          "label": "form",
+          "value": "filter flask"
+        },
+        {
+          "label": "sidearm",
+          "value": "glass tubulation"
+        },
+        {
+          "label": "model",
+          "value": "5340"
+        }
+      ],
+      "image": "filter-flask.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Borosil Scientific: بالن فیلتراسیون 5340",
+          "url": "https://www.borosilscientific.com/product/5340-filter-flask/"
+        },
+        {
+          "label": "Borosil Scientific: فلاسک‌های آزمایشگاهی",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/general-laboratory-glassware/flask/"
+        },
+        {
+          "label": "Fisher Scientific: شیشه‌آلات تخصصی",
+          "url": "https://www.fishersci.ca/ca/en/browse/90094011/verrerie-de-laboratoire-sp%C3%A9cialis%C3%A9e"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
+    },
+    {
+      "recordType": "equipment-variant",
+      "id": "wash-bottles:squeeze",
+      "familyId": "wash-bottles",
+      "nameFa": "بطری شست‌وشو",
+      "nameEn": "Laboratory Wash Bottle",
+      "aliases": [
+        "فشارشی",
+        "بطری شست‌وشو",
+        "Laboratory Wash Bottle"
+      ],
+      "summary": "بطری فشارشی برای آبکشی شیشه‌آلات یا رساندن مقدار کنترل‌شدهٔ مایع؛ مادهٔ بدنه، نازل و برچسب محتویات باید با کاربرد هماهنگ باشد.",
+      "primaryUse": "آبکشی و انتقال کنترل‌شدهٔ مایع",
+      "hazards": "هر بطری را فقط با مایع سازگار با بدنه، نازل و درپوش پر کنید و هرگز بطری بدون برچسب را در کنار محلول‌های دیگر نگذارید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "فشارشی"
+        },
+        {
+          "label": "form",
+          "value": "squeeze bottle"
+        },
+        {
+          "label": "material",
+          "value": "model-dependent"
+        },
+        {
+          "label": "capacity",
+          "value": "model-dependent"
+        }
+      ],
+      "image": "wash-bottle.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Borosil Scientific: بطری‌های شست‌وشو و بطری‌های آزمایشگاهی",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/laboratory-bottles-and-caps/laboratory-bottles/"
+        },
+        {
+          "label": "Sigma-Aldrich: ظروف نگهداری و انتقال",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Trafalgar Scientific: بطری‌های آزمایشگاهی",
+          "url": "https://trafalgarscientific.co.uk/consumables/bottles/"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
+    },
+    {
+      "recordType": "equipment-variant",
+      "id": "vials:general",
+      "familyId": "vials",
+      "nameFa": "ویال آزمایشگاهی",
+      "nameEn": "Laboratory Vial",
+      "aliases": [
+        "ویال نمونه",
+        "ویال آزمایشگاهی",
+        "Laboratory Vial"
+      ],
+      "summary": "ویال برای نگهداری یا جابه‌جایی حجم‌های کم نمونه به کار می‌رود؛ جنس، درپوش، حجم و مقاومت شیمیایی آن باید از مدل مشخص انتخاب شود.",
+      "primaryUse": "نگهداری و انتقال نمونه‌های کم‌حجم",
+      "hazards": "درپوش را متناسب با ماده و فشار احتمالی انتخاب کنید و نمونه را با نام، تاریخ و وضعیت آن برچسب بزنید.",
+      "waste": {
+        "note": "پسماند تجهیز تابع جنس بدنه، آلودگی نمونه و روش مصوب آزمایشگاه است؛ پیش از دفع، آلودگی‌زدایی و تفکیک را بررسی کنید."
+      },
+      "specifications": [
+        {
+          "label": "گزینه",
+          "value": "ویال نمونه"
+        },
+        {
+          "label": "form",
+          "value": "sample vial"
+        },
+        {
+          "label": "closure",
+          "value": "model-dependent"
+        },
+        {
+          "label": "capacity",
+          "value": "model-dependent"
+        }
+      ],
+      "image": "vial.webp",
+      "imageCaption": null,
+      "sources": [
+        {
+          "label": "Borosil Scientific: شیشه‌آلات عمومی آزمایشگاهی",
+          "url": "https://www.borosilscientific.com/product-category/glassware-consumables/laboratory-glassware/general-laboratory-glassware/"
+        },
+        {
+          "label": "Sigma-Aldrich: ظروف نگهداری و نمونه",
+          "url": "https://www.sigmaaldrich.com/VU/en/products/labware/glassware"
+        },
+        {
+          "label": "Fisher Scientific: شیشه‌آلات تخصصی",
+          "url": "https://www.fishersci.ca/ca/en/browse/90094011/verrerie-de-laboratoire-sp%C3%A9cialis%C3%A9e"
+        }
+      ],
+      "verifiedAt": "2026-09-23",
+      "confidence": "vendor-reference; exact dimensions and limits require model-level verification"
+    },
+    {
+      "recordType": "equipment-variant",
       "id": "porcelain-crucible:porcelain-25ml",
       "familyId": "porcelain-crucible",
       "nameFa": "بوتهٔ چینی · ۲۵ میلی‌لیتر",
@@ -16256,7 +18054,7 @@
           "value": "FB960R"
         }
       ],
-      "image": "porcelain-crucible.webp",
+      "image": "porcelain-crucible-medium.webp",
       "imageCaption": null,
       "sources": [
         {
@@ -16342,8 +18140,8 @@
           "value": "1250 °C"
         }
       ],
-      "image": "crucible-generic.svg",
-      "imageCaption": "تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.",
+      "image": "fused-quartz-crucible.webp",
+      "imageCaption": "تصویر ارسالی خانوادهٔ بوتهٔ کوارتز؛ جزئیات مدل با مرجع سازنده تطبیق داده شود.",
       "sources": [
         {
           "label": "Fisher Scientific: بوتهٔ چینی ۲۵ میلی‌لیتری",
@@ -16428,8 +18226,8 @@
           "value": "1750 °C"
         }
       ],
-      "image": "crucible-generic.svg",
-      "imageCaption": "تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.",
+      "image": "alumina-crucible.webp",
+      "imageCaption": "تصویر ارسالی خانوادهٔ بوتهٔ آلومینا؛ جزئیات مدل با مرجع سازنده تطبیق داده شود.",
       "sources": [
         {
           "label": "Fisher Scientific: بوتهٔ چینی ۲۵ میلی‌لیتری",
@@ -16514,8 +18312,8 @@
           "value": "1750 °C"
         }
       ],
-      "image": "crucible-generic.svg",
-      "imageCaption": "تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.",
+      "image": "alumina-crucible.webp",
+      "imageCaption": "تصویر ارسالی خانوادهٔ بوتهٔ آلومینا؛ جزئیات مدل با مرجع سازنده تطبیق داده شود.",
       "sources": [
         {
           "label": "Fisher Scientific: بوتهٔ چینی ۲۵ میلی‌لیتری",
@@ -16600,8 +18398,8 @@
           "value": "800 °C"
         }
       ],
-      "image": "crucible-generic.svg",
-      "imageCaption": "تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.",
+      "image": "nickel-crucible.webp",
+      "imageCaption": "تصویر ارسالی خانوادهٔ بوتهٔ نیکل؛ جزئیات مدل با مرجع سازنده تطبیق داده شود.",
       "sources": [
         {
           "label": "Fisher Scientific: بوتهٔ چینی ۲۵ میلی‌لیتری",
@@ -16686,8 +18484,8 @@
           "value": "1000 °C"
         }
       ],
-      "image": "crucible-generic.svg",
-      "imageCaption": "تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.",
+      "image": "nickel-chromium-crucible.webp",
+      "imageCaption": "تصویر ارسالی خانوادهٔ بوتهٔ نیکل‌کروم؛ جزئیات مدل با مرجع سازنده تطبیق داده شود.",
       "sources": [
         {
           "label": "Fisher Scientific: بوتهٔ چینی ۲۵ میلی‌لیتری",
@@ -16772,8 +18570,8 @@
           "value": "۴۶۰ تا ۹۰۰ °C"
         }
       ],
-      "image": "crucible-generic.svg",
-      "imageCaption": "تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.",
+      "image": "zirconium-crucible.webp",
+      "imageCaption": "تصویر ارسالی خانوادهٔ بوتهٔ زیرکونیوم؛ جزئیات مدل با مرجع سازنده تطبیق داده شود.",
       "sources": [
         {
           "label": "Fisher Scientific: بوتهٔ چینی ۲۵ میلی‌لیتری",
@@ -16858,8 +18656,8 @@
           "value": "۴۶۰ تا ۹۰۰ °C"
         }
       ],
-      "image": "crucible-generic.svg",
-      "imageCaption": "تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.",
+      "image": "zirconium-crucible.webp",
+      "imageCaption": "تصویر ارسالی خانوادهٔ بوتهٔ زیرکونیوم؛ جزئیات مدل با مرجع سازنده تطبیق داده شود.",
       "sources": [
         {
           "label": "Fisher Scientific: بوتهٔ چینی ۲۵ میلی‌لیتری",
@@ -16944,8 +18742,8 @@
           "value": "۴۶۰ تا ۹۰۰ °C"
         }
       ],
-      "image": "crucible-generic.svg",
-      "imageCaption": "تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.",
+      "image": "zirconium-crucible.webp",
+      "imageCaption": "تصویر ارسالی خانوادهٔ بوتهٔ زیرکونیوم؛ جزئیات مدل با مرجع سازنده تطبیق داده شود.",
       "sources": [
         {
           "label": "Fisher Scientific: بوتهٔ چینی ۲۵ میلی‌لیتری",
@@ -17030,8 +18828,8 @@
           "value": "۴۶۰ تا ۹۰۰ °C"
         }
       ],
-      "image": "crucible-generic.svg",
-      "imageCaption": "تصویر شماتیک عمومی؛ شکل دقیق مدل را در مرجع سازنده ببینید.",
+      "image": "zirconium-crucible.webp",
+      "imageCaption": "تصویر ارسالی خانوادهٔ بوتهٔ زیرکونیوم؛ جزئیات مدل با مرجع سازنده تطبیق داده شود.",
       "sources": [
         {
           "label": "Fisher Scientific: بوتهٔ چینی ۲۵ میلی‌لیتری",
@@ -20723,8 +22521,8 @@
   "counts": {
     "element": 118,
     "chemical": 370,
-    "equipmentFamily": 20,
-    "equipmentVariant": 100
+    "equipmentFamily": 28,
+    "equipmentVariant": 122
   },
   "sourcePolicy": {
     "runtime": "local-only",
