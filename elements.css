@@ -318,7 +318,7 @@
 .element-periodic-table {
   display: grid;
   grid-template-columns: repeat(18, minmax(0, 1fr));
-  grid-template-rows: repeat(9, minmax(84px, auto));
+  grid-template-rows: repeat(9, auto);
   gap: .4rem;
   direction: ltr;
   margin-top: .75rem;
@@ -379,6 +379,31 @@
   font-size: .7rem;
   font-weight: 800;
   text-align: right;
+}
+
+.element-card-topline {
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  gap: .22rem;
+  direction: rtl;
+}
+
+.element-card-radioactive {
+  display: inline-flex;
+  width: 1rem;
+  min-width: 1rem;
+  height: 1rem;
+  min-height: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: var(--accent-red-strong);
+}
+
+.element-card-radioactive .radiation-symbol {
+  width: 1rem;
+  height: 1rem;
 }
 
 .element-card-family {

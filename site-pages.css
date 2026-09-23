@@ -1360,3 +1360,49 @@ body {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
 }
+
+/* Element cells keep a stable square footprint at every responsive size. */
+.element-periodic-table {
+  grid-template-rows: repeat(9, auto);
+}
+
+.element-periodic-table .element-card,
+.element-list .element-card {
+  min-height: 0;
+  aspect-ratio: 1 / 1;
+}
+
+.element-periodic-table .element-card-radioactive,
+.element-list .element-card-radioactive {
+  display: inline-flex;
+  width: 1rem;
+  min-width: 1rem;
+  height: 1rem;
+  min-height: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  padding: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--accent-red-strong);
+}
+
+.element-periodic-table .element-card-radioactive .radiation-symbol,
+.element-list .element-card-radioactive .radiation-symbol {
+  width: 1rem;
+  height: 1rem;
+}
+
+.element-badge-radioactive .radiation-symbol,
+.element-radioactive-status .radiation-symbol {
+  width: 1em;
+  height: 1em;
+}
+
+@media (max-width: 992px) {
+  .element-periodic-table {
+    grid-template-rows: none !important;
+    grid-auto-rows: auto !important;
+  }
+}

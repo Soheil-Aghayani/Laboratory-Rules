@@ -273,8 +273,8 @@ const renderHead = page => {
   <link rel="icon" type="image/webp" href="Waste%20Lab.webp">
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="stylesheet" href="./styles.min.css?v=6.3">
-  <link rel="stylesheet" href="./elements.min.css?v=1.4">
-  <link rel="stylesheet" href="./site-pages.min.css?v=1.7">${pageStyles ? `\n  ${pageStyles}` : ''}
+  <link rel="stylesheet" href="./elements.min.css?v=1.5">
+  <link rel="stylesheet" href="./site-pages.min.css?v=1.8">${pageStyles ? `\n  ${pageStyles}` : ''}
   <script>
     try {
       const savedTheme = localStorage.getItem('theme');
@@ -285,7 +285,7 @@ const renderHead = page => {
   ${preload}
   <script defer src="./asset/icon-system.min.js?v=1.0"></script>
   <script defer src="./script.min.js?v=7.1"></script>
-  <script defer src="./site-runtime.min.js?v=1.2"></script>
+  <script defer src="./site-runtime.min.js?v=1.3"></script>
   ${page.assets.map(asset => `<script defer src="./${asset}?v=${assetVersion(asset)}"></script>`).join('\n  ')}
 </head>`;
 };

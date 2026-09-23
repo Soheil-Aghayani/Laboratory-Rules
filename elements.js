@@ -34,14 +34,9 @@
   };
   const getFamilyClass = classification => familyClassMap[classification?.familyEn] || 'element';
   const radiationIcon = `
-    <svg class="radiation-symbol" xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 64 64" role="img" aria-label="پرتوزا" focusable="false">
-      <title>پرتوزا</title>
-      <circle cx="32" cy="32" r="30" fill="#3e4347"/>
-      <circle cx="32" cy="32" r="27" fill="#ffe62e"/>
-      <g fill="#3e4347">
-        <circle cx="32" cy="32" r="5"/>
-        <path d="M8 28.8L25.1 31c.2-1.9 1.2-3.5 2.7-4.6L17.3 12.6c-5 3.9-8.5 9.6-9.3 16.2m24 10c-.9 0-1.8-.2-2.7-.5l-6.6 15.9c2.9 1.2 6 1.9 9.3 1.9s6.4-.7 9.3-1.9l-6.6-15.9c-.9.3-1.8.5-2.7.5m6.9-7.8L56 28.8c-.8-6.6-4.3-12.3-9.3-16.1L36.2 26.4c1.4 1.1 2.4 2.7 2.7 4.6"/>
-      </g>
+    <svg class="radiation-symbol" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256" role="img" aria-label="پرتوزا" focusable="false">
+      <title>radioactive-fill</title>
+      <path fill="currentColor" d="M116 128a12 12 0 1 1 12 12a12 12 0 0 1 12-12m-15.78 3.51A29 29 0 0 1 100 128a28 28 0 0 1 16.94-25.73a4 4 0 0 0 1.87-5.66L90.75 48a16 16 0 0 0-23.1-5.07a103.83 103.83 0 0 0-43.58 75.49a16.2 16.2 0 0 0 4.17 12.37A16 16 0 0 0 40 136h56.26a4 4 0 0 0 3.96-4.49m131.71-13.09a103.83 103.83 0 0 0-43.58-75.49a16 16 0 0 0-23.1 5.07l-28.06 48.61a4 4 0 0 0 1.87 5.66A28 28 0 0 1 156 128a29 29 0 0 1-.22 3.51a4 4 0 0 0 4 4.49H216a16 16 0 0 0 11.76-5.21a16.2 16.2 0 0 0 4.17-12.37m-81.13 33.06a4 4 0 0 0-5.91-1.15a28 28 0 0 1-33.78 0a4 4 0 0 0-5.91 1.15l-27.95 48.43a16 16 0 0 0 7.12 22.52a104.24 104.24 0 0 0 87.26 0a16 16 0 0 0 7.12-22.52Z"/>
     </svg>`;
   const getElementByNumber = number => catalog.find(element => element.atomicNumber === Number(number));
   const getElementSearchText = element => normalise([
@@ -97,17 +92,20 @@
   function renderElementCard(element, compact = false) {
     const classification = element.classification || {};
     const className = compact ? 'element-card element-card-compact' : 'element-card';
-    const label = `${element.nameFa} (${element.nameEn})، عدد اتمی ${element.atomicNumber}`;
+    const radioactiveLabel = classification.radioactive === true ? '، پرتوزا' : '';
+    const label = `${element.nameFa} (${element.nameEn})، عدد اتمی ${element.atomicNumber}${radioactiveLabel}`;
     const familyClass = getFamilyClass(classification);
     const radioactiveBadge = classification.radioactive === true
-      ? `<span class="element-card-badge element-card-radioactive" title="پرتوزا" aria-label="پرتوزا">${radiationIcon}</span>`
+      ? `<span class="element-card-radioactive" title="پرتوزا" aria-hidden="true">${radiationIcon}</span>`
       : '';
     return `
       <button type="button" class="${className}" data-element-number="${element.atomicNumber}" data-element-family="${familyClass}" aria-label="مشاهدهٔ اطلاعات ${escapeHTML(label)}" style="${compact ? '' : cardPosition(element)}">
-        <span class="element-card-number">${toPersianDigits(element.atomicNumber)}</span>
+        <span class="element-card-topline">
+          <span class="element-card-number">${toPersianDigits(element.atomicNumber)}</span>
+          ${radioactiveBadge}
+        </span>
         <strong class="element-card-symbol" dir="ltr">${escapeHTML(element.symbol)}</strong>
         <span class="element-card-name">${escapeHTML(element.nameFa)}</span>
-        ${radioactiveBadge}
       </button>
     `;
   }
