@@ -244,7 +244,7 @@ const renderHead = page => {
     ? '<link rel="preload" href="./asset/gallery/lab-interior-800.webp" as="image" type="image/webp" imagesrcset="./asset/gallery/lab-interior-mobile.webp 640w, ./asset/gallery/lab-interior-800.webp 800w" imagesizes="(max-width: 768px) 100vw, 600px" fetchpriority="high">'
     : '';
   const pageStyles = page.filename === 'gallery.html'
-    ? '<link rel="stylesheet" href="./catalog-redesign.min.css?v=1.5">'
+    ? '<link rel="stylesheet" href="./catalog-redesign.min.css?v=1.6">'
     : '';
   const assetVersion = asset => asset === 'gallery.min.js' ? '3.1' : '2.2';
   return `<!DOCTYPE html>

@@ -994,3 +994,79 @@ body[data-page="gallery"] #search-status-banner {
     transition: none;
   }
 }
+
+/* Keep the catalog suggestion as one deliberate CTA instead of a loose, wrapping text line. */
+.equipment-catalog-suggestion {
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 72px;
+  margin: 0.85rem 0 0;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--accent-emerald) 24%, var(--border-color));
+  border-radius: 16px;
+  background: linear-gradient(110deg, color-mix(in srgb, var(--accent-emerald-glow) 76%, var(--bg-secondary)), var(--bg-secondary));
+  box-shadow: var(--card-shadow);
+  color: var(--text-primary);
+  text-align: right;
+}
+
+.equipment-catalog-suggestion > .material-symbols-outlined {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--accent-emerald) 38%, var(--border-color));
+  border-radius: 12px;
+  background: var(--accent-emerald-glow);
+  color: var(--accent-emerald-strong);
+  font-size: 1.1rem;
+}
+
+.equipment-catalog-suggestion > #equipment-suggestion-help {
+  color: var(--text-primary);
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.55;
+}
+
+.equipment-catalog-suggestion .catalog-suggestion-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--accent-emerald);
+  border-radius: 10px;
+  background: var(--accent-emerald-glow);
+  color: var(--accent-emerald-strong);
+  font-size: 0.72rem;
+  font-weight: 850;
+  line-height: 1.35;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color var(--transition-speed), color var(--transition-speed), border-color var(--transition-speed);
+  white-space: nowrap;
+}
+
+.equipment-catalog-suggestion .catalog-suggestion-link:hover,
+.equipment-catalog-suggestion .catalog-suggestion-link:focus-visible {
+  border-color: var(--accent-emerald-strong);
+  background: var(--accent-emerald);
+  color: #fff;
+}
+
+@media (max-width: 620px) {
+  .equipment-catalog-suggestion {
+    grid-template-columns: 2.75rem minmax(0, 1fr);
+    min-height: 0;
+    padding: 0.75rem;
+  }
+
+  .equipment-catalog-suggestion .catalog-suggestion-link {
+    grid-column: 1 / -1;
+    width: 100%;
+    white-space: normal;
+  }
+}
