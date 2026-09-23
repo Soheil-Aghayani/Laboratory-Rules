@@ -365,7 +365,6 @@
   line-height: 1;
 }
 
-.element-card-name,
 .element-card-family {
   display: block;
   max-width: 100%;
@@ -374,18 +373,14 @@
   white-space: nowrap;
 }
 
-.element-card-name {
-  align-self: stretch;
-  font-size: .7rem;
-  font-weight: 800;
-  text-align: right;
-}
-
 .element-card-topline {
   display: inline-flex;
-  width: 100%;
+  width: max-content;
+  align-self: flex-end;
+  min-height: 1rem;
   align-items: center;
   gap: .22rem;
+  justify-content: flex-start;
   direction: rtl;
 }
 
@@ -509,6 +504,13 @@
   font-family: var(--font-en, system-ui);
 }
 
+.element-detail-heading p[dir="ltr"],
+.element-property-value-english {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: plaintext;
+}
+
 .element-badge-row {
   display: flex;
   flex-wrap: wrap;
@@ -587,6 +589,65 @@
 
 .element-card-heading .material-symbols-outlined {
   color: var(--accent-emerald);
+}
+
+.element-detail-accordion {
+  padding: 0;
+  overflow: hidden;
+}
+
+.element-detail-accordion > summary,
+.element-sources > summary {
+  display: flex;
+  min-height: 56px;
+  align-items: center;
+  gap: .45rem;
+  margin: 0;
+  padding: .8rem 1rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  list-style: none;
+}
+
+.element-detail-accordion > summary::-webkit-details-marker,
+.element-sources > summary::-webkit-details-marker {
+  display: none;
+}
+
+.element-detail-accordion > summary:focus-visible,
+.element-sources > summary:focus-visible {
+  outline: 3px solid var(--accent-amber);
+  outline-offset: -3px;
+}
+
+.element-detail-accordion > summary .element-accordion-chevron,
+.element-sources > summary .element-accordion-chevron {
+  margin-inline-start: auto;
+  color: var(--text-muted);
+  transition: transform .18s ease;
+}
+
+.element-detail-accordion:not([open]) > summary .element-accordion-chevron,
+.element-sources:not([open]) > summary .element-accordion-chevron {
+  transform: rotate(-90deg);
+}
+
+.element-detail-accordion[open] > summary,
+.element-sources[open] > summary {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.element-detail-accordion-content,
+.element-sources-content {
+  padding: 1rem;
+}
+
+.element-detail-english {
+  direction: ltr;
+  max-width: none;
+  text-align: left !important;
+  unicode-bidi: plaintext;
+  font-family: var(--font-en, system-ui);
 }
 
 .element-detail-card p {
@@ -773,8 +834,11 @@
 
 .element-sources {
   margin-top: 1.25rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border-color);
+  padding: 0;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  background: var(--bg-tertiary);
+  overflow: hidden;
 }
 
 .element-sources ul {
@@ -996,10 +1060,6 @@
 
   .element-card-symbol {
     font-size: 1.35rem;
-  }
-
-  .element-card-name {
-    font-size: .76rem;
   }
 
   .element-card-family {

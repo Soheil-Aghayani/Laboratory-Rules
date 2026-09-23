@@ -69,7 +69,7 @@
         if (elementCatalogPromise) return elementCatalogPromise;
 
         elementCatalogPromise = loadScript(`${assetCdnBase}/elements-data.min.js?v=2.2`)
-          .then(() => loadScript(`${assetCdnBase}/elements.min.js?v=2.5`))
+          .then(() => loadScript(`${assetCdnBase}/elements.min.js?v=2.6`))
           .then(() => {
             window.elementCatalogReady = true;
           })

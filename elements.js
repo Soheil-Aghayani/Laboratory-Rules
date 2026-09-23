@@ -66,7 +66,6 @@
   let countRoot;
   let emptyRoot;
   let searchInput;
-  let relatedTrack;
   let elementsRoot;
 
   function isFilterMatch(element) {
@@ -89,9 +88,8 @@
     return 'grid-column:1;grid-row:1;';
   }
 
-  function renderElementCard(element, compact = false) {
+  function renderElementCard(element) {
     const classification = element.classification || {};
-    const className = compact ? 'element-card element-card-compact' : 'element-card';
     const radioactiveLabel = classification.radioactive === true ? '، پرتوزا' : '';
     const label = `${element.nameFa} (${element.nameEn})، عدد اتمی ${element.atomicNumber}${radioactiveLabel}`;
     const familyClass = getFamilyClass(classification);
@@ -99,13 +97,12 @@
       ? `<span class="element-card-radioactive" title="پرتوزا" aria-hidden="true">${radiationIcon}</span>`
       : '';
     return `
-      <button type="button" class="${className}" data-element-number="${element.atomicNumber}" data-element-family="${familyClass}" aria-label="مشاهدهٔ اطلاعات ${escapeHTML(label)}" style="${compact ? '' : cardPosition(element)}">
+      <button type="button" class="element-card" data-element-number="${element.atomicNumber}" data-element-family="${familyClass}" aria-label="مشاهدهٔ اطلاعات ${escapeHTML(label)}" style="${cardPosition(element)}">
         <span class="element-card-topline">
           <span class="element-card-number">${toPersianDigits(element.atomicNumber)}</span>
           ${radioactiveBadge}
         </span>
         <strong class="element-card-symbol" dir="ltr">${escapeHTML(element.symbol)}</strong>
-        <span class="element-card-name">${escapeHTML(element.nameFa)}</span>
       </button>
     `;
   }
@@ -128,7 +125,9 @@
   }
 
   function renderProperty(label, value, unit = '') {
-    return `<div class="element-property"><dt>${escapeHTML(label)}</dt><dd>${value === null || value === undefined || value === '' ? '<span class="element-missing">در این رکورد در دسترس نیست</span>' : formatValue(value, unit)}</dd></div>`;
+    const isEnglish = typeof value === 'string' && /[A-Za-z]/.test(value) && !/[\u0600-\u06FF]/.test(value);
+    const valueAttributes = isEnglish ? ' dir="ltr" class="element-property-value-english"' : '';
+    return `<div class="element-property"><dt>${escapeHTML(label)}</dt><dd${valueAttributes}>${value === null || value === undefined || value === '' ? '<span class="element-missing">در این رکورد در دسترس نیست</span>' : formatValue(value, unit)}</dd></div>`;
   }
 
   function renderHazards(element) {
@@ -146,52 +145,21 @@
     `;
   }
 
-  function getRelatedElements(element) {
-    const classification = element.classification || {};
-    return catalog
-      .filter(candidate => candidate.atomicNumber !== element.atomicNumber)
-      .map(candidate => {
-        const candidateClassification = candidate.classification || {};
-        const sameGroup = classification.group && classification.group === candidateClassification.group;
-        const sameFamily = classification.familyEn && classification.familyEn === candidateClassification.familyEn;
-        const samePeriod = classification.period === candidateClassification.period;
-        const score = (sameGroup ? 4 : 0) + (sameFamily ? 2 : 0) + (samePeriod ? 1 : 0);
-        return { candidate, score };
-      })
-      .sort((a, b) => b.score - a.score || a.candidate.atomicNumber - b.candidate.atomicNumber)
-      .slice(0, 8)
-      .map(item => item.candidate);
-  }
-
-  function renderRelated(element) {
-    const related = getRelatedElements(element);
-    return `
-      <section class="element-related" aria-labelledby="element-related-title">
-        <div class="element-section-heading">
-          <div><span class="element-section-kicker">برای مقایسه</span><h3 id="element-related-title">عناصر مرتبط</h3></div>
-          <div class="element-related-controls">
-            <button type="button" class="element-related-button" data-element-related="prev" aria-label="عناصر مرتبط قبلی">${icon('arrow-left', 'element-icon-reversed')}</button>
-            <button type="button" class="element-related-button" data-element-related="next" aria-label="عناصر مرتبط بعدی">${icon('arrow-left')}</button>
-          </div>
-        </div>
-        <div class="element-related-track" data-element-related-track tabindex="0">
-          ${related.map(item => renderElementCard(item, true)).join('')}
-        </div>
-      </section>
-    `;
-  }
+  const renderDetailAccordionSummary = (iconName, label) => `
+    <summary class="element-card-heading element-detail-accordion-summary">
+      ${icon(iconName)}
+      <span>${label}</span>
+      <span class="material-symbols-outlined element-accordion-chevron" aria-hidden="true">expand_more</span>
+    </summary>`;
 
   function renderDetail(element) {
     const classification = element.classification || {};
     const properties = element.properties || {};
     const radioactivity = element.radioactivity || {};
     const isotopeText = element.isotopes || 'جزئیات ایزوتوپ در منبع محلی این build ثبت نشده است؛ برای نوکلید یا ایزوتوپ مشخص، مرجع همان ماده را بررسی کنید.';
-    const sources = (element.sources || []).map(source => `<li><a href="${escapeHTML(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(source.label)}</a><span>${escapeHTML(source.scope || '')}</span></li>`).join('');
-    const radioBadge = classification.radioactive
-      ? `<span class="element-badge element-badge-danger element-badge-radioactive" title="پرتوزا" aria-label="پرتوزا">${radiationIcon}</span>`
-      : '';
+    const sources = (element.sources || []).map(source => `<li><a href="${escapeHTML(source.url)}" target="_blank" rel="noopener noreferrer" dir="ltr">${escapeHTML(source.label)}</a><span>${escapeHTML(source.scope || '')}</span></li>`).join('');
     const radioStatus = radioactivity.status === 'radioactive' || classification.radioactive
-      ? `<span class="element-radioactive-status" title="پرتوزا" aria-label="پرتوزا">${radiationIcon}</span>`
+      ? `<span class="element-radioactive-status" title="پرتوزا">${radiationIcon}</span>`
       : '<span>در این رکورد وضعیت پرتوزایی ثبت نشده است</span>';
     return `
       <section class="element-detail" aria-labelledby="element-detail-title">
@@ -212,7 +180,6 @@
             <div class="element-badge-row">
               <span class="element-badge">${icon('category')} ${escapeHTML(classification.familyFa || 'عنصر شیمیایی')}</span>
               <span class="element-badge">${icon('language')} حالت استاندارد: ${escapeHTML(classification.standardState || 'نامشخص')}</span>
-              ${radioBadge}
             </div>
           </div>
           <div class="element-identifiers">
@@ -225,77 +192,63 @@
           <article class="element-detail-card element-detail-card-wide">
             <div class="element-card-heading">${icon('info')} معرفی و شناخت</div>
             <p>${escapeHTML(element.summary || 'برای این عنصر معرفی خلاصه‌ای ثبت نشده است.')}</p>
-            ${element.uses ? `<details><summary>کاربردهای ثبت‌شده در مرجع</summary><p>${escapeHTML(element.uses)}</p></details>` : ''}
-            ${element.history ? `<details><summary>پیشینه و کشف</summary><p>${escapeHTML(element.history)}</p></details>` : ''}
+            ${element.uses ? `<details><summary>کاربردهای ثبت‌شده در مرجع</summary><p class="element-detail-english" dir="ltr" lang="en">${escapeHTML(element.uses)}</p></details>` : ''}
+            ${element.history ? `<details><summary>پیشینه و کشف</summary><p class="element-detail-english" dir="ltr" lang="en">${escapeHTML(element.history)}</p></details>` : ''}
           </article>
-          <article class="element-detail-card">
-            <div class="element-card-heading">${icon('tune')} دسته‌بندی</div>
-            <dl class="element-property-list">
-              ${renderProperty('خانواده', classification.familyFa)}
-              ${renderProperty('دوره', classification.period)}
-              ${renderProperty('گروه', classification.group || classification.familyFa)}
-              ${renderProperty('حالت استاندارد', classification.standardState)}
-            </dl>
-          </article>
-          <article class="element-detail-card">
-            <div class="element-card-heading">${icon('science')} خواص کلیدی</div>
-            <dl class="element-property-list">
-              ${renderProperty('پیکربندی الکترونی', properties.electronConfiguration)}
-              ${renderProperty('الکترونگاتیوی', properties.electronegativity)}
-              ${renderProperty('نقطهٔ ذوب', properties.meltingPoint, properties.temperatureUnit)}
-              ${renderProperty('نقطهٔ جوش', properties.boilingPoint, properties.temperatureUnit)}
-              ${renderProperty('چگالی', properties.density, properties.densityUnit)}
-              ${renderProperty('عددهای اکسایش', properties.oxidationStates)}
-            </dl>
-          </article>
-          <article class="element-detail-card">
-            <div class="element-card-heading">${icon('science')} ایزوتوپ و پرتوزایی</div>
-            <p>${escapeHTML(isotopeText)}</p>
-            <div class="element-safety-scope"><strong>وضعیت رکورد:</strong>${radioStatus}</div>
-            ${radioactivity.note ? `<p class="element-detail-note">${escapeHTML(radioactivity.note)}</p>` : ''}
-          </article>
-          <article class="element-detail-card element-detail-card-wide element-safety-card">
-            <div class="element-card-heading">${icon('health_and_safety')} ایمنی، پسماند و محدودیت داده</div>
-            ${renderHazards(element)}
-            ${element.waste ? `<div class="element-waste-note"><strong>گروه پسماند:</strong> ${escapeHTML(element.waste.group || 'نیازمند بررسی')}<br><span>${escapeHTML(element.waste.note)}</span></div>` : ''}
-            <div class="element-caution-note">${icon('report')} نبودن NFPA یا GHS عمومی برای عنصر، به معنی بی‌خطر بودن همهٔ ترکیبات آن نیست.</div>
-          </article>
+          <details class="element-detail-card element-detail-accordion">
+            ${renderDetailAccordionSummary('tune', 'دسته‌بندی')}
+            <div class="element-detail-accordion-content">
+              <dl class="element-property-list">
+                ${renderProperty('خانواده', classification.familyFa)}
+                ${renderProperty('دوره', classification.period)}
+                ${renderProperty('گروه', classification.group || classification.familyFa)}
+                ${renderProperty('حالت استاندارد', classification.standardState)}
+              </dl>
+            </div>
+          </details>
+          <details class="element-detail-card element-detail-accordion">
+            ${renderDetailAccordionSummary('science', 'خواص کلیدی')}
+            <div class="element-detail-accordion-content">
+              <dl class="element-property-list">
+                ${renderProperty('پیکربندی الکترونی', properties.electronConfiguration)}
+                ${renderProperty('الکترونگاتیوی', properties.electronegativity)}
+                ${renderProperty('نقطهٔ ذوب', properties.meltingPoint, properties.temperatureUnit)}
+                ${renderProperty('نقطهٔ جوش', properties.boilingPoint, properties.temperatureUnit)}
+                ${renderProperty('چگالی', properties.density, properties.densityUnit)}
+                ${renderProperty('عددهای اکسایش', properties.oxidationStates)}
+              </dl>
+            </div>
+          </details>
+          <details class="element-detail-card element-detail-card-wide element-detail-accordion">
+            ${renderDetailAccordionSummary('science', 'ایزوتوپ و پرتوزایی')}
+            <div class="element-detail-accordion-content">
+              <p class="element-detail-english" dir="ltr" lang="en">${escapeHTML(isotopeText)}</p>
+              <div class="element-safety-scope"><strong>وضعیت رکورد:</strong>${radioStatus}</div>
+              ${radioactivity.note ? `<p class="element-detail-note">${escapeHTML(radioactivity.note)}</p>` : ''}
+            </div>
+          </details>
+          <details class="element-detail-card element-detail-card-wide element-detail-accordion element-safety-card">
+            ${renderDetailAccordionSummary('health_and_safety', 'ایمنی، پسماند و محدودیت داده')}
+            <div class="element-detail-accordion-content">
+              ${renderHazards(element)}
+              ${element.waste ? `<div class="element-waste-note"><strong>گروه پسماند:</strong> ${escapeHTML(element.waste.group || 'نیازمند بررسی')}<br><span>${escapeHTML(element.waste.note)}</span></div>` : ''}
+              <div class="element-caution-note">${icon('report')} نبودن NFPA یا GHS عمومی برای عنصر، به معنی بی‌خطر بودن همهٔ ترکیبات آن نیست.</div>
+            </div>
+          </details>
         </div>
 
-        ${renderRelated(element)}
-        <section class="element-sources" aria-labelledby="element-sources-title">
-          <div class="element-section-heading"><div><span class="element-section-kicker">provenance</span><h3 id="element-sources-title">منابع و وضعیت بررسی</h3></div></div>
-          <ul>${sources}</ul>
-        </section>
+        <details class="element-sources element-detail-accordion" aria-labelledby="element-sources-title">
+          <summary class="element-detail-accordion-summary">
+            ${icon('menu_book')}
+            <span id="element-sources-title">منابع و وضعیت بررسی</span>
+            <span class="material-symbols-outlined element-accordion-chevron" aria-hidden="true">expand_more</span>
+          </summary>
+          <div class="element-sources-content">
+            <ul>${sources}</ul>
+          </div>
+        </details>
       </section>
     `;
-  }
-
-  function bindRelatedControls() {
-    relatedTrack = detailRoot?.querySelector('[data-element-related-track]');
-    if (!relatedTrack) return;
-    detailRoot.querySelectorAll('[data-element-related]').forEach(button => {
-      button.addEventListener('click', () => {
-        const distance = button.dataset.elementRelated === 'next' ? -280 : 280;
-        relatedTrack.scrollBy({ left: distance, behavior: 'smooth' });
-      });
-    });
-    relatedTrack.addEventListener('keydown', event => {
-      const action = event.key === 'ArrowLeft' ? 'next' : event.key === 'ArrowRight' ? 'prev' : null;
-      if (action) {
-        event.preventDefault();
-        detailRoot.querySelector(`[data-element-related="${action}"]`)?.click();
-        return;
-      }
-      if (event.key === 'Home' || event.key === 'End') {
-        const cards = relatedTrack.querySelectorAll('[data-element-number]');
-        const target = event.key === 'Home' ? cards[0] : cards[cards.length - 1];
-        if (target) {
-          event.preventDefault();
-          target.focus();
-        }
-      }
-    });
   }
 
   function openElement(number, options = {}) {
@@ -308,7 +261,6 @@
       history.pushState(null, '', 'elements.html');
       closeElement({ scroll: true });
     });
-    bindRelatedControls();
     if (!options.fromHash) history.pushState(null, '', `elements.html#element-${element.atomicNumber}`);
     if (options.scroll !== false) {
       window.requestAnimationFrame(() => detailRoot.scrollIntoView({ behavior: 'smooth', block: 'start' }));

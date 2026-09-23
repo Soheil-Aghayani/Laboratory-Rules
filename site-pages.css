@@ -601,7 +601,8 @@ body {
 .element-radioactive-status {
   display: inline-flex;
   align-items: center;
-  min-height: 32px;
+  min-height: 1rem;
+  line-height: 1;
 }
 
 .element-card:hover,
@@ -847,11 +848,6 @@ body {
     font-size: .58rem;
   }
 
-  .elements-shell[data-element-view="list"] .element-list .element-card-name {
-    font-size: .64rem;
-    text-align: center;
-  }
-
   .elements-shell[data-element-view="list"] .element-list .element-card-family {
     display: none;
   }
@@ -896,10 +892,6 @@ body {
 
   .elements-shell[data-element-view="table"] .element-periodic-table .element-card-symbol {
     font-size: 1.05rem;
-  }
-
-  .elements-shell[data-element-view="table"] .element-periodic-table .element-card-name {
-    font-size: .56rem;
   }
 
   .elements-shell[data-element-view="table"] .element-periodic-table .element-card-family {
@@ -1007,10 +999,6 @@ body {
     font-size: .98rem;
   }
 
-  .elements-shell[data-element-view="table"] .element-periodic-table .element-card-name {
-    font-size: .52rem;
-  }
-
   .element-family-legend-item {
     min-width: 0;
     overflow: hidden;
@@ -1078,11 +1066,6 @@ body {
 .element-card-symbol {
   direction: ltr;
   font-family: var(--font-en);
-}
-
-.element-card-name {
-  white-space: normal;
-  line-height: 1.35;
 }
 
 .elements-page-stack {
@@ -1204,13 +1187,6 @@ body {
     font-size: 1.08rem;
   }
 
-  .element-periodic-table .element-card-name {
-    max-height: 2.7em;
-    font-size: .62rem;
-    text-align: center;
-    overflow: hidden;
-  }
-
   .element-periodic-table .element-card-family {
     display: none;
   }
@@ -1326,9 +1302,6 @@ body {
     font-size: 1rem;
   }
 
-  .element-periodic-table .element-card-name {
-    font-size: .58rem;
-  }
 }
 
 /* Final mobile table contract: no legacy 18-column overflow or hidden table. */
@@ -1396,8 +1369,8 @@ body {
 
 .element-badge-radioactive .radiation-symbol,
 .element-radioactive-status .radiation-symbol {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
 }
 
 @media (max-width: 992px) {
