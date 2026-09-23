@@ -25,7 +25,7 @@
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="stylesheet" href="./styles.min.css?v=6.3">
   <link rel="stylesheet" href="./elements.min.css?v=1.3">
-  <link rel="stylesheet" href="./site-pages.min.css?v=1.1">
+  <link rel="stylesheet" href="./site-pages.min.css?v=1.3">
   <script>
     try {
       const savedTheme = localStorage.getItem('theme');
@@ -43,6 +43,25 @@
   <a class="skip-link" href="#main-content">پرش به محتوای اصلی</a>
   <main class="container site-container" id="main-content">
     <header class="site-header">
+
+    <nav class="site-primary-nav" aria-label="ناوبری اصلی">
+      <a class="site-nav-link is-active site-nav-home" href="./index.html" aria-current="page" aria-label="خانه" title="خانه"><span class="material-symbols-outlined" aria-hidden="true">home</span><span class="site-nav-label">خانه</span></a>
+      <div class="site-nav-group" role="group" aria-labelledby="site-nav-safety-title">
+        <div class="site-nav-group-heading"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span id="site-nav-safety-title" class="site-nav-group-title">ایمنی</span></div>
+        <div class="site-nav-subnav" aria-label="زیرصفحه‌های ایمنی">
+          <a class="site-nav-link" href="./rules.html"><span class="material-symbols-outlined" aria-hidden="true">book-bookmark</span><span>قوانین عمومی و ایمنی</span></a>
+          <a class="site-nav-link" href="./quiz.html"><span class="material-symbols-outlined" aria-hidden="true">clipboard-check</span><span>آزمون و تعهدنامه ورود</span></a>
+        </div>
+      </div>
+      <div class="site-nav-group" role="group" aria-labelledby="site-nav-catalog-title">
+        <div class="site-nav-group-heading"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span><span id="site-nav-catalog-title" class="site-nav-group-title">کاتالوگ آزمایشگاه</span></div>
+        <div class="site-nav-subnav" aria-label="زیرصفحه‌های کاتالوگ">
+          <a class="site-nav-link" href="./gallery.html"><span class="material-symbols-outlined" aria-hidden="true">gallery</span><span>گالری تجهیزات</span></a>
+          <a class="site-nav-link" href="./equipment.html"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>راهنمای کاربری تجهیزات</span></a>
+          <a class="site-nav-link" href="./elements.html"><span class="material-symbols-outlined" aria-hidden="true">science</span><span>عناصر و مواد</span></a>
+        </div>
+      </div>
+    </nav>
       <div class="header-top">
         <div class="brand">
           <span class="material-symbols-outlined brand-icon">science</span>
@@ -120,37 +139,21 @@
       </section>
     </header>
 
-    <nav class="site-primary-nav" aria-label="ناوبری اصلی">
-      <a class="site-nav-link is-active site-nav-home" href="./index.html" aria-current="page"><span class="material-symbols-outlined" aria-hidden="true">home</span><span>خانه</span></a>
-      <div class="site-nav-group">
-        <span class="site-nav-group-label"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span>ایمنی</span>
-        <div class="site-nav-subnav">
-          <a class="site-nav-link" href="./rules.html"><span class="material-symbols-outlined" aria-hidden="true">book-bookmark</span><span>قوانین عمومی و ایمنی</span></a>
-          <a class="site-nav-link" href="./quiz.html"><span class="material-symbols-outlined" aria-hidden="true">clipboard-check</span><span>آزمون و تعهدنامه ورود</span></a>
-        </div>
-      </div>
-      <div class="site-nav-group">
-        <span class="site-nav-group-label"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span>کاتالوگ</span>
-        <div class="site-nav-subnav">
-          <a class="site-nav-link" href="./equipment.html"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>راهنمای کاربری تجهیزات</span></a>
-          <a class="site-nav-link" href="./elements.html"><span class="material-symbols-outlined" aria-hidden="true">science</span><span>عناصر و مواد</span></a>
-        </div>
-      </div>
-      <a class="site-nav-link site-nav-gallery" href="./gallery.html"><span class="material-symbols-outlined" aria-hidden="true">gallery</span><span>گالری آزمایشگاه</span></a>
-    </nav>
-
 
     <section class="home-shortcuts" aria-labelledby="home-shortcuts-title">
       <div class="section-heading-row">
-        <div><span class="page-kicker">شروع سریع</span><h2 id="home-shortcuts-title">از کجا شروع کنیم؟</h2></div>
-        <p>هر بخش صفحهٔ مستقل خودش را دارد تا اطلاعات موردنیاز را سریع‌تر پیدا کنید.</p>
+        <div><span class="page-kicker">مسیرهای اصلی</span><h2 id="home-shortcuts-title">از کجا شروع کنیم؟</h2></div>
+        <p>هر گروه مسیرهای مرتبط خودش را دارد؛ از عنوان گروه، صفحهٔ موردنیازتان را انتخاب کنید.</p>
       </div>
       <div class="home-shortcut-grid">
-        <a class="home-shortcut home-shortcut-safety" href="./rules.html"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span><strong>ایمنی و قوانین</strong><small>قواعد ورود، کار و دفع پسماند</small></span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a>
-        <a class="home-shortcut" href="./equipment.html"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span><strong>راهنمای تجهیزات</strong><small>دستورالعمل دستگاه‌های آزمایشگاه</small></span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a>
-        <a class="home-shortcut" href="./gallery.html"><span class="material-symbols-outlined" aria-hidden="true">gallery</span><span><strong>گالری و کاتالوگ</strong><small>آشنایی با ظروف و ابزارها</small></span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a>
-        <a class="home-shortcut" href="./elements.html"><span class="material-symbols-outlined" aria-hidden="true">science</span><span><strong>عناصر و مواد</strong><small>جدول تناوبی و جستجوی مواد</small></span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a>
-        <a class="home-shortcut" href="./quiz.html"><span class="material-symbols-outlined" aria-hidden="true">clipboard-check</span><span><strong>آزمون ورود</strong><small>تعهدنامه و سنجش ایمنی</small></span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a>
+        <section class="home-shortcut home-shortcut-safety" aria-labelledby="home-safety-title">
+          <div class="home-shortcut-heading"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span><strong id="home-safety-title">ایمنی و ورود</strong><small>قواعد کار، ورود و دفع پسماند</small></span></div>
+          <div class="home-shortcut-links"><a class="home-shortcut-link" href="./rules.html"><span>قوانین عمومی و ایمنی</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a><a class="home-shortcut-link" href="./quiz.html"><span>آزمون و تعهدنامه ورود</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a></div>
+        </section>
+        <section class="home-shortcut home-shortcut-catalog" aria-labelledby="home-catalog-title">
+          <div class="home-shortcut-heading"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span><span><strong id="home-catalog-title">کاتالوگ آزمایشگاه</strong><small>سه مسیر برای شناخت تجهیزات و مواد</small></span></div>
+          <div class="home-shortcut-links"><a class="home-shortcut-link" href="./gallery.html"><span>گالری تجهیزات</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a><a class="home-shortcut-link" href="./equipment.html"><span>راهنمای کاربری تجهیزات</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a><a class="home-shortcut-link" href="./elements.html"><span>عناصر و مواد</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a></div>
+        </section>
       </div>
     </section>
       <footer>

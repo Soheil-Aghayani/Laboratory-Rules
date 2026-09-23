@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'lab-rules-v56';
+const CACHE_VERSION = 'lab-rules-v58';
 const APP_SHELL = [
   './',
   './index.html',
@@ -11,7 +11,7 @@ const APP_SHELL = [
   './manifest.webmanifest',
   './styles.min.css?v=6.3',
   './elements.min.css?v=1.3',
-  './site-pages.min.css?v=1.1',
+  './site-pages.min.css?v=1.3',
   './asset/icon-system.min.js?v=1.0',
   './asset/icons.svg',
   './script.min.js?v=7.1',

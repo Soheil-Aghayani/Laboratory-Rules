@@ -25,7 +25,7 @@
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="stylesheet" href="./styles.min.css?v=6.3">
   <link rel="stylesheet" href="./elements.min.css?v=1.3">
-  <link rel="stylesheet" href="./site-pages.min.css?v=1.1">
+  <link rel="stylesheet" href="./site-pages.min.css?v=1.3">
   <script>
     try {
       const savedTheme = localStorage.getItem('theme');
@@ -43,6 +43,25 @@
   <a class="skip-link" href="#main-content">پرش به محتوای اصلی</a>
   <main class="container site-container" id="main-content">
     <header class="site-header">
+
+    <nav class="site-primary-nav" aria-label="ناوبری اصلی">
+      <a class="site-nav-link site-nav-home" href="./index.html" aria-label="خانه" title="خانه"><span class="material-symbols-outlined" aria-hidden="true">home</span><span class="site-nav-label">خانه</span></a>
+      <div class="site-nav-group is-active" role="group" aria-labelledby="site-nav-safety-title">
+        <div class="site-nav-group-heading"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span id="site-nav-safety-title" class="site-nav-group-title">ایمنی</span></div>
+        <div class="site-nav-subnav" aria-label="زیرصفحه‌های ایمنی">
+          <a class="site-nav-link is-active" href="./rules.html" aria-current="page"><span class="material-symbols-outlined" aria-hidden="true">book-bookmark</span><span>قوانین عمومی و ایمنی</span></a>
+          <a class="site-nav-link" href="./quiz.html"><span class="material-symbols-outlined" aria-hidden="true">clipboard-check</span><span>آزمون و تعهدنامه ورود</span></a>
+        </div>
+      </div>
+      <div class="site-nav-group" role="group" aria-labelledby="site-nav-catalog-title">
+        <div class="site-nav-group-heading"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span><span id="site-nav-catalog-title" class="site-nav-group-title">کاتالوگ آزمایشگاه</span></div>
+        <div class="site-nav-subnav" aria-label="زیرصفحه‌های کاتالوگ">
+          <a class="site-nav-link" href="./gallery.html"><span class="material-symbols-outlined" aria-hidden="true">gallery</span><span>گالری تجهیزات</span></a>
+          <a class="site-nav-link" href="./equipment.html"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>راهنمای کاربری تجهیزات</span></a>
+          <a class="site-nav-link" href="./elements.html"><span class="material-symbols-outlined" aria-hidden="true">science</span><span>عناصر و مواد</span></a>
+        </div>
+      </div>
+    </nav>
       <div class="header-top">
         <div class="brand">
           <span class="material-symbols-outlined brand-icon">science</span>
@@ -92,28 +111,8 @@
 
     </header>
 
-    <nav class="site-primary-nav" aria-label="ناوبری اصلی">
-      <a class="site-nav-link site-nav-home" href="./index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span><span>خانه</span></a>
-      <div class="site-nav-group is-active">
-        <span class="site-nav-group-label"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span>ایمنی</span>
-        <div class="site-nav-subnav">
-          <a class="site-nav-link is-active" href="./rules.html" aria-current="page"><span class="material-symbols-outlined" aria-hidden="true">book-bookmark</span><span>قوانین عمومی و ایمنی</span></a>
-          <a class="site-nav-link" href="./quiz.html"><span class="material-symbols-outlined" aria-hidden="true">clipboard-check</span><span>آزمون و تعهدنامه ورود</span></a>
-        </div>
-      </div>
-      <div class="site-nav-group">
-        <span class="site-nav-group-label"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span>کاتالوگ</span>
-        <div class="site-nav-subnav">
-          <a class="site-nav-link" href="./equipment.html"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>راهنمای کاربری تجهیزات</span></a>
-          <a class="site-nav-link" href="./elements.html"><span class="material-symbols-outlined" aria-hidden="true">science</span><span>عناصر و مواد</span></a>
-        </div>
-      </div>
-      <a class="site-nav-link site-nav-gallery" href="./gallery.html"><span class="material-symbols-outlined" aria-hidden="true">gallery</span><span>گالری آزمایشگاه</span></a>
-    </nav>
-
-    <div class="page-context">
-      <div class="page-context-heading"><span class="page-kicker">ایمنی</span><h2>قوانین عمومی و ایمنی</h2></div>
-      <nav class="page-context-links" aria-label="زیرصفحه‌های ایمنی"><a class="site-nav-link is-active" href="./rules.html" aria-current="page"><span class="material-symbols-outlined" aria-hidden="true">book-bookmark</span><span>قوانین عمومی و ایمنی</span></a><a class="site-nav-link" href="./quiz.html"><span class="material-symbols-outlined" aria-hidden="true">clipboard-check</span><span>آزمون و تعهدنامه ورود</span></a></nav>
+    <div class="page-context" aria-label="مسیر صفحه">
+      <div class="page-context-heading"><span class="page-kicker">مسیر صفحه</span><div class="page-context-breadcrumb"><a href="./index.html">خانه</a><span class="material-symbols-outlined" aria-hidden="true">chevron_left</span><span>ایمنی</span><span class="material-symbols-outlined" aria-hidden="true">chevron_left</span><strong>قوانین عمومی و ایمنی</strong></div></div>
     </div>
     <div class="penalty-banner"><span class="material-symbols-outlined penalty-icon">gpp_maybe</span><div class="penalty-text">مهم: در صورتی که دانشجویی از قوانین و موارد زیر تخطی کند، به‌مدت ۱۰ روز اجازه فعالیت در آزمایشگاه را نخواهد داشت.</div></div><section class="standalone-page rules-page" aria-labelledby="rules-page-title"><div class="sr-only"><h1 id="rules-page-title">قوانین عمومی و ایمنی</h1></div><div class="rules-carousel" role="region" aria-roledescription="carousel" aria-label="قوانین عمومی و ایمنی" tabindex="0">
         <div id="rules-grid" class="rules-grid">

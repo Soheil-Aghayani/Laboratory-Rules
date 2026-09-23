@@ -409,7 +409,7 @@
       viewButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.elementViewToggle === nextView)));
     };
 
-    const defaultView = window.matchMedia?.('(max-width: 992px)').matches ? 'list' : 'table';
+    const defaultView = 'table';
     setElementView(defaultView);
     viewButtons.forEach(button => {
       button.addEventListener('click', () => {

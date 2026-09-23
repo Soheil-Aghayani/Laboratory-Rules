@@ -152,13 +152,16 @@ const fragments = {
 
 const pageGroup = page => {
   if (page === 'rules' || page === 'quiz') return 'safety';
-  if (page === 'equipment' || page === 'elements') return 'catalog';
+  if (page === 'equipment' || page === 'elements' || page === 'gallery') return 'catalog';
   return page;
 };
 
 const pageLink = (href, label, iconName, current, extraClass = '') => {
   const currentAttr = current ? ' aria-current="page"' : '';
-  return `<a class="site-nav-link${current ? ' is-active' : ''}${extraClass ? ` ${extraClass}` : ''}" href="./${href}"${currentAttr}><span class="material-symbols-outlined" aria-hidden="true">${iconName}</span><span>${label}</span></a>`;
+  const isIconOnly = extraClass.split(/\s+/).includes('site-nav-home');
+  const accessibleLabel = isIconOnly ? ` aria-label="${label}" title="${label}"` : '';
+  const labelClass = isIconOnly ? ' class="site-nav-label"' : '';
+  return `<a class="site-nav-link${current ? ' is-active' : ''}${extraClass ? ` ${extraClass}` : ''}" href="./${href}"${currentAttr}${accessibleLabel}><span class="material-symbols-outlined" aria-hidden="true">${iconName}</span><span${labelClass}>${label}</span></a>`;
 };
 
 const renderPrimaryNav = currentPage => {
@@ -166,21 +169,21 @@ const renderPrimaryNav = currentPage => {
   return `
     <nav class="site-primary-nav" aria-label="ناوبری اصلی">
       ${pageLink('index.html', 'خانه', 'home', currentGroup === 'home', 'site-nav-home')}
-      <div class="site-nav-group${currentGroup === 'safety' ? ' is-active' : ''}">
-        <span class="site-nav-group-label"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span>ایمنی</span>
-        <div class="site-nav-subnav">
+      <div class="site-nav-group${currentGroup === 'safety' ? ' is-active' : ''}" role="group" aria-labelledby="site-nav-safety-title">
+        <div class="site-nav-group-heading"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span id="site-nav-safety-title" class="site-nav-group-title">ایمنی</span></div>
+        <div class="site-nav-subnav" aria-label="زیرصفحه‌های ایمنی">
           ${pageLink('rules.html', 'قوانین عمومی و ایمنی', 'book-bookmark', currentPage === 'rules')}
           ${pageLink('quiz.html', 'آزمون و تعهدنامه ورود', 'clipboard-check', currentPage === 'quiz')}
         </div>
       </div>
-      <div class="site-nav-group${currentGroup === 'catalog' ? ' is-active' : ''}">
-        <span class="site-nav-group-label"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span>کاتالوگ</span>
-        <div class="site-nav-subnav">
+      <div class="site-nav-group${currentGroup === 'catalog' ? ' is-active' : ''}" role="group" aria-labelledby="site-nav-catalog-title">
+        <div class="site-nav-group-heading"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span><span id="site-nav-catalog-title" class="site-nav-group-title">کاتالوگ آزمایشگاه</span></div>
+        <div class="site-nav-subnav" aria-label="زیرصفحه‌های کاتالوگ">
+          ${pageLink('gallery.html', 'گالری تجهیزات', 'gallery', currentPage === 'gallery')}
           ${pageLink('equipment.html', 'راهنمای کاربری تجهیزات', 'test-tube', currentPage === 'equipment')}
           ${pageLink('elements.html', 'عناصر و مواد', 'science', currentPage === 'elements')}
         </div>
       </div>
-      ${pageLink('gallery.html', 'گالری آزمایشگاه', 'gallery', currentGroup === 'gallery', 'site-nav-gallery')}
     </nav>`;
 };
 
@@ -188,18 +191,16 @@ const renderContext = currentPage => {
   const contexts = {
     rules: ['ایمنی', 'قوانین عمومی و ایمنی', [['rules.html', 'قوانین عمومی و ایمنی'], ['quiz.html', 'آزمون و تعهدنامه ورود']]],
     quiz: ['ایمنی', 'آزمون و تعهدنامه ورود', [['rules.html', 'قوانین عمومی و ایمنی'], ['quiz.html', 'آزمون و تعهدنامه ورود']]],
-    equipment: ['کاتالوگ', 'راهنمای کاربری تجهیزات', [['equipment.html', 'راهنمای کاربری تجهیزات'], ['elements.html', 'عناصر و مواد']]],
-    elements: ['کاتالوگ', 'عناصر و مواد', [['equipment.html', 'راهنمای کاربری تجهیزات'], ['elements.html', 'عناصر و مواد']]],
-    gallery: ['گالری', 'کاتالوگ خانواده‌های تجهیزات', []],
+    equipment: ['کاتالوگ آزمایشگاه', 'راهنمای کاربری تجهیزات', [['gallery.html', 'گالری تجهیزات'], ['equipment.html', 'راهنمای کاربری تجهیزات'], ['elements.html', 'عناصر و مواد']]],
+    elements: ['کاتالوگ آزمایشگاه', 'عناصر و مواد', [['gallery.html', 'گالری تجهیزات'], ['equipment.html', 'راهنمای کاربری تجهیزات'], ['elements.html', 'عناصر و مواد']]],
+    gallery: ['کاتالوگ آزمایشگاه', 'گالری تجهیزات', [['gallery.html', 'گالری تجهیزات'], ['equipment.html', 'راهنمای کاربری تجهیزات'], ['elements.html', 'عناصر و مواد']]],
   };
   const context = contexts[currentPage];
   if (!context) return '';
-  const [group, title, links] = context;
-  const linksMarkup = links.map(([href, label]) => pageLink(href, label, href === 'rules.html' ? 'book-bookmark' : href === 'quiz.html' ? 'clipboard-check' : href === 'equipment.html' ? 'test-tube' : 'science', href === `${currentPage}.html`)).join('');
+  const [group, title] = context;
   return `
-    <div class="page-context">
-      <div class="page-context-heading"><span class="page-kicker">${group}</span><h2>${title}</h2></div>
-      ${linksMarkup ? `<nav class="page-context-links" aria-label="زیرصفحه‌های ${group}">${linksMarkup}</nav>` : ''}
+    <div class="page-context" aria-label="مسیر صفحه">
+      <div class="page-context-heading"><span class="page-kicker">مسیر صفحه</span><div class="page-context-breadcrumb"><a href="./index.html">خانه</a><span class="material-symbols-outlined" aria-hidden="true">chevron_left</span><span>${group}</span><span class="material-symbols-outlined" aria-hidden="true">chevron_left</span><strong>${title}</strong></div></div>
     </div>`;
 };
 
@@ -209,23 +210,26 @@ const renderMobileDock = currentPage => {
     <nav class="mobile-bottom-dock" aria-label="دسترسی سریع موبایل">
       ${pageLink('index.html', 'خانه', 'home', currentGroup === 'home', 'mobile-dock-item')}
       ${pageLink('rules.html', 'ایمنی', 'health_and_safety', currentGroup === 'safety', 'mobile-dock-item')}
-      ${pageLink('equipment.html', 'کاتالوگ', 'inventory_2', currentGroup === 'catalog', 'mobile-dock-item')}
-      ${pageLink('gallery.html', 'گالری', 'gallery', currentGroup === 'gallery', 'mobile-dock-item')}
+      ${pageLink('equipment.html', 'کاتالوگ', 'inventory_2', currentPage === 'equipment' || currentPage === 'elements', 'mobile-dock-item')}
+      ${pageLink('gallery.html', 'گالری', 'gallery', currentPage === 'gallery', 'mobile-dock-item')}
     </nav>`;
 };
 
 const renderHomeShortcuts = () => `
     <section class="home-shortcuts" aria-labelledby="home-shortcuts-title">
       <div class="section-heading-row">
-        <div><span class="page-kicker">شروع سریع</span><h2 id="home-shortcuts-title">از کجا شروع کنیم؟</h2></div>
-        <p>هر بخش صفحهٔ مستقل خودش را دارد تا اطلاعات موردنیاز را سریع‌تر پیدا کنید.</p>
+        <div><span class="page-kicker">مسیرهای اصلی</span><h2 id="home-shortcuts-title">از کجا شروع کنیم؟</h2></div>
+        <p>هر گروه مسیرهای مرتبط خودش را دارد؛ از عنوان گروه، صفحهٔ موردنیازتان را انتخاب کنید.</p>
       </div>
       <div class="home-shortcut-grid">
-        <a class="home-shortcut home-shortcut-safety" href="./rules.html"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span><strong>ایمنی و قوانین</strong><small>قواعد ورود، کار و دفع پسماند</small></span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a>
-        <a class="home-shortcut" href="./equipment.html"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span><strong>راهنمای تجهیزات</strong><small>دستورالعمل دستگاه‌های آزمایشگاه</small></span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a>
-        <a class="home-shortcut" href="./gallery.html"><span class="material-symbols-outlined" aria-hidden="true">gallery</span><span><strong>گالری و کاتالوگ</strong><small>آشنایی با ظروف و ابزارها</small></span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a>
-        <a class="home-shortcut" href="./elements.html"><span class="material-symbols-outlined" aria-hidden="true">science</span><span><strong>عناصر و مواد</strong><small>جدول تناوبی و جستجوی مواد</small></span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a>
-        <a class="home-shortcut" href="./quiz.html"><span class="material-symbols-outlined" aria-hidden="true">clipboard-check</span><span><strong>آزمون ورود</strong><small>تعهدنامه و سنجش ایمنی</small></span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a>
+        <section class="home-shortcut home-shortcut-safety" aria-labelledby="home-safety-title">
+          <div class="home-shortcut-heading"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span><strong id="home-safety-title">ایمنی و ورود</strong><small>قواعد کار، ورود و دفع پسماند</small></span></div>
+          <div class="home-shortcut-links"><a class="home-shortcut-link" href="./rules.html"><span>قوانین عمومی و ایمنی</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a><a class="home-shortcut-link" href="./quiz.html"><span>آزمون و تعهدنامه ورود</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a></div>
+        </section>
+        <section class="home-shortcut home-shortcut-catalog" aria-labelledby="home-catalog-title">
+          <div class="home-shortcut-heading"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span><span><strong id="home-catalog-title">کاتالوگ آزمایشگاه</strong><small>سه مسیر برای شناخت تجهیزات و مواد</small></span></div>
+          <div class="home-shortcut-links"><a class="home-shortcut-link" href="./gallery.html"><span>گالری تجهیزات</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a><a class="home-shortcut-link" href="./equipment.html"><span>راهنمای کاربری تجهیزات</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a><a class="home-shortcut-link" href="./elements.html"><span>عناصر و مواد</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a></div>
+        </section>
       </div>
     </section>`;
 
@@ -261,7 +265,7 @@ const renderHead = page => {
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="stylesheet" href="./styles.min.css?v=6.3">
   <link rel="stylesheet" href="./elements.min.css?v=1.3">
-  <link rel="stylesheet" href="./site-pages.min.css?v=1.1">
+  <link rel="stylesheet" href="./site-pages.min.css?v=1.3">
   <script>
     try {
       const savedTheme = localStorage.getItem('theme');
@@ -298,10 +302,10 @@ const renderMain = (pageKey, page) => {
   <a class="skip-link" href="#main-content">پرش به محتوای اصلی</a>
   <main class="container site-container" id="main-content">
     <header class="site-header">
+      ${renderPrimaryNav(pageKey)}
       ${headerTop}
       ${pageKey === 'home' ? welcomePanel : ''}
     </header>
-    ${renderPrimaryNav(pageKey)}
     ${renderContext(pageKey)}
     ${pageContent}
     ${footer}
