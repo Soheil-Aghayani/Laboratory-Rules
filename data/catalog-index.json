@@ -3542,7 +3542,7 @@
       "id": "element_nobelium",
       "nameFa": "نوبلیم",
       "nameEn": "Nobelium",
-      "cas": "10028-14-5",
+      "cas": null,
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -3577,7 +3577,7 @@
       "id": "element_lawrencium",
       "nameFa": "لارنسیم",
       "nameEn": "Lawrencium",
-      "cas": "22537-19-5",
+      "cas": null,
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -3717,7 +3717,7 @@
       "id": "element_bohrium",
       "nameFa": "بوریم",
       "nameEn": "Bohrium",
-      "cas": "54037-14-8",
+      "cas": null,
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -3752,7 +3752,7 @@
       "id": "element_hassium",
       "nameFa": "هاسیم",
       "nameEn": "Hassium",
-      "cas": "54037-57-9",
+      "cas": null,
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -3787,7 +3787,7 @@
       "id": "element_meitnerium",
       "nameFa": "مایتنریم",
       "nameEn": "Meitnerium",
-      "cas": "54038-01-6",
+      "cas": null,
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -3822,7 +3822,7 @@
       "id": "element_darmstadtium",
       "nameFa": "دارمشتاتیم",
       "nameEn": "Darmstadtium",
-      "cas": "54083-77-1",
+      "cas": null,
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -3857,7 +3857,7 @@
       "id": "element_roentgenium",
       "nameFa": "رونتگنیم",
       "nameEn": "Roentgenium",
-      "cas": "54386-24-2",
+      "cas": null,
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -3892,7 +3892,7 @@
       "id": "element_copernicium",
       "nameFa": "کوپرنیکیم",
       "nameEn": "Copernicium",
-      "cas": "54084-26-3",
+      "cas": null,
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -3927,7 +3927,7 @@
       "id": "element_nihonium",
       "nameFa": "نیهونیوم",
       "nameEn": "Nihonium",
-      "cas": "54084-70-7",
+      "cas": null,
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -3962,7 +3962,7 @@
       "id": "element_flerovium",
       "nameFa": "فلروویم",
       "nameEn": "Flerovium",
-      "cas": "54085-16-4",
+      "cas": null,
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -3997,7 +3997,7 @@
       "id": "element_moscovium",
       "nameFa": "مسکوویم",
       "nameEn": "Moscovium",
-      "cas": "54085-64-2",
+      "cas": null,
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -4032,7 +4032,7 @@
       "id": "element_livermorium",
       "nameFa": "لیورموریم",
       "nameEn": "Livermorium",
-      "cas": "54100-71-9",
+      "cas": null,
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -4067,7 +4067,7 @@
       "id": "element_tennessine",
       "nameFa": "تنسین",
       "nameEn": "Tennessine",
-      "cas": "54101-14-3",
+      "cas": null,
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",
@@ -4102,7 +4102,7 @@
       "id": "element_oganesson",
       "nameFa": "اوگانسون",
       "nameEn": "Oganesson",
-      "cas": "54144-19-3",
+      "cas": null,
       "sources": [
         {
           "label": "PubChem · جدول تناوبی",

@@ -24,8 +24,8 @@
   <link rel="icon" type="image/webp" href="Waste%20Lab.webp">
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="stylesheet" href="./styles.min.css?v=6.3">
-  <link rel="stylesheet" href="./elements.min.css?v=1.3">
-  <link rel="stylesheet" href="./site-pages.min.css?v=1.3">
+  <link rel="stylesheet" href="./elements.min.css?v=1.4">
+  <link rel="stylesheet" href="./site-pages.min.css?v=1.4">
   <script>
     try {
       const savedTheme = localStorage.getItem('theme');
@@ -37,8 +37,8 @@
   <script defer src="./asset/icon-system.min.js?v=1.0"></script>
   <script defer src="./script.min.js?v=7.1"></script>
   <script defer src="./site-runtime.min.js?v=1.1"></script>
-  <script defer src="./elements-data.min.js?v=2.1"></script>
-  <script defer src="./elements.min.js?v=2.1"></script>
+  <script defer src="./elements-data.min.js?v=2.2"></script>
+  <script defer src="./elements.min.js?v=2.2"></script>
 </head>
 <body data-page="elements">
   <a class="skip-link" href="#main-content">پرش به محتوای اصلی</a>
@@ -110,12 +110,19 @@
         <span>اتصال اینترنت قطع است. اطلاعات ذخیره‌شدهٔ پورتال، راهنماها و داده‌های MSDS در دسترس هستند؛ ویکی‌پدیا و سرویس‌های آنلاین ممکن است باز نشوند.</span>
       </div>
 
+      <nav class="mobile-section-nav" aria-label="صفحه‌های کاتالوگ آزمایشگاه">
+        <div class="mobile-section-nav-heading"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span><span>کاتالوگ آزمایشگاه</span></div>
+        <div class="mobile-section-nav-links">
+          <a class="site-nav-link mobile-section-nav-link" href="./gallery.html"><span class="material-symbols-outlined" aria-hidden="true">gallery</span><span>گالری تجهیزات</span></a><a class="site-nav-link mobile-section-nav-link" href="./equipment.html"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>راهنمای تجهیزات</span></a><a class="site-nav-link is-active mobile-section-nav-link" href="./elements.html" aria-current="page"><span class="material-symbols-outlined" aria-hidden="true">science</span><span>عناصر و مواد</span></a>
+        </div>
+      </nav>
+
     </header>
 
     <div class="page-context" aria-label="مسیر صفحه">
       <div class="page-context-heading"><span class="page-kicker">مسیر صفحه</span><div class="page-context-breadcrumb"><a href="./index.html">خانه</a><span class="material-symbols-outlined" aria-hidden="true">chevron_left</span><span>کاتالوگ آزمایشگاه</span><span class="material-symbols-outlined" aria-hidden="true">chevron_left</span><strong>عناصر و مواد</strong></div></div>
-    </div>
-    <section class="standalone-page elements-page" aria-labelledby="elements-page-title"><div class="sr-only"><h1 id="elements-page-title">عناصر و مواد</h1></div><section id="elements-root" class="elements-shell" aria-labelledby="elements-title">
+      </div>
+    <section class="standalone-page elements-page" aria-labelledby="elements-page-title"><div class="sr-only"><h1 id="elements-page-title">عناصر و مواد</h1></div><div class="elements-page-stack"><details class="elements-accordion elements-accordion-primary" open><summary><span class="material-symbols-outlined" aria-hidden="true">science</span><span><strong>جدول تناوبی عناصر</strong><small>جستجو، فیلتر و معرفی عنصرها</small></span><span class="material-symbols-outlined elements-accordion-chevron" aria-hidden="true">expand_more</span></summary><div class="elements-accordion-body"><section id="elements-root" class="elements-shell" aria-labelledby="elements-title">
         <div class="elements-header">
           <div>
             <h2 id="elements-title" class="elements-title">عناصر و مواد</h2>
@@ -149,10 +156,6 @@
           </div>
         </div>
         <p id="element-result-count" class="element-result-count" role="status" aria-live="polite"></p>
-        <div class="element-view-toggle" role="group" aria-label="نحوهٔ نمایش عناصر">
-          <button type="button" data-element-view-toggle="list" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">view_list</span>فهرست سریع</button>
-          <button type="button" data-element-view-toggle="table" aria-pressed="true"><span class="material-symbols-outlined" aria-hidden="true">grid_view</span>جدول کامل</button>
-        </div>
         <div class="element-family-legend" aria-label="راهنمای رنگ خانواده‌های عناصر">
           <span class="element-family-legend-item" data-element-family="alkali-metal">فلزهای قلیایی</span>
           <span class="element-family-legend-item" data-element-family="alkaline-earth-metal">قلیایی خاکی</span>
@@ -168,11 +171,10 @@
         <div class="element-table-scroll">
           <div id="element-periodic-table" class="element-periodic-table" aria-label="جدول تناوبی عناصر"></div>
         </div>
-        <div id="element-list" class="element-list" aria-label="فهرست عناصر"></div>
         <div id="element-empty-state" class="element-empty-state" hidden>موردی با این جستجو و فیلتر پیدا نشد. نام، نماد، CAS یا عدد اتمی دیگری را امتحان کنید.</div>
         <div id="element-detail-root" hidden></div>
         <a class="catalog-suggestion-link" href="mailto:soheyl.aghayani+github@gmail.com?subject=پیشنهاد افزودن به کاتالوگ" aria-label="پیشنهاد افزودن ماده یا عنصر به کاتالوگ"><span class="material-symbols-outlined" aria-hidden="true">add_circle</span>پیشنهاد افزودن عنصر یا ماده</a>
-      </section><section class="elements-support-tools" aria-labelledby="elements-tools-title"><div class="section-heading-row"><div><span class="page-kicker">ابزارهای ایمنی</span><h2 id="elements-tools-title">بررسی مواد و سازگاری</h2></div><p>برای مطالعهٔ برگهٔ ایمنی یا بررسی اولیهٔ ناسازگاری مواد، از ابزارهای زیر استفاده کنید.</p></div><div id="msds-widget-card" class="widget-card msds-widget-card" style="margin-top: 2rem;">
+      </section></div></details><details class="elements-accordion elements-accordion-msds" open><summary><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span><strong>برگهٔ اطلاعات ایمنی و دفع پسماند</strong><small>MSDS Quick Lookup و بررسی سازگاری مواد</small></span><span class="material-symbols-outlined elements-accordion-chevron" aria-hidden="true">expand_more</span></summary><div class="elements-accordion-body"><section class="elements-support-tools" aria-label="ابزارهای MSDS و سازگاری مواد"><div id="msds-widget-card" class="widget-card msds-widget-card" style="margin-top: 2rem;">
         <div class="widget-title">
           <span class="material-symbols-outlined widget-icon">science</span>
           برگه اطلاعات ایمنی و دفع پسماند مواد شیمیایی (MSDS Quick Lookup)
@@ -364,7 +366,7 @@
           </div>
 
           <p id="compat-desc" style="line-height: 1.6; margin: 0; font-size: 0.95rem; color: var(--text-primary);"></p>
-        </div></section></section>
+        </div></section></div></details></div></section>
       <footer>
       <div class="footer-info">
         <p>آزمایشگاه پسماند &copy; ۱۴۰۵</p>

@@ -201,7 +201,39 @@ const renderContext = currentPage => {
   return `
     <div class="page-context" aria-label="مسیر صفحه">
       <div class="page-context-heading"><span class="page-kicker">مسیر صفحه</span><div class="page-context-breadcrumb"><a href="./index.html">خانه</a><span class="material-symbols-outlined" aria-hidden="true">chevron_left</span><span>${group}</span><span class="material-symbols-outlined" aria-hidden="true">chevron_left</span><strong>${title}</strong></div></div>
-    </div>`;
+      </div>`;
+};
+
+const renderMobileSectionNav = currentPage => {
+  const group = pageGroup(currentPage);
+  const sections = group === 'safety'
+    ? {
+      label: 'ایمنی',
+      icon: 'health_and_safety',
+      links: [
+        ['rules.html', 'قوانین عمومی و ایمنی', 'book-bookmark', currentPage === 'rules'],
+        ['quiz.html', 'آزمون و تعهدنامه ورود', 'clipboard-check', currentPage === 'quiz'],
+      ],
+    }
+    : group === 'catalog'
+      ? {
+        label: 'کاتالوگ آزمایشگاه',
+        icon: 'inventory_2',
+        links: [
+          ['gallery.html', 'گالری تجهیزات', 'gallery', currentPage === 'gallery'],
+          ['equipment.html', 'راهنمای تجهیزات', 'test-tube', currentPage === 'equipment'],
+          ['elements.html', 'عناصر و مواد', 'science', currentPage === 'elements'],
+        ],
+      }
+      : null;
+  if (!sections) return '';
+  return `
+      <nav class="mobile-section-nav" aria-label="صفحه‌های ${sections.label}">
+        <div class="mobile-section-nav-heading"><span class="material-symbols-outlined" aria-hidden="true">${sections.icon}</span><span>${sections.label}</span></div>
+        <div class="mobile-section-nav-links">
+          ${sections.links.map(([href, label, iconName, current]) => pageLink(href, label, iconName, current, 'mobile-section-nav-link')).join('')}
+        </div>
+      </nav>`;
 };
 
 const renderMobileDock = currentPage => {
@@ -264,8 +296,8 @@ const renderHead = page => {
   <link rel="icon" type="image/webp" href="Waste%20Lab.webp">
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="stylesheet" href="./styles.min.css?v=6.3">
-  <link rel="stylesheet" href="./elements.min.css?v=1.3">
-  <link rel="stylesheet" href="./site-pages.min.css?v=1.3">
+  <link rel="stylesheet" href="./elements.min.css?v=1.4">
+  <link rel="stylesheet" href="./site-pages.min.css?v=1.4">
   <script>
     try {
       const savedTheme = localStorage.getItem('theme');
@@ -277,7 +309,7 @@ const renderHead = page => {
   <script defer src="./asset/icon-system.min.js?v=1.0"></script>
   <script defer src="./script.min.js?v=7.1"></script>
   <script defer src="./site-runtime.min.js?v=1.1"></script>
-  ${page.assets.map(asset => `<script defer src="./${asset}?v=2.1"></script>`).join('\n  ')}
+  ${page.assets.map(asset => `<script defer src="./${asset}?v=2.2"></script>`).join('\n  ')}
 </head>`;
 };
 
@@ -294,7 +326,7 @@ const renderMain = (pageKey, page) => {
   } else if (pageKey === 'gallery') {
     pageContent = `<section class="standalone-page gallery-page" aria-labelledby="gallery-page-title"><div class="sr-only"><h1 id="gallery-page-title">گالری آزمایشگاه و کاتالوگ تجهیزات</h1></div>${fragments.gallery}</section>`;
   } else if (pageKey === 'elements') {
-    pageContent = `<section class="standalone-page elements-page" aria-labelledby="elements-page-title"><div class="sr-only"><h1 id="elements-page-title">عناصر و مواد</h1></div>${fragments.elements}<section class="elements-support-tools" aria-labelledby="elements-tools-title"><div class="section-heading-row"><div><span class="page-kicker">ابزارهای ایمنی</span><h2 id="elements-tools-title">بررسی مواد و سازگاری</h2></div><p>برای مطالعهٔ برگهٔ ایمنی یا بررسی اولیهٔ ناسازگاری مواد، از ابزارهای زیر استفاده کنید.</p></div>${fragments.safetyWidgets}</section></section>`;
+    pageContent = `<section class="standalone-page elements-page" aria-labelledby="elements-page-title"><div class="sr-only"><h1 id="elements-page-title">عناصر و مواد</h1></div><div class="elements-page-stack"><details class="elements-accordion elements-accordion-primary" open><summary><span class="material-symbols-outlined" aria-hidden="true">science</span><span><strong>جدول تناوبی عناصر</strong><small>جستجو، فیلتر و معرفی عنصرها</small></span><span class="material-symbols-outlined elements-accordion-chevron" aria-hidden="true">expand_more</span></summary><div class="elements-accordion-body">${fragments.elements}</div></details><details class="elements-accordion elements-accordion-msds" open><summary><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span><strong>برگهٔ اطلاعات ایمنی و دفع پسماند</strong><small>MSDS Quick Lookup و بررسی سازگاری مواد</small></span><span class="material-symbols-outlined elements-accordion-chevron" aria-hidden="true">expand_more</span></summary><div class="elements-accordion-body"><section class="elements-support-tools" aria-label="ابزارهای MSDS و سازگاری مواد">${fragments.safetyWidgets}</section></div></details></div></section>`;
   }
 
   return `
@@ -304,6 +336,7 @@ const renderMain = (pageKey, page) => {
     <header class="site-header">
       ${renderPrimaryNav(pageKey)}
       ${headerTop}
+      ${renderMobileSectionNav(pageKey)}
       ${pageKey === 'home' ? welcomePanel : ''}
     </header>
     ${renderContext(pageKey)}

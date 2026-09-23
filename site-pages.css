@@ -875,3 +875,290 @@ body {
     height: 48px;
   }
 }
+
+/* Page-local navigation keeps secondary pages reachable on small screens. */
+.mobile-section-nav {
+  display: none;
+}
+
+/* The elements page uses one real table; the old duplicate list/toggle is gone. */
+.element-view-toggle,
+.element-list {
+  display: none !important;
+}
+
+.element-table-scroll {
+  direction: ltr;
+}
+
+.element-periodic-table {
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-family: var(--font-fa);
+}
+
+.element-card {
+  direction: rtl;
+  font-family: var(--font-fa);
+}
+
+.element-card-number {
+  direction: ltr;
+  font-family: var(--font-fa);
+}
+
+.element-card-symbol {
+  direction: ltr;
+  font-family: var(--font-en);
+}
+
+.element-card-name {
+  white-space: normal;
+  line-height: 1.35;
+}
+
+.elements-page-stack {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 993px) {
+  .rules-page .rules-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.elements-accordion {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  background: var(--bg-secondary);
+  box-shadow: var(--card-shadow);
+}
+
+.elements-accordion > summary {
+  display: flex;
+  min-height: 68px;
+  align-items: center;
+  gap: .75rem;
+  padding: .85rem 1.15rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  list-style: none;
+}
+
+.elements-accordion > summary::-webkit-details-marker {
+  display: none;
+}
+
+.elements-accordion > summary > .material-symbols-outlined:first-child {
+  color: var(--accent-emerald-strong);
+  font-size: 1.35rem;
+}
+
+.elements-accordion > summary > span:nth-child(2) {
+  display: grid;
+  min-width: 0;
+  gap: .1rem;
+}
+
+.elements-accordion > summary strong {
+  font-size: .98rem;
+  line-height: 1.45;
+}
+
+.elements-accordion > summary small {
+  color: var(--text-muted);
+  font-size: .74rem;
+  line-height: 1.5;
+}
+
+.elements-accordion-chevron {
+  margin-inline-start: auto;
+  color: var(--text-muted);
+  transition: transform .18s ease;
+}
+
+.elements-accordion:not([open]) .elements-accordion-chevron {
+  transform: rotate(-90deg);
+}
+
+.elements-accordion-body {
+  min-width: 0;
+  padding: 0 1rem 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.elements-accordion-primary .elements-shell {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.elements-accordion-primary .elements-header {
+  display: none;
+}
+
+.elements-accordion-msds .elements-support-tools {
+  margin-top: 0;
+}
+
+.elements-accordion-msds .msds-widget-card {
+  margin-top: 0 !important;
+}
+
+@media (max-width: 992px) {
+  .element-table-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+  }
+
+  .element-periodic-table {
+    display: grid !important;
+    min-width: 900px;
+    grid-template-columns: repeat(18, minmax(48px, 1fr));
+    grid-template-rows: repeat(9, minmax(68px, auto));
+    gap: .3rem;
+  }
+
+  .element-periodic-table .element-card {
+    min-height: 68px;
+    padding: .35rem .25rem;
+    border-radius: 9px;
+  }
+
+  .element-periodic-table .element-card-symbol {
+    font-size: 1.08rem;
+  }
+
+  .element-periodic-table .element-card-name {
+    max-height: 2.7em;
+    font-size: .62rem;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .element-periodic-table .element-card-family {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-section-nav {
+    display: block;
+    margin: .1rem 0 1rem;
+    padding: .4rem;
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    background: var(--bg-secondary);
+    box-shadow: var(--card-shadow);
+  }
+
+  .mobile-section-nav-heading {
+    display: flex;
+    min-height: 32px;
+    align-items: center;
+    justify-content: flex-start;
+    gap: .4rem;
+    padding: .15rem .45rem .35rem;
+    color: var(--accent-emerald-strong);
+    font-size: .75rem;
+    font-weight: 850;
+  }
+
+  .mobile-section-nav-heading .material-symbols-outlined {
+    font-size: 1.05rem;
+  }
+
+  .mobile-section-nav-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .35rem;
+  }
+
+  .mobile-section-nav-link {
+    min-width: 0;
+    min-height: 48px;
+    padding: .4rem .3rem;
+    border-color: var(--border-color);
+    background: var(--bg-tertiary);
+    font-size: .68rem;
+    line-height: 1.35;
+  }
+
+  .mobile-section-nav-link .material-symbols-outlined {
+    font-size: 1.05rem;
+  }
+
+  .elements-page-stack {
+    gap: .75rem;
+  }
+
+  .elements-accordion-primary {
+    order: 1;
+  }
+
+  .elements-accordion-msds {
+    order: 2;
+  }
+
+  .elements-accordion > summary {
+    min-height: 62px;
+    padding: .7rem .8rem;
+  }
+
+  .elements-accordion > summary strong {
+    font-size: .86rem;
+  }
+
+  .elements-accordion > summary small {
+    font-size: .66rem;
+  }
+
+  .elements-accordion-body {
+    padding: 0 .45rem .55rem;
+  }
+
+  .elements-accordion-primary .elements-shell {
+    padding: .8rem .55rem;
+  }
+
+  .elements-support-tools {
+    padding: .65rem;
+  }
+
+  .element-table-scroll {
+    margin-inline: -.15rem;
+    padding-bottom: .4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-section-nav-link {
+    min-height: 50px;
+    font-size: .63rem;
+  }
+
+  .element-periodic-table {
+    min-width: 900px;
+    grid-template-columns: repeat(18, minmax(48px, 1fr));
+    grid-template-rows: repeat(9, minmax(64px, auto));
+  }
+
+  .element-periodic-table .element-card {
+    min-height: 64px;
+  }
+
+  .element-periodic-table .element-card-symbol {
+    font-size: 1rem;
+  }
+
+  .element-periodic-table .element-card-name {
+    font-size: .58rem;
+  }
+}

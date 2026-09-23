@@ -61,7 +61,6 @@
   let activeElementNumber = null;
   let detailRoot;
   let tableRoot;
-  let listRoot;
   let countRoot;
   let emptyRoot;
   let searchInput;
@@ -70,8 +69,6 @@
   let familyFilter;
   let relatedTrack;
   let elementsRoot;
-  let viewButtons = [];
-  let hasManualView = false;
 
   function isFilterMatch(element) {
     const classification = element.classification || {};
@@ -122,7 +119,6 @@
   function renderCatalog() {
     const filtered = getFilteredElements();
     if (tableRoot) tableRoot.innerHTML = filtered.map(element => renderElementCard(element)).join('');
-    if (listRoot) listRoot.innerHTML = filtered.map(element => renderElementCard(element, true)).join('');
     if (countRoot) {
       const hasConstraints = Boolean(activeQuery || activeGroup || activePeriod || activeFamily || activeFilter !== 'all');
       countRoot.textContent = hasConstraints ? `نتیجهٔ فیلتر: ${toPersianDigits(filtered.length)} مورد` : '';
@@ -393,7 +389,6 @@
     if (!root || !catalog.length) return;
     elementsRoot = root;
     tableRoot = document.getElementById('element-periodic-table');
-    listRoot = document.getElementById('element-list');
     detailRoot = document.getElementById('element-detail-root');
     countRoot = document.getElementById('element-result-count');
     emptyRoot = document.getElementById('element-empty-state');
@@ -401,26 +396,6 @@
     groupFilter = document.getElementById('element-group-filter');
     periodFilter = document.getElementById('element-period-filter');
     familyFilter = document.getElementById('element-family-filter');
-    viewButtons = Array.from(root.querySelectorAll('[data-element-view-toggle]'));
-
-    const setElementView = view => {
-      const nextView = view === 'table' ? 'table' : 'list';
-      root.dataset.elementView = nextView;
-      viewButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.elementViewToggle === nextView)));
-    };
-
-    const defaultView = 'table';
-    setElementView(defaultView);
-    viewButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        hasManualView = true;
-        setElementView(button.dataset.elementViewToggle);
-      });
-    });
-    const viewMedia = window.matchMedia?.('(max-width: 992px)');
-    viewMedia?.addEventListener?.('change', event => {
-      if (!hasManualView) setElementView(event.matches ? 'list' : 'table');
-    });
 
     document.querySelectorAll('[data-element-filter]').forEach(button => {
       button.addEventListener('click', () => {

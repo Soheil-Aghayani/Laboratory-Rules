@@ -103,29 +103,21 @@ function getPeriod(number) {
   return 7;
 }
 
-const groupRows = [
-  [1, 18],
-  [1, 2, 13, 14, 15, 16, 17, 18],
-  [1, 2, 13, 14, 15, 16, 17, 18],
-  Array.from({ length: 18 }, (_, index) => index + 1),
-  Array.from({ length: 18 }, (_, index) => index + 1),
-  [1, 2, null, null, null, null, null, null, null, null, null, null, 13, 14, 15, 16, 17, 18],
-  [1, 2, null, null, null, null, null, null, null, null, null, null, 13, 14, 15, 16, 17, 18]
-];
-
 function getGroup(number) {
   const period = getPeriod(number);
-  const row = groupRows[period - 1];
-  if (period <= 2) return row[number - (period === 1 ? 1 : 3)];
-  if (period === 3) return row[number - 11];
-  if (period === 4) return row[number - 19];
-  if (period === 5) return row[number - 37];
+  if (period === 1) return number === 1 ? 1 : 18;
+  if (period === 2 || period === 3) {
+    const row = [1, 2, 13, 14, 15, 16, 17, 18];
+    return row[number - (period === 2 ? 3 : 11)];
+  }
+  if (period === 4) return number - 18;
+  if (period === 5) return number - 36;
   if (period === 6) {
     if (number >= 57 && number <= 71) return null;
-    return row[number - 55];
+    return number >= 72 ? number - 68 : number - 54;
   }
   if (number >= 89 && number <= 103) return null;
-  return row[number - 87];
+  return number >= 104 ? number - 100 : number - 86;
 }
 
 function getFamilyFa(row, definition) {
@@ -197,6 +189,8 @@ function safetyFromChemical(chemical) {
 async function main() {
   const msdsWindow = loadWindowScript(path.join(root, 'chatbot', 'msds', 'msds-db.js'));
   const equipmentWindow = loadWindowScript(path.join(root, 'equipment-data.js'));
+  const previousElements = await readJson(path.join(root, 'data', 'elements.json')).catch(() => []);
+  const previousElementsByNumber = new Map(previousElements.map(record => [record.atomicNumber, record]));
   const msdsRecords = msdsWindow.chemicalMsdsDb || [];
   const definitions = msdsRecords
     .filter(record => Number.isInteger(record.atomicNumber) && record.atomicNumber >= 1 && record.atomicNumber <= 118)
@@ -223,13 +217,16 @@ async function main() {
   const elementRecords = definitions.map(definition => {
     const row = periodicRows.find(candidate => Number(candidate.AtomicNumber) === definition.atomicNumber) || {};
     const view = views.get(definition.atomicNumber);
+    const previous = previousElementsByNumber.get(definition.atomicNumber) || {};
     const chemical = msdsRecords.find(candidate => candidate.id === definition.id);
     const category = definition.elementCategory || definition.category || 'transition_metal';
     const standardState = row.StandardState || null;
     const groupBlock = row.GroupBlock || null;
     const group = getGroup(definition.atomicNumber);
     const period = getPeriod(definition.atomicNumber);
-    const cas = validCas(definition.cas) ? definition.cas : (recoveredCas.get(definition.atomicNumber) || null);
+    const cas = validCas(definition.cas)
+      ? definition.cas
+      : (recoveredCas.get(definition.atomicNumber) || (validCas(previous.cas) ? previous.cas : null));
     const displayName = row.Name || definition.nameEn;
     const familyFa = getFamilyFa(row, { ...definition, category });
     const sourceLinks = [
@@ -279,11 +276,11 @@ async function main() {
         densityUnit: 'g/cm³',
         yearDiscovered: row.YearDiscovered || null
       },
-      isotopes: sectionSummary(view, [/^isotopes?$/i, /isotopic composition/i], 900),
-      summary: sectionSummary(view, [/^element classification$/i, /^physical description$/i], 520) || `${definition.nameFa} یک عنصر از خانوادهٔ ${familyFa} است. خواص و کاربرد آن به شکل ماده، خلوص و شرایط استفاده وابسته است.`,
-      history: sectionSummary(view, [/^history$/i, /^discovery$/i], 720),
-      uses: sectionSummary(view, [/^uses?$/i, /^use$/i], 900),
-      sourceDescription: sectionSummary(view, [/^sources?$/i, /^production$/i], 720),
+      isotopes: sectionSummary(view, [/^isotopes?$/i, /isotopic composition/i], 900) || previous.isotopes || null,
+      summary: sectionSummary(view, [/^element classification$/i, /^physical description$/i], 520) || previous.summary || `${definition.nameFa} یک عنصر از خانوادهٔ ${familyFa} است. خواص و کاربرد آن به شکل ماده، خلوص و شرایط استفاده وابسته است.`,
+      history: sectionSummary(view, [/^history$/i, /^discovery$/i], 720) || previous.history || null,
+      uses: sectionSummary(view, [/^uses?$/i, /^use$/i], 900) || previous.uses || null,
+      sourceDescription: sectionSummary(view, [/^sources?$/i, /^production$/i], 720) || previous.sourceDescription || null,
       safety: safetyFromChemical(chemical),
       radioactivity: {
         status: category === 'radioactive' || category === 'radioactive_gas' ? 'radioactive' : 'not-listed-as-radioactive',
