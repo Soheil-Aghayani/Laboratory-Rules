@@ -107,11 +107,14 @@ const safetyWidgets = readOrExtract('safety-widgets.html', () => {
 
 const headerTopStart = source.indexOf('<div class="header-top">');
 const welcomeStart = source.indexOf('<section class="welcome-panel"', headerTopStart);
-const headerEnd = source.indexOf('    </header>', welcomeStart);
-if (headerTopStart < 0 || welcomeStart < 0 || headerEnd < 0) throw new Error('Unable to extract shared header');
-const headerTop = source.slice(headerTopStart, welcomeStart).trim();
+const headerEndBeforeWelcome = source.indexOf('    </header>', headerTopStart);
+const welcomeEnd = source.indexOf('</section>', welcomeStart) + '</section>'.length;
+const headerContainsWelcome = headerEndBeforeWelcome < 0 || headerEndBeforeWelcome > welcomeStart;
+const headerEnd = headerContainsWelcome ? source.indexOf('    </header>', welcomeStart) : headerEndBeforeWelcome;
+if (headerTopStart < 0 || welcomeStart < 0 || headerEnd < 0 || welcomeEnd <= welcomeStart) throw new Error('Unable to extract shared header');
+const headerTop = source.slice(headerTopStart, headerContainsWelcome ? welcomeStart : headerEnd).trim();
 const galleryHeaderTop = headerTop.replace(/\s*<!-- Live Search Bar -->[\s\S]*?(?=<div id="offline-status")/, '\n      ');
-const welcomePanel = source.slice(welcomeStart, headerEnd).trim();
+const welcomePanel = source.slice(welcomeStart, welcomeEnd).trim();
 
 const penaltyStart = source.indexOf('    <!-- Penalty warning -->');
 const navigationStart = penaltyStart >= 0 ? source.indexOf('    <!-- Navigation Tabs -->', penaltyStart) : -1;
@@ -119,7 +122,7 @@ const penaltyBanner = penaltyStart >= 0 && navigationStart >= 0
   ? source.slice(penaltyStart, navigationStart).trim()
   : '<div class="penalty-banner"><span class="material-symbols-outlined penalty-icon">gpp_maybe</span><div class="penalty-text">مهم: در صورتی که دانشجویی از قوانین و موارد زیر تخطی کند، به‌مدت ۱۰ روز اجازه فعالیت در آزمایشگاه را نخواهد داشت.</div></div>';
 
-const footerStart = source.indexOf('  <footer>');
+const footerStart = source.indexOf('  <footer class="site-footer"');
 const footerEnd = source.indexOf('  </footer>', footerStart) + '  </footer>'.length;
 const footer = source.slice(footerStart, footerEnd)
   .replaceAll('href="index.html#tab-general" data-tab-link="tab-general"', 'href="./rules.html"')
@@ -240,11 +243,11 @@ const renderHomeShortcuts = () => `
 
 const renderHead = page => {
   const canonical = `https://soheil-aghyani.github.io/Solid-Waste-Laboratory/${page.canonical}`;
-  const preload = page === 'home'
-    ? '<link rel="preload" href="./asset/gallery/lab-interior-800.webp" as="image" type="image/webp" imagesrcset="./asset/gallery/lab-interior-mobile.webp 640w, ./asset/gallery/lab-interior-800.webp 800w" imagesizes="(max-width: 768px) 100vw, 600px" fetchpriority="high">'
-    : '';
   const pageStyles = page.filename === 'gallery.html'
     ? '<link rel="stylesheet" href="./catalog-redesign.min.css?v=1.6">'
+    : '';
+  const elementStyles = page.filename === 'elements.html'
+    ? '<link rel="stylesheet" href="./elements.min.css?v=1.6">'
     : '';
   const assetVersion = asset => asset === 'gallery.min.js' ? '3.1' : '2.2';
   return `<!DOCTYPE html>
@@ -273,8 +276,7 @@ const renderHead = page => {
   <link rel="icon" type="image/webp" href="Waste%20Lab.webp">
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="stylesheet" href="./styles.min.css?v=6.3">
-  <link rel="stylesheet" href="./elements.min.css?v=1.6">
-  <link rel="stylesheet" href="./site-pages.min.css?v=1.9">${pageStyles ? `\n  ${pageStyles}` : ''}
+  ${elementStyles ? `${elementStyles}\n  ` : ''}<link rel="stylesheet" href="./site-pages.min.css?v=2.0">${pageStyles ? `\n  ${pageStyles}` : ''}
   <script>
     try {
       const savedTheme = localStorage.getItem('theme');
@@ -282,9 +284,8 @@ const renderHead = page => {
       document.documentElement.setAttribute('data-theme', preferredTheme);
     } catch (error) {}
   </script>
-  ${preload}
   <script defer src="./asset/icon-system.min.js?v=1.0"></script>
-  <script defer src="./script.min.js?v=7.1"></script>
+  <script async fetchpriority="low" src="./script.min.js?v=7.2"></script>
   <script defer src="./site-runtime.min.js?v=1.4"></script>
   ${page.assets.map(asset => `<script defer src="./${asset}?v=${assetVersion(asset)}"></script>`).join('\n  ')}
 </head>`;
@@ -313,8 +314,8 @@ const renderMain = (pageKey, page) => {
     <header class="site-header">
       ${pageKey === 'gallery' ? galleryHeaderTop : headerTop}
       ${renderMobileSectionNav(pageKey)}
-      ${pageKey === 'home' ? welcomePanel : ''}
     </header>
+    ${pageKey === 'home' ? `<div class="home-welcome-flow">${welcomePanel}</div>` : ''}
     ${pageContent}
     ${footer}
   </main>

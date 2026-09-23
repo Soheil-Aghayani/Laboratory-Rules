@@ -1379,3 +1379,388 @@ body {
     grid-auto-rows: auto !important;
   }
 }
+
+/* Shared chrome: keep the header in reach without turning the content into a fixed panel. */
+:root {
+  --site-header-offset: 8rem;
+}
+
+html {
+  scroll-padding-block-start: var(--site-header-offset);
+}
+
+body {
+  padding-bottom: calc(var(--desktop-dock-height) + .75rem);
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1200;
+  isolation: isolate;
+  gap: 1rem;
+  margin-inline: -1.5rem;
+  padding: .75rem 1.5rem 1rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent-emerald) 22%, var(--border-color));
+  background: color-mix(in srgb, var(--bg-primary) 90%, transparent);
+  box-shadow: 0 8px 24px color-mix(in srgb, #0f172a 8%, transparent);
+  backdrop-filter: blur(16px) saturate(1.08);
+}
+
+.site-header::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(115deg, color-mix(in srgb, var(--accent-emerald) 8%, transparent), transparent 58%);
+  content: '';
+  pointer-events: none;
+}
+
+.home-welcome-flow {
+  min-width: 0;
+}
+
+.site-container {
+  padding-top: 0;
+}
+
+/* The home carousel is shared by the portal shell, not by the elements page. */
+.welcome-photo-carousel {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: .75rem;
+}
+
+.welcome-slides {
+  position: relative;
+  min-height: 320px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  background: var(--bg-tertiary);
+}
+
+.welcome-slide {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  height: 100%;
+  min-height: 320px;
+  margin: 0;
+}
+
+.welcome-slide[hidden] {
+  display: none;
+}
+
+.welcome-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.welcome-slide figcaption {
+  padding: .75rem .9rem;
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  font-size: .82rem;
+  line-height: 1.5;
+}
+
+.welcome-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+}
+
+.welcome-carousel-button,
+.welcome-carousel-dot {
+  font: inherit;
+}
+
+.element-icon-reversed {
+  transform: rotate(180deg);
+}
+
+.welcome-carousel-button {
+  display: inline-flex;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.welcome-carousel-dots {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+}
+
+.welcome-carousel-dot {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.welcome-carousel-dot::before {
+  display: block;
+  width: 9px;
+  height: 9px;
+  margin: auto;
+  border-radius: 50%;
+  background: currentColor;
+  content: '';
+  opacity: .55;
+  transition: transform .2s ease, opacity .2s ease, background-color .2s ease;
+}
+
+.welcome-carousel-dot[aria-current="true"] {
+  color: var(--accent-emerald);
+}
+
+.welcome-carousel-dot[aria-current="true"]::before {
+  width: 24px;
+  border-radius: 999px;
+  opacity: 1;
+}
+
+.welcome-carousel-button:hover,
+.welcome-carousel-button:focus-visible {
+  border-color: var(--accent-emerald);
+  color: var(--accent-emerald);
+}
+
+/* A compact, purposeful footer: brand, useful destinations, social links, then one quiet legal row. */
+.site-container > .site-footer {
+  display: grid;
+  grid-template-areas:
+    "brand nav socials"
+    "bottom bottom bottom";
+  grid-template-columns: minmax(220px, .9fr) minmax(0, 1.7fr) auto;
+  align-items: start;
+  gap: 1rem 1.5rem;
+  margin: clamp(1.75rem, 4vw, 3rem) 0 .25rem;
+  padding: 1.25rem 1.5rem .85rem;
+  border: 1px solid var(--border-color);
+  border-top: 3px solid color-mix(in srgb, var(--accent-emerald) 75%, var(--border-color));
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--accent-emerald-glow), transparent 42%), var(--bg-secondary);
+  box-shadow: 0 12px 30px color-mix(in srgb, #0f172a 7%, transparent);
+}
+
+.site-footer .footer-main {
+  display: contents;
+}
+
+.site-footer .footer-info {
+  grid-area: brand;
+  display: flex;
+  min-width: 0;
+  align-items: flex-start;
+  gap: .65rem;
+}
+
+.site-footer .footer-info-mark {
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--accent-emerald) 35%, var(--border-color));
+  border-radius: 12px;
+  background: var(--accent-emerald-glow);
+  color: var(--accent-emerald-strong);
+  font-size: 1.25rem;
+}
+
+.site-footer .footer-info-copy {
+  display: grid;
+  min-width: 0;
+  gap: .12rem;
+}
+
+.site-footer .footer-info-copy strong {
+  color: var(--text-primary);
+  font-size: .92rem;
+  font-weight: 850;
+}
+
+.site-footer .footer-info-copy span,
+.site-footer .footer-info-copy small {
+  overflow-wrap: anywhere;
+  color: var(--text-muted);
+  font-size: .72rem;
+  line-height: 1.6;
+}
+
+.site-footer .footer-info-copy small {
+  font-family: var(--font-en);
+  font-size: .65rem;
+  text-align: left;
+}
+
+.site-footer .footer-nav {
+  grid-area: nav;
+  display: grid;
+  min-width: 0;
+  gap: .55rem;
+  align-content: start;
+  justify-content: stretch;
+}
+
+.site-footer .footer-nav-title,
+.site-footer .footer-socials-title {
+  color: var(--text-primary);
+  font-size: .74rem;
+  font-weight: 850;
+}
+
+.site-footer .footer-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem .75rem;
+}
+
+.site-footer .footer-nav a {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  padding: .35rem .55rem;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  color: var(--accent-emerald-strong);
+  font-size: .72rem;
+  line-height: 1.35;
+  text-decoration: none;
+  transition: color .18s ease, background-color .18s ease, border-color .18s ease;
+}
+
+.site-footer .footer-nav a:hover,
+.site-footer .footer-nav a:focus-visible {
+  border-color: color-mix(in srgb, var(--accent-emerald) 40%, var(--border-color));
+  background: var(--accent-emerald-glow);
+  color: var(--accent-emerald-strong);
+  text-decoration: none;
+}
+
+.site-footer .footer-socials {
+  display: grid;
+  grid-area: socials;
+  justify-items: end;
+  gap: .55rem;
+  align-content: start;
+}
+
+.site-footer .social-icons {
+  gap: .45rem;
+}
+
+.site-footer .social-icon {
+  width: 38px;
+  height: 38px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-footer .social-icon:hover {
+    transform: translateY(-2px) scale(1.02);
+  }
+}
+
+.site-footer .footer-bottom {
+  display: flex;
+  grid-area: bottom;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem 1.5rem;
+  padding-top: .7rem;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: .66rem;
+  line-height: 1.6;
+}
+
+.site-footer .footer-bottom [dir="ltr"] {
+  font-family: var(--font-en);
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --site-header-offset: 13rem;
+  }
+
+  body {
+    padding-bottom: calc(var(--mobile-dock-height) + env(safe-area-inset-bottom) + .75rem);
+  }
+
+  .site-header {
+    margin-inline: -.75rem;
+    padding: .65rem .75rem .8rem;
+  }
+
+  .site-container {
+    padding-top: 0;
+  }
+
+  .site-container > .site-footer {
+    grid-template-areas:
+      "brand"
+      "nav"
+      "socials"
+      "bottom";
+    grid-template-columns: minmax(0, 1fr);
+    gap: .95rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .site-footer .footer-socials {
+    justify-items: start;
+  }
+
+  .site-footer .footer-nav-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .35rem;
+  }
+
+  .site-footer .footer-nav a {
+    min-height: 38px;
+    justify-content: flex-start;
+  }
+
+  .site-footer .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .2rem;
+  }
+
+  .welcome-slides,
+  .welcome-slide {
+    min-height: 240px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .site-footer .footer-nav a,
+  .site-footer .social-icon {
+    transition: none;
+  }
+}

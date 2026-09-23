@@ -38,7 +38,7 @@
   };
 })();
 
-document.addEventListener('DOMContentLoaded', () => {
+const initLabPortal = () => {
   // Theme Toggle
   const themeBtn = document.getElementById('theme-btn');
   const themeColorMeta = document.querySelector('meta[name="theme-color"]');
@@ -3403,4 +3403,10 @@ document.addEventListener('DOMContentLoaded', () => {
       searchVoiceBtn.style.display = 'none'; // Hide if not supported
     }
   }
-});
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initLabPortal, { once: true });
+} else {
+  initLabPortal();
+}

@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'lab-rules-v77';
+const CACHE_VERSION = 'lab-rules-v79';
 const APP_SHELL = [
   './',
   './index.html',
@@ -11,10 +11,10 @@ const APP_SHELL = [
   './manifest.webmanifest',
   './styles.min.css?v=6.3',
   './elements.min.css?v=1.6',
-  './site-pages.min.css?v=1.9',
+  './site-pages.min.css?v=2.0',
   './asset/icon-system.min.js?v=1.0',
   './asset/icons.svg',
-  './script.min.js?v=7.1',
+  './script.min.js?v=7.2',
   './site-runtime.min.js?v=1.4',
   './equipment-data.min.js?v=2.2',
   './gallery.min.js?v=3.1',
@@ -28,7 +28,7 @@ const APP_SHELL = [
   './equipment-detail.min.js?v=1.8',
   './equipment-detail.min.css?v=1.8',
   './catalog-redesign.min.css?v=1.6',
-  './catalog-detail-chrome.min.css?v=1.1',
+  './catalog-detail-chrome.min.css?v=1.2',
   './catalog-detail-runtime.min.js?v=1.2',
   './asset/equipment/crucible-generic.svg',
   './Equipment/volumetric-flasks.html',
@@ -99,6 +99,7 @@ const APP_SHELL = [
   './asset/equipment/nickel-chromium-crucible.webp',
   './asset/equipment/zirconium-crucible.webp',
   './asset/gallery/catalog-equipment-hero.webp',
+  './asset/gallery/lab-interior-mobile-fast.webp',
   './chatbot/chatbot.min.css?v=5.7',
   './chatbot/chatbot.min.js?v=5.7',
   './chatbot/msds/msds-db.min.js?v=5.7',

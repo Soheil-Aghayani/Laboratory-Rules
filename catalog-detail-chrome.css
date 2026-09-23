@@ -554,3 +554,29 @@ body:has(.equipment-detail-page) .chatbot-window {
     transition: none;
   }
 }
+
+/* Detail pages use the same sticky site header and compact footer as the portal pages. */
+.catalog-detail-site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1200;
+  width: auto;
+  margin: 0 -1rem 1rem;
+  padding: .65rem 1rem .8rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent-emerald) 22%, var(--border-color));
+  background: color-mix(in srgb, var(--bg-primary) 90%, transparent);
+  box-shadow: 0 8px 24px color-mix(in srgb, #0f172a 8%, transparent);
+  backdrop-filter: blur(16px) saturate(1.08);
+}
+
+.catalog-detail-site-footer {
+  width: auto;
+  margin-inline: 0;
+}
+
+@media (max-width: 760px) {
+  .catalog-detail-site-header {
+    margin-inline: -.65rem;
+    padding-inline: .65rem;
+  }
+}
