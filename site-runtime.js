@@ -3,6 +3,7 @@
       const assetCdnBase = '.';
       let msdsDbPromise = null;
       let chatbotPromise = null;
+      let elementCatalogPromise = null;
 
       function loadScript(src) {
         return new Promise((resolve, reject) => {
@@ -63,23 +64,28 @@
         return chatbotPromise;
       }
 
+      function loadElementCatalog() {
+        if (window.elementCatalogReady) return Promise.resolve();
+        if (elementCatalogPromise) return elementCatalogPromise;
+
+        elementCatalogPromise = loadScript(`${assetCdnBase}/elements-data.min.js?v=2.2`)
+          .then(() => loadScript(`${assetCdnBase}/elements.min.js?v=2.3`))
+          .then(() => {
+            window.elementCatalogReady = true;
+          })
+          .catch((error) => {
+            elementCatalogPromise = null;
+            throw error;
+          });
+
+        return elementCatalogPromise;
+      }
+
       window.loadMsdsDatabase = loadMsdsDatabase;
       window.loadChatbot = loadChatbot;
+      window.loadElementCatalog = loadElementCatalog;
 
-      const msdsCard = document.querySelector('.msds-widget-card');
       const hydrateMsds = () => loadMsdsDatabase().catch((error) => console.error('MSDS database failed to load:', error));
-
-      if (msdsCard && 'IntersectionObserver' in window) {
-        const msdsObserver = new IntersectionObserver((entries) => {
-          if (entries.some(entry => entry.isIntersecting)) {
-            hydrateMsds();
-            msdsObserver.disconnect();
-          }
-        }, { rootMargin: '300px 0px' });
-        msdsObserver.observe(msdsCard);
-      } else if (msdsCard) {
-        window.addEventListener('load', () => setTimeout(hydrateMsds, 2000), { once: true });
-      }
 
       const msdsSelect = document.getElementById('msds-chemical-select');
       if (msdsSelect) msdsSelect.addEventListener('focus', hydrateMsds, { once: true });
@@ -88,6 +94,27 @@
       const compatAddButton = document.getElementById('add-compat-chemical-btn');
       if (compatContainer) compatContainer.addEventListener('focusin', hydrateMsds, { once: true });
       if (compatAddButton) compatAddButton.addEventListener('click', hydrateMsds, { once: true });
+
+      const elementAccordion = document.querySelector('.elements-accordion-primary');
+      const elementHashPattern = /^#element-\d+$/i;
+      const hydrateElements = () => {
+        if (!elementAccordion || (!elementAccordion.open && !elementHashPattern.test(window.location.hash))) return;
+        loadElementCatalog().catch((error) => console.error('Element catalog failed to load:', error));
+      };
+      if (elementAccordion) {
+        elementAccordion.addEventListener('toggle', hydrateElements);
+        document.getElementById('element-search')?.addEventListener('focus', hydrateElements, { once: true });
+        if (elementHashPattern.test(window.location.hash)) {
+          elementAccordion.open = true;
+          hydrateElements();
+        }
+        window.addEventListener('hashchange', () => {
+          if (elementHashPattern.test(window.location.hash)) {
+            elementAccordion.open = true;
+            hydrateElements();
+          }
+        });
+      }
 
       const chatbotLoader = document.getElementById('chatbot-loader-fab');
       if (chatbotLoader) {

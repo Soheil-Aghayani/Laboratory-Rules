@@ -438,5 +438,15 @@
     window.dispatchEvent(new CustomEvent('elementcatalog:ready', { detail: { count: catalog.length } }));
   }
 
-  document.addEventListener('DOMContentLoaded', init);
+  const start = () => {
+    if (window.elementCatalogInitialised) return;
+    window.elementCatalogInitialised = true;
+    init();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start, { once: true });
+  } else {
+    start();
+  }
 })();

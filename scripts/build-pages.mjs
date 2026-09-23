@@ -49,7 +49,7 @@ const pageDefinitions = {
     title: 'عناصر و مواد | آزمایشگاه پسماند',
     description: 'جدول تناوبی رنگ‌بندی‌شده، شناخت عناصر، ملاحظات ایمنی و جستجوی مواد آزمایشگاهی.',
     canonical: 'elements.html',
-    assets: ['elements-data.min.js', 'elements.min.js'],
+    assets: [],
   },
 };
 
@@ -280,7 +280,7 @@ const renderHead = page => {
   ${preload}
   <script defer src="./asset/icon-system.min.js?v=1.0"></script>
   <script defer src="./script.min.js?v=7.1"></script>
-  <script defer src="./site-runtime.min.js?v=1.1"></script>
+  <script defer src="./site-runtime.min.js?v=1.2"></script>
   ${page.assets.map(asset => `<script defer src="./${asset}?v=2.2"></script>`).join('\n  ')}
 </head>`;
 };
