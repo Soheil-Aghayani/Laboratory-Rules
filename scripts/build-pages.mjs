@@ -132,8 +132,10 @@ const footer = source.slice(footerStart, footerEnd)
 const sharedStart = source.indexOf('  <!-- Chemical Suggestion Modal -->');
 const runtimeStart = source.indexOf('  <script>', sharedStart);
 const bodyEnd = source.lastIndexOf('</body>');
+const existingDesktopDockStart = source.indexOf('  <nav class="desktop-bottom-dock"', sharedStart);
 const existingDockStart = source.indexOf('  <nav class="mobile-bottom-dock"', sharedStart);
-const sharedEnd = runtimeStart >= 0 ? runtimeStart : existingDockStart >= 0 ? existingDockStart : bodyEnd;
+const existingNavigationDockStart = existingDesktopDockStart >= 0 ? existingDesktopDockStart : existingDockStart;
+const sharedEnd = runtimeStart >= 0 ? runtimeStart : existingNavigationDockStart >= 0 ? existingNavigationDockStart : bodyEnd;
 const sharedMarkup = source.slice(sharedStart, sharedEnd).trim();
 const runtimeMatch = runtimeStart >= 0
   ? source.slice(runtimeStart, bodyEnd).match(/<script>\r?\n([\s\S]*?)\r?\n  <\/script>/)
@@ -247,6 +249,16 @@ const renderMobileDock = currentPage => {
     </nav>`;
 };
 
+const renderDesktopDock = currentPage => `
+    <nav class="desktop-bottom-dock" aria-label="دسترسی سریع دسکتاپ">
+      ${pageLink('index.html', 'خانه', 'home', currentPage === 'home', 'desktop-dock-item')}
+      ${pageLink('rules.html', 'قوانین و ایمنی', 'health_and_safety', currentPage === 'rules', 'desktop-dock-item')}
+      ${pageLink('quiz.html', 'آزمون ورود', 'clipboard-check', currentPage === 'quiz', 'desktop-dock-item')}
+      ${pageLink('gallery.html', 'گالری', 'gallery', currentPage === 'gallery', 'desktop-dock-item')}
+      ${pageLink('equipment.html', 'تجهیزات', 'test-tube', currentPage === 'equipment', 'desktop-dock-item')}
+      ${pageLink('elements.html', 'عناصر و مواد', 'science', currentPage === 'elements', 'desktop-dock-item')}
+    </nav>`;
+
 const renderHomeShortcuts = () => `
     <section class="home-shortcuts" aria-labelledby="home-shortcuts-title">
       <div class="section-heading-row">
@@ -297,7 +309,7 @@ const renderHead = page => {
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="stylesheet" href="./styles.min.css?v=6.3">
   <link rel="stylesheet" href="./elements.min.css?v=1.4">
-  <link rel="stylesheet" href="./site-pages.min.css?v=1.4">
+  <link rel="stylesheet" href="./site-pages.min.css?v=1.5">
   <script>
     try {
       const savedTheme = localStorage.getItem('theme');
@@ -326,7 +338,7 @@ const renderMain = (pageKey, page) => {
   } else if (pageKey === 'gallery') {
     pageContent = `<section class="standalone-page gallery-page" aria-labelledby="gallery-page-title"><div class="sr-only"><h1 id="gallery-page-title">گالری آزمایشگاه و کاتالوگ تجهیزات</h1></div>${fragments.gallery}</section>`;
   } else if (pageKey === 'elements') {
-    pageContent = `<section class="standalone-page elements-page" aria-labelledby="elements-page-title"><div class="sr-only"><h1 id="elements-page-title">عناصر و مواد</h1></div><div class="elements-page-stack"><details class="elements-accordion elements-accordion-primary" open><summary><span class="material-symbols-outlined" aria-hidden="true">science</span><span><strong>جدول تناوبی عناصر</strong><small>جستجو، فیلتر و معرفی عنصرها</small></span><span class="material-symbols-outlined elements-accordion-chevron" aria-hidden="true">expand_more</span></summary><div class="elements-accordion-body">${fragments.elements}</div></details><details class="elements-accordion elements-accordion-msds" open><summary><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span><strong>برگهٔ اطلاعات ایمنی و دفع پسماند</strong><small>MSDS Quick Lookup و بررسی سازگاری مواد</small></span><span class="material-symbols-outlined elements-accordion-chevron" aria-hidden="true">expand_more</span></summary><div class="elements-accordion-body"><section class="elements-support-tools" aria-label="ابزارهای MSDS و سازگاری مواد">${fragments.safetyWidgets}</section></div></details></div></section>`;
+    pageContent = `<section class="standalone-page elements-page" aria-labelledby="elements-page-title"><div class="sr-only"><h1 id="elements-page-title">عناصر و مواد</h1></div><div class="elements-page-stack"><details class="elements-accordion elements-accordion-primary"><summary><span class="material-symbols-outlined" aria-hidden="true">science</span><span><strong>جدول تناوبی عناصر</strong><small>جستجو، فیلتر و معرفی عنصرها</small></span><span class="material-symbols-outlined elements-accordion-chevron" aria-hidden="true">expand_more</span></summary><div class="elements-accordion-body">${fragments.elements}</div></details><details class="elements-accordion elements-accordion-msds" open><summary><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span><strong>برگهٔ اطلاعات ایمنی و دفع پسماند</strong><small>MSDS Quick Lookup و بررسی سازگاری مواد</small></span><span class="material-symbols-outlined elements-accordion-chevron" aria-hidden="true">expand_more</span></summary><div class="elements-accordion-body"><section class="elements-support-tools" aria-label="ابزارهای MSDS و سازگاری مواد">${fragments.safetyWidgets}</section></div></details></div></section>`;
   }
 
   return `
@@ -344,6 +356,7 @@ const renderMain = (pageKey, page) => {
     ${footer}
   </main>
   ${sharedMarkup}
+  ${renderDesktopDock(pageKey)}
   ${renderMobileDock(pageKey)}
 </body>
 </html>`;

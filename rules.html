@@ -25,7 +25,7 @@
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="stylesheet" href="./styles.min.css?v=6.3">
   <link rel="stylesheet" href="./elements.min.css?v=1.4">
-  <link rel="stylesheet" href="./site-pages.min.css?v=1.4">
+  <link rel="stylesheet" href="./site-pages.min.css?v=1.5">
   <script>
     try {
       const savedTheme = localStorage.getItem('theme');
@@ -63,13 +63,13 @@
       </div>
     </nav>
       <div class="header-top">
-        <div class="brand">
+        <a class="brand brand-link" href="./index.html" aria-label="بازگشت به صفحهٔ خانه" title="بازگشت به صفحهٔ خانه">
           <span class="material-symbols-outlined brand-icon">science</span>
           <div class="brand-text">
             <h1>آزمایشگاه پسماند</h1>
             <p>سامانه جامع مقررات، ایمنی و کاربری تجهیزات</p>
           </div>
-        </div>
+        </a>
         
         <div class="controls">
           <!-- Live Status -->
@@ -223,7 +223,7 @@
       </div>
 
       <!-- MSDS Chemical Safety Lookup Widget --></section>
-      <footer>
+    <footer>
       <div class="footer-info">
         <p>آزمایشگاه پسماند &copy; ۱۴۰۵</p>
         <p style="font-size: 0.75rem; font-family: var(--font-en); margin-top: 0.25rem;">Solid Waste Laboratory | Safety &amp; Waste Management Portal</p>
@@ -550,6 +550,15 @@
       </div>
     </div>
   </div>
+
+    <nav class="desktop-bottom-dock" aria-label="دسترسی سریع دسکتاپ">
+      <a class="site-nav-link desktop-dock-item" href="./index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span><span>خانه</span></a>
+      <a class="site-nav-link is-active desktop-dock-item" href="./rules.html" aria-current="page"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span>قوانین و ایمنی</span></a>
+      <a class="site-nav-link desktop-dock-item" href="./quiz.html"><span class="material-symbols-outlined" aria-hidden="true">clipboard-check</span><span>آزمون ورود</span></a>
+      <a class="site-nav-link desktop-dock-item" href="./gallery.html"><span class="material-symbols-outlined" aria-hidden="true">gallery</span><span>گالری</span></a>
+      <a class="site-nav-link desktop-dock-item" href="./equipment.html"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>تجهیزات</span></a>
+      <a class="site-nav-link desktop-dock-item" href="./elements.html"><span class="material-symbols-outlined" aria-hidden="true">science</span><span>عناصر و مواد</span></a>
+    </nav>
 
     <nav class="mobile-bottom-dock" aria-label="دسترسی سریع موبایل">
       <a class="site-nav-link mobile-dock-item" href="./index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span><span>خانه</span></a>
