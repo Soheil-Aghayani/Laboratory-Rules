@@ -3,6 +3,30 @@ body:has(.equipment-detail-page) {
   overflow-x: hidden;
 }
 
+.catalog-detail-site-header {
+  width: min(1120px, 100%);
+  margin: 0 auto 1.25rem;
+  padding-bottom: 1rem;
+}
+
+.catalog-detail-site-header .header-top {
+  align-items: center;
+}
+
+.catalog-detail-site-header .controls {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.catalog-detail-site-header .catalog-detail-header-back {
+  flex: 0 1 auto;
+}
+
+.catalog-detail-site-footer {
+  width: min(1120px, 100%);
+  margin-inline: auto;
+}
+
 .catalog-detail-header {
   display: flex;
   align-items: center;
@@ -191,6 +215,12 @@ body:has(.equipment-detail-page) {
 
 .catalog-detail-fab .material-symbols-outlined {
   font-size: 1.45rem;
+}
+
+.catalog-detail-fab-icon {
+  display: block;
+  width: 1.45rem;
+  height: 1.45rem;
 }
 
 .catalog-detail-emergency {
@@ -397,6 +427,25 @@ body:has(.equipment-detail-page) .chatbot-window {
     margin-top: 0.5rem;
     padding: 0.45rem 0.55rem;
     border-radius: 14px;
+  }
+
+  .catalog-detail-site-header {
+    width: 100%;
+    margin-bottom: 0.75rem;
+  }
+
+  .catalog-detail-site-header .header-top {
+    align-items: flex-start;
+  }
+
+  .catalog-detail-site-header .controls {
+    width: 100%;
+    align-items: center;
+    justify-content: stretch;
+  }
+
+  .catalog-detail-site-header .status-widget {
+    flex: 1 1 auto;
   }
 
   .catalog-detail-brand > .material-symbols-outlined {
