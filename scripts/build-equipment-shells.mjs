@@ -1,11 +1,18 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(scriptDirectory, '..');
 const equipmentDirectory = path.join(projectRoot, 'Equipment');
 const portalSource = fs.readFileSync(path.join(projectRoot, 'index.html'), 'utf8');
+const catalogContext = { window: {} };
+vm.createContext(catalogContext);
+vm.runInContext(fs.readFileSync(path.join(projectRoot, 'equipment-data.js'), 'utf8'), catalogContext);
+const equipmentCatalog = Array.isArray(catalogContext.window.LAB_EQUIPMENT_CATALOG)
+  ? catalogContext.window.LAB_EQUIPMENT_CATALOG
+  : [];
 
 const footerStart = portalSource.indexOf('  <footer class="site-footer"');
 const footerEnd = portalSource.indexOf('  </footer>', footerStart) + '  </footer>'.length;
@@ -20,6 +27,49 @@ const readMeta = (source, name) => source.match(new RegExp(`<meta\\s+name="${nam
 const readTitle = source => source.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim() || 'تجهیزات آزمایشگاه | آزمایشگاه پسماند';
 const readCanonical = source => source.match(/<link\s+rel="canonical"\s+href="([^"]*)"/i)?.[1] || '';
 const readSlug = source => source.match(/data-equipment-slug="([^"]+)"/i)?.[1] || '';
+const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character => ({
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#039;'
+}[character]));
+
+const renderInitialDetail = family => {
+  if (!family?.variants?.length) return '';
+  const variant = family.variants[0];
+  const image = `../asset/equipment/${encodeURIComponent(variant.image)}`;
+  const titleFa = escapeHtml(family.titleFa);
+  const titleEn = escapeHtml(family.titleEn);
+  const category = escapeHtml(family.categoryLabel);
+  const variantTitle = escapeHtml(variant.titleFa);
+  const variantDetail = escapeHtml(variant.detail);
+  const introduction = escapeHtml(family.introduction);
+  const primaryUse = escapeHtml(family.primaryUse);
+  const count = family.variantSummary || `${family.variants.length} گزینه در این خانواده`;
+
+  if (family.presentation === 'crucible-guide') {
+    return `
+      <header class="equipment-detail-header crucible-guide-header">
+        <div><span class="equipment-detail-kicker">راهنمای آشنایی با تجهیزات حرارتی</span><h1 class="equipment-detail-title">${titleFa}</h1><p class="equipment-detail-title-en" dir="ltr">${titleEn}</p></div>
+        <span class="equipment-detail-category">${category}</span>
+      </header>
+      <section class="crucible-guide-hero" aria-labelledby="crucible-guide-hero-title">
+        <div class="crucible-guide-hero-copy"><span class="crucible-guide-kicker">قبل از ظرفیت، جنس را بشناس</span><h2 id="crucible-guide-hero-title">جنس بدنه، انتخاب بوته را مشخص می‌کند</h2><p>بوته‌ها ظاهر مشابهی دارند، اما برای دما و مواد یکسان ساخته نشده‌اند. این راهنما تفاوت جنس‌ها و انتخاب مناسب برای کاربرد آزمایشگاهی را توضیح می‌دهد.</p></div>
+        <div class="crucible-guide-visual"><div class="crucible-guide-image-frame"><img class="crucible-guide-image" data-detail-image src="${image}" alt="${variantTitle}" loading="eager" fetchpriority="high" decoding="async" width="720" height="540"></div><div class="crucible-guide-image-caption"><span>جنس انتخاب‌شده</span><strong>${escapeHtml(variant.metadata?.material || 'بوته')}</strong><p data-detail-caption>${escapeHtml(variant.imageCaption || variant.titleFa)}</p></div></div>
+      </section>`;
+  }
+
+  return `
+      <header class="equipment-detail-header">
+        <div><span class="equipment-detail-kicker">کاتالوگ تجهیزات آزمایشگاه</span><h1 class="equipment-detail-title">${titleFa}</h1><p class="equipment-detail-title-en" dir="ltr">${titleEn}</p></div>
+        <span class="equipment-detail-category">${category}</span>
+      </header>
+      <section class="equipment-detail-hero" aria-labelledby="equipment-detail-intro-title">
+        <div class="equipment-detail-media"><div class="equipment-detail-image-frame"><img class="equipment-detail-image" data-detail-image src="${image}" alt="${variantTitle}" loading="eager" fetchpriority="high" decoding="async" width="720" height="540"></div><p class="equipment-detail-image-caption" data-detail-caption>${variantTitle}</p></div>
+        <div class="equipment-detail-intro"><p class="equipment-detail-summary" id="equipment-detail-intro-title">${introduction}</p><div class="equipment-detail-meta" aria-label="خلاصهٔ اطلاعات"><div class="equipment-detail-meta-item"><span>کاربرد اصلی</span><strong>${primaryUse}</strong></div><div class="equipment-detail-meta-item"><span>تعداد گزینه‌ها</span><strong>${escapeHtml(count)}</strong></div></div><div class="equipment-detail-selected" aria-live="polite"><h2>گزینهٔ انتخاب‌شده</h2><strong class="equipment-detail-selected-title" data-detail-title>${variantTitle}</strong><p class="equipment-detail-selected-copy" data-detail-copy>${variantDetail}</p></div></div>
+      </section>`;
+};
 
 const files = fs.readdirSync(equipmentDirectory)
   .filter(file => file.endsWith('.html'))
@@ -30,6 +80,12 @@ files.forEach(file => {
   const source = fs.readFileSync(target, 'utf8');
   const slug = readSlug(source);
   if (!slug) throw new Error(`Missing equipment slug in ${file}`);
+
+  const family = equipmentCatalog.find(item => item.slug === slug);
+  const defaultImage = family?.variants?.[0]?.image;
+  const defaultImageHref = defaultImage
+    ? `../asset/equipment/${encodeURIComponent(defaultImage)}`
+    : '';
 
   const canonical = readCanonical(source) || `https://soheil-aghyani.github.io/Solid-Waste-Laboratory/Equipment/${file}`;
   const description = readMeta(source, 'description') || 'معرفی آموزشی تجهیزات، کاربرد، تفاوت گزینه‌ها و نکات ایمنی در آزمایشگاه پسماند.';
@@ -45,18 +101,19 @@ files.forEach(file => {
   <link rel="canonical" href="${canonical}">
   <link rel="manifest" href="../manifest.webmanifest">
   <link rel="icon" type="image/webp" href="../Waste%20Lab.webp">
+  <link rel="preload" href="../asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
+  ${defaultImageHref ? `<link rel="preload" href="${defaultImageHref}" as="image" fetchpriority="high">` : ''}
   <script>try{const t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
   <link rel="stylesheet" href="../styles.min.css?v=6.3">
-  <link rel="stylesheet" href="../site-pages.min.css?v=2.0">
-  <link rel="stylesheet" href="../equipment-detail.min.css?v=1.8">
+  <link rel="stylesheet" href="../site-pages.min.css?v=2.1">
+  <link rel="stylesheet" href="../equipment-detail.min.css?v=1.9">
   <link rel="stylesheet" href="../catalog-detail-chrome.min.css?v=1.2">
   <script defer src="../asset/icon-system.min.js?v=1.0"></script>
-  <script async fetchpriority="low" src="../script.min.js?v=7.2"></script>
   <script defer src="../equipment-data.min.js?v=2.2"></script>
   <script defer src="../catalog-detail-runtime.min.js?v=1.2"></script>
-  <script defer src="../equipment-detail.min.js?v=1.8"></script>
+  <script defer src="../equipment-detail.min.js?v=1.9"></script>
 </head>
-<body data-page="equipment-detail">
+<body data-page="equipment-detail" class="equipment-detail-loading">
   <a class="skip-link" href="#equipment-detail-root">پرش به محتوای اصلی</a>
   <main class="container site-container equipment-detail-page" id="main-content" data-equipment-slug="${slug}">
     <header class="site-header catalog-detail-site-header">
@@ -77,12 +134,12 @@ files.forEach(file => {
             <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
             <span>بازگشت به کاتالوگ</span>
           </a>
-          <button class="theme-btn" id="theme-btn" type="button" aria-label="تغییر پوسته"></button>
+          <button class="theme-btn equipment-detail-theme" id="equipment-detail-theme" type="button" aria-label="تغییر پوسته"><span class="material-symbols-outlined" aria-hidden="true">dark_mode</span></button>
         </div>
       </div>
     </header>
-    <div class="equipment-detail-shell">
-      <div id="equipment-detail-root"></div>
+  <div class="equipment-detail-shell">
+      <div id="equipment-detail-root">${renderInitialDetail(family)}</div>
     </div>
 ${sharedFooter}
   </main>

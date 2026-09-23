@@ -145,6 +145,56 @@
       window.addEventListener('online', updateOfflineStatus);
       window.addEventListener('offline', updateOfflineStatus);
 
+      // Lightweight shared chrome for catalog pages. The full portal bundle
+      // remains available to pages that need its broader interactions, while
+      // catalog and detail pages keep the first render small.
+      const hasGlobalPortalScript = Boolean(document.querySelector('script[src*="script.min.js"]'));
+      if (!hasGlobalPortalScript) {
+        const themeButton = document.getElementById('theme-btn');
+        const themeMeta = document.querySelector('meta[name="theme-color"]');
+        const applyThemeIcon = theme => {
+          if (!themeButton) return;
+          themeButton.innerHTML = `<span class="material-symbols-outlined" aria-hidden="true">${theme === 'dark' ? 'light_mode' : 'dark_mode'}</span>`;
+          themeButton.setAttribute('aria-label', theme === 'dark' ? 'فعال‌کردن پوستهٔ روشن' : 'فعال‌کردن پوستهٔ تیره');
+          if (themeMeta) themeMeta.setAttribute('content', theme === 'dark' ? '#0f172a' : '#f8fafc');
+        };
+        if (themeButton && !themeButton.dataset.bound) {
+          themeButton.dataset.bound = 'true';
+          let theme = document.documentElement.getAttribute('data-theme') || 'dark';
+          applyThemeIcon(theme);
+          themeButton.addEventListener('click', () => {
+            theme = theme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+            try { localStorage.setItem('theme', theme); } catch (error) {}
+            applyThemeIcon(theme);
+          });
+        }
+
+        const statusDot = document.getElementById('status-dot');
+        const statusText = document.getElementById('status-text');
+        const updateCompactStatus = () => {
+          if (!statusDot || !statusText) return;
+          const now = new Date();
+          let hour = now.getHours();
+          let day = now.getDay();
+          let dayName = new Intl.DateTimeFormat('fa-IR', { weekday: 'long' }).format(now);
+          try {
+            const parts = new Intl.DateTimeFormat('en-US', {
+              timeZone: 'Asia/Tehran', weekday: 'short', hour: 'numeric', hourCycle: 'h23'
+            }).formatToParts(now);
+            const days = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+            hour = Number(parts.find(part => part.type === 'hour').value);
+            day = days[parts.find(part => part.type === 'weekday').value];
+            dayName = new Intl.DateTimeFormat('fa-IR', { timeZone: 'Asia/Tehran', weekday: 'long' }).format(now);
+          } catch (error) {}
+          const isOpen = [0, 1, 2, 3, 6].includes(day) && hour >= 7 && hour < 16;
+          statusDot.classList.toggle('active', isOpen);
+          statusText.textContent = `${isOpen ? 'آزمایشگاه باز است' : 'آزمایشگاه بسته است'} · ${dayName} · ۷ تا ۱۶`;
+        };
+        updateCompactStatus();
+        window.setInterval(updateCompactStatus, 60000);
+      }
+
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('./sw.js', { scope: './' })

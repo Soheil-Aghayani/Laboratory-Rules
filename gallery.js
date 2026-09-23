@@ -51,17 +51,23 @@
     if (!firstVariant) return '';
 
     const image = family.cardImage || firstVariant.image;
-    const loading = index < 4 ? 'eager' : 'lazy';
-    const fetchPriority = index < 2 ? ' fetchpriority="high"' : '';
+    // Only the first result is part of the initial viewport. Keeping the rest
+    // lazy prevents the mobile catalog from downloading the whole shelf before
+    // the reader has interacted with it.
+    const loading = index === 0 ? 'eager' : 'lazy';
+    const fetchPriority = index === 0 ? ' fetchpriority="high"' : '';
     const categoryLabel = family.categoryLabel || categoryLabels[family.category] || 'تجهیزات آزمایشگاه';
     const title = escapeHtml(family.titleFa);
     const titleEn = escapeHtml(family.titleEn);
+    const encodedImage = encodeURIComponent(image);
+    const thumbnailImage = `./asset/equipment/catalog-480/${encodedImage}`;
+    const originalImage = `./asset/equipment/${encodedImage}`;
 
     return `
       <article class="equipment-catalog-card" data-equipment-category="${escapeHtml(family.category)}" data-equipment-search="${escapeHtml(getSearchText(family))}">
         <a class="equipment-card-link" href="./Equipment/${encodeURIComponent(family.slug)}.html" aria-label="مشاهدهٔ صفحهٔ معرفی ${title}">
           <div class="equipment-card-image-wrap">
-            <img class="equipment-card-image" src="./asset/equipment/${encodeURIComponent(image)}" alt="${title}" loading="${loading}" decoding="async" width="640" height="480"${fetchPriority}>
+            <img class="equipment-card-image" src="${thumbnailImage}" srcset="${thumbnailImage} 480w, ${originalImage} 640w" sizes="(max-width: 680px) 112px, 208px" alt="${title}" loading="${loading}" decoding="async" width="480" height="480"${fetchPriority}>
           </div>
           <div class="equipment-card-body">
             <div class="equipment-card-meta">

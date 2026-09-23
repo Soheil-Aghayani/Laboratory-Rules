@@ -244,10 +244,10 @@ const renderHomeShortcuts = () => `
 const renderHead = page => {
   const canonical = `https://soheil-aghyani.github.io/Solid-Waste-Laboratory/${page.canonical}`;
   const pageStyles = page.filename === 'gallery.html'
-    ? '<link rel="stylesheet" href="./catalog-redesign.min.css?v=1.6">'
+    ? '<link rel="stylesheet" href="./catalog-redesign.min.css?v=1.7">'
     : '';
   const elementStyles = page.filename === 'elements.html'
-    ? '<link rel="stylesheet" href="./elements.min.css?v=1.6">'
+    ? '<link rel="stylesheet" href="./elements.min.css?v=1.8">'
     : '';
   const assetVersion = asset => asset === 'gallery.min.js' ? '3.1' : '2.2';
   return `<!DOCTYPE html>
@@ -276,7 +276,7 @@ const renderHead = page => {
   <link rel="icon" type="image/webp" href="Waste%20Lab.webp">
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="stylesheet" href="./styles.min.css?v=6.3">
-  ${elementStyles ? `${elementStyles}\n  ` : ''}<link rel="stylesheet" href="./site-pages.min.css?v=2.0">${pageStyles ? `\n  ${pageStyles}` : ''}
+  ${elementStyles ? `${elementStyles}\n  ` : ''}<link rel="stylesheet" href="./site-pages.min.css?v=2.1">${pageStyles ? `\n  ${pageStyles}` : ''}
   <script>
     try {
       const savedTheme = localStorage.getItem('theme');
@@ -285,8 +285,8 @@ const renderHead = page => {
     } catch (error) {}
   </script>
   <script defer src="./asset/icon-system.min.js?v=1.0"></script>
-  <script async fetchpriority="low" src="./script.min.js?v=7.2"></script>
-  <script defer src="./site-runtime.min.js?v=1.4"></script>
+  ${['gallery.html', 'elements.html'].includes(page.filename) ? '' : '<script async fetchpriority="low" src="./script.min.js?v=7.2"></script>'}
+  <script defer src="./site-runtime.min.js?v=1.5"></script>
   ${page.assets.map(asset => `<script defer src="./${asset}?v=${assetVersion(asset)}"></script>`).join('\n  ')}
 </head>`;
 };
@@ -304,7 +304,7 @@ const renderMain = (pageKey, page) => {
   } else if (pageKey === 'gallery') {
     pageContent = `<section class="standalone-page gallery-page" aria-labelledby="gallery-page-title"><div class="sr-only"><h1 id="gallery-page-title">گالری آزمایشگاه و کاتالوگ تجهیزات</h1></div>${fragments.gallery}</section>`;
   } else if (pageKey === 'elements') {
-    pageContent = `<section class="standalone-page elements-page" aria-labelledby="elements-page-title"><div class="sr-only"><h1 id="elements-page-title">عناصر و مواد</h1></div><div class="elements-page-stack"><details class="elements-accordion elements-accordion-primary"><summary><span class="material-symbols-outlined" aria-hidden="true">science</span><span><strong>جدول تناوبی عناصر</strong><small>جستجو، فیلتر و معرفی عنصرها</small></span><span class="material-symbols-outlined elements-accordion-chevron" aria-hidden="true">expand_more</span></summary><div class="elements-accordion-body">${fragments.elements}</div></details><details class="elements-accordion elements-accordion-msds" open><summary><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span><strong>برگهٔ اطلاعات ایمنی و دفع پسماند</strong><small>MSDS Quick Lookup و بررسی سازگاری مواد</small></span><span class="material-symbols-outlined elements-accordion-chevron" aria-hidden="true">expand_more</span></summary><div class="elements-accordion-body"><section class="elements-support-tools" aria-label="ابزارهای MSDS و سازگاری مواد">${fragments.safetyWidgets}</section></div></details></div></section>`;
+    pageContent = `<section class="standalone-page elements-page" aria-labelledby="elements-page-title"><div class="sr-only"><h1 id="elements-page-title">عناصر و مواد</h1></div><div class="elements-page-stack"><details class="elements-accordion elements-accordion-primary"><summary><span class="material-symbols-outlined" aria-hidden="true">science</span><span><strong>جدول تناوبی عناصر</strong><small>جستجو، فیلتر و معرفی عنصرها</small></span><span class="material-symbols-outlined elements-accordion-chevron" aria-hidden="true">expand_more</span></summary><div class="elements-accordion-body">${fragments.elements}</div></details><details class="elements-accordion elements-accordion-msds"><summary><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span><strong>برگهٔ اطلاعات ایمنی و دفع پسماند</strong><small>MSDS Quick Lookup و بررسی سازگاری مواد</small></span><span class="material-symbols-outlined elements-accordion-chevron" aria-hidden="true">expand_more</span></summary><div class="elements-accordion-body"><section class="elements-support-tools" aria-label="ابزارهای MSDS و سازگاری مواد">${fragments.safetyWidgets}</section></div></details></div></section>`;
   }
 
   return `

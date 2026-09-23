@@ -930,6 +930,23 @@ body:has(.equipment-detail-page) {
   max-width: 100%;
 }
 
+/* Keep the footer out of the first layout pass while the data-driven detail
+   shell is being hydrated. The reserved space prevents a visible jump when
+   the selected family is inserted. */
+body.equipment-detail-loading .catalog-detail-site-footer {
+  visibility: hidden;
+}
+
+#equipment-detail-root:empty {
+  min-height: 1560px;
+}
+
+@media (min-width: 769px) {
+  #equipment-detail-root:empty {
+    min-height: 920px;
+  }
+}
+
 .equipment-detail-topbar > * {
   min-width: 0;
 }

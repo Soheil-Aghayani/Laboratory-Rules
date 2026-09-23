@@ -128,7 +128,7 @@
     if (!family.comparison) {
       return `
         <div class="equipment-detail-image-frame">
-          <img class="equipment-detail-image" data-detail-image src="${assetPrefix}${selectedVariant.image}" alt="${selectedVariant.titleFa}" width="720" height="540">
+          <img class="equipment-detail-image" data-detail-image src="${assetPrefix}${selectedVariant.image}" alt="${selectedVariant.titleFa}" loading="eager" fetchpriority="high" decoding="async" width="720" height="540">
         </div>
         <p class="equipment-detail-image-caption" data-detail-caption>${selectedVariant.imageCaption || selectedVariant.titleFa}</p>
       `;
@@ -140,8 +140,8 @@
 
     return `
       <div class="equipment-detail-image-frame equipment-detail-compare-frame" data-compare style="--compare-position:50%">
-        <img class="equipment-detail-compare-image" data-compare-dry-image src="${assetPrefix}${dryVariant.image}" alt="${dryVariant.titleFa}" width="720" height="540">
-        <img class="equipment-detail-compare-image equipment-detail-compare-image-wet" data-compare-wet-image src="${assetPrefix}${wetVariant.image}" alt="${wetVariant.titleFa}" width="720" height="540">
+        <img class="equipment-detail-compare-image" data-compare-dry-image src="${assetPrefix}${dryVariant.image}" alt="${dryVariant.titleFa}" loading="eager" fetchpriority="high" decoding="async" width="720" height="540">
+        <img class="equipment-detail-compare-image equipment-detail-compare-image-wet" data-compare-wet-image src="${assetPrefix}${wetVariant.image}" alt="${wetVariant.titleFa}" loading="eager" fetchpriority="high" decoding="async" width="720" height="540">
         <div class="equipment-detail-compare-divider" data-compare-divider aria-hidden="true">
           <span class="material-symbols-outlined">swap_horizontal_circle</span>
         </div>
@@ -242,7 +242,7 @@
         </div>
         <div class="crucible-guide-visual" aria-live="polite">
           <div class="crucible-guide-image-frame">
-            <img class="crucible-guide-image" data-detail-image src="${assetPrefix}${selectedVariant.image}" alt="${selectedVariant.titleFa}" width="720" height="540">
+            <img class="crucible-guide-image" data-detail-image src="${assetPrefix}${selectedVariant.image}" alt="${selectedVariant.titleFa}" loading="eager" fetchpriority="high" decoding="async" width="720" height="540">
           </div>
           <div class="crucible-guide-image-caption">
             <span>جنس انتخاب‌شده</span>
@@ -471,10 +471,35 @@
     range.setAttribute('aria-valuetext', `${toPersianDigits(Math.round(position))}٪`);
   }
 
+  function updateLabStatus() {
+    const statusDot = document.getElementById('status-dot');
+    const statusText = document.getElementById('status-text');
+    if (!statusDot || !statusText) return;
+    const now = new Date();
+    let hour = now.getHours();
+    let day = now.getDay();
+    let dayName = new Intl.DateTimeFormat('fa-IR', { weekday: 'long' }).format(now);
+    try {
+      const parts = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'Asia/Tehran', weekday: 'short', hour: 'numeric', hourCycle: 'h23'
+      }).formatToParts(now);
+      const days = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+      hour = Number(parts.find(part => part.type === 'hour').value);
+      day = days[parts.find(part => part.type === 'weekday').value];
+      dayName = new Intl.DateTimeFormat('fa-IR', { timeZone: 'Asia/Tehran', weekday: 'long' }).format(now);
+    } catch (error) {}
+    const isOpen = [0, 1, 2, 3, 6].includes(day) && hour >= 7 && hour < 16;
+    statusDot.classList.toggle('active', isOpen);
+    statusText.textContent = `${isOpen ? 'آزمایشگاه باز است' : 'آزمایشگاه بسته است'} · ${dayName} · ۷ تا ۱۶`;
+  }
+
   function initDetailPage() {
     const page = document.querySelector('[data-equipment-slug]');
     const root = document.getElementById('equipment-detail-root');
     if (!page || !root) return;
+
+    updateLabStatus();
+    window.setInterval(updateLabStatus, 60000);
 
     const family = catalog.find(item => item.slug === page.dataset.equipmentSlug);
     if (!family) {
@@ -489,6 +514,8 @@
     if (description) description.setAttribute('content', family.introduction);
 
     root.innerHTML = renderPage(family, selectedVariant);
+    document.body.classList.remove('equipment-detail-loading');
+    document.body.classList.add('equipment-detail-ready');
     let activeVariant = selectedVariant;
     const selectVariant = variant => {
       if (!variant) return;
@@ -596,5 +623,5 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', initDetailPage);
+  document.addEventListener('DOMContentLoaded', initDetailPage, { once: true });
 })();

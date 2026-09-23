@@ -582,19 +582,20 @@ body {
 
 .element-card-radioactive,
 .element-badge-radioactive {
-  width: 32px;
-  min-width: 32px;
-  height: 32px;
-  min-height: 32px;
+  width: .78rem;
+  min-width: .78rem;
+  height: .78rem;
+  min-height: .78rem;
   padding: 0;
   border-radius: 50%;
   background: transparent;
 }
 
-.radiation-symbol {
+.element-card-radioactive .radiation-symbol,
+.element-badge-radioactive .radiation-symbol {
   display: block;
-  width: 32px;
-  height: 32px;
+  width: .78rem;
+  height: .78rem;
   flex: 0 0 auto;
 }
 
@@ -1348,10 +1349,10 @@ body {
 .element-periodic-table .element-card-radioactive,
 .element-list .element-card-radioactive {
   display: inline-flex;
-  width: 1rem;
-  min-width: 1rem;
-  height: 1rem;
-  min-height: 1rem;
+  width: .78rem;
+  min-width: .78rem;
+  height: .78rem;
+  min-height: .78rem;
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
@@ -1363,8 +1364,8 @@ body {
 
 .element-periodic-table .element-card-radioactive .radiation-symbol,
 .element-list .element-card-radioactive .radiation-symbol {
-  width: 1rem;
-  height: 1rem;
+  width: .78rem;
+  height: .78rem;
 }
 
 .element-badge-radioactive .radiation-symbol,

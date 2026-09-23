@@ -498,6 +498,8 @@ body[data-page="gallery"] #search-status-banner {
   min-height: 0;
   overflow: hidden;
   contain: layout paint;
+  content-visibility: auto;
+  contain-intrinsic-size: 448px 448px;
   border: 1px solid var(--border-color);
   border-radius: 14px;
   background: var(--bg-tertiary);
@@ -864,6 +866,10 @@ body[data-page="gallery"] #search-status-banner {
     flex-direction: column;
     gap: 0.6rem;
     min-height: 0;
+  }
+
+  .catalog-results-heading p {
+    min-height: 2.2em;
   }
 
   .catalog-results-actions {
