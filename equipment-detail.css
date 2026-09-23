@@ -384,10 +384,16 @@
   transition: background-color var(--transition-speed), border-color var(--transition-speed), color var(--transition-speed), transform var(--transition-speed);
 }
 
-.equipment-detail-variant-button:hover,
 .equipment-detail-variant-button:focus-visible {
   border-color: var(--accent-emerald);
   color: var(--accent-emerald-strong);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .equipment-detail-variant-button:hover {
+    border-color: var(--accent-emerald);
+    color: var(--accent-emerald-strong);
+  }
 }
 
 .equipment-detail-variant-button:active {
@@ -785,11 +791,6 @@ body:has(.equipment-detail-page) {
   min-height: 48px;
   border-radius: 9px;
   transition: border-color var(--transition-speed), background-color var(--transition-speed), color var(--transition-speed);
-}
-
-.equipment-detail-variant-button:hover,
-.equipment-detail-variant-button:focus-visible {
-  background: var(--accent-emerald-glow);
 }
 
 .equipment-detail-variant-button:active {

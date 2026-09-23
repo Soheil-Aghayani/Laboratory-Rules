@@ -26,7 +26,7 @@ const APP_SHELL = [
   './data/chemical-index.json',
   './data/catalog-index.json',
   './equipment-detail.min.js?v=1.8',
-  './equipment-detail.min.css?v=1.7',
+  './equipment-detail.min.css?v=1.8',
   './catalog-redesign.min.css?v=1.5',
   './catalog-detail-chrome.min.css?v=1.0',
   './catalog-detail-runtime.min.js?v=1.1',
