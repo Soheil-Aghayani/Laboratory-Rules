@@ -166,46 +166,6 @@ const pageLink = (href, label, iconName, current, extraClass = '') => {
   return `<a class="site-nav-link${current ? ' is-active' : ''}${extraClass ? ` ${extraClass}` : ''}" href="./${href}"${currentAttr}${accessibleLabel}><span class="material-symbols-outlined" aria-hidden="true">${iconName}</span><span${labelClass}>${label}</span></a>`;
 };
 
-const renderPrimaryNav = currentPage => {
-  const currentGroup = pageGroup(currentPage);
-  return `
-    <nav class="site-primary-nav" aria-label="ناوبری اصلی">
-      ${pageLink('index.html', 'خانه', 'home', currentGroup === 'home', 'site-nav-home')}
-      <div class="site-nav-group${currentGroup === 'safety' ? ' is-active' : ''}" role="group" aria-labelledby="site-nav-safety-title">
-        <div class="site-nav-group-heading"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span id="site-nav-safety-title" class="site-nav-group-title">ایمنی</span></div>
-        <div class="site-nav-subnav" aria-label="زیرصفحه‌های ایمنی">
-          ${pageLink('rules.html', 'قوانین عمومی و ایمنی', 'book-bookmark', currentPage === 'rules')}
-          ${pageLink('quiz.html', 'آزمون و تعهدنامه ورود', 'clipboard-check', currentPage === 'quiz')}
-        </div>
-      </div>
-      <div class="site-nav-group${currentGroup === 'catalog' ? ' is-active' : ''}" role="group" aria-labelledby="site-nav-catalog-title">
-        <div class="site-nav-group-heading"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span><span id="site-nav-catalog-title" class="site-nav-group-title">کاتالوگ آزمایشگاه</span></div>
-        <div class="site-nav-subnav" aria-label="زیرصفحه‌های کاتالوگ">
-          ${pageLink('gallery.html', 'گالری تجهیزات', 'gallery', currentPage === 'gallery')}
-          ${pageLink('equipment.html', 'راهنمای کاربری تجهیزات', 'test-tube', currentPage === 'equipment')}
-          ${pageLink('elements.html', 'عناصر و مواد', 'science', currentPage === 'elements')}
-        </div>
-      </div>
-    </nav>`;
-};
-
-const renderContext = currentPage => {
-  const contexts = {
-    rules: ['ایمنی', 'قوانین عمومی و ایمنی', [['rules.html', 'قوانین عمومی و ایمنی'], ['quiz.html', 'آزمون و تعهدنامه ورود']]],
-    quiz: ['ایمنی', 'آزمون و تعهدنامه ورود', [['rules.html', 'قوانین عمومی و ایمنی'], ['quiz.html', 'آزمون و تعهدنامه ورود']]],
-    equipment: ['کاتالوگ آزمایشگاه', 'راهنمای کاربری تجهیزات', [['gallery.html', 'گالری تجهیزات'], ['equipment.html', 'راهنمای کاربری تجهیزات'], ['elements.html', 'عناصر و مواد']]],
-    elements: ['کاتالوگ آزمایشگاه', 'عناصر و مواد', [['gallery.html', 'گالری تجهیزات'], ['equipment.html', 'راهنمای کاربری تجهیزات'], ['elements.html', 'عناصر و مواد']]],
-    gallery: ['کاتالوگ آزمایشگاه', 'گالری تجهیزات', [['gallery.html', 'گالری تجهیزات'], ['equipment.html', 'راهنمای کاربری تجهیزات'], ['elements.html', 'عناصر و مواد']]],
-  };
-  const context = contexts[currentPage];
-  if (!context) return '';
-  const [group, title] = context;
-  return `
-    <div class="page-context" aria-label="مسیر صفحه">
-      <div class="page-context-heading"><span class="page-kicker">مسیر صفحه</span><div class="page-context-breadcrumb"><a href="./index.html">خانه</a><span class="material-symbols-outlined" aria-hidden="true">chevron_left</span><span>${group}</span><span class="material-symbols-outlined" aria-hidden="true">chevron_left</span><strong>${title}</strong></div></div>
-      </div>`;
-};
-
 const renderMobileSectionNav = currentPage => {
   const group = pageGroup(currentPage);
   const sections = group === 'safety'
@@ -346,12 +306,10 @@ const renderMain = (pageKey, page) => {
   <a class="skip-link" href="#main-content">پرش به محتوای اصلی</a>
   <main class="container site-container" id="main-content">
     <header class="site-header">
-      ${renderPrimaryNav(pageKey)}
       ${headerTop}
       ${renderMobileSectionNav(pageKey)}
       ${pageKey === 'home' ? welcomePanel : ''}
     </header>
-    ${renderContext(pageKey)}
     ${pageContent}
     ${footer}
   </main>
