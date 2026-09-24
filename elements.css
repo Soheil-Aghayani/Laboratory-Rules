@@ -1041,3 +1041,17 @@
   }
 
 }
+
+/* Keep accordion controls comfortably separated from their container edges. */
+.element-detail-accordion > summary,
+.element-sources > summary {
+  gap: .7rem;
+  padding-inline: 1.25rem;
+}
+
+@media (max-width: 760px) {
+  .element-detail-accordion > summary,
+  .element-sources > summary {
+    padding-inline: 1rem;
+  }
+}

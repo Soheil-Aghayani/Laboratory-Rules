@@ -589,9 +589,90 @@ body:has(.equipment-detail-page) .chatbot-window {
   margin-inline: 0;
 }
 
+/* Keep a return action available after a long equipment page has been scrolled. */
+.equipment-detail-return {
+  width: min(1120px, 100%);
+  margin: 1rem auto 0;
+}
+
+.equipment-detail-return a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: .45rem;
+  padding: .55rem .9rem;
+  border: 1px solid var(--accent-emerald);
+  border-radius: 10px;
+  background: var(--accent-emerald-glow);
+  color: var(--accent-emerald-strong);
+  font: inherit;
+  font-size: .78rem;
+  font-weight: 850;
+  text-decoration: none;
+  transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+
+.equipment-detail-return a:hover,
+.equipment-detail-return a:focus-visible {
+  border-color: var(--accent-emerald);
+  background: var(--accent-emerald);
+  color: #fff;
+}
+
+.equipment-detail-return .material-symbols-outlined {
+  font-size: 1.1rem;
+}
+
+.equipment-detail-accordion summary {
+  gap: .75rem;
+  padding-inline: 1.15rem;
+}
+
+.crucible-guide-model-details summary,
+.crucible-guide-safety summary {
+  gap: .75rem;
+  padding-inline: .85rem;
+}
+
+.equipment-detail-accordion:not([open]) .equipment-detail-accordion-chevron {
+  transform: rotate(-90deg);
+}
+
+.equipment-detail-accordion[open] .equipment-detail-accordion-chevron {
+  transform: rotate(0deg);
+}
+
+.crucible-guide-model-details:not([open]) summary > .material-symbols-outlined:last-child,
+.crucible-guide-safety details:not([open]) summary > .material-symbols-outlined:last-child {
+  transform: rotate(-90deg);
+}
+
+.crucible-guide-model-details[open] summary > .material-symbols-outlined:last-child,
+.crucible-guide-safety details[open] summary > .material-symbols-outlined:last-child {
+  transform: rotate(0deg);
+}
+
 @media (max-width: 760px) {
   .catalog-detail-site-header {
     margin-inline: -.65rem;
     padding-inline: .65rem;
+  }
+
+  .equipment-detail-return {
+    margin-top: .75rem;
+  }
+
+  .equipment-detail-return a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .equipment-detail-accordion summary {
+    padding-inline: 1rem;
+  }
+
+  .crucible-guide-model-details summary,
+  .crucible-guide-safety summary {
+    padding-inline: .7rem;
   }
 }

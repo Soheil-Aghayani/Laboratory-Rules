@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'lab-rules-v87';
+const CACHE_VERSION = 'lab-rules-v88';
 const APP_SHELL = [
   './',
   './index.html',
@@ -10,8 +10,8 @@ const APP_SHELL = [
   './offline.html',
   './manifest.webmanifest',
   './styles.min.css?v=6.3',
-  './elements.min.css?v=1.8',
-  './site-pages.min.css?v=2.4',
+  './elements.min.css?v=1.9',
+  './site-pages.min.css?v=2.5',
   './asset/icon-system.min.js?v=1.0',
   './asset/icons.svg',
   './script.min.js?v=7.2',
@@ -28,7 +28,7 @@ const APP_SHELL = [
   './equipment-detail.min.js?v=2.1',
   './equipment-detail.min.css?v=1.9',
   './catalog-redesign.min.css?v=1.7',
-  './catalog-detail-chrome.min.css?v=1.4',
+  './catalog-detail-chrome.min.css?v=1.5',
   './catalog-detail-runtime.min.js?v=1.2',
   './asset/equipment/crucible-generic.svg',
   './Equipment/volumetric-flasks.html',

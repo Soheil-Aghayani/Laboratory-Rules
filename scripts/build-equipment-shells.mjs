@@ -127,9 +127,9 @@ files.forEach(file => {
 ${defaultImageHref ? `  <link rel="preload" href="${defaultImageHref}" imagesrcset="${defaultImageSrcset}" imagesizes="(max-width: 700px) calc(100vw - 80px), 560px" as="image" fetchpriority="high">` : ''}
   <script>try{const t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
   <link rel="stylesheet" href="../styles.min.css?v=6.3">
-  <link rel="stylesheet" href="../site-pages.min.css?v=2.4">
+  <link rel="stylesheet" href="../site-pages.min.css?v=2.5">
   <link rel="stylesheet" href="../equipment-detail.min.css?v=1.9">
-  <link rel="stylesheet" href="../catalog-detail-chrome.min.css?v=1.4">
+  <link rel="stylesheet" href="../catalog-detail-chrome.min.css?v=1.5">
   <script defer src="../asset/icon-system.min.js?v=1.0"></script>
   <script defer src="../site-navigation.min.js?v=1.0"></script>
   <script defer src="../equipment-data.min.js?v=2.2"></script>
@@ -164,6 +164,12 @@ ${defaultImageHref ? `  <link rel="preload" href="${defaultImageHref}" imagesrcs
     </header>
   <div class="equipment-detail-shell">
       <div id="equipment-detail-root">${renderInitialDetail(family)}</div>
+    </div>
+    <div class="equipment-detail-return" role="navigation" aria-label="بازگشت به کاتالوگ">
+      <a href="../gallery.html" aria-label="بازگشت به کاتالوگ تجهیزات">
+        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+        <span>بازگشت به کاتالوگ تجهیزات</span>
+      </a>
     </div>
 ${sharedFooter}
   </main>
