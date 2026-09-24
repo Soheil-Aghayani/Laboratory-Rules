@@ -7,6 +7,7 @@ const projectRoot = path.resolve(scriptDirectory, '..');
 const indexPath = path.join(projectRoot, 'index.html');
 const contentDirectory = path.join(projectRoot, 'pages', 'content');
 const source = fs.readFileSync(indexPath, 'utf8');
+const canonicalHome = 'https://soheil-aghayani.github.io/Solid-Waste-Laboratory/index.html';
 
 const pageDefinitions = {
   home: {
@@ -115,7 +116,14 @@ if (headerTopStart < 0 || welcomeStart < 0 || headerEnd < 0 || welcomeEnd <= wel
 const headerTop = source.slice(headerTopStart, headerContainsWelcome ? welcomeStart : headerEnd)
   .replace(/\s*<nav class="site-primary-nav"[\s\S]*?<\/nav>/g, '')
   .trim();
-const galleryHeaderTop = headerTop.replace(/\s*<!-- Live Search Bar -->[\s\S]*?(?=<div id="offline-status")/, '\n      ');
+const galleryHeaderTop = headerTop.replace(/\s*<!-- Live Search Bar -->[\s\S]*?(?=<div id="offline-status")/, `
+      <div class="search-container catalog-header-search">
+        <label for="gallery-equipment-search" class="sr-only">جستجو در کاتالوگ تجهیزات</label>
+        <input type="search" id="gallery-equipment-search" class="search-input" autocomplete="off" enterkeyhint="search" placeholder="مثلاً بشر، فالکون، بوته یا شیشه‌آلات">
+        <button id="gallery-equipment-search-clear" type="button" class="catalog-header-search-clear" aria-label="پاک‌کردن جستجو" hidden><span class="material-symbols-outlined" aria-hidden="true">close</span></button>
+        <span class="material-symbols-outlined search-icon" aria-hidden="true">search</span>
+      </div>
+      `);
 const welcomePanel = source.slice(welcomeStart, welcomeEnd).trim();
 
 const penaltyStart = source.indexOf('    <!-- Penalty warning -->');
@@ -169,7 +177,8 @@ const pageLink = (href, label, iconName, current, extraClass = '') => {
   const isIconOnly = extraClass.split(/\s+/).includes('site-nav-home');
   const accessibleLabel = isIconOnly ? ` aria-label="${label}" title="${label}"` : '';
   const labelClass = isIconOnly ? ' class="site-nav-label"' : '';
-  return `<a class="site-nav-link${current ? ' is-active' : ''}${extraClass ? ` ${extraClass}` : ''}" href="./${href}"${currentAttr}${accessibleLabel}><span class="material-symbols-outlined" aria-hidden="true">${iconName}</span><span${labelClass}>${label}</span></a>`;
+  const targetHref = href === 'index.html' ? canonicalHome : `./${href}`;
+  return `<a class="site-nav-link${current ? ' is-active' : ''}${extraClass ? ` ${extraClass}` : ''}" href="${targetHref}"${currentAttr}${accessibleLabel}><span class="material-symbols-outlined" aria-hidden="true">${iconName}</span><span${labelClass}>${label}</span></a>`;
 };
 
 const renderPrimaryNav = currentPage => {
@@ -266,7 +275,7 @@ const renderHomeShortcuts = () => `
 const renderHead = page => {
   const canonical = `https://soheil-aghyani.github.io/Solid-Waste-Laboratory/${page.canonical}`;
   const pageStyles = page.filename === 'gallery.html'
-    ? '<link rel="stylesheet" href="./catalog-redesign.min.css?v=1.7">'
+    ? '<link rel="stylesheet" href="./catalog-redesign.min.css?v=1.8">'
     : '';
   const elementStyles = page.filename === 'elements.html'
     ? '<link rel="stylesheet" href="./elements.min.css?v=1.9">'
@@ -307,7 +316,7 @@ const renderHead = page => {
     } catch (error) {}
   </script>
   <script defer src="./asset/icon-system.min.js?v=1.0"></script>
-  <script defer src="./site-navigation.min.js?v=1.0"></script>
+  <script defer src="./site-navigation.min.js?v=1.1"></script>
   ${['gallery.html', 'elements.html'].includes(page.filename) ? '' : '<script async fetchpriority="low" src="./script.min.js?v=7.2"></script>'}
   <script defer src="./site-runtime.min.js?v=1.5"></script>
   ${page.assets.map(asset => `<script defer src="./${asset}?v=${assetVersion(asset)}"></script>`).join('\n  ')}
@@ -355,7 +364,8 @@ for (const [pageKey, page] of Object.entries(pageDefinitions)) {
     .map(line => line.replace(/[ \t]+$/, ''))
     .join('\n')
     .trimEnd() + '\n';
-  fs.writeFileSync(path.join(projectRoot, page.filename), html, 'utf8');
+  const normalizedHtml = html.replaceAll('href="./index.html"', `href="${canonicalHome}"`);
+  fs.writeFileSync(path.join(projectRoot, page.filename), normalizedHtml, 'utf8');
 }
 
 console.log(`Built ${Object.keys(pageDefinitions).length} standalone pages and ${Object.keys(fragments).length} content fragments.`);

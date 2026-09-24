@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'lab-rules-v88';
+const CACHE_VERSION = 'lab-rules-v89';
 const APP_SHELL = [
   './',
   './index.html',
@@ -16,7 +16,7 @@ const APP_SHELL = [
   './asset/icons.svg',
   './script.min.js?v=7.2',
   './site-runtime.min.js?v=1.5',
-  './site-navigation.min.js?v=1.0',
+  './site-navigation.min.js?v=1.1',
   './equipment-data.min.js?v=2.2',
   './gallery.min.js?v=3.3',
   './elements-data.min.js?v=2.2',
@@ -27,7 +27,7 @@ const APP_SHELL = [
   './data/catalog-index.json',
   './equipment-detail.min.js?v=2.1',
   './equipment-detail.min.css?v=1.9',
-  './catalog-redesign.min.css?v=1.7',
+  './catalog-redesign.min.css?v=1.8',
   './catalog-detail-chrome.min.css?v=1.5',
   './catalog-detail-runtime.min.js?v=1.2',
   './asset/equipment/crucible-generic.svg',

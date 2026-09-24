@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(scriptDirectory, '..');
 const equipmentDirectory = path.join(projectRoot, 'Equipment');
+const canonicalHome = 'https://soheil-aghayani.github.io/Solid-Waste-Laboratory/index.html';
 const portalSource = fs.readFileSync(path.join(projectRoot, 'index.html'), 'utf8');
 const catalogContext = { window: {} };
 vm.createContext(catalogContext);
@@ -37,7 +38,7 @@ const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character =>
 
 const renderDetailPrimaryNav = () => {
   const items = [
-    ['../index.html', 'خانه', 'home'],
+    [canonicalHome, 'خانه', 'home'],
     ['../rules.html', 'قوانین و ایمنی', 'health_and_safety'],
     ['../quiz.html', 'آزمون ورود', 'clipboard-check'],
     ['../gallery.html', 'کاتالوگ تجهیزات', 'inventory_2', true],
@@ -131,7 +132,7 @@ ${defaultImageHref ? `  <link rel="preload" href="${defaultImageHref}" imagesrcs
   <link rel="stylesheet" href="../equipment-detail.min.css?v=1.9">
   <link rel="stylesheet" href="../catalog-detail-chrome.min.css?v=1.5">
   <script defer src="../asset/icon-system.min.js?v=1.0"></script>
-  <script defer src="../site-navigation.min.js?v=1.0"></script>
+  <script defer src="../site-navigation.min.js?v=1.1"></script>
   <script defer src="../equipment-data.min.js?v=2.2"></script>
   <script defer src="../catalog-detail-runtime.min.js?v=1.2"></script>
   <script defer src="../equipment-detail.min.js?v=2.1"></script>
@@ -141,7 +142,7 @@ ${defaultImageHref ? `  <link rel="preload" href="${defaultImageHref}" imagesrcs
   <main class="container site-container equipment-detail-page" id="main-content" data-equipment-slug="${slug}">
     <header class="site-header catalog-detail-site-header">
       <div class="header-top">
-        <a class="brand brand-link" href="../index.html" aria-label="بازگشت به صفحهٔ خانه" title="بازگشت به صفحهٔ خانه">
+        <a class="brand brand-link" href="${canonicalHome}" aria-label="بازگشت به صفحهٔ خانه" title="بازگشت به صفحهٔ خانه">
           <span class="material-symbols-outlined brand-icon">science</span>
           <div class="brand-text">
             <h1>آزمایشگاه پسماند</h1>

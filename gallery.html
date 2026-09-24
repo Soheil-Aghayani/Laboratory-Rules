@@ -25,7 +25,7 @@
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="stylesheet" href="./styles.min.css?v=6.3">
   <link rel="stylesheet" href="./site-pages.min.css?v=2.5">
-  <link rel="stylesheet" href="./catalog-redesign.min.css?v=1.7">
+  <link rel="stylesheet" href="./catalog-redesign.min.css?v=1.8">
   <script>
     try {
       const savedTheme = localStorage.getItem('theme');
@@ -34,7 +34,7 @@
     } catch (error) {}
   </script>
   <script defer src="./asset/icon-system.min.js?v=1.0"></script>
-  <script defer src="./site-navigation.min.js?v=1.0"></script>
+  <script defer src="./site-navigation.min.js?v=1.1"></script>
 
   <script defer src="./site-runtime.min.js?v=1.5"></script>
   <script defer src="./equipment-data.min.js?v=2.2"></script>
@@ -45,7 +45,7 @@
   <main class="container site-container" id="main-content">
     <header class="site-header">
       <div class="header-top">
-        <a class="brand brand-link" href="./index.html" aria-label="بازگشت به صفحهٔ خانه" title="بازگشت به صفحهٔ خانه">
+        <a class="brand brand-link" href="https://soheil-aghayani.github.io/Solid-Waste-Laboratory/index.html" aria-label="بازگشت به صفحهٔ خانه" title="بازگشت به صفحهٔ خانه">
           <span class="material-symbols-outlined brand-icon">science</span>
           <div class="brand-text">
             <h1>آزمایشگاه پسماند</h1>
@@ -75,16 +75,22 @@
           </button>
         </div>
       </div>
+      <div class="search-container catalog-header-search">
+        <label for="gallery-equipment-search" class="sr-only">جستجو در کاتالوگ تجهیزات</label>
+        <input type="search" id="gallery-equipment-search" class="search-input" autocomplete="off" enterkeyhint="search" placeholder="مثلاً بشر، فالکون، بوته یا شیشه‌آلات">
+        <button id="gallery-equipment-search-clear" type="button" class="catalog-header-search-clear" aria-label="پاک‌کردن جستجو" hidden><span class="material-symbols-outlined" aria-hidden="true">close</span></button>
+        <span class="material-symbols-outlined search-icon" aria-hidden="true">search</span>
+      </div>
       <div id="offline-status" class="offline-status" role="status" aria-live="polite" hidden>
         <span class="material-symbols-outlined" aria-hidden="true">cloud_off</span>
         <span>اتصال اینترنت قطع است. اطلاعات ذخیره‌شدهٔ پورتال، راهنماها و داده‌های MSDS در دسترس هستند؛ ویکی‌پدیا و سرویس‌های آنلاین ممکن است باز نشوند.</span>
       </div>
 
       <nav class="site-primary-nav" aria-label="منوی اصلی سایت">
-        <div class="site-primary-nav-links"><a class="site-nav-link site-primary-nav-link" href="./index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span><span>خانه</span></a><a class="site-nav-link site-primary-nav-link" href="./rules.html"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span>قوانین و ایمنی</span></a><a class="site-nav-link site-primary-nav-link" href="./quiz.html"><span class="material-symbols-outlined" aria-hidden="true">clipboard-check</span><span>آزمون ورود</span></a><a class="site-nav-link is-active site-primary-nav-link" href="./gallery.html" aria-current="page"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span><span>کاتالوگ تجهیزات</span></a><a class="site-nav-link site-primary-nav-link" href="./equipment.html"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>راهنمای تجهیزات</span></a><a class="site-nav-link site-primary-nav-link" href="./elements.html"><span class="material-symbols-outlined" aria-hidden="true">science</span><span>عناصر و مواد</span></a></div>
+        <div class="site-primary-nav-links"><a class="site-nav-link site-primary-nav-link" href="https://soheil-aghayani.github.io/Solid-Waste-Laboratory/index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span><span>خانه</span></a><a class="site-nav-link site-primary-nav-link" href="./rules.html"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span>قوانین و ایمنی</span></a><a class="site-nav-link site-primary-nav-link" href="./quiz.html"><span class="material-symbols-outlined" aria-hidden="true">clipboard-check</span><span>آزمون ورود</span></a><a class="site-nav-link is-active site-primary-nav-link" href="./gallery.html" aria-current="page"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span><span>کاتالوگ تجهیزات</span></a><a class="site-nav-link site-primary-nav-link" href="./equipment.html"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>راهنمای تجهیزات</span></a><a class="site-nav-link site-primary-nav-link" href="./elements.html"><span class="material-symbols-outlined" aria-hidden="true">science</span><span>عناصر و مواد</span></a></div>
         <details class="site-primary-nav-mobile">
           <summary><span class="material-symbols-outlined" aria-hidden="true">menu</span><span>باز کردن منوی سایت</span><span class="material-symbols-outlined" aria-hidden="true">expand_more</span></summary>
-          <div class="site-primary-nav-mobile-links"><a class="site-nav-link site-primary-nav-mobile-link" href="./index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span><span>خانه</span></a><a class="site-nav-link site-primary-nav-mobile-link" href="./rules.html"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span>قوانین و ایمنی</span></a><a class="site-nav-link site-primary-nav-mobile-link" href="./quiz.html"><span class="material-symbols-outlined" aria-hidden="true">clipboard-check</span><span>آزمون ورود</span></a><a class="site-nav-link is-active site-primary-nav-mobile-link" href="./gallery.html" aria-current="page"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span><span>کاتالوگ تجهیزات</span></a><a class="site-nav-link site-primary-nav-mobile-link" href="./equipment.html"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>راهنمای تجهیزات</span></a><a class="site-nav-link site-primary-nav-mobile-link" href="./elements.html"><span class="material-symbols-outlined" aria-hidden="true">science</span><span>عناصر و مواد</span></a></div>
+          <div class="site-primary-nav-mobile-links"><a class="site-nav-link site-primary-nav-mobile-link" href="https://soheil-aghayani.github.io/Solid-Waste-Laboratory/index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span><span>خانه</span></a><a class="site-nav-link site-primary-nav-mobile-link" href="./rules.html"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span>قوانین و ایمنی</span></a><a class="site-nav-link site-primary-nav-mobile-link" href="./quiz.html"><span class="material-symbols-outlined" aria-hidden="true">clipboard-check</span><span>آزمون ورود</span></a><a class="site-nav-link is-active site-primary-nav-mobile-link" href="./gallery.html" aria-current="page"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span><span>کاتالوگ تجهیزات</span></a><a class="site-nav-link site-primary-nav-mobile-link" href="./equipment.html"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>راهنمای تجهیزات</span></a><a class="site-nav-link site-primary-nav-mobile-link" href="./elements.html"><span class="material-symbols-outlined" aria-hidden="true">science</span><span>عناصر و مواد</span></a></div>
         </details>
       </nav>
     </header>
@@ -99,20 +105,6 @@
       <img src="./asset/gallery/catalog-equipment-hero.webp" srcset="./asset/gallery/catalog-equipment-hero-240.webp 240w, ./asset/gallery/catalog-equipment-hero.webp 520w" sizes="(max-width: 680px) 186px, 250px" alt="چند بشر آزمایشگاهی شیشه‌ای در اندازه‌های مختلف" width="520" height="480" loading="eager" fetchpriority="high" decoding="async">
     </figure>
   </header>
-
-  <section class="catalog-search-panel" aria-labelledby="catalog-search-title">
-    <div class="catalog-search-heading">
-      <div><span class="catalog-catalog-kicker">شروع جستجو</span><h2 id="catalog-search-title">چه چیزی را می‌خواهی بشناسی؟</h2></div>
-      <span class="material-symbols-outlined" aria-hidden="true">search</span>
-    </div>
-    <label class="catalog-search-field" for="gallery-equipment-search">
-      <span class="material-symbols-outlined" aria-hidden="true">search</span>
-      <span class="sr-only">جستجو در کاتالوگ تجهیزات</span>
-      <input id="gallery-equipment-search" type="search" autocomplete="off" enterkeyhint="search" placeholder="مثلاً بشر، فالکون، بوته یا شیشه‌آلات">
-      <button id="gallery-equipment-search-clear" type="button" class="catalog-search-clear" aria-label="پاک‌کردن جستجو" hidden><span class="material-symbols-outlined" aria-hidden="true">close</span></button>
-    </label>
-    <p class="catalog-search-hint" id="gallery-equipment-search-hint">نام فارسی، نام انگلیسی، کاربرد، جنس بدنه و دسته‌بندی را جستجو کنید.</p>
-  </section>
 
   <div class="catalog-mobile-filter-bar">
     <div class="catalog-filter-rail" role="group" aria-label="دسته‌های پرکاربرد کاتالوگ">
@@ -493,7 +485,7 @@
 
 
     <nav class="mobile-bottom-dock" aria-label="دسترسی سریع موبایل">
-      <a class="site-nav-link mobile-dock-item" href="./index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span><span>خانه</span></a>
+      <a class="site-nav-link mobile-dock-item" href="https://soheil-aghayani.github.io/Solid-Waste-Laboratory/index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span><span>خانه</span></a>
       <a class="site-nav-link mobile-dock-item" href="./rules.html"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span>ایمنی</span></a>
       <a class="site-nav-link mobile-dock-item" href="./equipment.html"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span><span>کاتالوگ</span></a>
       <a class="site-nav-link is-active mobile-dock-item" href="./gallery.html" aria-current="page"><span class="material-symbols-outlined" aria-hidden="true">gallery</span><span>گالری</span></a>

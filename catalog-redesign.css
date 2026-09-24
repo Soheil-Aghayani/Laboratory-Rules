@@ -1,7 +1,36 @@
 /* Catalog advisor contract: stable product-list cards, educational content, no commerce chrome. */
-body[data-page="gallery"] .site-header > .search-container,
 body[data-page="gallery"] #search-status-banner {
   display: none;
+}
+
+.catalog-header-search {
+  max-width: min(560px, 100%);
+  margin: 0.9rem auto 0;
+}
+
+.catalog-header-search-clear {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  display: inline-grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  padding: 0;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.catalog-header-search-clear[hidden] {
+  display: none;
+}
+
+.catalog-header-search-clear:hover,
+.catalog-header-search-clear:focus-visible {
+  color: var(--accent-emerald-strong);
 }
 
 .catalog-catalog-shell {
