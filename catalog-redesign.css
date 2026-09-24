@@ -292,6 +292,14 @@ body[data-page="gallery"] #search-status-banner {
   color: var(--accent-emerald-strong);
 }
 
+.catalog-filter-rail .equipment-filter-btn.active,
+.catalog-filter-rail .equipment-filter-btn.is-active {
+  border-color: var(--accent-emerald-strong);
+  background: var(--accent-emerald-strong);
+  color: #fff;
+  box-shadow: 0 5px 14px var(--accent-emerald-glow);
+}
+
 .catalog-all-categories-button {
   flex: 0 0 auto;
   border-color: color-mix(in srgb, var(--accent-amber) 45%, var(--border-color));
@@ -373,9 +381,10 @@ body[data-page="gallery"] #search-status-banner {
 
 .catalog-category-button.is-active,
 .catalog-category-button.active {
-  border-color: var(--accent-emerald);
-  background: var(--accent-emerald-glow);
-  color: var(--accent-emerald-strong);
+  border-color: var(--accent-emerald-strong);
+  background: var(--accent-emerald-strong);
+  color: #fff;
+  box-shadow: 0 5px 14px var(--accent-emerald-glow);
 }
 
 .catalog-category-count {
@@ -392,8 +401,8 @@ body[data-page="gallery"] #search-status-banner {
 
 .catalog-category-button.is-active .catalog-category-count,
 .catalog-category-button.active .catalog-category-count {
-  background: var(--accent-emerald);
-  color: #fff;
+  background: #fff;
+  color: var(--accent-emerald-strong);
 }
 
 .catalog-equipment-guide-link {

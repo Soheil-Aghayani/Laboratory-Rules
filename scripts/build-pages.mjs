@@ -278,7 +278,7 @@ const renderHomeShortcuts = () => `
 const renderHead = page => {
   const canonical = `https://soheil-aghyani.github.io/Solid-Waste-Laboratory/${page.canonical}`;
   const pageStyles = page.filename === 'gallery.html'
-    ? '<link rel="stylesheet" href="./catalog-redesign.min.css?v=1.8">'
+    ? '<link rel="stylesheet" href="./catalog-redesign.min.css?v=1.9">'
     : '';
   const elementStyles = page.filename === 'elements.html'
     ? '<link rel="stylesheet" href="./elements.min.css?v=1.9">'
