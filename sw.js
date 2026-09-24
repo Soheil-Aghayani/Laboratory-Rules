@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'lab-rules-v84';
+const CACHE_VERSION = 'lab-rules-v85';
 const APP_SHELL = [
   './',
   './index.html',
@@ -11,7 +11,7 @@ const APP_SHELL = [
   './manifest.webmanifest',
   './styles.min.css?v=6.3',
   './elements.min.css?v=1.8',
-  './site-pages.min.css?v=2.3',
+  './site-pages.min.css?v=2.4',
   './asset/icon-system.min.js?v=1.0',
   './asset/icons.svg',
   './script.min.js?v=7.2',
@@ -20,7 +20,6 @@ const APP_SHELL = [
   './gallery.min.js?v=3.3',
   './elements-data.min.js?v=2.2',
   './elements.min.js?v=2.6',
-  './welcome-carousel.min.js?v=2.2',
   './data/elements.json',
   './data/chemical-records.json',
   './data/chemical-index.json',
@@ -28,7 +27,7 @@ const APP_SHELL = [
   './equipment-detail.min.js?v=2.1',
   './equipment-detail.min.css?v=1.9',
   './catalog-redesign.min.css?v=1.7',
-  './catalog-detail-chrome.min.css?v=1.3',
+  './catalog-detail-chrome.min.css?v=1.4',
   './catalog-detail-runtime.min.js?v=1.2',
   './asset/equipment/crucible-generic.svg',
   './Equipment/volumetric-flasks.html',
@@ -192,6 +191,7 @@ const APP_SHELL = [
   './asset/gallery/catalog-equipment-hero.webp',
   './asset/gallery/catalog-equipment-hero-240.webp',
   './asset/gallery/lab-interior-mobile-fast.webp',
+  './asset/gallery/lab-interior-800.webp',
   './chatbot/chatbot.min.css?v=5.7',
   './chatbot/chatbot.min.js?v=5.7',
   './chatbot/msds/msds-db.min.js?v=5.7',

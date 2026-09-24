@@ -535,6 +535,21 @@ body:has(.equipment-detail-page) .chatbot-window {
   }
 }
 
+/* Detail pages use the shared header navigation on desktop; keep the dock only for touch layouts. */
+@media (min-width: 761px) {
+  body:has(.equipment-detail-page) {
+    padding-bottom: .75rem;
+  }
+
+  body:has(.equipment-detail-page) .equipment-detail-page {
+    padding-bottom: 1rem;
+  }
+
+  .catalog-detail-dock-desktop {
+    display: none;
+  }
+}
+
 @media (max-width: 360px) {
   .catalog-detail-header-back span:last-child {
     max-width: 5rem;

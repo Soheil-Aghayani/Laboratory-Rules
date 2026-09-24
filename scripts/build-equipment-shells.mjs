@@ -35,6 +35,20 @@ const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character =>
   "'": '&#039;'
 }[character]));
 
+const renderDetailPrimaryNav = () => {
+  const items = [
+    ['../index.html', 'خانه', 'home'],
+    ['../rules.html', 'قوانین و ایمنی', 'health_and_safety'],
+    ['../quiz.html', 'آزمون ورود', 'clipboard-check'],
+    ['../gallery.html', 'کاتالوگ تجهیزات', 'inventory_2', true],
+    ['../equipment.html', 'راهنمای تجهیزات', 'test-tube'],
+    ['../elements.html', 'عناصر و مواد', 'science'],
+  ];
+  const links = items.map(([href, label, icon, current]) => `<a class="site-nav-link site-primary-nav-link${current ? ' is-active' : ''}" href="${href}"${current ? ' aria-current="page"' : ''}><span class="material-symbols-outlined" aria-hidden="true">${icon}</span><span>${label}</span></a>`).join('');
+  const mobileLinks = links.replaceAll('site-primary-nav-link', 'site-primary-nav-mobile-link');
+  return `<nav class="site-primary-nav" aria-label="منوی اصلی سایت"><div class="site-primary-nav-heading"><span class="material-symbols-outlined" aria-hidden="true">menu</span><span>راهنمای سایت</span></div><div class="site-primary-nav-links">${links}</div><details class="site-primary-nav-mobile"><summary><span class="material-symbols-outlined" aria-hidden="true">menu</span><span>باز کردن منوی سایت</span><span class="material-symbols-outlined" aria-hidden="true">expand_more</span></summary><div class="site-primary-nav-mobile-links">${mobileLinks}</div></details></nav>`;
+};
+
 const renderInitialDetail = family => {
   if (!family?.variants?.length) return '';
   const variant = family.variants[0];
@@ -113,9 +127,9 @@ files.forEach(file => {
 ${defaultImageHref ? `  <link rel="preload" href="${defaultImageHref}" imagesrcset="${defaultImageSrcset}" imagesizes="(max-width: 700px) calc(100vw - 80px), 560px" as="image" fetchpriority="high">` : ''}
   <script>try{const t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
   <link rel="stylesheet" href="../styles.min.css?v=6.3">
-  <link rel="stylesheet" href="../site-pages.min.css?v=2.3">
+  <link rel="stylesheet" href="../site-pages.min.css?v=2.4">
   <link rel="stylesheet" href="../equipment-detail.min.css?v=1.9">
-  <link rel="stylesheet" href="../catalog-detail-chrome.min.css?v=1.3">
+  <link rel="stylesheet" href="../catalog-detail-chrome.min.css?v=1.4">
   <script defer src="../asset/icon-system.min.js?v=1.0"></script>
   <script defer src="../equipment-data.min.js?v=2.2"></script>
   <script defer src="../catalog-detail-runtime.min.js?v=1.2"></script>
@@ -145,6 +159,7 @@ ${defaultImageHref ? `  <link rel="preload" href="${defaultImageHref}" imagesrcs
           <button class="theme-btn equipment-detail-theme" id="equipment-detail-theme" type="button" aria-label="تغییر پوسته"><span class="material-symbols-outlined" aria-hidden="true">dark_mode</span></button>
         </div>
       </div>
+      ${renderDetailPrimaryNav()}
     </header>
   <div class="equipment-detail-shell">
       <div id="equipment-detail-root">${renderInitialDetail(family)}</div>

@@ -24,7 +24,7 @@
   <link rel="icon" type="image/webp" href="Waste%20Lab.webp">
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="stylesheet" href="./styles.min.css?v=6.3">
-  <link rel="stylesheet" href="./site-pages.min.css?v=2.3">
+  <link rel="stylesheet" href="./site-pages.min.css?v=2.4">
   <script>
     try {
       const savedTheme = localStorage.getItem('theme');
@@ -88,11 +88,13 @@
         <span>اتصال اینترنت قطع است. اطلاعات ذخیره‌شدهٔ پورتال، راهنماها و داده‌های MSDS در دسترس هستند؛ ویکی‌پدیا و سرویس‌های آنلاین ممکن است باز نشوند.</span>
       </div>
 
-      <nav class="mobile-section-nav" aria-label="صفحه‌های ایمنی">
-        <div class="mobile-section-nav-heading"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span>ایمنی</span></div>
-        <div class="mobile-section-nav-links">
-          <a class="site-nav-link is-active mobile-section-nav-link" href="./rules.html" aria-current="page"><span class="material-symbols-outlined" aria-hidden="true">book-bookmark</span><span>قوانین عمومی و ایمنی</span></a><a class="site-nav-link mobile-section-nav-link" href="./quiz.html"><span class="material-symbols-outlined" aria-hidden="true">clipboard-check</span><span>آزمون و تعهدنامه ورود</span></a>
-        </div>
+      <nav class="site-primary-nav" aria-label="منوی اصلی سایت">
+        <div class="site-primary-nav-heading"><span class="material-symbols-outlined" aria-hidden="true">menu</span><span>راهنمای سایت</span></div>
+        <div class="site-primary-nav-links"><a class="site-nav-link site-primary-nav-link" href="./index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span><span>خانه</span></a><a class="site-nav-link is-active site-primary-nav-link" href="./rules.html" aria-current="page"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span>قوانین و ایمنی</span></a><a class="site-nav-link site-primary-nav-link" href="./quiz.html"><span class="material-symbols-outlined" aria-hidden="true">clipboard-check</span><span>آزمون ورود</span></a><a class="site-nav-link site-primary-nav-link" href="./gallery.html"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span><span>کاتالوگ تجهیزات</span></a><a class="site-nav-link site-primary-nav-link" href="./equipment.html"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>راهنمای تجهیزات</span></a><a class="site-nav-link site-primary-nav-link" href="./elements.html"><span class="material-symbols-outlined" aria-hidden="true">science</span><span>عناصر و مواد</span></a></div>
+        <details class="site-primary-nav-mobile">
+          <summary><span class="material-symbols-outlined" aria-hidden="true">menu</span><span>باز کردن منوی سایت</span><span class="material-symbols-outlined" aria-hidden="true">expand_more</span></summary>
+          <div class="site-primary-nav-mobile-links"><a class="site-nav-link site-primary-nav-mobile-link" href="./index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span><span>خانه</span></a><a class="site-nav-link is-active site-primary-nav-mobile-link" href="./rules.html" aria-current="page"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span>قوانین و ایمنی</span></a><a class="site-nav-link site-primary-nav-mobile-link" href="./quiz.html"><span class="material-symbols-outlined" aria-hidden="true">clipboard-check</span><span>آزمون ورود</span></a><a class="site-nav-link site-primary-nav-mobile-link" href="./gallery.html"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span><span>کاتالوگ تجهیزات</span></a><a class="site-nav-link site-primary-nav-mobile-link" href="./equipment.html"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>راهنمای تجهیزات</span></a><a class="site-nav-link site-primary-nav-mobile-link" href="./elements.html"><span class="material-symbols-outlined" aria-hidden="true">science</span><span>عناصر و مواد</span></a></div>
+        </details>
       </nav>
     </header>
 
@@ -208,18 +210,6 @@
               <small dir="ltr">Solid Waste Laboratory | Safety &amp; Waste Management Portal</small>
             </div>
           </div>
-          <nav class="footer-nav" aria-label="دسترسی داخلی پورتال">
-            <span class="footer-nav-title">دسترسی‌های آموزشی</span>
-            <div class="footer-nav-links">
-              <a href="./rules.html">قوانین عمومی</a>
-              <a href="./elements.html">عناصر و مواد</a>
-              <a href="./equipment.html">تجهیزات</a>
-              <a href="./gallery.html">گالری آزمایشگاه</a>
-              <a href="./elements.html#msds-widget-card">MSDS مواد</a>
-              <a href="./elements.html#compatibility-widget-card">سازگاری مواد</a>
-              <a href="./quiz.html">آزمون ورود</a>
-            </div>
-          </nav>
           <div class="footer-socials">
             <span class="footer-socials-title">ارتباط و منابع</span>
             <div class="social-icons">
@@ -528,14 +518,6 @@
     </div>
   </div>
 
-    <nav class="desktop-bottom-dock" aria-label="دسترسی سریع دسکتاپ">
-      <a class="site-nav-link desktop-dock-item" href="./index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span><span>خانه</span></a>
-      <a class="site-nav-link is-active desktop-dock-item" href="./rules.html" aria-current="page"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span>قوانین و ایمنی</span></a>
-      <a class="site-nav-link desktop-dock-item" href="./quiz.html"><span class="material-symbols-outlined" aria-hidden="true">clipboard-check</span><span>آزمون ورود</span></a>
-      <a class="site-nav-link desktop-dock-item" href="./gallery.html"><span class="material-symbols-outlined" aria-hidden="true">gallery</span><span>گالری</span></a>
-      <a class="site-nav-link desktop-dock-item" href="./equipment.html"><span class="material-symbols-outlined" aria-hidden="true">test-tube</span><span>تجهیزات</span></a>
-      <a class="site-nav-link desktop-dock-item" href="./elements.html"><span class="material-symbols-outlined" aria-hidden="true">science</span><span>عناصر و مواد</span></a>
-    </nav>
 
     <nav class="mobile-bottom-dock" aria-label="دسترسی سریع موبایل">
       <a class="site-nav-link mobile-dock-item" href="./index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span><span>خانه</span></a>

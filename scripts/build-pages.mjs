@@ -14,7 +14,7 @@ const pageDefinitions = {
     title: 'آزمایشگاه پسماند | خانه',
     description: 'صفحهٔ اصلی آزمایشگاه پسماند؛ دسترسی سریع به ایمنی، تجهیزات، عناصر و گالری آزمایشگاه.',
     canonical: '',
-    assets: ['welcome-carousel.min.js'],
+    assets: [],
   },
   rules: {
     filename: 'rules.html',
@@ -112,7 +112,9 @@ const welcomeEnd = source.indexOf('</section>', welcomeStart) + '</section>'.len
 const headerContainsWelcome = headerEndBeforeWelcome < 0 || headerEndBeforeWelcome > welcomeStart;
 const headerEnd = headerContainsWelcome ? source.indexOf('    </header>', welcomeStart) : headerEndBeforeWelcome;
 if (headerTopStart < 0 || welcomeStart < 0 || headerEnd < 0 || welcomeEnd <= welcomeStart) throw new Error('Unable to extract shared header');
-const headerTop = source.slice(headerTopStart, headerContainsWelcome ? welcomeStart : headerEnd).trim();
+const headerTop = source.slice(headerTopStart, headerContainsWelcome ? welcomeStart : headerEnd)
+  .replace(/\s*<nav class="site-primary-nav"[\s\S]*?<\/nav>/g, '')
+  .trim();
 const galleryHeaderTop = headerTop.replace(/\s*<!-- Live Search Bar -->[\s\S]*?(?=<div id="offline-status")/, '\n      ');
 const welcomePanel = source.slice(welcomeStart, welcomeEnd).trim();
 
@@ -170,6 +172,27 @@ const pageLink = (href, label, iconName, current, extraClass = '') => {
   return `<a class="site-nav-link${current ? ' is-active' : ''}${extraClass ? ` ${extraClass}` : ''}" href="./${href}"${currentAttr}${accessibleLabel}><span class="material-symbols-outlined" aria-hidden="true">${iconName}</span><span${labelClass}>${label}</span></a>`;
 };
 
+const renderPrimaryNav = currentPage => {
+  const items = [
+    ['index.html', 'خانه', 'home', currentPage === 'home'],
+    ['rules.html', 'قوانین و ایمنی', 'health_and_safety', currentPage === 'rules'],
+    ['quiz.html', 'آزمون ورود', 'clipboard-check', currentPage === 'quiz'],
+    ['gallery.html', 'کاتالوگ تجهیزات', 'inventory_2', currentPage === 'gallery'],
+    ['equipment.html', 'راهنمای تجهیزات', 'test-tube', currentPage === 'equipment'],
+    ['elements.html', 'عناصر و مواد', 'science', currentPage === 'elements'],
+  ];
+  const links = items.map(([href, label, iconName, current]) => pageLink(href, label, iconName, current, 'site-primary-nav-link')).join('');
+  return `
+      <nav class="site-primary-nav" aria-label="منوی اصلی سایت">
+        <div class="site-primary-nav-heading"><span class="material-symbols-outlined" aria-hidden="true">menu</span><span>راهنمای سایت</span></div>
+        <div class="site-primary-nav-links">${links}</div>
+        <details class="site-primary-nav-mobile">
+          <summary><span class="material-symbols-outlined" aria-hidden="true">menu</span><span>باز کردن منوی سایت</span><span class="material-symbols-outlined" aria-hidden="true">expand_more</span></summary>
+          <div class="site-primary-nav-mobile-links">${items.map(([href, label, iconName, current]) => pageLink(href, label, iconName, current, 'site-primary-nav-mobile-link')).join('')}</div>
+        </details>
+      </nav>`;
+};
+
 const renderMobileSectionNav = currentPage => {
   if (currentPage === 'gallery') return '';
   const group = pageGroup(currentPage);
@@ -214,30 +237,30 @@ const renderMobileDock = currentPage => {
     </nav>`;
 };
 
-const renderDesktopDock = currentPage => `
-    <nav class="desktop-bottom-dock" aria-label="دسترسی سریع دسکتاپ">
-      ${pageLink('index.html', 'خانه', 'home', currentPage === 'home', 'desktop-dock-item')}
-      ${pageLink('rules.html', 'قوانین و ایمنی', 'health_and_safety', currentPage === 'rules', 'desktop-dock-item')}
-      ${pageLink('quiz.html', 'آزمون ورود', 'clipboard-check', currentPage === 'quiz', 'desktop-dock-item')}
-      ${pageLink('gallery.html', 'گالری', 'gallery', currentPage === 'gallery', 'desktop-dock-item')}
-      ${pageLink('equipment.html', 'تجهیزات', 'test-tube', currentPage === 'equipment', 'desktop-dock-item')}
-      ${pageLink('elements.html', 'عناصر و مواد', 'science', currentPage === 'elements', 'desktop-dock-item')}
-    </nav>`;
+const renderDesktopDock = () => '';
 
 const renderHomeShortcuts = () => `
     <section class="home-shortcuts" aria-labelledby="home-shortcuts-title">
       <div class="section-heading-row">
-        <div><span class="page-kicker">مسیرهای اصلی</span><h2 id="home-shortcuts-title">از کجا شروع کنیم؟</h2></div>
+        <div><span class="page-kicker">شروع سریع</span><h2 id="home-shortcuts-title">یک کار را انتخاب کنید</h2><p>برای رفتن به بخش درست، یکی از مسیرهای زیر را انتخاب کنید.</p></div>
       </div>
       <div class="home-shortcut-grid">
-        <section class="home-shortcut home-shortcut-safety" aria-labelledby="home-safety-title">
-          <div class="home-shortcut-heading"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><span><strong id="home-safety-title">ایمنی و ورود</strong></span></div>
-          <div class="home-shortcut-links"><a class="home-shortcut-link" href="./rules.html"><span>قوانین عمومی و ایمنی</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a><a class="home-shortcut-link" href="./quiz.html"><span>آزمون و تعهدنامه ورود</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a></div>
-        </section>
-        <section class="home-shortcut home-shortcut-catalog" aria-labelledby="home-catalog-title">
-          <div class="home-shortcut-heading"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span><span><strong id="home-catalog-title">کاتالوگ آزمایشگاه</strong></span></div>
-          <div class="home-shortcut-links"><a class="home-shortcut-link" href="./gallery.html"><span>گالری تجهیزات</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a><a class="home-shortcut-link" href="./equipment.html"><span>راهنمای کاربری تجهیزات</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a><a class="home-shortcut-link" href="./elements.html"><span>عناصر و مواد</span><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></a></div>
-        </section>
+        <a class="home-shortcut home-route" href="./rules.html">
+          <span class="home-shortcut-heading"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><strong>قوانین و ایمنی</strong></span>
+          <span class="home-route-copy">پیش از ورود، ضوابط کار، پوشش و دفع پسماند را مرور کنید.</span><span class="home-route-action">مشاهدهٔ قوانین <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></span>
+        </a>
+        <a class="home-shortcut home-route" href="./quiz.html">
+          <span class="home-shortcut-heading"><span class="material-symbols-outlined" aria-hidden="true">clipboard-check</span><strong>آزمون و تعهدنامه ورود</strong></span>
+          <span class="home-route-copy">آمادگی خود را بسنجید و ورود مسئولانه را ثبت کنید.</span><span class="home-route-action">شروع آزمون <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></span>
+        </a>
+        <a class="home-shortcut home-route" href="./gallery.html">
+          <span class="home-shortcut-heading"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span><strong>کاتالوگ تجهیزات</strong></span>
+          <span class="home-route-copy">تجهیزات را بر اساس تصویر، کاربرد و خانواده پیدا کنید.</span><span class="home-route-action">ورود به کاتالوگ <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></span>
+        </a>
+        <a class="home-shortcut home-route" href="./elements.html">
+          <span class="home-shortcut-heading"><span class="material-symbols-outlined" aria-hidden="true">science</span><strong>عناصر و مواد</strong></span>
+          <span class="home-route-copy">عنصر، خواص پایه و اطلاعات ایمنی ماده را بررسی کنید.</span><span class="home-route-action">مشاهدهٔ عناصر <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></span>
+        </a>
       </div>
     </section>`;
 
@@ -276,7 +299,7 @@ const renderHead = page => {
   <link rel="icon" type="image/webp" href="Waste%20Lab.webp">
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="stylesheet" href="./styles.min.css?v=6.3">
-  ${elementStyles ? `${elementStyles}\n  ` : ''}<link rel="stylesheet" href="./site-pages.min.css?v=2.3">${pageStyles ? `\n  ${pageStyles}` : ''}
+  ${elementStyles ? `${elementStyles}\n  ` : ''}<link rel="stylesheet" href="./site-pages.min.css?v=2.4">${pageStyles ? `\n  ${pageStyles}` : ''}
   <script>
     try {
       const savedTheme = localStorage.getItem('theme');
@@ -313,7 +336,7 @@ const renderMain = (pageKey, page) => {
   <main class="container site-container" id="main-content">
     <header class="site-header">
       ${pageKey === 'gallery' ? galleryHeaderTop : headerTop}
-      ${renderMobileSectionNav(pageKey)}
+      ${renderPrimaryNav(pageKey)}
     </header>
     ${pageKey === 'home' ? `<div class="home-welcome-flow">${welcomePanel}</div>` : ''}
     ${pageContent}
