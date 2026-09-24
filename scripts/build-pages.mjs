@@ -308,6 +308,7 @@ const renderHead = page => {
     } catch (error) {}
   </script>
   <script defer src="./asset/icon-system.min.js?v=1.0"></script>
+  <script defer src="./site-navigation.min.js?v=1.0"></script>
   ${['gallery.html', 'elements.html'].includes(page.filename) ? '' : '<script async fetchpriority="low" src="./script.min.js?v=7.2"></script>'}
   <script defer src="./site-runtime.min.js?v=1.5"></script>
   ${page.assets.map(asset => `<script defer src="./${asset}?v=${assetVersion(asset)}"></script>`).join('\n  ')}

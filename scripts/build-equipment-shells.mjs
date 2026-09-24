@@ -131,6 +131,7 @@ ${defaultImageHref ? `  <link rel="preload" href="${defaultImageHref}" imagesrcs
   <link rel="stylesheet" href="../equipment-detail.min.css?v=1.9">
   <link rel="stylesheet" href="../catalog-detail-chrome.min.css?v=1.4">
   <script defer src="../asset/icon-system.min.js?v=1.0"></script>
+  <script defer src="../site-navigation.min.js?v=1.0"></script>
   <script defer src="../equipment-data.min.js?v=2.2"></script>
   <script defer src="../catalog-detail-runtime.min.js?v=1.2"></script>
   <script defer src="../equipment-detail.min.js?v=2.1"></script>
