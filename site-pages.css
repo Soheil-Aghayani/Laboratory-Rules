@@ -2337,6 +2337,8 @@ body {
 
 /* Final detail: keep the footer geometry predictable without clipping content. */
 .site-container > .site-footer {
+  width: 100%;
+  max-width: none;
   box-sizing: border-box;
   min-height: 124px;
 }

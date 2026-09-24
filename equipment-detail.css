@@ -634,7 +634,7 @@ body:has(.equipment-detail-page) {
 }
 
 .equipment-detail-page {
-  padding: 1rem 1rem 6rem;
+  padding: 1rem 1.5rem 6rem;
 }
 
 .equipment-detail-topbar {
@@ -827,7 +827,7 @@ body:has(.equipment-detail-page) {
 
 @media (max-width: 760px) {
   .equipment-detail-page {
-    padding: 0.7rem 0.65rem 7rem;
+    padding: 0.7rem 0.75rem 7rem;
   }
 
   .equipment-detail-header {

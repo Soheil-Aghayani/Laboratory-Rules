@@ -576,8 +576,8 @@ body:has(.equipment-detail-page) .chatbot-window {
   top: auto;
   z-index: 1;
   width: auto;
-  margin: 0 -1rem 1rem;
-  padding: .65rem 1rem .8rem;
+  margin: 0 -1.5rem 1rem;
+  padding: .65rem 1.5rem .8rem;
   border-bottom: 1px solid color-mix(in srgb, var(--accent-emerald) 22%, var(--border-color));
   background: color-mix(in srgb, var(--bg-primary) 90%, transparent);
   box-shadow: 0 8px 24px color-mix(in srgb, #0f172a 8%, transparent);
@@ -585,7 +585,8 @@ body:has(.equipment-detail-page) .chatbot-window {
 }
 
 .catalog-detail-site-footer {
-  width: auto;
+  width: 100%;
+  max-width: none;
   margin-inline: 0;
 }
 
@@ -654,8 +655,8 @@ body:has(.equipment-detail-page) .chatbot-window {
 
 @media (max-width: 760px) {
   .catalog-detail-site-header {
-    margin-inline: -.65rem;
-    padding-inline: .65rem;
+    margin-inline: -.75rem;
+    padding-inline: .75rem;
   }
 
   .equipment-detail-return {

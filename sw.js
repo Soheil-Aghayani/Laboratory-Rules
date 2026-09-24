@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'lab-rules-v89';
+const CACHE_VERSION = 'lab-rules-v90';
 const APP_SHELL = [
   './',
   './index.html',
@@ -16,6 +16,7 @@ const APP_SHELL = [
   './asset/icons.svg',
   './script.min.js?v=7.2',
   './site-runtime.min.js?v=1.5',
+  './welcome-carousel.min.js?v=2.2',
   './site-navigation.min.js?v=1.1',
   './equipment-data.min.js?v=2.2',
   './gallery.min.js?v=3.3',
