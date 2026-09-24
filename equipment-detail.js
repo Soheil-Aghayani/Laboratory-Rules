@@ -1,6 +1,10 @@
 (() => {
   const catalog = window.LAB_EQUIPMENT_CATALOG || [];
   const assetPrefix = '../asset/equipment/';
+  const detailImageUrl = image => `${assetPrefix}detail-360/${image}`;
+  const detailImageSrcset = image => `${detailImageUrl(image)} 360w, ${assetPrefix}detail-600/${image} 600w`;
+  const detailMobileSrcset = image => `${detailImageUrl(image)} 360w, ${assetPrefix}detail-480/${image} 480w`;
+  const detailImageSizes = '(max-width: 700px) calc(100vw - 80px), 560px';
 
   const toPersianDigits = value => String(value).replace(/[0-9]/g, digit => '۰۱۲۳۴۵۶۷۸۹'[digit]);
 
@@ -128,7 +132,7 @@
     if (!family.comparison) {
       return `
         <div class="equipment-detail-image-frame">
-          <img class="equipment-detail-image" data-detail-image src="${assetPrefix}${selectedVariant.image}" alt="${selectedVariant.titleFa}" loading="eager" fetchpriority="high" decoding="async" width="720" height="540">
+          <img class="equipment-detail-image" data-detail-image src="${detailImageUrl(selectedVariant.image)}" srcset="${detailImageSrcset(selectedVariant.image)}" sizes="${detailImageSizes}" alt="${selectedVariant.titleFa}" loading="eager" fetchpriority="high" decoding="async" width="720" height="540">
         </div>
         <p class="equipment-detail-image-caption" data-detail-caption>${selectedVariant.imageCaption || selectedVariant.titleFa}</p>
       `;
@@ -140,8 +144,8 @@
 
     return `
       <div class="equipment-detail-image-frame equipment-detail-compare-frame" data-compare style="--compare-position:50%">
-        <img class="equipment-detail-compare-image" data-compare-dry-image src="${assetPrefix}${dryVariant.image}" alt="${dryVariant.titleFa}" loading="eager" fetchpriority="high" decoding="async" width="720" height="540">
-        <img class="equipment-detail-compare-image equipment-detail-compare-image-wet" data-compare-wet-image src="${assetPrefix}${wetVariant.image}" alt="${wetVariant.titleFa}" loading="eager" fetchpriority="high" decoding="async" width="720" height="540">
+        <picture class="equipment-detail-compare-picture"><source data-compare-dry-source media="(max-width: 700px)" srcset="${detailMobileSrcset(dryVariant.image)}" sizes="${detailImageSizes}"><img class="equipment-detail-compare-image" data-compare-dry-image src="${detailImageUrl(dryVariant.image)}" srcset="${detailImageSrcset(dryVariant.image)}" sizes="${detailImageSizes}" alt="${dryVariant.titleFa}" loading="eager" fetchpriority="high" decoding="async" width="720" height="540"></picture>
+        <picture class="equipment-detail-compare-picture"><source data-compare-wet-source media="(max-width: 700px)" srcset="${detailMobileSrcset(wetVariant.image)}" sizes="${detailImageSizes}"><img class="equipment-detail-compare-image equipment-detail-compare-image-wet" data-compare-wet-image src="${detailImageUrl(wetVariant.image)}" srcset="${detailImageSrcset(wetVariant.image)}" sizes="${detailImageSizes}" alt="${wetVariant.titleFa}" loading="lazy" fetchpriority="low" decoding="async" width="720" height="540"></picture>
         <div class="equipment-detail-compare-divider" data-compare-divider aria-hidden="true">
           <span class="material-symbols-outlined">swap_horizontal_circle</span>
         </div>
@@ -242,7 +246,7 @@
         </div>
         <div class="crucible-guide-visual" aria-live="polite">
           <div class="crucible-guide-image-frame">
-            <img class="crucible-guide-image" data-detail-image src="${assetPrefix}${selectedVariant.image}" alt="${selectedVariant.titleFa}" loading="eager" fetchpriority="high" decoding="async" width="720" height="540">
+            <img class="crucible-guide-image" data-detail-image src="${detailImageUrl(selectedVariant.image)}" srcset="${detailImageSrcset(selectedVariant.image)}" sizes="${detailImageSizes}" alt="${selectedVariant.titleFa}" loading="eager" fetchpriority="high" decoding="async" width="720" height="540">
           </div>
           <div class="crucible-guide-image-caption">
             <span>جنس انتخاب‌شده</span>
@@ -414,7 +418,8 @@
     if (!caption || !title || !copy) return;
 
     if (image) {
-      image.src = `${assetPrefix}${variant.image}`;
+      image.src = detailImageUrl(variant.image);
+      image.srcset = detailImageSrcset(variant.image);
       image.alt = variant.titleFa;
     }
     caption.textContent = variant.imageCaption || variant.titleFa;
@@ -451,12 +456,18 @@
     const wetVariant = comparisonVariant(family, selectedVariant, family.comparison.wetState);
     const dryImage = root.querySelector('[data-compare-dry-image]');
     const wetImage = root.querySelector('[data-compare-wet-image]');
+    const drySource = root.querySelector('[data-compare-dry-source]');
+    const wetSource = root.querySelector('[data-compare-wet-source]');
     const caption = root.querySelector('[data-detail-caption]');
     if (!dryVariant || !wetVariant || !dryImage || !wetImage) return;
 
-    dryImage.src = `${assetPrefix}${dryVariant.image}`;
+    dryImage.src = detailImageUrl(dryVariant.image);
+    dryImage.srcset = detailImageSrcset(dryVariant.image);
+    if (drySource) drySource.srcset = detailMobileSrcset(dryVariant.image);
     dryImage.alt = dryVariant.titleFa;
-    wetImage.src = `${assetPrefix}${wetVariant.image}`;
+    wetImage.src = detailImageUrl(wetVariant.image);
+    wetImage.srcset = detailImageSrcset(wetVariant.image);
+    if (wetSource) wetSource.srcset = detailMobileSrcset(wetVariant.image);
     wetImage.alt = wetVariant.titleFa;
     if (caption) caption.textContent = 'خط را برای مقایسهٔ حالت خشک و مرطوب جابه‌جا کنید.';
   }

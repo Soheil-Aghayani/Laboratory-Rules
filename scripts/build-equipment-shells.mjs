@@ -20,7 +20,7 @@ if (footerStart < 0 || footerEnd <= footerStart) throw new Error('Unable to extr
 
 const sharedFooter = portalSource
   .slice(footerStart, footerEnd)
-  .replace(/  <footer class="site-footer"[^>]*>/, '  <footer class="site-footer catalog-detail-site-footer">')
+  .replace(/  <footer class="site-footer"[^>]*>/, '  <footer class="site-footer catalog-detail-site-footer" role="contentinfo">')
   .replaceAll('href="./', 'href="../');
 
 const readMeta = (source, name) => source.match(new RegExp(`<meta\\s+name="${name}"\\s+content="([^"]*)"`, 'i'))?.[1] || '';
@@ -38,7 +38,9 @@ const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character =>
 const renderInitialDetail = family => {
   if (!family?.variants?.length) return '';
   const variant = family.variants[0];
-  const image = `../asset/equipment/${encodeURIComponent(variant.image)}`;
+  const image = `../asset/equipment/detail-360/${encodeURIComponent(variant.image)}`;
+  const imageSrcset = `${image} 360w, ../asset/equipment/detail-600/${encodeURIComponent(variant.image)} 600w`;
+  const imageMobileSrcset = `${image} 360w, ../asset/equipment/detail-480/${encodeURIComponent(variant.image)} 480w`;
   const titleFa = escapeHtml(family.titleFa);
   const titleEn = escapeHtml(family.titleEn);
   const category = escapeHtml(family.categoryLabel);
@@ -47,6 +49,9 @@ const renderInitialDetail = family => {
   const introduction = escapeHtml(family.introduction);
   const primaryUse = escapeHtml(family.primaryUse);
   const count = family.variantSummary || `${family.variants.length} گزینه در این خانواده`;
+  const mediaImage = family.comparison
+    ? `<picture><source media="(max-width: 700px)" srcset="${imageMobileSrcset}" sizes="(max-width: 700px) calc(100vw - 80px), 560px"><img class="equipment-detail-image" data-detail-image src="${image}" srcset="${imageSrcset}" sizes="(max-width: 700px) calc(100vw - 80px), 560px" alt="${variantTitle}" loading="eager" fetchpriority="high" decoding="async" width="720" height="540"></picture>`
+    : `<img class="equipment-detail-image" data-detail-image src="${image}" srcset="${imageSrcset}" sizes="(max-width: 700px) calc(100vw - 80px), 560px" alt="${variantTitle}" loading="eager" fetchpriority="high" decoding="async" width="720" height="540">`;
 
   if (family.presentation === 'crucible-guide') {
     return `
@@ -56,7 +61,7 @@ const renderInitialDetail = family => {
       </header>
       <section class="crucible-guide-hero" aria-labelledby="crucible-guide-hero-title">
         <div class="crucible-guide-hero-copy"><span class="crucible-guide-kicker">قبل از ظرفیت، جنس را بشناس</span><h2 id="crucible-guide-hero-title">جنس بدنه، انتخاب بوته را مشخص می‌کند</h2><p>بوته‌ها ظاهر مشابهی دارند، اما برای دما و مواد یکسان ساخته نشده‌اند. این راهنما تفاوت جنس‌ها و انتخاب مناسب برای کاربرد آزمایشگاهی را توضیح می‌دهد.</p></div>
-        <div class="crucible-guide-visual"><div class="crucible-guide-image-frame"><img class="crucible-guide-image" data-detail-image src="${image}" alt="${variantTitle}" loading="eager" fetchpriority="high" decoding="async" width="720" height="540"></div><div class="crucible-guide-image-caption"><span>جنس انتخاب‌شده</span><strong>${escapeHtml(variant.metadata?.material || 'بوته')}</strong><p data-detail-caption>${escapeHtml(variant.imageCaption || variant.titleFa)}</p></div></div>
+        <div class="crucible-guide-visual"><div class="crucible-guide-image-frame"><img class="crucible-guide-image" data-detail-image src="${image}" srcset="${imageSrcset}" sizes="(max-width: 700px) calc(100vw - 80px), 560px" alt="${variantTitle}" loading="eager" fetchpriority="high" decoding="async" width="720" height="540"></div><div class="crucible-guide-image-caption"><span>جنس انتخاب‌شده</span><strong>${escapeHtml(variant.metadata?.material || 'بوته')}</strong><p data-detail-caption>${escapeHtml(variant.imageCaption || variant.titleFa)}</p></div></div>
       </section>`;
   }
 
@@ -66,7 +71,7 @@ const renderInitialDetail = family => {
         <span class="equipment-detail-category">${category}</span>
       </header>
       <section class="equipment-detail-hero" aria-labelledby="equipment-detail-intro-title">
-        <div class="equipment-detail-media"><div class="equipment-detail-image-frame"><img class="equipment-detail-image" data-detail-image src="${image}" alt="${variantTitle}" loading="eager" fetchpriority="high" decoding="async" width="720" height="540"></div><p class="equipment-detail-image-caption" data-detail-caption>${variantTitle}</p></div>
+        <div class="equipment-detail-media"><div class="equipment-detail-image-frame">${mediaImage}</div><p class="equipment-detail-image-caption" data-detail-caption>${variantTitle}</p></div>
         <div class="equipment-detail-intro"><p class="equipment-detail-summary" id="equipment-detail-intro-title">${introduction}</p><div class="equipment-detail-meta" aria-label="خلاصهٔ اطلاعات"><div class="equipment-detail-meta-item"><span>کاربرد اصلی</span><strong>${primaryUse}</strong></div><div class="equipment-detail-meta-item"><span>تعداد گزینه‌ها</span><strong>${escapeHtml(count)}</strong></div></div><div class="equipment-detail-selected" aria-live="polite"><h2>گزینهٔ انتخاب‌شده</h2><strong class="equipment-detail-selected-title" data-detail-title>${variantTitle}</strong><p class="equipment-detail-selected-copy" data-detail-copy>${variantDetail}</p></div></div>
       </section>`;
 };
@@ -83,8 +88,11 @@ files.forEach(file => {
 
   const family = equipmentCatalog.find(item => item.slug === slug);
   const defaultImage = family?.variants?.[0]?.image;
-  const defaultImageHref = defaultImage
-    ? `../asset/equipment/${encodeURIComponent(defaultImage)}`
+  const defaultImageHref = defaultImage && !family?.comparison
+    ? `../asset/equipment/detail-360/${encodeURIComponent(defaultImage)}`
+    : '';
+  const defaultImageSrcset = defaultImage
+    ? `${defaultImageHref} 360w, ../asset/equipment/detail-600/${encodeURIComponent(defaultImage)} 600w`
     : '';
 
   const canonical = readCanonical(source) || `https://soheil-aghyani.github.io/Solid-Waste-Laboratory/Equipment/${file}`;
@@ -102,16 +110,16 @@ files.forEach(file => {
   <link rel="manifest" href="../manifest.webmanifest">
   <link rel="icon" type="image/webp" href="../Waste%20Lab.webp">
   <link rel="preload" href="../asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
-  ${defaultImageHref ? `<link rel="preload" href="${defaultImageHref}" as="image" fetchpriority="high">` : ''}
+${defaultImageHref ? `  <link rel="preload" href="${defaultImageHref}" imagesrcset="${defaultImageSrcset}" imagesizes="(max-width: 700px) calc(100vw - 80px), 560px" as="image" fetchpriority="high">` : ''}
   <script>try{const t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
   <link rel="stylesheet" href="../styles.min.css?v=6.3">
-  <link rel="stylesheet" href="../site-pages.min.css?v=2.1">
+  <link rel="stylesheet" href="../site-pages.min.css?v=2.3">
   <link rel="stylesheet" href="../equipment-detail.min.css?v=1.9">
-  <link rel="stylesheet" href="../catalog-detail-chrome.min.css?v=1.2">
+  <link rel="stylesheet" href="../catalog-detail-chrome.min.css?v=1.3">
   <script defer src="../asset/icon-system.min.js?v=1.0"></script>
   <script defer src="../equipment-data.min.js?v=2.2"></script>
   <script defer src="../catalog-detail-runtime.min.js?v=1.2"></script>
-  <script defer src="../equipment-detail.min.js?v=1.9"></script>
+  <script defer src="../equipment-detail.min.js?v=2.1"></script>
 </head>
 <body data-page="equipment-detail" class="equipment-detail-loading">
   <a class="skip-link" href="#equipment-detail-root">پرش به محتوای اصلی</a>

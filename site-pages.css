@@ -2,6 +2,7 @@
 :root {
   --mobile-dock-height: 76px;
   --desktop-dock-height: 72px;
+  --site-shell-max-width: 1280px;
   --site-border-strong: color-mix(in srgb, var(--border-color) 78%, var(--accent-emerald));
   --site-nav-hover-text: #d1fae5;
   --site-nav-hover-bg: color-mix(in srgb, var(--accent-emerald) 22%, var(--bg-secondary));
@@ -19,7 +20,7 @@ html {
 body {
   min-width: 0;
   overflow-x: hidden;
-  padding-bottom: calc(var(--desktop-dock-height) + 1.5rem);
+  padding-bottom: calc(var(--desktop-dock-height) + .25rem);
 }
 
 .site-container {
@@ -1383,7 +1384,7 @@ body {
 
 /* Shared chrome: keep the header in reach without turning the content into a fixed panel. */
 :root {
-  --site-header-offset: 8rem;
+  --site-header-offset: 1rem;
 }
 
 html {
@@ -1391,17 +1392,19 @@ html {
 }
 
 body {
-  padding-bottom: calc(var(--desktop-dock-height) + .75rem);
+  padding-bottom: calc(var(--desktop-dock-height) + .25rem);
 }
 
 .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 1200;
+  position: relative;
+  top: auto;
+  z-index: 1;
   isolation: isolate;
+  width: 100vw;
+  max-width: none;
   gap: 1rem;
-  margin-inline: -1.5rem;
-  padding: .75rem 1.5rem 1rem;
+  margin-inline: calc(50% - 50vw);
+  padding: .75rem max(1.5rem, calc((100vw - var(--site-shell-max-width)) / 2 + 1.5rem)) 1rem;
   border-bottom: 1px solid color-mix(in srgb, var(--accent-emerald) 22%, var(--border-color));
   background: color-mix(in srgb, var(--bg-primary) 90%, transparent);
   box-shadow: 0 8px 24px color-mix(in srgb, #0f172a 8%, transparent);
@@ -1548,20 +1551,40 @@ body {
 
 /* A compact, purposeful footer: brand, useful destinations, social links, then one quiet legal row. */
 .site-container > .site-footer {
+  position: relative;
   display: grid;
   grid-template-areas:
     "brand nav socials"
     "bottom bottom bottom";
-  grid-template-columns: minmax(220px, .9fr) minmax(0, 1.7fr) auto;
+  grid-template-columns: minmax(230px, .85fr) minmax(0, 1.8fr) minmax(170px, .7fr);
   align-items: start;
-  gap: 1rem 1.5rem;
-  margin: clamp(1.75rem, 4vw, 3rem) 0 .25rem;
-  padding: 1.25rem 1.5rem .85rem;
+  align-content: start;
+  gap: .8rem 1.25rem;
+  margin: clamp(1.25rem, 3vw, 2.25rem) 0 0;
+  padding: 1rem 1.25rem .65rem;
+  min-height: 0;
+  overflow: hidden;
   border: 1px solid var(--border-color);
-  border-top: 3px solid color-mix(in srgb, var(--accent-emerald) 75%, var(--border-color));
-  border-radius: 20px;
-  background: linear-gradient(135deg, var(--accent-emerald-glow), transparent 42%), var(--bg-secondary);
+  border-top: 3px solid color-mix(in srgb, var(--accent-emerald) 78%, var(--border-color));
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 8% 8%, color-mix(in srgb, var(--accent-emerald) 11%, transparent), transparent 28%),
+    linear-gradient(135deg, color-mix(in srgb, var(--accent-emerald) 7%, transparent), transparent 48%),
+    var(--bg-secondary);
   box-shadow: 0 12px 30px color-mix(in srgb, #0f172a 7%, transparent);
+}
+
+.site-container > .site-footer::before {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0 72%, color-mix(in srgb, var(--accent-emerald) 5%, transparent));
+  content: '';
+  pointer-events: none;
+}
+
+.site-container > .site-footer > * {
+  position: relative;
+  z-index: 1;
 }
 
 .site-footer .footer-main {
@@ -1572,7 +1595,8 @@ body {
   grid-area: brand;
   display: flex;
   min-width: 0;
-  align-items: flex-start;
+  flex-direction: row;
+  align-items: center;
   gap: .65rem;
 }
 
@@ -1620,7 +1644,7 @@ body {
   display: grid;
   min-width: 0;
   gap: .55rem;
-  align-content: start;
+  align-content: center;
   justify-content: stretch;
 }
 
@@ -1632,9 +1656,9 @@ body {
 }
 
 .site-footer .footer-nav-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .4rem .75rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .25rem .4rem;
 }
 
 .site-footer .footer-nav a {
@@ -1663,7 +1687,7 @@ body {
   display: grid;
   grid-area: socials;
   justify-items: end;
-  gap: .55rem;
+  gap: .45rem;
   align-content: start;
 }
 
@@ -1674,6 +1698,13 @@ body {
 .site-footer .social-icon {
   width: 38px;
   height: 38px;
+}
+
+.site-footer .social-icon svg {
+  display: block;
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: currentColor;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1688,7 +1719,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: .75rem 1.5rem;
-  padding-top: .7rem;
+  padding-top: .55rem;
   border-top: 1px solid var(--border-color);
   color: var(--text-muted);
   font-size: .66rem;
@@ -1702,15 +1733,16 @@ body {
 
 @media (max-width: 768px) {
   :root {
-    --site-header-offset: 13rem;
+    --site-header-offset: 1rem;
   }
 
   body {
-    padding-bottom: calc(var(--mobile-dock-height) + env(safe-area-inset-bottom) + .75rem);
+    padding-bottom: calc(var(--mobile-dock-height) + env(safe-area-inset-bottom) + .25rem);
   }
 
   .site-header {
-    margin-inline: -.75rem;
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
     padding: .65rem .75rem .8rem;
   }
 
@@ -1725,10 +1757,14 @@ body {
       "socials"
       "bottom";
     grid-template-columns: minmax(0, 1fr);
-    gap: .95rem;
-    margin-top: 1.5rem;
-    padding: 1rem;
+    gap: .65rem;
+    margin-top: 1.25rem;
+    padding: .8rem .85rem .55rem;
     border-radius: 16px;
+  }
+
+  .site-footer .footer-info {
+    align-items: center;
   }
 
   .site-footer .footer-socials {
@@ -1738,12 +1774,30 @@ body {
   .site-footer .footer-nav-links {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: .35rem;
+    gap: .25rem .35rem;
   }
 
   .site-footer .footer-nav a {
-    min-height: 38px;
+    min-height: 36px;
     justify-content: flex-start;
+  }
+
+  .site-footer .footer-socials {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+  }
+
+  .site-footer .footer-nav-links {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .site-footer .footer-nav a {
+    justify-content: center;
+    padding-inline: .25rem;
+    font-size: .68rem;
+    text-align: center;
   }
 
   .site-footer .footer-bottom {
@@ -1755,6 +1809,17 @@ body {
   .welcome-slides,
   .welcome-slide {
     min-height: 240px;
+  }
+}
+
+@media (max-width: 359px) {
+  .site-footer .footer-nav-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .site-footer .footer-nav a {
+    justify-content: flex-start;
+    text-align: right;
   }
 }
 

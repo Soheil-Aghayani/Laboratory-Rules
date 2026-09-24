@@ -555,11 +555,11 @@ body:has(.equipment-detail-page) .chatbot-window {
   }
 }
 
-/* Detail pages use the same sticky site header and compact footer as the portal pages. */
+/* Detail pages use the same scrolling site header and compact footer as the portal pages. */
 .catalog-detail-site-header {
-  position: sticky;
-  top: 0;
-  z-index: 1200;
+  position: relative;
+  top: auto;
+  z-index: 1;
   width: auto;
   margin: 0 -1rem 1rem;
   padding: .65rem 1rem .8rem;

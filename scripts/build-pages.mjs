@@ -249,7 +249,7 @@ const renderHead = page => {
   const elementStyles = page.filename === 'elements.html'
     ? '<link rel="stylesheet" href="./elements.min.css?v=1.8">'
     : '';
-  const assetVersion = asset => asset === 'gallery.min.js' ? '3.1' : '2.2';
+  const assetVersion = asset => asset === 'gallery.min.js' ? '3.3' : '2.2';
   return `<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -276,7 +276,7 @@ const renderHead = page => {
   <link rel="icon" type="image/webp" href="Waste%20Lab.webp">
   <link rel="preload" href="./asset/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="stylesheet" href="./styles.min.css?v=6.3">
-  ${elementStyles ? `${elementStyles}\n  ` : ''}<link rel="stylesheet" href="./site-pages.min.css?v=2.1">${pageStyles ? `\n  ${pageStyles}` : ''}
+  ${elementStyles ? `${elementStyles}\n  ` : ''}<link rel="stylesheet" href="./site-pages.min.css?v=2.3">${pageStyles ? `\n  ${pageStyles}` : ''}
   <script>
     try {
       const savedTheme = localStorage.getItem('theme');
