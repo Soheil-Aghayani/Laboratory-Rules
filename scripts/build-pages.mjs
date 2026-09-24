@@ -184,7 +184,6 @@ const renderPrimaryNav = currentPage => {
   const links = items.map(([href, label, iconName, current]) => pageLink(href, label, iconName, current, 'site-primary-nav-link')).join('');
   return `
       <nav class="site-primary-nav" aria-label="منوی اصلی سایت">
-        <div class="site-primary-nav-heading"><span class="material-symbols-outlined" aria-hidden="true">menu</span><span>راهنمای سایت</span></div>
         <div class="site-primary-nav-links">${links}</div>
         <details class="site-primary-nav-mobile">
           <summary><span class="material-symbols-outlined" aria-hidden="true">menu</span><span>باز کردن منوی سایت</span><span class="material-symbols-outlined" aria-hidden="true">expand_more</span></summary>

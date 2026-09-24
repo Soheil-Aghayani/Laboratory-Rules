@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'lab-rules-v86';
+const CACHE_VERSION = 'lab-rules-v87';
 const APP_SHELL = [
   './',
   './index.html',

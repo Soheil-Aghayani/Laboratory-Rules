@@ -46,7 +46,7 @@ const renderDetailPrimaryNav = () => {
   ];
   const links = items.map(([href, label, icon, current]) => `<a class="site-nav-link site-primary-nav-link${current ? ' is-active' : ''}" href="${href}"${current ? ' aria-current="page"' : ''}><span class="material-symbols-outlined" aria-hidden="true">${icon}</span><span>${label}</span></a>`).join('');
   const mobileLinks = links.replaceAll('site-primary-nav-link', 'site-primary-nav-mobile-link');
-  return `<nav class="site-primary-nav" aria-label="منوی اصلی سایت"><div class="site-primary-nav-heading"><span class="material-symbols-outlined" aria-hidden="true">menu</span><span>راهنمای سایت</span></div><div class="site-primary-nav-links">${links}</div><details class="site-primary-nav-mobile"><summary><span class="material-symbols-outlined" aria-hidden="true">menu</span><span>باز کردن منوی سایت</span><span class="material-symbols-outlined" aria-hidden="true">expand_more</span></summary><div class="site-primary-nav-mobile-links">${mobileLinks}</div></details></nav>`;
+  return `<nav class="site-primary-nav" aria-label="منوی اصلی سایت"><div class="site-primary-nav-links">${links}</div><details class="site-primary-nav-mobile"><summary><span class="material-symbols-outlined" aria-hidden="true">menu</span><span>باز کردن منوی سایت</span><span class="material-symbols-outlined" aria-hidden="true">expand_more</span></summary><div class="site-primary-nav-mobile-links">${mobileLinks}</div></details></nav>`;
 };
 
 const renderInitialDetail = family => {
