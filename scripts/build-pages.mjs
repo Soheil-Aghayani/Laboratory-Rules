@@ -117,12 +117,15 @@ const headerTop = source.slice(headerTopStart, headerContainsWelcome ? welcomeSt
   .replace(/\s*<nav class="site-primary-nav"[\s\S]*?<\/nav>/g, '')
   .trim();
 const galleryHeaderTop = headerTop.replace(/\s*<!-- Live Search Bar -->[\s\S]*?(?=<div id="offline-status")/, `
-      <div class="search-container catalog-header-search">
+      <div class="search-container">
         <label for="gallery-equipment-search" class="sr-only">جستجو در کاتالوگ تجهیزات</label>
-        <input type="search" id="gallery-equipment-search" class="search-input" autocomplete="off" enterkeyhint="search" placeholder="مثلاً بشر، فالکون، بوته یا شیشه‌آلات">
-        <button id="gallery-equipment-search-clear" type="button" class="catalog-header-search-clear" aria-label="پاک‌کردن جستجو" hidden><span class="material-symbols-outlined" aria-hidden="true">close</span></button>
-        <span class="material-symbols-outlined search-icon" aria-hidden="true">search</span>
+        <input type="text" id="gallery-equipment-search" class="search-input" autocomplete="off" enterkeyhint="search" placeholder="مثلاً بشر، فالکون، بوته یا شیشه‌آلات">
+        <button id="search-voice-btn" class="search-voice-btn" title="جستجوی صوتی" aria-label="جستجوی صوتی">
+          <span class="material-symbols-outlined">mic</span>
+        </button>
+        <span class="material-symbols-outlined search-icon">search</span>
       </div>
+      <div id="search-status-banner" class="search-status-banner" role="status" aria-live="polite" style="display: none;"></div>
       `);
 const welcomePanel = source.slice(welcomeStart, welcomeEnd).trim();
 

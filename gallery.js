@@ -119,7 +119,7 @@
   function initGallery() {
     const grid = document.getElementById('gallery-equipment-grid');
     const search = document.getElementById('gallery-equipment-search');
-    const clearSearch = document.getElementById('gallery-equipment-search-clear');
+    const searchVoiceBtn = document.getElementById('search-voice-btn');
     const sortSelect = document.getElementById('gallery-equipment-sort');
     const count = document.getElementById('gallery-equipment-count');
     const empty = document.getElementById('gallery-equipment-empty');
@@ -132,6 +132,54 @@
     if (!grid || !search || !count || !empty) return;
 
     let state = readUrlState();
+    const defaultSearchPlaceholder = search.getAttribute('placeholder') || '';
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (searchVoiceBtn) {
+      if (!SpeechRecognition) {
+        searchVoiceBtn.style.display = 'none';
+      } else {
+        const recognition = new SpeechRecognition();
+        let isListening = false;
+        recognition.lang = 'fa-IR';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        const stopListening = () => {
+          isListening = false;
+          searchVoiceBtn.classList.remove('recording');
+          search.placeholder = defaultSearchPlaceholder;
+          try {
+            recognition.stop();
+          } catch (error) {
+            // already stopped
+          }
+        };
+
+        recognition.onstart = () => {
+          isListening = true;
+          searchVoiceBtn.classList.add('recording');
+          search.placeholder = 'در حال شنیدن... صحبت کنید...';
+        };
+        recognition.onresult = event => {
+          search.value = event.results[0][0].transcript;
+          search.dispatchEvent(new Event('input'));
+        };
+        recognition.onerror = () => stopListening();
+        recognition.onend = () => stopListening();
+
+        searchVoiceBtn.addEventListener('click', () => {
+          if (isListening) stopListening();
+          else {
+            try {
+              recognition.start();
+            } catch (error) {
+              stopListening();
+            }
+          }
+        });
+      }
+    }
 
     const openDialog = () => {
       if (!dialog) return;
@@ -182,7 +230,6 @@
 
       grid.innerHTML = filtered.map(renderEquipmentCard).join('');
       empty.hidden = filtered.length !== 0;
-      clearSearch.hidden = !state.query;
       if (sortSelect) sortSelect.value = state.sort;
       updateFilterState();
       if (!state.query && state.category === 'all') {
@@ -207,13 +254,6 @@
       state.query = search.value;
       writeUrlState(state.query, state.category, state.sort, true);
       render();
-    });
-    clearSearch?.addEventListener('click', () => {
-      state.query = '';
-      search.value = '';
-      writeUrlState(state.query, state.category, state.sort, true);
-      render();
-      search.focus();
     });
     reset?.addEventListener('click', () => {
       state = { query: '', category: 'all', sort: 'recommended' };
